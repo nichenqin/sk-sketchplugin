@@ -22,6 +22,7 @@ export default function(context) {
     handlers: {
       import(component) {
         const button = new Button(context);
+        console.log('button', button);
         button.importComponent();
       },
     },
