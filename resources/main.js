@@ -2,6 +2,8 @@
 import Vue from 'vue';
 import App from './App.vue';
 
+import './assets/button.sketch';
+
 // import your style files inside main.js, not html link tag
 import './styles/style.less';
 

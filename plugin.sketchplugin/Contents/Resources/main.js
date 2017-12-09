@@ -370,9 +370,13 @@ function toComment(sourceMap) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__styles_style_less__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__styles_style_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_button_sketch__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_button_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__assets_button_sketch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_style_less__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__styles_style_less__);
 /* eslint-disable */
+
+
 
 
 
@@ -9543,6 +9547,12 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "button.sketch?ea89a9d449c135be68ee10a47249ff9b";
 
 /***/ })
 /******/ ]);
