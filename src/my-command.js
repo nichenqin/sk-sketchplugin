@@ -1,4 +1,6 @@
+/* eslint-disable */
 import WebUI from 'sketch-module-web-view';
+import Button from './Button';
 
 export default function(context) {
   const webUI = new WebUI(context, require('../resources/index.html'), {
@@ -6,7 +8,7 @@ export default function(context) {
     x: 0,
     y: 0,
     width: 240,
-    height: 180,
+    height: 480,
     blurredBackground: true,
     onlyShowCloseButton: true,
     hideTitleBar: false,
@@ -18,10 +20,9 @@ export default function(context) {
       },
     },
     handlers: {
-      nativeLog(s) {
-        context.document.showMessage(s);
-        const sketch = context.api();
-        console.log(sketch);
+      import(component) {
+        const button = new Button(context);
+        button.importComponent();
       },
     },
   });
