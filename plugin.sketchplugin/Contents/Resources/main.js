@@ -8973,8 +8973,6 @@ module.exports = function normalizeComponent (
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__);
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 //
 //
 //
@@ -8989,7 +8987,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   methods: {
     importComponent: function importComponent() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', 'button');
-      console.log(_typeof(window.button));
+      console.log(window.button.title);
     },
     log: function log() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('nativeLog', 'From vue.js!');

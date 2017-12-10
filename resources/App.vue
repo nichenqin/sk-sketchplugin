@@ -12,7 +12,7 @@ export default {
   methods: {
     importComponent() {
       pluginCall('import', 'button');
-      console.log(typeof window.button);
+      console.log(window.button.title);
     },
     log() {
       pluginCall('nativeLog', 'From vue.js!');
