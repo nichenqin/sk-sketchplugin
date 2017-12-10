@@ -8973,14 +8973,14 @@ module.exports = function normalizeComponent (
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__VComponents_Button__ = __webpack_require__(23);
-//
-//
-//
-//
-//
-//
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8988,8 +8988,8 @@ module.exports = function normalizeComponent (
   name: 'app',
   methods: {
     importComponent: function importComponent() {
-      var button = new __WEBPACK_IMPORTED_MODULE_1__VComponents_Button__["a" /* default */]();
-      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', button);
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', 'button');
+      console.log(_typeof(window.button));
     },
     log: function log() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('nativeLog', 'From vue.js!');
@@ -9558,64 +9558,6 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
-
-/***/ }),
-/* 23 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__VComponent__ = __webpack_require__(24);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var Button = function (_VComponent) {
-  _inherits(Button, _VComponent);
-
-  function Button() {
-    _classCallCheck(this, Button);
-
-    return _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).apply(this, arguments));
-  }
-
-  _createClass(Button, [{
-    key: 'importComponent',
-    value: function importComponent(context) {
-      console.log(this.title);
-      console.log('context', context);
-    }
-  }]);
-
-  return Button;
-}(__WEBPACK_IMPORTED_MODULE_0__VComponent__["a" /* default */]);
-
-/* harmony default export */ __webpack_exports__["a"] = (Button);
-
-/***/ }),
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var VComponent = function VComponent() {
-  _classCallCheck(this, VComponent);
-
-  this.title = 'tb-ui';
-  // this.context = context;
-  // this.pluginRoot = this.context.scriptPath
-  //   .stringByDeletingLastPathComponent()
-  //   .stringByDeletingLastPathComponent()
-  //   .stringByDeletingLastPathComponent();
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (VComponent);
 
 /***/ })
 /******/ ]);
