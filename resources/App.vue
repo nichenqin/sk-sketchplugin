@@ -6,12 +6,14 @@
 
 <script>
 import pluginCall from 'sketch-module-web-view/client';
+import Button from './VComponents/Button';
 
 export default {
   name: 'app',
   methods: {
     importComponent() {
-      pluginCall('import', 'button');
+      const button = new Button();
+      pluginCall('import', button);
     },
     log() {
       pluginCall('nativeLog', 'From vue.js!');

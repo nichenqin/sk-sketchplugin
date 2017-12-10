@@ -1,6 +1,5 @@
 /* eslint-disable */
 import WebUI from 'sketch-module-web-view';
-import Button from './Button';
 
 export default function(context) {
   const webUI = new WebUI(context, require('../resources/index.html'), {
@@ -21,9 +20,12 @@ export default function(context) {
     },
     handlers: {
       import(component) {
-        const button = new Button(context);
-        console.log('button', button);
-        button.importComponent();
+        try {
+          console.log('component', component);
+          button.importComponent(context);
+        } catch (error) {
+          console.log(error);
+        }
       },
     },
   });
