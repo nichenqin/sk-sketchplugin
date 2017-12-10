@@ -1,9 +1,9 @@
 import VComponent from './VComponent';
 
 class Button extends VComponent {
-  importComponent(context) {
+  importComponent() {
     console.log(this.title);
-    console.log('context', context);
+    console.log('context', this.context);
   }
 }
 
