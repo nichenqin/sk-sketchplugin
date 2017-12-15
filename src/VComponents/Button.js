@@ -1,4 +1,4 @@
-import VComponent from './VComponent';
+import VComponent from '../VComponent';
 
 class Button extends VComponent {
   importComponent() {

@@ -22,8 +22,8 @@ export default function(context) {
     handlers: {
       import(component) {
         try {
-          const button = new Button();
-          webUI.eval(`window.button = ${JSON.stringify(button)}`);
+          const button = new Button(context);
+          webUI.eval(`window.initComponent(${JSON.stringify(button)})`);
         } catch (error) {
           console.log(error);
         }
