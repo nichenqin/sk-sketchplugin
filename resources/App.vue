@@ -19,9 +19,7 @@ export default {
   },
   methods: {
     importComponent() {
-      console.log(this.currentComponent);
       pluginCall('import', 'button');
-      console.log(this.currentComponent);
     },
   },
   created() {
