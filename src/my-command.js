@@ -23,6 +23,7 @@ export default function(context) {
       import(component) {
         try {
           const button = new Button(context);
+          console.log(button);
           webUI.eval(`window.initComponent(${JSON.stringify(button)})`);
         } catch (error) {
           console.log(error);

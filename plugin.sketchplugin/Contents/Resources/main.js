@@ -8996,6 +8996,7 @@ module.exports = function normalizeComponent (
   methods: {
     importComponent: function importComponent() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', 'button');
+      console.log(this.currentComponent);
     }
   },
   created: function created() {
