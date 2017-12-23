@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <button @click="handleClick">按钮</button>
     <h1>{{currentComponent}}</h1>
   </div>
 </template>
@@ -16,9 +17,8 @@ export default {
     };
   },
   methods: {
-    importComponent() {
+    handleClick() {
       pluginCall('import', 'button');
-      console.log(this.currentComponent);
     },
   },
   created() {
@@ -32,5 +32,8 @@ export default {
 </script>
 
 <style lang="less">
-
+button {
+  width: 100%;
+  height: 30px;
+}
 </style>

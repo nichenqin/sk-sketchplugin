@@ -3,6 +3,7 @@ import Vue from 'vue';
 import App from './App.vue';
 
 import './assets/button.sketch';
+import './assets/World.pdf';
 
 // import your style files inside main.js, not html link tag
 import './styles/style.less';

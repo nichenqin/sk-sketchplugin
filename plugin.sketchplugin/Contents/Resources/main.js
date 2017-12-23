@@ -372,9 +372,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_button_sketch__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_button_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__assets_button_sketch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_style_less__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__styles_style_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_World_pdf__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_World_pdf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__assets_World_pdf__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_style_less__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__styles_style_less__);
 /* eslint-disable */
+
 
 
 
@@ -8598,7 +8601,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\nbutton {\n  width: 100%;\n  height: 30px;\n}\n", ""]);
 
 // exports
 
@@ -8980,6 +8983,7 @@ module.exports = function normalizeComponent (
 //
 //
 //
+//
 
 
 
@@ -8993,9 +8997,8 @@ module.exports = function normalizeComponent (
   },
 
   methods: {
-    importComponent: function importComponent() {
+    handleClick: function handleClick() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', 'button');
-      console.log(this.currentComponent);
     }
   },
   created: function created() {
@@ -9053,6 +9056,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "app" } }, [
+    _c("button", { on: { click: _vm.handleClick } }, [_vm._v("按钮")]),
+    _vm._v(" "),
     _c("h1", [_vm._v(_vm._s(_vm.currentComponent))])
   ])
 }
@@ -9584,6 +9589,12 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "World.pdf?cbb0b9e6061ce6d807f30f67f213786d";
 
 /***/ })
 /******/ ]);
