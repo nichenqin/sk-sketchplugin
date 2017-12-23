@@ -1,20 +1,18 @@
 <template>
   <div id="app">
-    <button @click="importComponent">button</button>
-    <div v-if="currentComponent">
-      {{ currentComponent.title }}
-    </div>
+    <h1>{{currentComponent}}</h1>
   </div>
 </template>
 
 <script>
 import pluginCall from 'sketch-module-web-view/client';
+import bridgeHandler from './assets/js/handler';
 
 export default {
   name: 'app',
   data() {
     return {
-      currentComponent: null,
+      currentComponent: '',
     };
   },
   methods: {
@@ -24,9 +22,11 @@ export default {
     },
   },
   created() {
-    window.initComponent = component => {
-      this.currentComponent = component;
-    };
+    pluginCall('appLoaded');
+    bridgeHandler(name => {
+      console.log(name);
+      this.currentComponent = name;
+    });
   },
 };
 </script>

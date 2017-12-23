@@ -6,10 +6,6 @@ class VComponent {
       .stringByDeletingLastPathComponent()
       .stringByDeletingLastPathComponent()
       .stringByDeletingLastPathComponent();
-    this.sketch = context.api();
-    this.document = this.sketch.selectedDocument;
-    this.selection = this.document.selectedLayers;
-    this.page = this.document.selectedPage;
   }
 }
 
