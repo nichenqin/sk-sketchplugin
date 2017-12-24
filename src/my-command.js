@@ -1,4 +1,4 @@
-/* globals log */
+/* globals log NSApp MSUserAssetLibrary */
 import { createWebview, dispatchToWebview } from './utils';
 
 function getSelectedLayer(context) {
@@ -29,20 +29,26 @@ export default function (context) {
       try {
         log(c);
         const sketch = context.api();
-        const document = sketch.selectedDocument;
-        const selection = document.selectedLayers;
-        const page = document.selectedPage;
 
-        const group = page.newArtboard({
-          frame: new sketch.Rectangle(0, 0, 200, 200),
-          name: 'Test',
-        });
-        // const image = group.newImage({ frame: new sketch.Rectangle(50, 50, 100, 100), imageURL });
+        const uikit = sketch.resourceNamed('button.sketch');
 
-        // log(selection.isEmpty);
-        // selection.iterate(item => {
-        //   log(item.name);
-        // });
+        const assetLibraryController = NSApp.delegate().librariesController();
+        assetLibraryController.addAssetLibraryAtURL(uikit);
+
+        const assetLibrary = MSUserAssetLibrary.alloc().initWithDocumentAtURL(uikit);
+        assetLibrary.loadSynchronously();
+        const symbols = assetLibrary.document().allSymbols();
+        log(symbols[0]);
+        log(symbols[0].objectID());
+
+        const documentData = context.document.documentData();
+        const importedSymbol = assetLibraryController.importForeignSymbol_fromLibrary_intoDocument(
+          symbols[0],
+          assetLibrary,
+          documentData,
+        );
+        const instance = importedSymbol.symbolMaster().newSymbolInstance();
+        context.document.currentPage().addLayers([instance]);
       } catch (error) {
         log(error);
       }

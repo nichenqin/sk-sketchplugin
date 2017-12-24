@@ -18,7 +18,7 @@ export function createWebview(context, handlers, title) {
     resizable: true,
     handlers,
   };
-  const webUI = new WebUI(context, require('../resources/index.html'), options);
+  const webUI = new WebUI(context, require('../../resources/index.html'), options);
   return webUI;
 }
 
@@ -30,4 +30,8 @@ export function dispatchToWebview(action, payload, origin) {
   const data = JSON.stringify({ action, payload, origin });
   sendToWebview(IDENTIFIER, `sketchBridge(${data});`);
   return true;
+}
+
+export function getSymbolById(context, id) {
+  return context.document.documentData().layerWithID(id);
 }
