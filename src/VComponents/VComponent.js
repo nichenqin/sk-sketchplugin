@@ -59,10 +59,6 @@ class VComponent {
 
     const { context, assetLibrary, sketch } = this;
 
-    if (!assetLibrary) {
-      return;
-    }
-
     const symbol = this.findSymbolByPath(path);
 
     if (!symbol) {
