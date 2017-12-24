@@ -1,6 +1,7 @@
 /* globals log */
 import { createWebview, dispatchToWebview, parseFilePath } from './utils';
 import Button from './VComponents/Button';
+import List from './VComponents/List';
 
 function getSelectedLayer(context) {
   const sketch = context.api();
@@ -22,10 +23,12 @@ function checkForSelectedLayer(selectedLayerName) {
 function createComponentInstance(context, path) {
   const instance = (() => {
     const { root: name } = parseFilePath(path);
-    switch (name) {
+    switch (name.toLowerCase()) {
       case 'button':
       case 'icon':
         return new Button(context, name);
+      case 'list':
+        return new List(context, name);
 
       default:
         return null;
@@ -36,6 +39,7 @@ function createComponentInstance(context, path) {
 }
 
 export default function (context) {
+  const sketch = context.api();
   const selectedLayerName = getSelectedLayer(context);
   const handlers = {
     appLoaded: () => {
@@ -47,6 +51,10 @@ export default function (context) {
     import: path => {
       try {
         const component = createComponentInstance(context, path);
+        if (!component) {
+          sketch.message(`生成component失败，请检查路径${path}`);
+          return;
+        }
         component.import(path);
       } catch (error) {
         log(error);
