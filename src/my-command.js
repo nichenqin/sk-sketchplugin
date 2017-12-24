@@ -1,11 +1,12 @@
-/* globals log NSApp MSUserAssetLibrary */
+/* globals log */
 import { createWebview, dispatchToWebview } from './utils';
+import Button from './VComponents/Button';
 
 function getSelectedLayer(context) {
-  const sketchAPI = context.api();
-  const { selectedLayers } = sketchAPI.selectedDocument;
+  const sketch = context.api();
+  const { selectedLayers } = sketch.selectedDocument;
 
-  let selectedLayerName;
+  let selectedLayerName = '';
   selectedLayers.iterate(layer => {
     selectedLayerName = layer.name;
   });
@@ -13,10 +14,23 @@ function getSelectedLayer(context) {
 }
 
 function checkForSelectedLayer(selectedLayerName) {
-  if (!selectedLayerName) {
-    return;
-  }
-  dispatchToWebview('SEARCH', String(selectedLayerName), 'onload-sketch');
+  const searchQuery = selectedLayerName ? String(selectedLayerName) : '';
+  log(selectedLayerName);
+  dispatchToWebview('SEARCH', searchQuery, 'onload-sketch');
+}
+
+function createComponentInstance(context, name) {
+  const instance = (() => {
+    switch (name) {
+      case 'button':
+        return new Button(context);
+
+      default:
+        return null;
+    }
+  })();
+
+  return instance;
 }
 
 export default function (context) {
@@ -25,30 +39,13 @@ export default function (context) {
     appLoaded: () => {
       checkForSelectedLayer(selectedLayerName);
     },
-    import: c => {
+    select: objectID => {
+      log(objectID);
+    },
+    import: name => {
       try {
-        log(c);
-        const sketch = context.api();
-
-        const uikit = sketch.resourceNamed('button.sketch');
-
-        const assetLibraryController = NSApp.delegate().librariesController();
-        assetLibraryController.addAssetLibraryAtURL(uikit);
-
-        const assetLibrary = MSUserAssetLibrary.alloc().initWithDocumentAtURL(uikit);
-        assetLibrary.loadSynchronously();
-        const symbols = assetLibrary.document().allSymbols();
-        log(symbols[0]);
-        log(symbols[0].objectID());
-
-        const documentData = context.document.documentData();
-        const importedSymbol = assetLibraryController.importForeignSymbol_fromLibrary_intoDocument(
-          symbols[0],
-          assetLibrary,
-          documentData,
-        );
-        const instance = importedSymbol.symbolMaster().newSymbolInstance();
-        context.document.currentPage().addLayers([instance]);
+        const component = createComponentInstance(context, name);
+        component.import('button/normal');
       } catch (error) {
         log(error);
       }

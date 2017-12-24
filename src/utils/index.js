@@ -1,3 +1,5 @@
+/* globals log NSApp MSUserAssetLibrary */
+
 import WebUI from 'sketch-module-web-view';
 import { isWebviewPresent, sendToWebview } from 'sketch-module-web-view/remote';
 
@@ -30,8 +32,4 @@ export function dispatchToWebview(action, payload, origin) {
   const data = JSON.stringify({ action, payload, origin });
   sendToWebview(IDENTIFIER, `sketchBridge(${data});`);
   return true;
-}
-
-export function getSymbolById(context, id) {
-  return context.document.documentData().layerWithID(id);
 }
