@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <button @click="handleClick">按钮</button>
-    <h1>{{currentComponent}}</h1>
+    <form @submit.prevent="handleSubmit">
+      <input type="text" v-model.lazy="path">
+      <button @submit="handleSubmit">导入到Sketch</button>
+    </form>
+    <h1>current selected symbol name:</h1>
+    <h2>{{currentComponent}}</h2>
   </div>
 </template>
 
@@ -13,18 +17,18 @@ export default {
   name: 'app',
   data() {
     return {
+      path: 'button/normal',
       currentComponent: '',
     };
   },
   methods: {
-    handleClick() {
-      pluginCall('import', 'button');
+    handleSubmit() {
+      pluginCall('import', this.path);
     },
   },
   created() {
     pluginCall('appLoaded');
     bridgeHandler(name => {
-      console.log(name);
       this.currentComponent = name;
     });
   },
@@ -32,7 +36,9 @@ export default {
 </script>
 
 <style lang="less">
+input,
 button {
+  font-size: 16px;
   width: 100%;
   height: 30px;
 }

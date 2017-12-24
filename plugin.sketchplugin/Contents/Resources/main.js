@@ -372,12 +372,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_button_sketch__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_button_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__assets_button_sketch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_World_pdf__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__assets_World_pdf___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__assets_World_pdf__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_style_less__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__styles_style_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_style_less__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__styles_style_less__);
 /* eslint-disable */
-
 
 
 
@@ -8601,7 +8598,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\nbutton {\n  width: 100%;\n  height: 30px;\n}\n", ""]);
+exports.push([module.i, "\ninput,\nbutton {\n  font-size: 16px;\n  width: 100%;\n  height: 30px;\n}\n", ""]);
 
 // exports
 
@@ -8984,6 +8981,10 @@ module.exports = function normalizeComponent (
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -8992,13 +8993,14 @@ module.exports = function normalizeComponent (
   name: 'app',
   data: function data() {
     return {
+      path: 'button/normal',
       currentComponent: ''
     };
   },
 
   methods: {
-    handleClick: function handleClick() {
-      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', 'button');
+    handleSubmit: function handleSubmit() {
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.path);
     }
   },
   created: function created() {
@@ -9006,7 +9008,6 @@ module.exports = function normalizeComponent (
 
     __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('appLoaded');
     Object(__WEBPACK_IMPORTED_MODULE_1__assets_js_handler__["a" /* default */])(function (name) {
-      console.log(name);
       _this.currentComponent = name;
     });
   }
@@ -9056,9 +9057,45 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "app" } }, [
-    _c("button", { on: { click: _vm.handleClick } }, [_vm._v("按钮")]),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.handleSubmit($event)
+          }
+        }
+      },
+      [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model.lazy",
+              value: _vm.path,
+              expression: "path",
+              modifiers: { lazy: true }
+            }
+          ],
+          attrs: { type: "text" },
+          domProps: { value: _vm.path },
+          on: {
+            change: function($event) {
+              _vm.path = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("button", { on: { submit: _vm.handleSubmit } }, [
+          _vm._v("导入到Sketch")
+        ])
+      ]
+    ),
     _vm._v(" "),
-    _c("h1", [_vm._v(_vm._s(_vm.currentComponent))])
+    _c("h1", [_vm._v("current selected symbol name:")]),
+    _vm._v(" "),
+    _c("h2", [_vm._v(_vm._s(_vm.currentComponent))])
   ])
 }
 var staticRenderFns = []
@@ -9079,12 +9116,7 @@ if (false) {
 module.exports = __webpack_require__.p + "button.sketch?ea89a9d449c135be68ee10a47249ff9b";
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "World.pdf?cbb0b9e6061ce6d807f30f67f213786d";
-
-/***/ }),
+/* 18 */,
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 

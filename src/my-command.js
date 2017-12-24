@@ -1,5 +1,5 @@
 /* globals log */
-import { createWebview, dispatchToWebview } from './utils';
+import { createWebview, dispatchToWebview, parseFilePath } from './utils';
 import Button from './VComponents/Button';
 
 function getSelectedLayer(context) {
@@ -19,10 +19,12 @@ function checkForSelectedLayer(selectedLayerName) {
   dispatchToWebview('SEARCH', searchQuery, 'onload-sketch');
 }
 
-function createComponentInstance(context, name) {
+function createComponentInstance(context, path) {
   const instance = (() => {
+    const { root: name } = parseFilePath(path);
     switch (name) {
       case 'button':
+      case 'icon':
         return new Button(context);
 
       default:
@@ -42,10 +44,10 @@ export default function (context) {
     select: objectID => {
       log(objectID);
     },
-    import: name => {
+    import: path => {
       try {
-        const component = createComponentInstance(context, name);
-        component.import('button/normal');
+        const component = createComponentInstance(context, path);
+        component.import(path);
       } catch (error) {
         log(error);
       }

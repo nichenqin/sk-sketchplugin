@@ -1,4 +1,5 @@
 /* globals MSUserAssetLibrary NSApp */
+
 class VComponent {
   constructor(context, uikit = '') {
     this.name = 'superKit';
@@ -47,7 +48,7 @@ class VComponent {
       return;
     }
 
-    const { context, assetLibrary } = this;
+    const { context, assetLibrary, sketch } = this;
 
     if (!assetLibrary) {
       return;
@@ -56,6 +57,7 @@ class VComponent {
     const symbol = this.findSymbolByName(name);
 
     if (!symbol) {
+      sketch.message(`没有找到symbol: ${name}`);
       return;
     }
 

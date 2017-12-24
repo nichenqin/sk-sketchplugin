@@ -1,4 +1,4 @@
-/* globals log NSApp MSUserAssetLibrary */
+/* globals */
 
 import WebUI from 'sketch-module-web-view';
 import { isWebviewPresent, sendToWebview } from 'sketch-module-web-view/remote';
@@ -32,4 +32,14 @@ export function dispatchToWebview(action, payload, origin) {
   const data = JSON.stringify({ action, payload, origin });
   sendToWebview(IDENTIFIER, `sketchBridge(${data});`);
   return true;
+}
+
+export function parseFilePath(path) {
+  const reg = /[a-z](\/(w+)*)?/gi;
+  if (!reg.test(path)) {
+    throw new Error('文件路径格式错误');
+  }
+
+  const [root] = path.split('/');
+  return { root };
 }
