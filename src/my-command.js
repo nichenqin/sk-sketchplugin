@@ -19,13 +19,13 @@ function checkForSelectedLayer(selectedLayerName) {
   dispatchToWebview('SEARCH', searchQuery, 'onload-sketch');
 }
 
-function createComponentInstance(context, path) {
+function getComponentInstance(context, path) {
   const instance = (() => {
     const { root: name } = parseFilePath(path);
     switch (name) {
       case 'button':
       case 'icon':
-        return new Button(context);
+        return new Button(context, name);
 
       default:
         return null;
@@ -46,7 +46,7 @@ export default function (context) {
     },
     import: path => {
       try {
-        const component = createComponentInstance(context, path);
+        const component = getComponentInstance(context, path);
         component.import(path);
       } catch (error) {
         log(error);

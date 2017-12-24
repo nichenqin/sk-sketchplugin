@@ -1,9 +1,9 @@
 import VComponent from '../VComponent';
 
 class Button extends VComponent {
-  constructor(context) {
-    super(context, 'button.sketch');
-    this.name = 'button';
+  constructor(context, name) {
+    super(context, name);
+    this.name = name;
   }
 }
 

@@ -1,16 +1,19 @@
 /* globals MSUserAssetLibrary NSApp */
 
 class VComponent {
-  constructor(context, uikit = '') {
-    this.name = 'superKit';
+  constructor(context, name = '') {
+    this.name = name;
 
     const sketch = context.api();
     this.context = context;
     this.sketch = sketch;
 
-    this.uikit = sketch.resourceNamed(uikit);
+    this.uikit = sketch.resourceNamed(`${name}.sketch`);
     this.assetLibrary = null;
-    this.symbols = this.getSymbolsFromLibrary(this.uikit);
+    this.symbols = this.getSymbolsFromLibrary();
+
+    this.symbol = null;
+    this.objectID = '';
   }
 
   getSymbolsFromLibrary() {
@@ -21,6 +24,11 @@ class VComponent {
     }
 
     const assetLibrary = MSUserAssetLibrary.alloc().initWithDocumentAtURL(uikit);
+
+    if (!assetLibrary) {
+      throw new Error('导入文件失败，请检查文件名');
+    }
+
     this.assetLibrary = assetLibrary;
     assetLibrary.loadSynchronously();
 
@@ -28,13 +36,14 @@ class VComponent {
     return symbols;
   }
 
-  findSymbolByName(name) {
+  findSymbolByPath(path) {
     const { symbols } = this;
 
     let symbol = null;
+
     for (let i = 0; i < symbols.count(); i += 1) {
       const symbolName = String(symbols[i].name());
-      if (name === symbolName) {
+      if (path === symbolName) {
         symbol = symbols[i];
         break;
       }
@@ -43,8 +52,8 @@ class VComponent {
     return symbol;
   }
 
-  import(name) {
-    if (!name) {
+  import(path) {
+    if (!path) {
       return;
     }
 
@@ -54,12 +63,15 @@ class VComponent {
       return;
     }
 
-    const symbol = this.findSymbolByName(name);
+    const symbol = this.findSymbolByPath(path);
 
     if (!symbol) {
-      sketch.message(`没有找到symbol: ${name}`);
+      sketch.message(`没有找到symbol: ${path}`);
       return;
     }
+
+    this.symbol = symbol;
+    this.objectID = String(symbol.objectID());
 
     const assetLibraryController = NSApp.delegate().librariesController();
     const documentData = context.document.documentData();
