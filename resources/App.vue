@@ -4,8 +4,12 @@
       <input type="text" v-model.lazy="path">
       <button @submit="handleSubmit">导入到Sketch</button>
     </form>
-    <h1>current selected symbol name:</h1>
-    <h2>{{currentComponent}}</h2>
+    <hr>
+    <h1>Selected Layer Name:</h1>
+    <h2>{{layerName}}</h2>
+    <hr>
+    <h1>ObjectID:</h1>
+    <h2>{{objectID}}</h2>
   </div>
 </template>
 
@@ -18,7 +22,8 @@ export default {
   data() {
     return {
       path: 'button/normal',
-      currentComponent: '',
+      layerName: '',
+      objectID: '',
     };
   },
   methods: {
@@ -26,10 +31,11 @@ export default {
       pluginCall('import', this.path);
     },
   },
-  created() {
+  mounted() {
     pluginCall('appLoaded');
-    bridgeHandler(name => {
-      this.currentComponent = name;
+    bridgeHandler(({ layerName, objectID }) => {
+      this.layerName = layerName;
+      this.objectID = objectID;
     });
   },
 };

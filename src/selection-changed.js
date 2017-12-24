@@ -1,17 +1,14 @@
-/* globals log */
-
 import { dispatchToWebview } from './utils';
 
 export function onSelectionChanged(context) {
   const { actionContext } = context;
   const { document } = actionContext;
+  const layers = document.selectedLayers().layers()[0];
 
-  const layerName = String(document
-    .selectedLayers()
-    .layers()[0]
-    .name());
+  const payload = {
+    layerName: String(layers.name()),
+    objectID: String(layers.objectID()),
+  };
 
-  log(layerName);
-
-  dispatchToWebview('SEARCH', layerName, 'onchange-sketch');
+  dispatchToWebview('SEARCH', payload, 'onchange-sketch');
 }

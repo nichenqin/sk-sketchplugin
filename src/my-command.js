@@ -7,17 +7,13 @@ function getSelectedLayer(context) {
   const sketch = context.api();
   const { selectedLayers } = sketch.selectedDocument;
 
-  let selectedLayerName = '';
+  let layerName = '';
+  let objectID = '';
   selectedLayers.iterate(layer => {
-    selectedLayerName = layer.name;
+    layerName = String(layer.name);
+    objectID = String(layer.id);
   });
-  return selectedLayerName;
-}
-
-function checkForSelectedLayer(selectedLayerName) {
-  const searchQuery = selectedLayerName ? String(selectedLayerName) : '';
-  log(selectedLayerName);
-  dispatchToWebview('SEARCH', searchQuery, 'onload-sketch');
+  return { layerName, objectID };
 }
 
 function createComponentInstance(context, path) {
@@ -40,10 +36,10 @@ function createComponentInstance(context, path) {
 
 export default function (context) {
   const sketch = context.api();
-  const selectedLayerName = getSelectedLayer(context);
   const handlers = {
     appLoaded: () => {
-      checkForSelectedLayer(selectedLayerName);
+      const payload = getSelectedLayer(context);
+      dispatchToWebview('SEARCH', payload, 'onload-sketch');
     },
     select: objectID => {
       log(objectID);

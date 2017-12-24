@@ -8997,6 +8997,10 @@ module.exports = function normalizeComponent (
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -9006,7 +9010,8 @@ module.exports = function normalizeComponent (
   data: function data() {
     return {
       path: 'button/normal',
-      currentComponent: ''
+      layerName: '',
+      objectID: ''
     };
   },
 
@@ -9015,12 +9020,16 @@ module.exports = function normalizeComponent (
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.path);
     }
   },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
     __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('appLoaded');
-    Object(__WEBPACK_IMPORTED_MODULE_1__assets_js_handler__["a" /* default */])(function (name) {
-      _this.currentComponent = name;
+    Object(__WEBPACK_IMPORTED_MODULE_1__assets_js_handler__["a" /* default */])(function (_ref) {
+      var layerName = _ref.layerName,
+          objectID = _ref.objectID;
+
+      _this.layerName = layerName;
+      _this.objectID = objectID;
     });
   }
 });
@@ -9050,6 +9059,7 @@ module.exports = function (actionName) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = (function (dispatch) {
   window.sketchBridge = function (jsonData) {
+    console.log(jsonData);
     switch (jsonData.action) {
       case 'SEARCH':
         return dispatch(jsonData.payload);
@@ -9105,9 +9115,17 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("h1", [_vm._v("current selected symbol name:")]),
+    _c("hr"),
     _vm._v(" "),
-    _c("h2", [_vm._v(_vm._s(_vm.currentComponent))])
+    _c("h1", [_vm._v("Selected Layer Name:")]),
+    _vm._v(" "),
+    _c("h2", [_vm._v(_vm._s(_vm.layerName))]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("h1", [_vm._v("ObjectID:")]),
+    _vm._v(" "),
+    _c("h2", [_vm._v(_vm._s(_vm.objectID))])
   ])
 }
 var staticRenderFns = []
@@ -9125,7 +9143,7 @@ if (false) {
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "button.sketch?56b975d0614f2fb6a0545d263172b225";
+module.exports = __webpack_require__.p + "button.sketch?adf06bc90299c4f06c13cf1004823f96";
 
 /***/ }),
 /* 18 */
