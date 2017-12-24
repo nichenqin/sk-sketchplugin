@@ -19,7 +19,7 @@ function checkForSelectedLayer(selectedLayerName) {
   dispatchToWebview('SEARCH', searchQuery, 'onload-sketch');
 }
 
-function getComponentInstance(context, path) {
+function createComponentInstance(context, path) {
   const instance = (() => {
     const { root: name } = parseFilePath(path);
     switch (name) {
@@ -46,7 +46,7 @@ export default function (context) {
     },
     import: path => {
       try {
-        const component = getComponentInstance(context, path);
+        const component = createComponentInstance(context, path);
         component.import(path);
       } catch (error) {
         log(error);
