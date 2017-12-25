@@ -4,11 +4,20 @@
       <input type="text" v-model.lazy="path">
       <button @submit="handleSubmit">导入到Sketch</button>
     </form>
+    <br>
+    <hr>
+    <br>
     <h1>Selected Layer Name:</h1>
     <h2>{{layerName}}</h2>
+    <br>
     <hr>
+    <br>
     <h1>ObjectID:</h1>
     <h2>{{objectID}}</h2>
+    <br>
+    <hr>
+    <br>
+    <button @click="handleSelect">选择</button>
   </div>
 </template>
 
@@ -28,6 +37,10 @@ export default {
   methods: {
     handleSubmit() {
       pluginCall('import', this.path);
+    },
+    handleSelect() {
+      if (!this.objectID) return;
+      pluginCall('select', this.objectID);
     },
   },
   mounted() {

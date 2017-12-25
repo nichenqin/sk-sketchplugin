@@ -16,7 +16,7 @@ class VComponent {
   }
 
   getSymbolsFromLibrary() {
-    const { uikit } = this;
+    const { uikit, sketch } = this;
 
     if (!uikit) {
       return null;
@@ -25,7 +25,7 @@ class VComponent {
     const assetLibrary = MSUserAssetLibrary.alloc().initWithDocumentAtURL(uikit);
 
     if (!assetLibrary) {
-      throw new Error('导入文件失败，请检查文件名');
+      sketch.alert('没有找到library', `文件路径${uikit}`);
     }
 
     this.assetLibrary = assetLibrary;

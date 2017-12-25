@@ -9000,6 +9000,15 @@ module.exports = function normalizeComponent (
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9017,6 +9026,10 @@ module.exports = function normalizeComponent (
   methods: {
     handleSubmit: function handleSubmit() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.path);
+    },
+    handleSelect: function handleSelect() {
+      if (!this.objectID) return;
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('select', this.objectID);
     }
   },
   mounted: function mounted() {
@@ -9113,15 +9126,33 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
     _c("h1", [_vm._v("Selected Layer Name:")]),
     _vm._v(" "),
     _c("h2", [_vm._v(_vm._s(_vm.layerName))]),
     _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
     _c("hr"),
+    _vm._v(" "),
+    _c("br"),
     _vm._v(" "),
     _c("h1", [_vm._v("ObjectID:")]),
     _vm._v(" "),
-    _c("h2", [_vm._v(_vm._s(_vm.objectID))])
+    _c("h2", [_vm._v(_vm._s(_vm.objectID))]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.handleSelect } }, [_vm._v("选择")])
   ])
 }
 var staticRenderFns = []

@@ -3,19 +3,7 @@ import { createWebview, dispatchToWebview, parseFilePath } from './utils';
 import Button from './VComponents/Button';
 import List from './VComponents/List';
 import Datepicker from './VComponents/Datepicker';
-
-function getSelectedLayer(context) {
-  const sketch = context.api();
-  const { selectedLayers } = sketch.selectedDocument;
-
-  let layerName = '';
-  let objectID = '';
-  selectedLayers.iterate(layer => {
-    layerName = String(layer.name);
-    objectID = String(layer.id);
-  });
-  return { layerName, objectID };
-}
+import ContextManager from './utils/ctm';
 
 function createComponentInstance(context, path) {
   const instance = (() => {
@@ -38,20 +26,22 @@ function createComponentInstance(context, path) {
 }
 
 export default function (context) {
+  const ctm = new ContextManager(context);
   const sketch = context.api();
   const handlers = {
     appLoaded: () => {
-      const payload = getSelectedLayer(context);
+      const payload = ctm.getSelectedLayerInfo();
       dispatchToWebview('SEARCH', payload, 'onload-sketch');
     },
     select: objectID => {
-      log(objectID);
+      const layer = ctm.getLayerByID(objectID);
+      layer.select();
     },
     import: path => {
       try {
         const component = createComponentInstance(context, path);
         if (!component) {
-          sketch.message(`生成component失败，请检查路径：${path}`);
+          sketch.alert('生成component失败', `输入路径：${path}`);
           return;
         }
         component.import(path);
