@@ -83,6 +83,7 @@ class VComponent {
     );
     const instance = importedSymbol.symbolMaster().newSymbolInstance();
     context.document.currentPage().addLayers([instance]);
+    this.objectID = String(instance.objectID());
   }
 }
 

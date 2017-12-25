@@ -59,6 +59,13 @@ export default function generateContextManager(ctx) {
       return layer;
     }
 
+    selectLayerById(objectID) {
+      const layer = this.getLayerByID(String(objectID));
+      if (layer) {
+        layer.select();
+      }
+    }
+
     updateObjectID(objectID) {
       this.objectID = objectID;
     }

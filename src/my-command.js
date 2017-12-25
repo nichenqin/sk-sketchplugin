@@ -36,8 +36,7 @@ export default function (context) {
       dispatchToWebview('SEARCH', payload, 'onload-sketch');
     },
     select: objectID => {
-      const layer = ctm.getLayerByID(objectID);
-      layer.select();
+      ctm.selectLayerById(objectID);
     },
     import: path => {
       try {
@@ -47,6 +46,7 @@ export default function (context) {
           return;
         }
         component.import(path);
+        ctm.selectLayerById(component.objectID);
       } catch (error) {
         log(error.stack);
       }
