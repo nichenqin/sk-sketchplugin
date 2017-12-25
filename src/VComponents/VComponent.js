@@ -73,7 +73,6 @@ class VComponent {
     }
 
     this.symbol = symbol;
-    this.objectID = String(symbol.objectID());
 
     const assetLibraryController = NSApp.delegate().librariesController();
     const documentData = context.document.documentData();
