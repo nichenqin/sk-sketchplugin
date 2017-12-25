@@ -2,6 +2,7 @@
 import { createWebview, dispatchToWebview, parseFilePath } from './utils';
 import Button from './VComponents/Button';
 import List from './VComponents/List';
+import Datepicker from './VComponents/Datepicker';
 
 function getSelectedLayer(context) {
   const sketch = context.api();
@@ -25,6 +26,8 @@ function createComponentInstance(context, path) {
         return new Button(context, name);
       case 'list':
         return new List(context, name);
+      case 'datepicker':
+        return new Datepicker(context, name);
 
       default:
         return null;

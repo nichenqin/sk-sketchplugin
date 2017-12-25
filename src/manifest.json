@@ -6,7 +6,7 @@
       "name": "superKit",
       "identifier": "my-command-identifier",
       "script": "./my-command.js",
-      "short-cut": "command ctrl s"
+      "shortcut": "command ctrl t"
     },
     {
       "name": "Call onSelectionChanged",
