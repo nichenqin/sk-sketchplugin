@@ -7,8 +7,9 @@ import Datepicker from './VComponents/Datepicker';
 
 function createComponentInstance(context, path) {
   const instance = (() => {
-    const { root: name } = parseFilePath(path);
-    switch (name.toLowerCase()) {
+    const { root } = parseFilePath(path);
+    const name = root.toLowerCase();
+    switch (name) {
       case 'button':
       case 'icon':
         return new Button(context, name);

@@ -8610,7 +8610,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\ninput,\nbutton {\n  font-size: 16px;\n  width: 100%;\n  height: 30px;\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -9009,6 +9009,27 @@ module.exports = function normalizeComponent (
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9017,12 +9038,26 @@ module.exports = function normalizeComponent (
   name: 'app',
   data: function data() {
     return {
-      path: 'button/normal',
+      root: 'button',
+      type: '',
+      status: '',
       layerName: '',
       objectID: ''
     };
   },
 
+  computed: {
+    path: function path() {
+      var root = this.root,
+          type = this.type,
+          status = this.status;
+
+      var path = [root, type, status].filter(function (p) {
+        return !!p;
+      });
+      return path.join('/');
+    }
+  },
   methods: {
     handleSubmit: function handleSubmit() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.path);
@@ -9089,7 +9124,39 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "app" } }, [
+  return _c("div", { staticClass: "container", attrs: { id: "app" } }, [
+    _c("h1", [
+      _vm._v("Component:\n    "),
+      _c("span", { staticClass: "badge badge-secondary" }, [
+        _vm._v(_vm._s(_vm.root))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("h2", [
+      _vm._v("layerName:\n    "),
+      _c("span", { staticClass: "badge badge-secondary" }, [
+        _vm._v(_vm._s(_vm.layerName))
+      ])
+    ]),
+    _vm._v(" "),
+    _c("h2", [
+      _vm._v("objectID:\n    "),
+      _c("span", { staticClass: "badge badge-secondary" }, [
+        _vm._v(_vm._s(_vm.objectID))
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-success btn-block",
+        on: { click: _vm.handleSelect }
+      },
+      [_vm._v("选择")]
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
     _c(
       "form",
       {
@@ -9101,58 +9168,140 @@ var render = function() {
         }
       },
       [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model.lazy",
-              value: _vm.path,
-              expression: "path",
-              modifiers: { lazy: true }
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v(" 完整路径： ")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.lazy",
+                value: _vm.path,
+                expression: "path",
+                modifiers: { lazy: true }
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", readonly: "", disabled: "" },
+            domProps: { value: _vm.path },
+            on: {
+              change: function($event) {
+                _vm.path = $event.target.value
+              }
             }
-          ],
-          attrs: { type: "text" },
-          domProps: { value: _vm.path },
-          on: {
-            change: function($event) {
-              _vm.path = $event.target.value
-            }
-          }
-        }),
+          })
+        ]),
         _vm._v(" "),
-        _c("button", { on: { submit: _vm.handleSubmit } }, [
-          _vm._v("导入到Sketch")
-        ])
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("类型")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.type,
+                  expression: "type"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.type = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("请选择类型")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "risk" } }, [_vm._v("risk")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "tab" } }, [_vm._v("tab")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "ghost" } }, [_vm._v("ghost")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "inline_gray" } }, [
+                _vm._v("inline_gray")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "inline_blue" } }, [
+                _vm._v("inline_blue")
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("状态")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.status,
+                  expression: "status"
+                }
+              ],
+              staticClass: "form-control",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.status = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { disabled: "", value: "" } }, [
+                _vm._v("请选择状态")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "normal" } }, [_vm._v("normal")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "hover" } }, [_vm._v("hover")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "active" } }, [_vm._v("active")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "disable" } }, [_vm._v("disable")])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-block",
+            on: { submit: _vm.handleSubmit }
+          },
+          [_vm._v("导入到Sketch")]
+        )
       ]
-    ),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("h1", [_vm._v("Selected Layer Name:")]),
-    _vm._v(" "),
-    _c("h2", [_vm._v(_vm._s(_vm.layerName))]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("h1", [_vm._v("ObjectID:")]),
-    _vm._v(" "),
-    _c("h2", [_vm._v(_vm._s(_vm.objectID))]),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("button", { on: { click: _vm.handleSelect } }, [_vm._v("选择")])
+    )
   ])
 }
 var staticRenderFns = []

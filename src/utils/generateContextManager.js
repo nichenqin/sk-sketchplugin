@@ -9,6 +9,13 @@ export default function generateContextManager(ctx) {
       this.document = null;
       this.page = null;
       this.selection = null;
+
+      this.objectID = '';
+    }
+
+    get layer() {
+      if (!this.objectID) return null;
+      return this.getLayerByID(this.objectID);
     }
 
     getCurrentContext() {
@@ -31,6 +38,7 @@ export default function generateContextManager(ctx) {
         layerName = String(layer.name);
         objectID = String(layer.id);
       });
+      this.updateObjectID(objectID);
 
       return { layerName, objectID };
     }
@@ -45,9 +53,14 @@ export default function generateContextManager(ctx) {
         return false;
       }
 
+      this.updateObjectID(objectID);
       const layer = document.layerWithID(objectID);
 
       return layer;
+    }
+
+    updateObjectID(objectID) {
+      this.objectID = objectID;
     }
   }
 
