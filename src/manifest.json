@@ -3,7 +3,7 @@
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "superKit",
+      "name": "sk",
       "identifier": "my-command-identifier",
       "script": "./my-command.js",
       "shortcut": "command ctrl t"

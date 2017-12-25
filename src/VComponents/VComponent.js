@@ -10,7 +10,6 @@ class VComponent {
 
     this.uikit = sketch.resourceNamed(`${name}.sketch`);
     this.assetLibrary = null;
-    this.symbols = this.getSymbolsFromLibrary();
 
     this.symbol = null;
     this.objectID = '';
@@ -37,7 +36,13 @@ class VComponent {
   }
 
   findSymbolByPath(path) {
-    const { symbols } = this;
+    const { sketch } = this;
+    const symbols = this.getSymbolsFromLibrary();
+
+    if (!symbols.count()) {
+      sketch.message('Tried to open library but no symbol found inside the file');
+      return false;
+    }
 
     let symbol = null;
 

@@ -1,13 +1,13 @@
 {
-  "name": "v-component",
+  "name": "sk",
   "version": "0.1.0",
   "engines": {
     "sketch": ">=3.0"
   },
   "skpm": {
-    "name": "v-component",
+    "name": "sk",
     "manifest": "src/manifest.json",
-    "main": "plugin.sketchplugin"
+    "main": "sk.sketchplugin"
   },
   "scripts": {
     "build": "skpm-build",
@@ -36,9 +36,7 @@
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4"
   },
-  "resources": [
-    "resources/**/main.js"
-  ],
+  "resources": ["resources/**/main.js"],
   "dependencies": {
     "sketch-module-web-view": "^0.2.0",
     "vue": "^2.5.3"

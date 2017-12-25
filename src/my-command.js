@@ -49,6 +49,7 @@ export default function (context) {
     },
     import: path => {
       try {
+        log('import');
         const component = createComponentInstance(context, path);
         if (!component) {
           sketch.message(`生成component失败，请检查路径：${path}`);

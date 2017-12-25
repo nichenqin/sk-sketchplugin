@@ -4,7 +4,6 @@
       <input type="text" v-model.lazy="path">
       <button @submit="handleSubmit">导入到Sketch</button>
     </form>
-    <hr>
     <h1>Selected Layer Name:</h1>
     <h2>{{layerName}}</h2>
     <hr>

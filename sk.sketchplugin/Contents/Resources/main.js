@@ -9000,7 +9000,6 @@ module.exports = function normalizeComponent (
 //
 //
 //
-//
 
 
 
@@ -9113,8 +9112,6 @@ var render = function() {
         ])
       ]
     ),
-    _vm._v(" "),
-    _c("hr"),
     _vm._v(" "),
     _c("h1", [_vm._v("Selected Layer Name:")]),
     _vm._v(" "),
