@@ -11,6 +11,15 @@
     </h2>
     <button class="btn btn-success btn-block" @click="handleSelect">选择</button>
     <br>
+    <div class="card">
+      <div class="card-header">
+        预览
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Button</h4>
+        <tb-button :type="type">按钮</tb-button>
+      </div>
+    </div>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label> 完整路径： </label>
@@ -44,10 +53,14 @@
 
 <script>
 import pluginCall from 'sketch-module-web-view/client';
+import { TbButton } from '@zhinan/tb-components';
 import bridgeHandler from './assets/js/handler';
 
 export default {
   name: 'app',
+  components: {
+    TbButton,
+  },
   data() {
     return {
       root: 'button',

@@ -36,8 +36,11 @@
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4"
   },
-  "resources": ["resources/**/main.js"],
+  "resources": [
+    "resources/**/main.js"
+  ],
   "dependencies": {
+    "@zhinan/tb-components": "^1.4.8",
     "sketch-module-web-view": "^0.2.0",
     "vue": "^2.5.3"
   }

@@ -2,6 +2,11 @@
 import Vue from 'vue';
 import App from './App.vue';
 
+require('@zhinan/tb-components/dist/main.css');
+
+import * as tbc from '@zhinan/tb-components';
+Vue.use(tbc);
+
 import './assets/button.sketch';
 import './assets/bread.sketch';
 import './assets/checkbox.sketch';
