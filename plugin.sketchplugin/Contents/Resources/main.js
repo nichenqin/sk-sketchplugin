@@ -9059,7 +9059,6 @@ module.exports = function (actionName) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = (function (dispatch) {
   window.sketchBridge = function (jsonData) {
-    console.log(jsonData);
     switch (jsonData.action) {
       case 'SEARCH':
         return dispatch(jsonData.payload);

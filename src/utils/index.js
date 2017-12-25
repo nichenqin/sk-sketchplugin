@@ -3,6 +3,8 @@
 import WebUI from 'sketch-module-web-view';
 import { isWebviewPresent, sendToWebview } from 'sketch-module-web-view/remote';
 
+const html = require('../../resources/index.html');
+
 const IDENTIFIER = 'superKit.webView';
 
 export function createWebview(context, handlers, title) {
@@ -20,7 +22,7 @@ export function createWebview(context, handlers, title) {
     resizable: true,
     handlers,
   };
-  const webUI = new WebUI(context, require('../../resources/index.html'), options);
+  const webUI = new WebUI(context, html, options);
   return webUI;
 }
 
