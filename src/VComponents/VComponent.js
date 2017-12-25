@@ -26,6 +26,7 @@ class VComponent {
 
     if (!assetLibrary) {
       sketch.alert('没有找到library', `文件路径${uikit}`);
+      return false;
     }
 
     this.assetLibrary = assetLibrary;
