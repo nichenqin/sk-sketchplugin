@@ -19,7 +19,7 @@ class VComponent {
     const { uikit, sketch } = this;
 
     if (!uikit) {
-      return null;
+      return false;
     }
 
     const assetLibrary = MSUserAssetLibrary.alloc().initWithDocumentAtURL(uikit);
@@ -58,18 +58,19 @@ class VComponent {
     return symbol;
   }
 
-  import(path) {
-    if (!path) {
-      return;
-    }
-
+  createSymbolInstanceByPath(path) {
     const { context, assetLibrary, sketch } = this;
+
+    if (!path) {
+      sketch.message('path required');
+      return false;
+    }
 
     const symbol = this.findSymbolByPath(path);
 
     if (!symbol) {
       sketch.message(`没有找到symbol: ${path}`);
-      return;
+      return false;
     }
 
     this.symbol = symbol;
@@ -81,9 +82,23 @@ class VComponent {
       assetLibrary,
       documentData,
     );
+
     const instance = importedSymbol.symbolMaster().newSymbolInstance();
-    context.document.currentPage().addLayers([instance]);
     this.objectID = String(instance.objectID());
+
+    return instance;
+  }
+
+  addLayers(instances) {
+    const { context } = this;
+
+    context.document.currentPage().addLayers(instances);
+  }
+
+  import(path) {
+    const instance = this.createSymbolInstanceByPath(path);
+
+    this.addLayers([instance]);
   }
 }
 

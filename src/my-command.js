@@ -36,7 +36,12 @@ export default function (context) {
       dispatchToWebview('SEARCH', payload, 'onload-sketch');
     },
     select: objectID => {
-      ctm.selectLayerByID(objectID);
+      const layer = ctm.getLayerByID(objectID);
+      layer.select();
+    },
+    duplicate: objectID => {
+      const layer = ctm.getLayerByID(objectID);
+      layer.duplicate();
     },
     import: path => {
       try {
@@ -46,7 +51,8 @@ export default function (context) {
           return;
         }
         component.import(path);
-        ctm.selectLayerByID(component.objectID);
+        const layer = ctm.getLayerByID(component.objectID);
+        layer.select();
       } catch (error) {
         log(error.stack);
       }

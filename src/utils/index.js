@@ -37,11 +37,13 @@ export function dispatchToWebview(action, payload, origin) {
 }
 
 export function parseFilePath(path) {
+  const p = Array.isArray(path) ? path[0] : path;
+
   const reg = /[a-z](\/(w+)*)?/gi;
-  if (!reg.test(path)) {
+  if (!reg.test(p)) {
     throw new Error('文件路径格式错误');
   }
 
-  const [root] = path.split('/');
+  const [root] = p.split('/');
   return { root };
 }

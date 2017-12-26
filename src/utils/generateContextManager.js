@@ -44,29 +44,38 @@ export default function generateContextManager(ctx) {
     }
 
     getLayerByID(objectID) {
-      this.getCurrentContext();
-
       const { document, sketch } = this;
 
       if (!objectID) {
-        sketch.message('没有输入objectID');
+        sketch.message('objectID required');
         return false;
       }
 
+      this.getCurrentContext();
       this.updateObjectID(objectID);
+
       const layer = document.layerWithID(objectID);
 
       return layer;
     }
 
     selectLayerByID(objectID) {
+      const { sketch } = this;
+
       const layer = this.getLayerByID(String(objectID));
-      if (layer) {
-        layer.select();
+
+      if (!layer) {
+        sketch.message('layer not found');
+        return false;
       }
+
+      this.objectID = objectID;
+      layer.select();
+
+      return layer;
     }
 
-    updateObjectID(objectID) {
+    updateObjectID(objectID = '') {
       this.objectID = objectID;
     }
   }

@@ -4,12 +4,13 @@
       <span class="badge badge-secondary">{{ root }}</span>
     </h1>
     <h2>layerName:
-      <span class="badge badge-secondary">{{layerName}}</span>
+      <span class="badge badge-secondary">{{ layerName }}</span>
     </h2>
     <h2>objectID:
-      <span class="badge badge-secondary">{{objectID}}</span>
+      <span class="badge badge-secondary">{{ objectID }}</span>
     </h2>
     <button class="btn btn-success btn-block" @click="handleSelect">选择</button>
+    <button class="btn btn-success btn-block" @click="handleDuplicate">复制</button>
     <br>
     <div class="card">
       <div class="card-header">
@@ -28,18 +29,17 @@
       <div class="form-group">
         <label>类型</label>
         <select class="form-control" v-model="type">
-          <option disabled value="">请选择类型</option>
+          <option value="">请选择类型</option>
           <option value="risk">risk</option>
           <option value="tab">tab</option>
           <option value="ghost">ghost</option>
-          <option value="inline_gray">inline_gray</option>
-          <option value="inline_blue">inline_blue</option>
+          <option value="line_gray">line_gray</option>
+          <option value="line_blue">line_blue</option>
         </select>
       </div>
       <div class="form-group">
         <label>状态</label>
         <select class="form-control" v-model="status">
-          <option disabled value="">请选择状态</option>
           <option value="normal">normal</option>
           <option value="hover">hover</option>
           <option value="active">active</option>
@@ -65,7 +65,7 @@ export default {
     return {
       root: 'button',
       type: '',
-      status: '',
+      status: 'normal',
       layerName: '',
       objectID: '',
     };
@@ -84,6 +84,10 @@ export default {
     handleSelect() {
       if (!this.objectID) return;
       pluginCall('select', this.objectID);
+    },
+    handleDuplicate() {
+      if (!this.objectID) return;
+      pluginCall('duplicate', this.objectID);
     },
   },
   mounted() {

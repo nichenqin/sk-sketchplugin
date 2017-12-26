@@ -8369,7 +8369,7 @@ module.exports = g;
     return {
       root: 'button',
       type: '',
-      status: '',
+      status: 'normal',
       layerName: '',
       objectID: ''
     };
@@ -8394,6 +8394,10 @@ module.exports = g;
     handleSelect: function handleSelect() {
       if (!this.objectID) return;
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('select', this.objectID);
+    },
+    handleDuplicate: function handleDuplicate() {
+      if (!this.objectID) return;
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('duplicate', this.objectID);
     }
   },
   mounted: function mounted() {
@@ -9621,6 +9625,15 @@ var render = function() {
       [_vm._v("选择")]
     ),
     _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-success btn-block",
+        on: { click: _vm.handleDuplicate }
+      },
+      [_vm._v("复制")]
+    ),
+    _vm._v(" "),
     _c("br"),
     _vm._v(" "),
     _c("div", { staticClass: "card" }, [
@@ -9705,9 +9718,7 @@ var render = function() {
               }
             },
             [
-              _c("option", { attrs: { disabled: "", value: "" } }, [
-                _vm._v("请选择类型")
-              ]),
+              _c("option", { attrs: { value: "" } }, [_vm._v("请选择类型")]),
               _vm._v(" "),
               _c("option", { attrs: { value: "risk" } }, [_vm._v("risk")]),
               _vm._v(" "),
@@ -9715,12 +9726,12 @@ var render = function() {
               _vm._v(" "),
               _c("option", { attrs: { value: "ghost" } }, [_vm._v("ghost")]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "inline_gray" } }, [
-                _vm._v("inline_gray")
+              _c("option", { attrs: { value: "line_gray" } }, [
+                _vm._v("line_gray")
               ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "inline_blue" } }, [
-                _vm._v("inline_blue")
+              _c("option", { attrs: { value: "line_blue" } }, [
+                _vm._v("line_blue")
               ])
             ]
           )
@@ -9758,10 +9769,6 @@ var render = function() {
               }
             },
             [
-              _c("option", { attrs: { disabled: "", value: "" } }, [
-                _vm._v("请选择状态")
-              ]),
-              _vm._v(" "),
               _c("option", { attrs: { value: "normal" } }, [_vm._v("normal")]),
               _vm._v(" "),
               _c("option", { attrs: { value: "hover" } }, [_vm._v("hover")]),
