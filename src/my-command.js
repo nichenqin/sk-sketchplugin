@@ -35,6 +35,10 @@ export default function (context) {
       const payload = ctm.getSelectedLayerInfo();
       dispatchToWebview('SEARCH', payload, 'onload-sketch');
     },
+    test: () => {
+      const { selection } = ctm;
+      log(selection);
+    },
     select: objectID => {
       const layer = ctm.getLayerByID(objectID);
       layer.select();

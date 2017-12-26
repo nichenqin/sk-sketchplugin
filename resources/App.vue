@@ -11,6 +11,7 @@
     </h2>
     <button class="btn btn-success btn-block" @click="handleSelect">选择</button>
     <button class="btn btn-success btn-block" @click="handleDuplicate">复制</button>
+    <button class="btn btn-success btn-block" @click="test">测试</button>
     <br>
     <div class="card">
       <div class="card-header">
@@ -88,6 +89,9 @@ export default {
     handleDuplicate() {
       if (!this.objectID) return;
       pluginCall('duplicate', this.objectID);
+    },
+    test() {
+      pluginCall('test');
     },
   },
   mounted() {

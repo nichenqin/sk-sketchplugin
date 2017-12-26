@@ -8355,6 +8355,7 @@ module.exports = g;
 //
 //
 //
+//
 
 
 
@@ -8398,6 +8399,9 @@ module.exports = g;
     handleDuplicate: function handleDuplicate() {
       if (!this.objectID) return;
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('duplicate', this.objectID);
+    },
+    test: function test() {
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('test');
     }
   },
   mounted: function mounted() {
@@ -9632,6 +9636,12 @@ var render = function() {
         on: { click: _vm.handleDuplicate }
       },
       [_vm._v("复制")]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "btn btn-success btn-block", on: { click: _vm.test } },
+      [_vm._v("测试")]
     ),
     _vm._v(" "),
     _c("br"),
