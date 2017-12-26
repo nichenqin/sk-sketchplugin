@@ -53,11 +53,6 @@ export default function (context) {
         component.import(path);
         const layer = ctm.getLayerByID(component.objectID);
         layer.select();
-
-        // TODO: get the symbol instance override name
-        // component.symbolInstance.overridePoints().forEach(overridePoint => {
-        //   log(overridePoint.layerName());
-        // });
       } catch (error) {
         log(error.stack);
       }

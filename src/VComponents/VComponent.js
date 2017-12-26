@@ -11,7 +11,9 @@ class VComponent {
     this.uikit = sketch.resourceNamed(`${name}.sketch`);
     this.assetLibrary = null;
 
+    this.symbolMaster = null;
     this.symbolInstance = null;
+    this.children = null;
     this.objectID = '';
   }
 
@@ -72,6 +74,9 @@ class VComponent {
       sketch.message(`没有找到symbol: ${path}`);
       return false;
     }
+
+    this.symbolMaster = symbol;
+    this.children = symbol.layers();
 
     const assetLibraryController = NSApp.delegate().librariesController();
     const documentData = context.document.documentData();
