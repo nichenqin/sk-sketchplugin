@@ -11,7 +11,7 @@ class VComponent {
     this.uikit = sketch.resourceNamed(`${name}.sketch`);
     this.assetLibrary = null;
 
-    this.symbol = null;
+    this.symbolInstance = null;
     this.objectID = '';
   }
 
@@ -73,8 +73,6 @@ class VComponent {
       return false;
     }
 
-    this.symbol = symbol;
-
     const assetLibraryController = NSApp.delegate().librariesController();
     const documentData = context.document.documentData();
     const importedSymbol = assetLibraryController.importForeignSymbol_fromLibrary_intoDocument(
@@ -85,6 +83,7 @@ class VComponent {
 
     const instance = importedSymbol.symbolMaster().newSymbolInstance();
     this.objectID = String(instance.objectID());
+    this.symbolInstance = instance;
 
     return instance;
   }
