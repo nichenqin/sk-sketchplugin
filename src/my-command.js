@@ -1,6 +1,6 @@
 /* globals log */
 import { createWebview, dispatchToWebview, parseFilePath } from './utils';
-import generateContextManager from './utils/generateContextManager';
+import ContextManager from './ContextManager';
 import Button from './VComponents/Button';
 import List from './VComponents/List';
 import Datepicker from './VComponents/Datepicker';
@@ -27,8 +27,8 @@ function createComponentInstance(context, path) {
 }
 
 export default function (context) {
-  const ctm = generateContextManager(context);
-  const sketch = context.api();
+  const ctm = new ContextManager(context);
+  const { sketch } = ctm;
 
   const handlers = {
     appLoaded: () => {
@@ -55,7 +55,7 @@ export default function (context) {
           return;
         }
         component.import(path);
-        const layer = ctm.getLayerByID(component.objectID);
+        const { layer } = component;
         layer.select();
       } catch (error) {
         log(error.stack);
