@@ -59,22 +59,6 @@ export default function generateContextManager(ctx) {
       return layer;
     }
 
-    selectLayerByID(objectID) {
-      const { sketch } = this;
-
-      const layer = this.getLayerByID(String(objectID));
-
-      if (!layer) {
-        sketch.message('layer not found');
-        return false;
-      }
-
-      this.objectID = objectID;
-      layer.select();
-
-      return layer;
-    }
-
     updateObjectID(objectID = '') {
       this.objectID = objectID;
     }
