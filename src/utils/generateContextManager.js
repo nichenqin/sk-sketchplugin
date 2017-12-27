@@ -2,14 +2,7 @@ export default function generateContextManager(ctx) {
   class ContextManage {
     constructor(context) {
       this.context = context;
-
-      const sketch = context.api();
-      this.sketch = sketch;
-
-      this.document = null;
-      this.page = null;
-      this.selection = null;
-
+      this.sketch = context.api();
       this.objectID = '';
     }
 
@@ -18,18 +11,19 @@ export default function generateContextManager(ctx) {
       return this.getLayerByID(this.objectID);
     }
 
-    getCurrentContext() {
-      const { sketch } = this;
-      const document = sketch.selectedDocument;
+    get document() {
+      return this.sketch.selectedDocument;
+    }
 
-      this.document = document;
-      this.page = document.selectedPage;
-      this.selection = document.selectedLayers;
+    get page() {
+      return this.document.selectedPage;
+    }
+
+    get selection() {
+      return this.document.selecetdLayers;
     }
 
     getSelectedLayerInfo() {
-      this.getCurrentContext();
-
       const { selection } = this;
 
       let layerName = '';
@@ -51,7 +45,6 @@ export default function generateContextManager(ctx) {
         return false;
       }
 
-      this.getCurrentContext();
       this.updateObjectID(objectID);
 
       const layer = document.layerWithID(objectID);
