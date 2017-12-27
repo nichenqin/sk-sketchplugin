@@ -1,7 +1,7 @@
 /* globals MSUserAssetLibrary NSApp */
 
 class VComponent {
-  constructor(context, name = '') {
+  constructor(context, { name = '' } = {}) {
     this.name = name;
 
     const sketch = context.api();

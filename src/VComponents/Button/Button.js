@@ -1,9 +1,12 @@
 import VComponent from '../VComponent';
 
+const option = {
+  name: 'button',
+};
+
 class Button extends VComponent {
-  constructor(context, name) {
-    super(context, name);
-    this.name = name;
+  constructor(context) {
+    super(context, option);
   }
 }
 

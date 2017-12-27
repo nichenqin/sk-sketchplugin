@@ -1,9 +1,12 @@
 import VComponent from '../VComponent';
 
+const option = {
+  name: 'datepicker',
+};
+
 class Datepicker extends VComponent {
-  constructor(context, name) {
-    super(context, name);
-    this.name = name;
+  constructor(context) {
+    super(context, option);
   }
 }
 

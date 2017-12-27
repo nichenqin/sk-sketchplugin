@@ -12,11 +12,11 @@ function createComponentInstance(context, path) {
     switch (name) {
       case 'button':
       case 'icon':
-        return new Button(context, name);
+        return new Button(context);
       case 'list':
-        return new List(context, name);
+        return new List(context);
       case 'datepicker':
-        return new Datepicker(context, name);
+        return new Datepicker(context);
 
       default:
         return null;
