@@ -146,6 +146,10 @@ class ContextManage {
     return instance;
   }
 
+  detach() {
+    this.symbolInstance.detachByReplacingWithGroup();
+  }
+
   addLayers(instances) {
     const { context } = this;
 
