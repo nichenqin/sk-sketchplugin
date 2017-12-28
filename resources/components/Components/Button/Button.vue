@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="handleSubmit">
+    <form class="mb-3" @submit.prevent="handleSubmit">
       <div class="form-group">
         <label> 完整路径： </label>
         <div class="alert alert-primary" role="alert">
@@ -34,7 +34,7 @@
         </tb-button>
       </div>
     </div>
-    <sk-code-html></sk-code-html>
+    <sk-code-html tag="button"></sk-code-html>
   </div>
 </template>
 
@@ -136,7 +136,7 @@ export default {
       return /icon/i.test(this.type);
     },
     previewType() {
-      if (!this.type) return 'normal';
+      if (!this.type) return 'primary';
       return data[this.type].type;
     },
   },

@@ -1,17 +1,23 @@
 <template>
-  <div>
-    {{htmlCode}}
+  <div class="html">
+    <pre><code class="html" ref="code" v-text="htmlCode" v-highlight></code></pre>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['tag', 'props', 'children'],
+  props: {
+    tag: {
+      type: String,
+      default: 'div',
+    },
+  },
   computed: {
     htmlCode() {
-      return `<button>
-       </button>
-      `.trim();
+      const { tag } = this;
+      return `<${tag}>
+  text
+</${tag}>`;
     },
   },
 };
