@@ -53,9 +53,12 @@ class ContextManage {
       return false;
     }
 
-    this.updateObjectID(objectID);
-
     const layer = document.layerWithID(objectID);
+    if (!layer) {
+      sketch.message(`layer not found through objectID: ${objectID}`);
+    }
+
+    this.updateObjectID(objectID);
 
     return layer;
   }
@@ -147,7 +150,11 @@ class ContextManage {
   }
 
   detach() {
-    this.symbolInstance.detachByReplacingWithGroup();
+    const layer = this.symbolInstance.detachByReplacingWithGroup();
+
+    this.updateObjectID(layer.objectID());
+
+    return layer;
   }
 
   addLayers(instances) {

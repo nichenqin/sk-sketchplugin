@@ -55,8 +55,9 @@ export default function (context) {
           return;
         }
         component.import(path);
-        const { layer } = component;
-        layer.select();
+        component.detach();
+        component.layer.select();
+        sketch.log(component.layer.container.isPage);
       } catch (error) {
         log(error.stack);
       }
