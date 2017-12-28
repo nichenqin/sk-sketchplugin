@@ -43,6 +43,10 @@ export default function (context) {
       const layer = ctm.getLayerByID(objectID);
       layer.select();
     },
+    deselect: objectID => {
+      const layer = ctm.getLayerByID(objectID);
+      layer.deselect();
+    },
     duplicate: objectID => {
       const layer = ctm.getLayerByID(objectID);
       layer.duplicate();
@@ -55,9 +59,7 @@ export default function (context) {
           return;
         }
         component.import(path);
-        component.detach();
         component.layer.select();
-        sketch.log(component.layer.container.isPage);
       } catch (error) {
         log(error.stack);
       }

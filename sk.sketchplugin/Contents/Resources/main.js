@@ -8482,10 +8482,11 @@ module.exports = g;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Components_Button_Button_vue__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Components_List_List_vue__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Components_Datepicker_Datepicker_vue__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Components_Button_Button__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Components_List_List__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Components_Datepicker_Datepicker__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__assets_js_handler__ = __webpack_require__(29);
+//
 //
 //
 //
@@ -8519,9 +8520,9 @@ module.exports = g;
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'app',
   components: {
-    SkButton: __WEBPACK_IMPORTED_MODULE_1__Components_Button_Button_vue__["a" /* default */],
-    SkList: __WEBPACK_IMPORTED_MODULE_2__Components_List_List_vue__["a" /* default */],
-    SkDatepicker: __WEBPACK_IMPORTED_MODULE_3__Components_Datepicker_Datepicker_vue__["a" /* default */]
+    SkButton: __WEBPACK_IMPORTED_MODULE_1__Components_Button_Button__["a" /* default */],
+    SkList: __WEBPACK_IMPORTED_MODULE_2__Components_List_List__["a" /* default */],
+    SkDatepicker: __WEBPACK_IMPORTED_MODULE_3__Components_Datepicker_Datepicker__["a" /* default */]
   },
   data: function data() {
     return {
@@ -8550,12 +8551,15 @@ module.exports = g;
       this.$emit('updateCurrentPage', 'sk-home');
     },
     handleSubmit: function handleSubmit() {
-      console.log(this.path);
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.path);
     },
     handleSelect: function handleSelect() {
       if (!this.objectID) return;
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('select', this.objectID);
+    },
+    handelDeselect: function handelDeselect() {
+      if (!this.objectID) return;
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('deselect', this.objectID);
     },
     handleDuplicate: function handleDuplicate() {
       if (!this.objectID) return;
@@ -10217,6 +10221,7 @@ var render = function() {
         "button",
         {
           staticClass: "btn btn-success btn-block",
+          attrs: { disabled: !_vm.objectID },
           on: { click: _vm.handleSelect }
         },
         [_vm._v("选择")]
@@ -10226,6 +10231,17 @@ var render = function() {
         "button",
         {
           staticClass: "btn btn-success btn-block",
+          attrs: { disabled: !_vm.objectID },
+          on: { click: _vm.handelDeselect }
+        },
+        [_vm._v("取消选择")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success btn-block",
+          attrs: { disabled: !_vm.objectID },
           on: { click: _vm.handleDuplicate }
         },
         [_vm._v("复制")]

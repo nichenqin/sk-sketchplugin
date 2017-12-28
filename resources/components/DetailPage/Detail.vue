@@ -10,8 +10,9 @@
     <h2>objectID:
       <span class="badge badge-secondary">{{ objectID }}</span>
     </h2>
-    <button class="btn btn-success btn-block" @click="handleSelect">选择</button>
-    <button class="btn btn-success btn-block" @click="handleDuplicate">复制</button>
+    <button class="btn btn-success btn-block" :disabled="!objectID" @click="handleSelect">选择</button>
+    <button class="btn btn-success btn-block" :disabled="!objectID" @click="handelDeselect">取消选择</button>
+    <button class="btn btn-success btn-block" :disabled="!objectID" @click="handleDuplicate">复制</button>
     <button class="btn btn-success btn-block" @click="test">测试</button>
 
     <component :is="`sk-${currentComponent}`" :path="path" :currentComponent="currentComponent"
@@ -23,9 +24,9 @@
 
 <script>
 import pluginCall from 'sketch-module-web-view/client';
-import SkButton from '../Components/Button/Button.vue';
-import SkList from '../Components/List/List.vue';
-import SkDatepicker from '../Components/Datepicker/Datepicker.vue';
+import SkButton from '../Components/Button/Button';
+import SkList from '../Components/List/List';
+import SkDatepicker from '../Components/Datepicker/Datepicker';
 import bridgeHandler from '../../assets/js/handler';
 
 export default {
@@ -56,12 +57,15 @@ export default {
       this.$emit('updateCurrentPage', 'sk-home');
     },
     handleSubmit() {
-      console.log(this.path);
       pluginCall('import', this.path);
     },
     handleSelect() {
       if (!this.objectID) return;
       pluginCall('select', this.objectID);
+    },
+    handelDeselect() {
+      if (!this.objectID) return;
+      pluginCall('deselect', this.objectID);
     },
     handleDuplicate() {
       if (!this.objectID) return;
