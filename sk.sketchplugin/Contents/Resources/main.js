@@ -8594,6 +8594,7 @@ module.exports = function (actionName) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml__ = __webpack_require__(43);
 //
 //
 //
@@ -8632,6 +8633,9 @@ module.exports = function (actionName) {
 //
 //
 //
+//
+//
+
 
 
 
@@ -8710,7 +8714,8 @@ var data = {
 
   props: ['currentComponent'],
   components: {
-    TbButton: __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__["TbButton"]
+    TbButton: __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__["TbButton"],
+    SkCodeHtml: __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml__["a" /* default */]
   },
   computed: {
     path: function path() {
@@ -9985,154 +9990,160 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v("\n      预览 hasIcon " + _vm._s(_vm.hasIcon) + "\n    ")
-      ]),
-      _vm._v(" "),
+  return _c(
+    "div",
+    [
       _c(
-        "div",
-        { staticClass: "card-body" },
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.handleSubmit($event)
+            }
+          }
+        },
         [
-          _c("h4", { staticClass: "card-title" }, [
-            _vm._v(_vm._s(_vm.currentComponent))
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v(" 完整路径： ")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "alert alert-primary", attrs: { role: "alert" } },
+              [_vm._v("\n        " + _vm._s(_vm.path) + "\n      ")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("状态")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.type,
+                    expression: "type"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.type = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              _vm._l(_vm.types, function(t) {
+                return _c("option", { domProps: { value: t } }, [
+                  _vm._v(_vm._s(t))
+                ])
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("类型")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.status,
+                    expression: "status"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.status = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              _vm._l(_vm.allStatus, function(s) {
+                return _c("option", { domProps: { value: s } }, [
+                  _vm._v(_vm._s(s))
+                ])
+              })
+            )
           ]),
           _vm._v(" "),
           _c(
-            "tb-button",
+            "button",
             {
-              attrs: {
-                type: _vm.previewType,
-                isAnother: _vm.isAnother,
-                disabled: _vm.status === "disable"
-              }
+              staticClass: "btn btn-primary btn-lg btn-block",
+              attrs: { type: "submit" }
             },
-            [
-              _vm.hasIcon
-                ? _c("i", {
-                    staticClass: "fa fa-search",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                : _vm._e(),
-              _vm._v("\n        按钮\n      ")
-            ]
+            [_vm._v("引入到Sketch")]
           )
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            _vm.handleSubmit($event)
-          }
-        }
-      },
-      [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v(" 完整路径： ")]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "alert alert-primary", attrs: { role: "alert" } },
-            [_vm._v("\n        " + _vm._s(_vm.path) + "\n      ")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v("状态")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.type,
-                  expression: "type"
-                }
-              ],
-              staticClass: "form-control",
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.type = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            _vm._l(_vm.types, function(t) {
-              return _c("option", { domProps: { value: t } }, [
-                _vm._v(_vm._s(t))
-              ])
-            })
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v("类型")]),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.status,
-                  expression: "status"
-                }
-              ],
-              staticClass: "form-control",
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.status = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
-              }
-            },
-            _vm._l(_vm.allStatus, function(s) {
-              return _c("option", { domProps: { value: s } }, [
-                _vm._v(_vm._s(s))
-              ])
-            })
-          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _vm._v("\n      预览 hasIcon " + _vm._s(_vm.hasIcon) + "\n    ")
         ]),
         _vm._v(" "),
         _c(
-          "button",
-          {
-            staticClass: "btn btn-primary btn-lg btn-block",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("引入到Sketch")]
+          "div",
+          { staticClass: "card-body" },
+          [
+            _c("h4", { staticClass: "card-title" }, [
+              _vm._v(_vm._s(_vm.currentComponent))
+            ]),
+            _vm._v(" "),
+            _c(
+              "tb-button",
+              {
+                attrs: {
+                  type: _vm.previewType,
+                  isAnother: _vm.isAnother,
+                  disabled: _vm.status === "disable"
+                }
+              },
+              [
+                _vm.hasIcon
+                  ? _c("i", {
+                      staticClass: "fa fa-search",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  : _vm._e(),
+                _vm._v("\n        按钮\n      ")
+              ]
+            )
+          ],
+          1
         )
-      ]
-    )
-  ])
+      ]),
+      _vm._v(" "),
+      _c("sk-code-html")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -10675,6 +10686,101 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 
 // exports
 
+
+/***/ }),
+/* 42 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  props: ['tag', 'props', 'children'],
+  computed: {
+    htmlCode: function htmlCode() {
+      return '<button>\n       </button>\n      '.trim();
+    }
+  }
+});
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_CodeHtml_vue__ = __webpack_require__(42);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ad347d3e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_CodeHtml_vue__ = __webpack_require__(44);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_CodeHtml_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_ad347d3e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_CodeHtml_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Shared/Code/CodeHtml.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ad347d3e", Component.options)
+  } else {
+    hotAPI.reload("data-v-ad347d3e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n  " + _vm._s(_vm.htmlCode) + "\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ad347d3e", esExports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -1,17 +1,5 @@
 <template>
   <div>
-    <div class="card">
-      <div class="card-header">
-        预览 hasIcon {{hasIcon}}
-      </div>
-      <div class="card-body">
-        <h4 class="card-title">{{currentComponent}}</h4>
-        <tb-button :type="previewType" :isAnother="isAnother" :disabled="status === 'disable'">
-          <i class="fa fa-search" v-if="hasIcon" aria-hidden="true"></i>
-          按钮
-        </tb-button>
-      </div>
-    </div>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label> 完整路径： </label>
@@ -33,12 +21,27 @@
       </div>
       <button class="btn btn-primary btn-lg btn-block" type="submit">引入到Sketch</button>
     </form>
+    <!-- TODO: preview component -->
+    <div class="card">
+      <div class="card-header">
+        预览 hasIcon {{hasIcon}}
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">{{currentComponent}}</h4>
+        <tb-button :type="previewType" :isAnother="isAnother" :disabled="status === 'disable'">
+          <i class="fa fa-search" v-if="hasIcon" aria-hidden="true"></i>
+          按钮
+        </tb-button>
+      </div>
+    </div>
+    <sk-code-html></sk-code-html>
   </div>
 </template>
 
 <script>
 import PluginCall from 'sketch-module-web-view/client';
 import { TbButton } from '@zhinan/tb-components';
+import SkCodeHtml from '../../Shared/Code/CodeHtml';
 
 const data = {
   risk: {
@@ -114,6 +117,7 @@ export default {
   props: ['currentComponent'],
   components: {
     TbButton,
+    SkCodeHtml,
   },
   computed: {
     path() {
