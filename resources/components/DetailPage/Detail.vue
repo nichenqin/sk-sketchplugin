@@ -10,15 +10,15 @@
     <h2>objectID:
       <span class="badge badge-secondary">{{ objectID }}</span>
     </h2>
-    <button class="btn btn-success btn-block" :disabled="!objectID" @click="handleSelect">选择</button>
-    <button class="btn btn-success btn-block" :disabled="!objectID" @click="handelDeselect">取消选择</button>
-    <button class="btn btn-success btn-block" :disabled="!objectID" @click="handleDuplicate">复制</button>
-    <button class="btn btn-success btn-block" @click="test">测试</button>
+    <div class="btn-group btn-group-lg mb-3" role="group">
+      <button class="btn btn-success" :disabled="!objectID" @click="handleSelect">选择</button>
+      <button class="btn btn-danger" :disabled="!objectID" @click="handelDeselect">取消选择</button>
+      <button class="btn btn-warning" :disabled="!objectID" @click="handleDuplicate">复制</button>
+      <button class="btn btn-primary" @click="test">测试</button>
+    </div>
 
-    <component :is="`sk-${currentComponent}`" :path="path" :currentComponent="currentComponent"
-      :status.sync="status" :currentType.sync="currentType"></component>
+    <component :is="`sk-${currentComponent}`" :currentComponent="currentComponent"></component>
 
-    <button class="btn btn-primary btn-block" @click="handleSubmit">导入到Sketch</button>
   </div>
 </template>
 
@@ -38,26 +38,15 @@ export default {
   },
   data() {
     return {
-      currentType: '',
-      status: 'normal',
       layerName: '',
       objectID: '',
     };
   },
   props: ['currentComponent'],
-  computed: {
-    path() {
-      const { currentComponent, currentType, status } = this;
-      const path = [currentComponent, currentType, status].filter(p => !!p);
-      return path.join('/');
-    },
-  },
+
   methods: {
     back() {
       this.$emit('updateCurrentPage', 'sk-home');
-    },
-    handleSubmit() {
-      pluginCall('import', this.path);
     },
     handleSelect() {
       if (!this.objectID) return;
@@ -75,7 +64,7 @@ export default {
       pluginCall('test');
     },
   },
-  mounted() {
+  beforeCreate() {
     pluginCall('appLoaded');
     bridgeHandler(({ layerName, objectID }) => {
       this.layerName = layerName;

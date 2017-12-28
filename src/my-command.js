@@ -59,6 +59,7 @@ export default function (context) {
           return;
         }
         component.import(path);
+        sketch.log(component.symbolInstance.overrides());
         component.layer.select();
       } catch (error) {
         log(error.stack);

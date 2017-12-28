@@ -2,14 +2,17 @@
   <div>
     <div class="card">
       <div class="card-header">
-        预览
+        预览 hasIcon {{hasIcon}}
       </div>
       <div class="card-body">
         <h4 class="card-title">{{currentComponent}}</h4>
-        <tb-button :type="currentType">按钮</tb-button>
+        <tb-button :type="previewType" :isAnother="isAnother" :disabled="status === 'disable'">
+          <i class="fa fa-search" v-if="hasIcon" aria-hidden="true"></i>
+          按钮
+        </tb-button>
       </div>
     </div>
-    <form>
+    <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label> 完整路径： </label>
         <div class="alert alert-primary" role="alert">
@@ -17,36 +20,126 @@
         </div>
       </div>
       <div class="form-group">
-        <label>类型</label>
-        <select class="form-control" @change="$emit('update:currentType', $event.target.value)">
-          <option value="">请选择类型</option>
-          <option value="risk">risk</option>
-          <option value="tab">tab</option>
-          <option value="ghost">ghost</option>
-          <option value="line_gray">line_gray</option>
-          <option value="line_blue">line_blue</option>
+        <label>状态</label>
+        <select class="form-control" v-model="type">
+          <option v-for="t of types" :value="t">{{ t }}</option>
         </select>
       </div>
       <div class="form-group">
-        <label>状态</label>
-        <select class="form-control" @change="$emit('update:status', $event.target.value)">
-          <option value="normal">normal</option>
-          <option value="hover">hover</option>
-          <option value="active">active</option>
-          <option value="disable">disable</option>
+        <label>类型</label>
+        <select class="form-control" v-model="status">
+          <option :value="s" v-for="s of allStatus">{{ s }}</option>
         </select>
       </div>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">引入到Sketch</button>
     </form>
   </div>
 </template>
 
 <script>
+import PluginCall from 'sketch-module-web-view/client';
 import { TbButton } from '@zhinan/tb-components';
 
+const data = {
+  risk: {
+    type: 'error',
+    isAnother: false,
+  },
+  line_blue: {
+    type: 'border',
+    isAnother: false,
+  },
+  line_grey: {
+    type: 'border',
+    isAnother: true,
+  },
+  tab: {
+    type: 'label',
+    isAnother: true,
+  },
+  tab_line: {
+    type: 'label',
+    isAnother: false,
+  },
+  iconBasic: {
+    type: 'primary',
+    isAnother: false,
+  },
+  iconRisk: {
+    type: 'error',
+    isAnother: false,
+  },
+  ghost: {
+    type: 'ghost',
+    isAnother: false,
+  },
+  link_grey: {
+    type: 'link',
+    isAnother: false,
+  },
+  link_blue: {
+    type: 'link',
+    isAnother: true,
+  },
+  menu: {
+    type: 'menu',
+    isAnother: false,
+  },
+  icon: {
+    type: 'icon',
+    isAnother: true,
+  },
+  icon_large: {
+    type: 'icon',
+    isAnother: false,
+  },
+  iconLink_blue: {
+    type: 'iconLink',
+    isAnother: true,
+  },
+  iconLink_grey: {
+    type: 'link',
+    isAnother: false,
+  },
+};
+
 export default {
-  props: ['currentComponent', 'path', 'status', 'currentType'],
+  data() {
+    return {
+      type: '',
+      status: 'normal',
+      allStatus: ['normal', 'active', 'hover', 'disable'],
+    };
+  },
+  props: ['currentComponent'],
   components: {
     TbButton,
+  },
+  computed: {
+    path() {
+      const { currentComponent, type, status } = this;
+      const path = [currentComponent, type, status].filter(p => !!p);
+      return path.join('/');
+    },
+    types() {
+      return Object.keys(data);
+    },
+    isAnother() {
+      if (!this.type) return false;
+      return data[this.type].isAnother;
+    },
+    hasIcon() {
+      return /icon/i.test(this.type);
+    },
+    previewType() {
+      if (!this.type) return 'normal';
+      return data[this.type].type;
+    },
+  },
+  methods: {
+    handleSubmit() {
+      PluginCall('import', this.path);
+    },
   },
 };
 </script>
