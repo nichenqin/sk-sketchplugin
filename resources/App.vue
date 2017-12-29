@@ -35,6 +35,7 @@ export default {
 <style>
 body {
   font-family: 'Merriweather', serif;
+  padding: 1rem 0;
 }
 
 select,

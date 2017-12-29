@@ -25,7 +25,7 @@ class ContextManage {
   }
 
   get selection() {
-    return this.document.selecetdLayers;
+    return this.page.selecetdLayers;
   }
 
   getSelectedLayerInfo() {

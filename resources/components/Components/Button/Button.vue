@@ -2,32 +2,33 @@
   <div>
     <form class="mb-3" @submit.prevent="handleSubmit">
       <div class="form-group">
-        <label> 完整路径： </label>
+        <label> Path </label>
         <div class="alert alert-success" role="alert">
           {{ path }}
         </div>
       </div>
       <div class="form-group">
-        <label>状态</label>
+        <label>Type</label>
         <select class="form-control form-control-lg" v-model="type">
+          <option value="">Select type</option>
           <option v-for="t of types" :value="t">{{ t }}</option>
         </select>
       </div>
       <div class="form-group">
-        <label>类型</label>
+        <label>Status</label>
         <select class="form-control form-control-lg" v-model="status">
           <option :value="s" v-for="s of allStatus">{{ s }}</option>
         </select>
       </div>
-      <button class="btn btn-primary btn-lg btn-block" type="submit">引入到Sketch</button>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Import To Sketch</button>
     </form>
     <!-- TODO: preview component -->
     <div class="card mb-3">
       <div class="card-header">
-        预览 hasIcon {{hasIcon}}
+        Preview
       </div>
       <div class="card-body">
-        <h4 class="card-title">{{currentComponent}}</h4>
+        <h4 class="card-title">{{ currentComponent }}</h4>
         <tb-button :type="previewType" :isAnother="isAnother" :disabled="status === 'disable'">
           <i class="fa fa-search" v-if="hasIcon" aria-hidden="true"></i>
           按钮

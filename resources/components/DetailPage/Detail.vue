@@ -1,6 +1,9 @@
 <template>
   <div class="detail">
-    <button type="button" class="btn btn-warning" @click="back">返回</button>
+    <button type="button" class="btn btn-warning" @click="back">
+      <i class="fa fa-arrow-left"></i>
+      Back
+    </button>
     <h1>Component:
       <span class="badge badge-secondary">{{ currentComponent }}</span>
     </h1>
@@ -16,14 +19,15 @@
     <component :is="`sk-${currentComponent}`" :currentComponent="currentComponent"></component>
 
     <div class="btn-group btn-group-lg mb-3 d-flex" role="group">
-      <button class="btn btn-success" :disabled="!objectID" @click="handleSelect">选择</button>
-      <button class="btn btn-danger" :disabled="!objectID" @click="handelDeselect">取消选择</button>
+      <button class="btn btn-primary" :disabled="!objectID" @click="handleSelect">Select</button>
+      <button class="btn btn-danger" :disabled="!objectID" @click="handelDeselect">Deselect</button>
     </div>
     <div class="btn-group btn-group-lg mb-3 d-flex" role="group">
-      <button class="btn btn-warning" :disabled="!objectID" @click="handleDuplicate">复制</button>
-      <button class="btn btn-warning" :disabled="!objectID" @click="handleDetach">分解Symbol</button>
+      <button class="btn btn-warning" :disabled="!objectID" @click="handleDuplicate">Duplicate</button>
+      <button class="btn btn-warning" :disabled="!objectID" @click="handleDetach">Detach</button>
+      <button class="btn btn-danger" :disabled="!objectID" @click="handleRemove">Remove</button>
     </div>
-    <button class="btn btn-primary btn-lg btn-block mb-3" @click="test">测试按钮</button>
+    <button class="btn btn-primary btn-lg btn-block mb-3" @click="test">Test</button>
 
   </div>
 </template>
@@ -68,6 +72,10 @@ export default {
     handleDetach() {
       if (!this.objectID) return;
       pluginCall('detach', this.objectID);
+    },
+    handleRemove() {
+      if (!this.objectID) return;
+      pluginCall('remove', this.objectID);
     },
     test() {
       pluginCall('test');

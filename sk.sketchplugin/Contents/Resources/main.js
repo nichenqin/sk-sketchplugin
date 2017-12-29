@@ -8888,6 +8888,10 @@ module.exports = g;
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -8929,6 +8933,10 @@ module.exports = g;
     handleDetach: function handleDetach() {
       if (!this.objectID) return;
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('detach', this.objectID);
+    },
+    handleRemove: function handleRemove() {
+      if (!this.objectID) return;
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('remove', this.objectID);
     },
     test: function test() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('test');
@@ -8976,6 +8984,7 @@ module.exports = function (actionName) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml__ = __webpack_require__(25);
+//
 //
 //
 //
@@ -10097,7 +10106,7 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v(" 完整路径： ")]),
+            _c("label", [_vm._v(" Path ")]),
             _vm._v(" "),
             _c(
               "div",
@@ -10107,7 +10116,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("状态")]),
+            _c("label", [_vm._v("Type")]),
             _vm._v(" "),
             _c(
               "select",
@@ -10137,16 +10146,21 @@ var render = function() {
                   }
                 }
               },
-              _vm._l(_vm.types, function(t) {
-                return _c("option", { domProps: { value: t } }, [
-                  _vm._v(_vm._s(t))
-                ])
-              })
+              [
+                _c("option", { attrs: { value: "" } }, [_vm._v("Select type")]),
+                _vm._v(" "),
+                _vm._l(_vm.types, function(t) {
+                  return _c("option", { domProps: { value: t } }, [
+                    _vm._v(_vm._s(t))
+                  ])
+                })
+              ],
+              2
             )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("类型")]),
+            _c("label", [_vm._v("Status")]),
             _vm._v(" "),
             _c(
               "select",
@@ -10190,14 +10204,14 @@ var render = function() {
               staticClass: "btn btn-primary btn-lg btn-block",
               attrs: { type: "submit" }
             },
-            [_vm._v("引入到Sketch")]
+            [_vm._v("Import To Sketch")]
           )
         ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "card mb-3" }, [
         _c("div", { staticClass: "card-header" }, [
-          _vm._v("\n      预览 hasIcon " + _vm._s(_vm.hasIcon) + "\n    ")
+          _vm._v("\n      Preview\n    ")
         ]),
         _vm._v(" "),
         _c(
@@ -28313,7 +28327,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\nbody {\n  font-family: 'Merriweather', serif;\n}\nselect,\ninput,\ntextarea,\noption {\n  font-family: inherit;\n}\n", ""]);
+exports.push([module.i, "\nbody {\n  font-family: 'Merriweather', serif;\n  padding: 1rem 0;\n}\nselect,\ninput,\ntextarea,\noption {\n  font-family: inherit;\n}\n", ""]);
 
 // exports
 
@@ -28380,7 +28394,7 @@ var render = function() {
           attrs: { type: "button" },
           on: { click: _vm.back }
         },
-        [_vm._v("返回")]
+        [_c("i", { staticClass: "fa fa-arrow-left" }), _vm._v("\n    Back\n  ")]
       ),
       _vm._v(" "),
       _c("h1", [
@@ -28423,11 +28437,11 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-success",
+              staticClass: "btn btn-primary",
               attrs: { disabled: !_vm.objectID },
               on: { click: _vm.handleSelect }
             },
-            [_vm._v("选择")]
+            [_vm._v("Select")]
           ),
           _vm._v(" "),
           _c(
@@ -28437,7 +28451,7 @@ var render = function() {
               attrs: { disabled: !_vm.objectID },
               on: { click: _vm.handelDeselect }
             },
-            [_vm._v("取消选择")]
+            [_vm._v("Deselect")]
           )
         ]
       ),
@@ -28456,7 +28470,7 @@ var render = function() {
               attrs: { disabled: !_vm.objectID },
               on: { click: _vm.handleDuplicate }
             },
-            [_vm._v("复制")]
+            [_vm._v("Duplicate")]
           ),
           _vm._v(" "),
           _c(
@@ -28466,7 +28480,17 @@ var render = function() {
               attrs: { disabled: !_vm.objectID },
               on: { click: _vm.handleDetach }
             },
-            [_vm._v("分解Symbol")]
+            [_vm._v("Detach")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              attrs: { disabled: !_vm.objectID },
+              on: { click: _vm.handleRemove }
+            },
+            [_vm._v("Remove")]
           )
         ]
       ),
@@ -28477,7 +28501,7 @@ var render = function() {
           staticClass: "btn btn-primary btn-lg btn-block mb-3",
           on: { click: _vm.test }
         },
-        [_vm._v("测试按钮")]
+        [_vm._v("Test")]
       )
     ],
     1

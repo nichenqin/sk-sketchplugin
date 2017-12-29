@@ -11,7 +11,8 @@ class VComponent extends ContextManager {
     const { sketchObject } = layer;
     const objectID = sketchObject.objectID();
 
-    const newComponent = Object.assign(Object.create(Object.getPrototypeOf(this)), this, {
+    const origin = Object.create(Object.getPrototypeOf(this));
+    const newComponent = Object.assign(origin, this, {
       objectID,
       sketchObject,
     });
@@ -19,8 +20,8 @@ class VComponent extends ContextManager {
     return newComponent;
   }
 
-  import(path) {
-    const instance = this.createSymbolInstanceByPath(path);
+  import(payload) {
+    const instance = this.createSymbolInstanceByPath(payload);
 
     this.addLayers([instance]);
   }

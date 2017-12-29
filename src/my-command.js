@@ -37,7 +37,9 @@ export default function (context) {
       dispatchToWebview('SEARCH', payload, 'onload-sketch');
     },
     test: () => {
-      const { selection } = ctm;
+      const { selection, document, page } = ctm;
+      sketch.log(page);
+      sketch.log(document);
       sketch.log(selection);
     },
     select: objectID => {
@@ -57,6 +59,15 @@ export default function (context) {
     detach: objectID => {
       try {
         store.getByID(objectID).detach();
+      } catch (error) {
+        sketch.message(error.message);
+      }
+    },
+    remove: objectID => {
+      try {
+        store.getByID(objectID).layer.remove();
+        store.removeByID(objectID);
+        sketch.log(store.size());
       } catch (error) {
         sketch.message(error.message);
       }
