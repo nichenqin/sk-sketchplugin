@@ -37,10 +37,11 @@ export default function (context) {
       dispatchToWebview('SEARCH', payload, 'onload-sketch');
     },
     test: () => {
-      const { selection, document, page } = ctm;
-      sketch.log(page);
-      sketch.log(document);
-      sketch.log(selection);
+      try {
+        sketch.log(ctm.nativeLayers);
+      } catch (error) {
+        sketch.message(error.message);
+      }
     },
     select: objectID => {
       try {
