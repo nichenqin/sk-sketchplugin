@@ -22,20 +22,15 @@
       </div>
       <button class="btn btn-primary btn-lg btn-block" type="submit">Import To Sketch</button>
     </form>
-    <!-- TODO: preview component -->
-    <div class="card mb-3">
-      <div class="card-header">
-        Preview
-      </div>
-      <div class="card-body">
-        <h4 class="card-title">{{ currentComponent }}</h4>
-        <tb-button :type="previewType" :isAnother="isAnother" :disabled="status === 'disable'">
-          <i class="fa fa-search" v-if="hasIcon" aria-hidden="true"></i>
-          按钮
-        </tb-button>
-      </div>
-    </div>
-    <sk-code-html tag="button"></sk-code-html>
+
+    <sk-preview>
+      <tb-button :type="previewType" :isAnother="isAnother" :disabled="disabled">
+        <i class="fa fa-search" v-if="hasIcon" aria-hidden="true"></i>
+        {{ text }}
+      </tb-button>
+    </sk-preview>
+
+    <sk-code-html tag="button" :properties="properties" :innerText="text"></sk-code-html>
   </div>
 </template>
 
@@ -43,6 +38,7 @@
 import PluginCall from 'sketch-module-web-view/client';
 import { TbButton } from '@zhinan/tb-components';
 import SkCodeHtml from '../../Shared/Code/CodeHtml';
+import SkPreview from '../../Shared/Preview';
 
 const data = {
   risk: {
@@ -110,6 +106,7 @@ const data = {
 export default {
   data() {
     return {
+      text: '按钮',
       type: '',
       status: 'normal',
       allStatus: ['normal', 'active', 'hover', 'disable'],
@@ -119,6 +116,7 @@ export default {
   components: {
     TbButton,
     SkCodeHtml,
+    SkPreview,
   },
   computed: {
     path() {
@@ -133,12 +131,19 @@ export default {
       if (!this.type) return false;
       return data[this.type].isAnother;
     },
+    disabled() {
+      return this.status === 'disable';
+    },
     hasIcon() {
       return /icon/i.test(this.type);
     },
     previewType() {
       if (!this.type) return 'primary';
       return data[this.type].type;
+    },
+    properties() {
+      const { isAnother, previewType, disabled } = this;
+      return { isAnother, type: previewType, disabled };
     },
   },
   methods: {

@@ -41,7 +41,12 @@ body {
 select,
 input,
 textarea,
-option {
+option,
+code {
   font-family: inherit;
+}
+
+pre {
+  white-space: pre-wrap;
 }
 </style>

@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import hljs from 'highlight.js';
 
-Vue.directive('highlight', {
-  bind(el) {
-    hljs.highlightBlock(el);
-  },
+Vue.directive('highlight', el => {
+  hljs.highlightBlock(el);
 });
