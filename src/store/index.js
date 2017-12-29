@@ -24,12 +24,18 @@ const store = (() => {
       this.components[component.objectID] = component;
     }
 
+    /**
+     *  get length of components in store
+     *
+     * @returns {number}
+     * @memberof Store
+     */
     size() {
       return Object.keys(this.components).length;
     }
 
     /**
-     *
+     * get component by objectID
      *
      * @param {string} objectID
      * @returns {VComponent} an instance of VComponent
@@ -43,6 +49,13 @@ const store = (() => {
       return component;
     }
 
+    /**
+     * remove component from the store
+     *
+     * @param {any} objectID
+     * @returns {VComponent}
+     * @memberof Store
+     */
     removeByID(objectID) {
       const component = this.components[objectID];
       if (!component) {
@@ -52,6 +65,11 @@ const store = (() => {
       return component;
     }
 
+    /**
+     * remove all components in store
+     *
+     * @memberof Store
+     */
     clear() {
       this.components = {};
     }
