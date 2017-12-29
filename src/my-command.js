@@ -1,4 +1,3 @@
-/* globals log */
 import { createWebview, dispatchToWebview, parseFilePath } from './utils';
 import ContextManager from './ContextManager';
 import Button from './VComponents/Button';
@@ -42,13 +41,32 @@ export default function (context) {
       sketch.log(selection);
     },
     select: objectID => {
-      store.getByID(objectID).layer.select();
+      try {
+        store.getByID(objectID).layer.select();
+      } catch (error) {
+        sketch.message(error.message);
+      }
     },
     deselect: objectID => {
-      store.getByID(objectID).layer.deselect();
+      try {
+        store.getByID(objectID).layer.deselect();
+      } catch (error) {
+        sketch.message(error.message);
+      }
     },
     duplicate: objectID => {
-      store.getByID(objectID).layer.duplicate();
+      try {
+        const component = store.getByID(objectID);
+        const layer = ctm.getLayerByID(objectID);
+
+        const newlayer = layer.duplicate();
+        const newComponent = component.copyWithLayer(newlayer);
+
+        newComponent.layer.select();
+        store.add(newComponent);
+      } catch (error) {
+        sketch.message(error.message);
+      }
     },
     import: path => {
       try {

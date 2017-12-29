@@ -47,3 +47,7 @@ export function parseFilePath(path) {
   const [root] = p.split('/');
   return { root };
 }
+
+export function is(layer, className) {
+  return String(layer.className()) === className;
+}

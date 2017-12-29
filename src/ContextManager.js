@@ -4,13 +4,10 @@ class ContextManage {
   constructor(context) {
     this.context = context;
     this.sketch = context.api();
-    this.objectID = '';
 
     this.assetLibrary = null;
 
-    this.symbolMaster = null;
-    this.symbolInstance = null;
-    this.children = null;
+    this.sketchObject = null;
     this.objectID = '';
   }
 
@@ -70,6 +67,12 @@ class ContextManage {
 
   updateObjectID(objectID) {
     this.objectID = objectID;
+    return this;
+  }
+
+  updateSketchObject(sketchObject) {
+    this.sketchObject = sketchObject;
+    return this;
   }
 
   getSymbolsFromLibrary() {
@@ -131,9 +134,6 @@ class ContextManage {
       return false;
     }
 
-    this.symbolMaster = symbol;
-    this.children = symbol.layers();
-
     const assetLibraryController = NSApp.delegate().librariesController();
     const documentData = context.document.documentData();
     const importedSymbol = assetLibraryController.importForeignSymbol_fromLibrary_intoDocument(
@@ -144,13 +144,13 @@ class ContextManage {
 
     const instance = importedSymbol.symbolMaster().newSymbolInstance();
     this.objectID = String(instance.objectID());
-    this.symbolInstance = instance;
+    this.sketchObject = instance;
 
     return instance;
   }
 
   detach() {
-    const layer = this.symbolInstance.detachByReplacingWithGroup();
+    const layer = this.sketchObject.detachByReplacingWithGroup();
 
     this.updateObjectID(layer.objectID());
 

@@ -23,6 +23,10 @@ class Store {
     this.components[component.objectID] = component;
   }
 
+  size() {
+    return Object.keys(this.components).length;
+  }
+
   /**
    *
    *
