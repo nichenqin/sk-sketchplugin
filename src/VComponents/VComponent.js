@@ -12,10 +12,8 @@ class VComponent extends ContextManager {
     const objectID = sketchObject.objectID();
 
     const origin = Object.create(Object.getPrototypeOf(this));
-    const newComponent = Object.assign(origin, this, {
-      objectID,
-      sketchObject,
-    });
+    const componet = this.updateObjectID(objectID).updateSketchObject(sketchObject);
+    const newComponent = Object.assign(origin, componet);
 
     return newComponent;
   }
