@@ -8918,6 +8918,9 @@ module.exports = g;
     back: function back() {
       this.$emit('updateCurrentPage', 'sk-home');
     },
+    clearObjectID: function clearObjectID() {
+      this.objectID = '';
+    },
     handleSelect: function handleSelect() {
       if (!this.objectID) return;
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('select', this.objectID);
@@ -8925,6 +8928,7 @@ module.exports = g;
     handelDeselect: function handelDeselect() {
       if (!this.objectID) return;
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('deselect', this.objectID);
+      this.clearObjectID();
     },
     handleDuplicate: function handleDuplicate() {
       if (!this.objectID) return;
@@ -8937,6 +8941,7 @@ module.exports = g;
     handleRemove: function handleRemove() {
       if (!this.objectID) return;
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('remove', this.objectID);
+      this.clearObjectID();
     },
     test: function test() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('test');
@@ -28651,7 +28656,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.code[data-v-ad347d3e] {\n  font-size: 1.4rem;\n}\n", ""]);
+exports.push([module.i, "\n.code[data-v-ad347d3e] {\n  font-size: 1.3rem;\n}\n", ""]);
 
 // exports
 

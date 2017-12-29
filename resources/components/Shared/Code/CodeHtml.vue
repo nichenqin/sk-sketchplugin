@@ -32,6 +32,6 @@ export default {
 
 <style scoped>
 .code {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 </style>

@@ -57,6 +57,9 @@ export default {
     back() {
       this.$emit('updateCurrentPage', 'sk-home');
     },
+    clearObjectID() {
+      this.objectID = '';
+    },
     handleSelect() {
       if (!this.objectID) return;
       pluginCall('select', this.objectID);
@@ -64,6 +67,7 @@ export default {
     handelDeselect() {
       if (!this.objectID) return;
       pluginCall('deselect', this.objectID);
+      this.clearObjectID();
     },
     handleDuplicate() {
       if (!this.objectID) return;
@@ -76,6 +80,7 @@ export default {
     handleRemove() {
       if (!this.objectID) return;
       pluginCall('remove', this.objectID);
+      this.clearObjectID();
     },
     test() {
       pluginCall('test');

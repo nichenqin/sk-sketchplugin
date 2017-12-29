@@ -60,6 +60,7 @@ export default function (context) {
     detach: objectID => {
       try {
         store.getByID(objectID).detach();
+        // TODO: replace with a new component instance
       } catch (error) {
         sketch.message(error.message);
       }
