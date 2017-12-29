@@ -5,6 +5,8 @@ import Button from './VComponents/Button';
 import List from './VComponents/List';
 import Datepicker from './VComponents/Datepicker';
 
+import store from './store';
+
 function createComponentInstance(context, path) {
   const instance = (() => {
     const { root } = parseFilePath(path);
@@ -37,7 +39,7 @@ export default function (context) {
     },
     test: () => {
       const { selection } = ctm;
-      log(selection);
+      sketch.log(selection);
     },
     select: objectID => {
       const layer = ctm.getLayerByID(objectID);
@@ -58,8 +60,10 @@ export default function (context) {
           sketch.alert('生成component失败', `输入路径：${path}`);
           return;
         }
+
+        store.add(component);
+
         component.import(path);
-        sketch.log(component.symbolInstance.overrides());
         component.layer.select();
       } catch (error) {
         log(error.stack);
