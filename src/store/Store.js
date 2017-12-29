@@ -18,8 +18,19 @@ class Store {
     this.components[component.objectID] = component;
   }
 
-  getComponentByID(objectID) {
-    return this.components[objectID];
+  /**
+   *
+   *
+   * @param {string} objectID
+   * @returns {VComponent} an instance of VComponent
+   * @memberof Store
+   */
+  getByID(objectID) {
+    const component = this.components[objectID];
+    if (!component) {
+      throw new Error('component not found');
+    }
+    return component;
   }
 
   removeByID(objectID) {
