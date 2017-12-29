@@ -37,8 +37,8 @@
 <script>
 import PluginCall from 'sketch-module-web-view/client';
 import { TbButton } from '@zhinan/tb-components';
-import SkCodeHtml from '../../Shared/Code/CodeHtml';
-import SkPreview from '../../Shared/Preview';
+import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
+import SkPreview from '../../Shared/Preview.vue';
 
 const data = {
   risk: {

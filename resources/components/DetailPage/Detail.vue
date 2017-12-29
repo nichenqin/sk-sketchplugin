@@ -35,9 +35,9 @@
 
 <script>
 import pluginCall from 'sketch-module-web-view/client';
-import SkButton from '../Components/Button/Button';
-import SkList from '../Components/List/List';
-import SkDatepicker from '../Components/Datepicker/Datepicker';
+import SkButton from '../Components/Button/Button.vue';
+import SkList from '../Components/List/List.vue';
+import SkDatepicker from '../Components/Datepicker/Datepicker.vue';
 import bridgeHandler from '../../assets/js/handler';
 
 export default {
