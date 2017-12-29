@@ -15,6 +15,11 @@ class Store {
     if (!(component instanceof VComponent)) {
       throw new Error('component should be an instance of VComponent');
     }
+
+    if (!component.objectID) {
+      throw new Error('no objectID in component object, maybe you has not imported it to sketch context');
+    }
+
     this.components[component.objectID] = component;
   }
 
