@@ -22,7 +22,7 @@
       <button class="btn btn-primary btn-lg btn-block" type="submit">引入到Sketch</button>
     </form>
     <!-- TODO: preview component -->
-    <div class="card">
+    <div class="card mb-3">
       <div class="card-header">
         预览 hasIcon {{hasIcon}}
       </div>

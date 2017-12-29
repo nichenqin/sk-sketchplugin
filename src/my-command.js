@@ -42,16 +42,13 @@ export default function (context) {
       sketch.log(selection);
     },
     select: objectID => {
-      const layer = ctm.getLayerByID(objectID);
-      layer.select();
+      store.getByID(objectID).layer.select();
     },
     deselect: objectID => {
-      const layer = ctm.getLayerByID(objectID);
-      layer.deselect();
+      store.getByID(objectID).layer.deselect();
     },
     duplicate: objectID => {
-      const layer = ctm.getLayerByID(objectID);
-      layer.duplicate();
+      store.getByID(objectID).layer.duplicate();
     },
     import: path => {
       try {
@@ -60,13 +57,13 @@ export default function (context) {
           sketch.alert('生成component失败', `输入路径：${path}`);
           return;
         }
+        component.import(path);
 
         store.add(component);
 
-        component.import(path);
         component.layer.select();
       } catch (error) {
-        log(error.stack);
+        sketch.log(error.stack);
       }
     },
   };
