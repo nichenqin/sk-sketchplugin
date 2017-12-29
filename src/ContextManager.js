@@ -1,4 +1,5 @@
-/* globals MSUserAssetLibrary NSApp */
+/* globals MSUserAssetLibrary MSForeignSymbol */
+import { is } from './utils';
 
 class ContextManage {
   constructor(context) {
@@ -56,7 +57,7 @@ class ContextManage {
 
     const layer = document.layerWithID(objectID);
     if (!layer) {
-      sketch.message(`layer not found through objectID: ${objectID}`);
+      throw new Error(`layer not found with objectID: ${objectID}`);
     }
 
     this.updateObjectID(objectID);
@@ -80,18 +81,16 @@ class ContextManage {
   }
 
   getSymbolsFromLibrary() {
-    const { sketch, uikit } = this;
+    const { uikit } = this;
 
     if (!uikit) {
-      sketch.message('uikit required');
-      return false;
+      throw new Error('uikit required');
     }
 
     const assetLibrary = MSUserAssetLibrary.alloc().initWithDocumentAtURL(uikit);
 
     if (!assetLibrary) {
-      sketch.alert('没有找到library', `文件路径${uikit}`);
-      return false;
+      throw new Error('asset library not found');
     }
 
     this.assetLibrary = assetLibrary;
@@ -124,37 +123,49 @@ class ContextManage {
   }
 
   createSymbolInstanceByPath(path) {
-    const { context, assetLibrary, sketch } = this;
+    const { context, assetLibrary } = this;
 
     if (!path) {
-      sketch.message('path required');
-      return false;
+      throw new Error('path required');
     }
 
     const symbol = this.getSymbolByPath(path);
 
     if (!symbol) {
-      sketch.message(`symbol not found in path: ${path}`);
-      return false;
+      throw new Error(`symbol not found in path: ${path}`);
     }
 
-    const assetLibraryController = NSApp.delegate().librariesController();
-    const documentData = context.document.documentData();
-    const importedSymbol = assetLibraryController.importForeignSymbol_fromLibrary_intoDocument(
-      symbol,
-      assetLibrary,
-      documentData,
-    );
+    const foreignSymbol = MSForeignSymbol.foreignSymbolWithMaster_inLibrary(symbol, assetLibrary);
+    context.document.documentData().addForeignSymbol(foreignSymbol);
 
-    const instance = importedSymbol.symbolMaster().newSymbolInstance();
+    const symbolMaster = foreignSymbol.symbolMaster();
+    const instance = symbolMaster.newSymbolInstance();
+
     this.objectID = String(instance.objectID());
     this.sketchObject = instance;
 
     return instance;
   }
 
+  replaceSymbolWith(path) {
+    const { sketchObject } = this;
+    if (!is(sketchObject, 'MSSymbolInstance')) {
+      throw new Error('You can only replace a symbol instance');
+    }
+
+    const instance = this.createSymbolInstanceByPath(path);
+    console.log(instance);
+    const newInstance = sketchObject.replaceWithInstanceOfSymbol(instance);
+    console.log(newInstance);
+  }
+
   detach() {
-    const layer = this.sketchObject.detachByReplacingWithGroup();
+    const { sketchObject } = this;
+    if (!is(sketchObject, 'MSSymbolInstance')) {
+      throw new Error('You can only detach symbol');
+    }
+
+    const layer = sketchObject.detachByReplacingWithGroup();
 
     this.updateObjectID(layer.objectID());
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="detail">
+  <div class="detail mb-4">
     <button type="button" class="btn btn-warning" @click="back">
       <i class="fa fa-arrow-left"></i>
       Back
@@ -26,6 +26,7 @@
       <button class="btn btn-warning" :disabled="!objectID" @click="handleDuplicate">Duplicate</button>
       <button class="btn btn-warning" :disabled="!objectID" @click="handleDetach">Detach</button>
       <button class="btn btn-danger" :disabled="!objectID" @click="handleRemove">Remove</button>
+      <button class="btn btn-danger" :disabled="!objectID" @click="handleReplace">Replace</button>
     </div>
     <button class="btn btn-primary btn-lg btn-block mb-3" @click="test">Test</button>
 
@@ -81,6 +82,9 @@ export default {
       if (!this.objectID) return;
       pluginCall('remove', this.objectID);
       this.clearObjectID();
+    },
+    handleReplace() {
+      pluginCall('replace', this.objectID, 'button/risk/normal');
     },
     test() {
       pluginCall('test');

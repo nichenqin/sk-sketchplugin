@@ -88,6 +88,14 @@ export default function (context) {
         sketch.message(error.message);
       }
     },
+    replace: (objectID, path) => {
+      try {
+        const component = store.getByID(objectID);
+        component.replaceSymbolWith(path);
+      } catch (error) {
+        sketch.message(error.message);
+      }
+    },
     import: (name, payload) => {
       try {
         const component = createComponentInstance(context, name);
