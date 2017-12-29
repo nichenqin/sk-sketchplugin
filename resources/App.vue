@@ -31,3 +31,16 @@ export default {
   },
 };
 </script>
+
+<style>
+body {
+  font-family: 'Merriweather', serif;
+}
+
+select,
+input,
+textarea,
+option {
+  font-family: inherit;
+}
+</style>

@@ -3,19 +3,19 @@
     <form class="mb-3" @submit.prevent="handleSubmit">
       <div class="form-group">
         <label> 完整路径： </label>
-        <div class="alert alert-primary" role="alert">
+        <div class="alert alert-success" role="alert">
           {{ path }}
         </div>
       </div>
       <div class="form-group">
         <label>状态</label>
-        <select class="form-control" v-model="type">
+        <select class="form-control form-control-lg" v-model="type">
           <option v-for="t of types" :value="t">{{ t }}</option>
         </select>
       </div>
       <div class="form-group">
         <label>类型</label>
-        <select class="form-control" v-model="status">
+        <select class="form-control form-control-lg" v-model="status">
           <option :value="s" v-for="s of allStatus">{{ s }}</option>
         </select>
       </div>
@@ -142,7 +142,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      PluginCall('import', this.path);
+      PluginCall('import', this.currentComponent, this.path);
     },
   },
 };

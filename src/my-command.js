@@ -54,10 +54,17 @@ export default function (context) {
         sketch.message(error.message);
       }
     },
+    detach: objectID => {
+      try {
+        store.getByID(objectID).detach();
+      } catch (error) {
+        sketch.message(error.message);
+      }
+    },
     duplicate: objectID => {
       try {
-        const component = store.getByID(objectID);
         const layer = ctm.getLayerByID(objectID);
+        const component = store.getByID(objectID);
 
         const newlayer = layer.duplicate();
         const newComponent = component.copyWithLayer(newlayer);
@@ -68,20 +75,19 @@ export default function (context) {
         sketch.message(error.message);
       }
     },
-    import: path => {
+    import: (name, payload) => {
       try {
-        const component = createComponentInstance(context, path);
+        const component = createComponentInstance(context, name);
         if (!component) {
-          sketch.alert('生成component失败', `输入路径：${path}`);
+          sketch.alert('Failed to create component', `Name：${name}`);
           return;
         }
-        component.import(path);
 
+        component.import(payload);
         store.add(component);
-
         component.layer.select();
       } catch (error) {
-        sketch.log(error.stack);
+        sketch.message(error.message);
       }
     },
   };
