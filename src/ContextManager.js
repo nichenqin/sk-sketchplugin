@@ -10,6 +10,7 @@ class ContextManage {
 
     this.sketchObject = null;
     this.objectID = '';
+    this.symbolLibrary = {};
   }
 
   get layer() {
@@ -83,24 +84,30 @@ class ContextManage {
   getSymbolsFromLibrary() {
     const { uikit } = this;
 
-    if (!uikit) {
-      throw new Error('uikit required');
+    if (!this.assetLibrary) {
+      if (!uikit) {
+        throw new Error('uikit required');
+      }
+
+      const assetLibrary = MSUserAssetLibrary.alloc().initWithDocumentAtURL(uikit);
+
+      if (!assetLibrary) {
+        throw new Error('asset library not found');
+      }
+
+      assetLibrary.loadSynchronously();
+      this.assetLibrary = assetLibrary;
     }
 
-    const assetLibrary = MSUserAssetLibrary.alloc().initWithDocumentAtURL(uikit);
-
-    if (!assetLibrary) {
-      throw new Error('asset library not found');
-    }
-
-    this.assetLibrary = assetLibrary;
-    assetLibrary.loadSynchronously();
-
-    const symbols = assetLibrary.document().allSymbols();
+    const symbols = this.assetLibrary.document().allSymbols();
     return symbols;
   }
 
   getSymbolByPath(path) {
+    if (this.symbolLibrary[path]) {
+      return this.symbolLibrary[path];
+    }
+
     const { sketch } = this;
     const symbols = this.getSymbolsFromLibrary();
 
@@ -110,7 +117,6 @@ class ContextManage {
     }
 
     let symbol = null;
-
     for (let i = 0; i < symbols.count(); i += 1) {
       const symbolName = String(symbols[i].name());
       if (path === symbolName) {
@@ -118,7 +124,7 @@ class ContextManage {
         break;
       }
     }
-
+    this.symbolLibrary[path] = symbol;
     return symbol;
   }
 

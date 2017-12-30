@@ -1,13 +1,15 @@
 <template>
   <div>
     <div class="btn-group d-flex mb-3">
-      <button class="btn btn-primary btn-lg" @click="increaceRow">添加行</button>
-      <button class="btn btn-warning btn-lg" @click="decreaceRow">删除行</button>
+      <button class="btn btn-primary btn-lg" @click="increaceRow">Increace Row</button>
+      <button class="btn btn-warning btn-lg" @click="decreaceRow">Decreace Row</button>
     </div>
-    <div class="btn-group d-flex">
-      <button class="btn btn-primary btn-lg" @click="increaceColumn">添加列</button>
-      <button class="btn btn-warning btn-lg" @click="decreaceColumn">删除列</button>
+    <div class="btn-group d-flex mb-3">
+      <button class="btn btn-primary btn-lg" @click="increaceColumn">Increace Column</button>
+      <button class="btn btn-warning btn-lg" @click="decreaceColumn">Decreace Column</button>
     </div>
+
+    <button class="btn btn-block btn-success btn-lg" @click="handleImport">Import To Sketch</button>
 
     <sk-preview>
       <tb-table :dataSource="dataSource" :MaxRows="maxRows" :columns="columnsData"></tb-table>
@@ -20,6 +22,7 @@
 </template>
 
 <script>
+import PluginCall from 'sketch-module-web-view/client';
 import { TbTable } from '@zhinan/tb-components';
 import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
@@ -72,6 +75,11 @@ export default {
     },
     decreaceColumn() {
       this.columns -= 1;
+    },
+    handleImport() {
+      const { rows, columns } = this;
+      const payload = { rows, columns };
+      PluginCall('import', 'list', payload);
     },
   },
   watch: {

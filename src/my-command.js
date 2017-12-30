@@ -104,7 +104,7 @@ export default function (context) {
           return;
         }
 
-        component.import(payload);
+        component.importToSketch(payload);
         store.add(component);
         component.layer.select();
       } catch (error) {

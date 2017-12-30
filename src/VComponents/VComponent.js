@@ -18,7 +18,7 @@ class VComponent extends ContextManager {
     return newComponent;
   }
 
-  import(payload) {
+  importToSektch(payload) {
     const instance = this.createSymbolInstanceByPath(payload);
 
     this.addLayers([instance]);
