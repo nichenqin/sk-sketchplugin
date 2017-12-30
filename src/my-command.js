@@ -99,14 +99,13 @@ export default function (context) {
     import: (name, payload) => {
       try {
         const component = createComponentInstance(context, name);
+
         if (!component) {
           sketch.alert('Failed to create component', `Name：${name}`);
           return;
         }
 
         component.import(payload);
-        store.add(component);
-        component.layer.select();
       } catch (error) {
         sketch.message(error.message);
       }

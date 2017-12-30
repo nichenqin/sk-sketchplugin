@@ -26,10 +26,8 @@ class VComponent extends ContextManager {
     return newComponent;
   }
 
-  import(payload) {
-    const instance = this.createSymbolInstanceByPath(payload);
-
-    this.addLayers([instance]);
+  import() {
+    throw new Error(`No import function defined: ${this.name}`);
   }
 }
 
