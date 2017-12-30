@@ -31,6 +31,8 @@
     </sk-preview>
 
     <sk-code-html tag="button" :properties="properties" :innerText="text"></sk-code-html>
+
+    <sk-code-javascript :properties="properties"></sk-code-javascript>
   </div>
 </template>
 
@@ -38,6 +40,7 @@
 import PluginCall from 'sketch-module-web-view/client';
 import { TbButton } from '@zhinan/tb-components';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
+import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
 import SkPreview from '../../Shared/Preview.vue';
 
 const data = {
@@ -117,6 +120,7 @@ export default {
     TbButton,
     SkCodeHtml,
     SkPreview,
+    SkCodeJavascript,
   },
   computed: {
     path() {

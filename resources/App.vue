@@ -48,5 +48,6 @@ code {
 
 pre {
   white-space: pre-wrap;
+  font-size: 1.3rem;
 }
 </style>

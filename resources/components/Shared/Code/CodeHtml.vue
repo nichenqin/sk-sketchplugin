@@ -1,6 +1,6 @@
 <template>
-  <div class="code">
-    <pre><code class="html" ref="code" v-text="htmlCode" v-highlight></code></pre>
+  <div>
+    <pre><code class="html" v-text="htmlCode" v-highlight></code></pre>
   </div>
 </template>
 
@@ -12,12 +12,15 @@ export default {
       default: 'div',
     },
     properties: Object,
-    innerText: String,
+    innerText: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     propertiesCode() {
       return Object.keys(this.properties)
-        .reduce((str, key) => `${str} :${key}="${this.properties[key]}"`, '')
+        .reduce((str, key) => `${str} :${key}="${key}"`, '')
         .substr(1);
     },
     htmlCode() {
@@ -31,7 +34,5 @@ export default {
 </script>
 
 <style scoped>
-.code {
-  font-size: 1.3rem;
-}
+
 </style>

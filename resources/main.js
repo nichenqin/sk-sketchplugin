@@ -3,7 +3,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import './directives';
 
-import 'highlight.js/styles/agate.css';
+import 'highlight.js/styles/atom-one-light.css';
 require('@zhinan/tb-components/dist/main.css');
 
 import * as tbc from '@zhinan/tb-components';

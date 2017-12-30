@@ -1,11 +1,21 @@
 <template>
   <div>
-    <button class="btn btn-primary btn-lg btn-block" @click="increaceRow">添加行</button>
-    <button class="btn btn-warning btn-lg btn-block" @click="decreaceRow">删除行</button>
+    <div class="btn-group d-flex mb-3">
+      <button class="btn btn-primary btn-lg" @click="increaceRow">添加行</button>
+      <button class="btn btn-warning btn-lg" @click="decreaceRow">删除行</button>
+    </div>
+    <div class="btn-group d-flex">
+      <button class="btn btn-primary btn-lg" @click="increaceColumn">添加列</button>
+      <button class="btn btn-warning btn-lg" @click="decreaceColumn">删除列</button>
+    </div>
+
     <sk-preview>
       <tb-table :dataSource="dataSource" :MaxRows="maxRows" :columns="columnsData"></tb-table>
     </sk-preview>
+
     <sk-code-html tag="tb-table" :properties="properties"></sk-code-html>
+
+    <sk-code-javascript :properties="properties"></sk-code-javascript>
   </div>
 </template>
 
@@ -13,6 +23,7 @@
 import { TbTable } from '@zhinan/tb-components';
 import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
+import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
 
 export default {
   data() {
@@ -25,6 +36,7 @@ export default {
   components: {
     SkPreview,
     SkCodeHtml,
+    SkCodeJavascript,
     TbTable,
   },
   computed: {
@@ -55,11 +67,26 @@ export default {
     decreaceRow() {
       this.rows -= 1;
     },
+    increaceColumn() {
+      this.columns += 1;
+    },
+    decreaceColumn() {
+      this.columns -= 1;
+    },
   },
   watch: {
     rows(rows) {
       if (rows <= 0) this.rows = 1;
     },
+    columns(columns) {
+      if (columns <= 0) this.columns = 1;
+    },
   },
 };
 </script>
+
+<style scoped>
+.btn {
+  flex: 1;
+}
+</style>
