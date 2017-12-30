@@ -16,7 +16,7 @@ class List extends VComponent {
     };
   }
 
-  importToSketch({ rows, columns }) {
+  import({ rows, columns }) {
     const { sketch, page, name } = this;
 
     const list = page.newGroup({ name });
