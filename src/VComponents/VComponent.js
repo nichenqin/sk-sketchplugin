@@ -5,6 +5,14 @@ class VComponent extends ContextManager {
     super(context);
     this.name = name;
     this.uikit = this.sketch.resourceNamed(`${name}.sketch`);
+    this.state = {};
+  }
+
+  setState(state) {
+    Object.keys(state).forEach(key => {
+      const value = state[key];
+      this.state[key] = value;
+    });
   }
 
   copyWithLayer(layer) {

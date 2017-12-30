@@ -51,3 +51,33 @@ export function parseFilePath(path) {
 export function is(layer, className) {
   return String(layer.className()) === className;
 }
+
+export function setFrame(
+  layer,
+  {
+    x = layer.frame.x,
+    y = layer.frame.y,
+    width = layer.frame.width,
+    height = layer.frame.height,
+  } = {},
+) {
+  /* eslint-disable no-param-reassign */
+  layer.frame = {
+    x,
+    y,
+    width,
+    height,
+  };
+}
+
+export function getRectOfNativeLayer(layer) {
+  const frame = layer.frame();
+  const { x, y } = frame.origin();
+  const { width, height } = frame.size();
+  return {
+    x,
+    y,
+    width,
+    height,
+  };
+}

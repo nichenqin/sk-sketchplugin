@@ -2,7 +2,8 @@
   "env": {
     "browser": true
   },
-  "extends": ["airbnb-base", "plugin:vue/essential"],
+  "parser": "babel-eslint",
+  "extends": ["airbnb-base", "plugin:vue/recommended"],
   "settings": {
     "import/resolve": "webpack"
   },
