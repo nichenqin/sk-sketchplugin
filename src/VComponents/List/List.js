@@ -19,10 +19,10 @@ class List extends VComponent {
   importToSketch({ rows, columns }) {
     const { sketch, page, name } = this;
 
-    const group = page.newGroup({ name });
+    const list = page.newGroup({ name });
 
     // region title
-    const title = group.newGroup({ name: 'title' });
+    const title = list.newGroup({ name: 'title' });
     const titleInstance = this.createSymbolInstanceByPath('list/header/normal');
     const rect = getRectOfNativeLayer(titleInstance);
     this.setState(rect);
@@ -40,7 +40,7 @@ class List extends VComponent {
     // endregion title
 
     // region rows
-    const row = group.newGroup({ name: 'row' });
+    const row = list.newGroup({ name: 'row' });
     const itemInstance = this.createSymbolInstanceByPath('list/body/single');
     const instances = [...new Array(columns)].map(() => itemInstance.copy());
     row.sketchObject.addLayers(instances);
@@ -62,8 +62,8 @@ class List extends VComponent {
     }
     // endregion duplicate rows
 
-    group.adjustToFit();
-    group.select();
+    list.adjustToFit();
+    list.select();
   }
 }
 
