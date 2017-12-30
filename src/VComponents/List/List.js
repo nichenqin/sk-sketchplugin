@@ -21,6 +21,9 @@ class List extends VComponent {
 
     const list = page.newGroup({ name });
 
+    const style = new sketch.Style();
+    style.borders = ['#ddd'];
+
     // region title
     const title = list.newGroup({ name: 'title' });
     const titleInstance = this.createSymbolInstanceByPath('list/header/normal');
@@ -29,12 +32,19 @@ class List extends VComponent {
     const { width, height } = this.state;
 
     const titleInstances = [...new Array(columns)].map(() => titleInstance.copy());
+    title.newShape({
+      frame: new sketch.Rectangle(0, height, width * columns, 0.5),
+      name: 'divider',
+      style,
+    });
     title.sketchObject.addLayers(titleInstances);
 
     let titleIndex = 0;
     title.iterate(layer => {
-      layer.sketchObject.frame().setX_(width * titleIndex);
-      titleIndex += 1;
+      if (!layer.isShape) {
+        layer.sketchObject.frame().setX_(width * titleIndex);
+        titleIndex += 1;
+      }
     });
     title.adjustToFit();
     // endregion title
@@ -43,13 +53,20 @@ class List extends VComponent {
     const row = list.newGroup({ name: 'row' });
     const itemInstance = this.createSymbolInstanceByPath('list/body/single');
     const instances = [...new Array(columns)].map(() => itemInstance.copy());
+    row.newShape({
+      frame: new sketch.Rectangle(0, height, width * columns, 0.5),
+      name: 'divider',
+      style,
+    });
     row.sketchObject.addLayers(instances);
     setFrame(row, { y: height });
 
     let itemIndex = 0;
     row.iterate(layer => {
-      layer.sketchObject.frame().setX_(width * itemIndex);
-      itemIndex += 1;
+      if (!layer.isShape) {
+        layer.sketchObject.frame().setX_(width * itemIndex);
+        itemIndex += 1;
+      }
     });
     row.adjustToFit();
     // endrigion rows
