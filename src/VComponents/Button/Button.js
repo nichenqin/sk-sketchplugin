@@ -11,7 +11,6 @@ class Button extends VComponent {
 
   import(path) {
     const instance = this.createSymbolInstanceByPath(path);
-
     this.addLayers([instance]);
 
     return instance;

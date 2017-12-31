@@ -43,7 +43,6 @@ class ContextManage {
       layerName = String(layer.name);
       objectID = String(layer.id);
     });
-    this.updateObjectID(objectID);
 
     return { layerName, objectID };
   }
@@ -60,8 +59,6 @@ class ContextManage {
     if (!layer) {
       throw new Error(`layer not found with objectID: ${objectID}`);
     }
-
-    this.updateObjectID(objectID);
 
     return layer;
   }
