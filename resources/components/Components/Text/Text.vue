@@ -46,7 +46,7 @@ import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
 import SkCodeJavasript from '../../Shared/Code/CodeJavascript.vue';
 
-const fontSizes = {
+const textConfig = {
   h1: 40,
   h2: 32,
   h3: 28,
@@ -61,7 +61,6 @@ export default {
       isStatic: true,
       innerText: 'from sketch plugin',
       currentTag: 'h1',
-      fontSizes,
     };
   },
   props: ['currentComponent'],
@@ -74,7 +73,7 @@ export default {
   },
   computed: {
     tags() {
-      return Object.keys(fontSizes);
+      return Object.keys(textConfig);
     },
     properties() {
       const { innerText } = this;
@@ -84,7 +83,7 @@ export default {
   methods: {
     handleImport() {
       const { innerText, currentTag } = this;
-      const payload = { text: innerText, fontSize: fontSizes[currentTag] };
+      const payload = { text: innerText, fontSize: textConfig[currentTag] };
       PluginCall('import', this.currentComponent, payload);
     },
   },

@@ -9838,7 +9838,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
-var fontSizes = {
+var textConfig = {
   h1: 40,
   h2: 32,
   h3: 28,
@@ -9852,8 +9852,7 @@ var fontSizes = {
     return {
       isStatic: true,
       innerText: 'from sketch plugin',
-      currentTag: 'h1',
-      fontSizes: fontSizes
+      currentTag: 'h1'
     };
   },
 
@@ -9867,7 +9866,7 @@ var fontSizes = {
   },
   computed: {
     tags: function tags() {
-      return Object.keys(fontSizes);
+      return Object.keys(textConfig);
     },
     properties: function properties() {
       var innerText = this.innerText;
@@ -9880,7 +9879,7 @@ var fontSizes = {
       var innerText = this.innerText,
           currentTag = this.currentTag;
 
-      var payload = { text: innerText, fontSize: fontSizes[currentTag] };
+      var payload = { text: innerText, fontSize: textConfig[currentTag] };
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.currentComponent, payload);
     }
   }
