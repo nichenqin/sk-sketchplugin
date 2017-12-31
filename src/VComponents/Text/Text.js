@@ -15,8 +15,16 @@ class Text extends VComponent {
     const newText = page.newText({
       text,
     });
+    // set color
+    const textStyle = newText.sketchObject.style().textStyle();
+    const mutableAttributes = NSMutableDictionary.dictionaryWithDictionary(textStyle.attributes());
+    mutableAttributes.setObject_forKey(
+      NSColor.colorWithRed_green_blue_alpha(1, 0, 0.56, 1),
+      'NSColor',
+    );
+    textStyle.setValue_forKey_(mutableAttributes, 'attributes');
+    // set font size
     newText.sketchObject.setFontSize(fontSize);
-    newText.sketchObject.changeTextColorTo(MSColor.rgbColorRed_green_blue(156, 39, 176));
     return newText;
   }
 }
