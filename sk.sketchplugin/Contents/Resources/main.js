@@ -9697,7 +9697,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-//
 
 
 
@@ -11009,15 +11008,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("form", {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            _vm.handleImport($event)
-          }
-        }
-      }),
-      _vm._v(" "),
       _c("div", { staticClass: "btn-group d-flex mb-3" }, [
         _c(
           "button",
@@ -11062,7 +11052,7 @@ var render = function() {
         "button",
         {
           staticClass: "btn btn-block btn-success btn-lg",
-          attrs: { type: "submit" }
+          on: { click: _vm.handleImport }
         },
         [_vm._v("Import To Sketch")]
       ),

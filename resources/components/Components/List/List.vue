@@ -1,6 +1,5 @@
 <template>
   <div>
-    <form @submit.prevent="handleImport"></form>
     <div class="btn-group d-flex mb-3">
       <button class="btn btn-primary btn-lg" @click="increaceRow">Increace Row</button>
       <button class="btn btn-warning btn-lg" @click="decreaceRow">Decreace Row</button>
@@ -10,7 +9,7 @@
       <button class="btn btn-warning btn-lg" @click="decreaceColumn">Decreace Column</button>
     </div>
 
-    <button type="submit" class="btn btn-block btn-success btn-lg">Import To Sketch</button>
+    <button @click="handleImport" class="btn btn-block btn-success btn-lg">Import To Sketch</button>
 
     <sk-preview>
       <tb-table :dataSource="dataSource" :MaxRows="maxRows" :columns="columnsData"></tb-table>
