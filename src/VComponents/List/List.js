@@ -41,7 +41,7 @@ class List extends VComponent {
 
     let titleIndex = 0;
     titleGroup.iterate(layer => {
-      if (is(layer, 'MSSymbolInstance')) {
+      if (is(layer.sketchObject, 'MSSymbolInstance')) {
         layer.sketchObject.frame().setX_(width * titleIndex);
         titleIndex += 1;
       }
@@ -63,7 +63,7 @@ class List extends VComponent {
 
     let itemIndex = 0;
     rowGroup.iterate(layer => {
-      if (is(layer, 'MSSymbolInstance')) {
+      if (is(layer.sketchObject, 'MSSymbolInstance')) {
         layer.sketchObject.frame().setX_(width * itemIndex);
         itemIndex += 1;
       }

@@ -3,6 +3,7 @@ import ContextManager from './ContextManager';
 import Button from './VComponents/Button';
 import List from './VComponents/List';
 import Datepicker from './VComponents/Datepicker';
+import Text from './VComponents/Text';
 
 import store from './store';
 
@@ -15,6 +16,8 @@ function createComponentInstance(context, name) {
         return new List(context);
       case 'datepicker':
         return new Datepicker(context);
+      case 'text':
+        return new Text(context);
 
       default:
         return null;

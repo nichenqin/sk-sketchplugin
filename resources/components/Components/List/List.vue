@@ -1,5 +1,6 @@
 <template>
   <div>
+    <form @submit.prevent="handleImport"></form>
     <div class="btn-group d-flex mb-3">
       <button class="btn btn-primary btn-lg" @click="increaceRow">Increace Row</button>
       <button class="btn btn-warning btn-lg" @click="decreaceRow">Decreace Row</button>
@@ -9,7 +10,7 @@
       <button class="btn btn-warning btn-lg" @click="decreaceColumn">Decreace Column</button>
     </div>
 
-    <button class="btn btn-block btn-success btn-lg" @click="handleImport">Import To Sketch</button>
+    <button type="submit" class="btn btn-block btn-success btn-lg">Import To Sketch</button>
 
     <sk-preview>
       <tb-table :dataSource="dataSource" :MaxRows="maxRows" :columns="columnsData"></tb-table>
@@ -32,7 +33,7 @@ export default {
   data() {
     return {
       rows: 1,
-      columns: 4,
+      columns: 3,
       maxRows: 5,
     };
   },
@@ -53,7 +54,7 @@ export default {
       return [...new Array(this.rows)].map(() => {
         const obj = {};
         for (let i = 0; i < this.columns; i += 1) {
-          obj[`title${i}`] = 'text';
+          obj[`title${i}`] = 'Text';
         }
         return obj;
       });

@@ -1,25 +1,34 @@
 <template>
   <div>
-    <form class="mb-3" @submit.prevent="handleSubmit">
+    <form class="mb-3" @submit.prevent="handleImport">
       <div class="form-group">
         <label> Path </label>
         <div class="alert alert-success" role="alert">
           {{ path }}
         </div>
       </div>
-      <div class="form-group">
-        <label>Type</label>
-        <select class="form-control form-control-lg" v-model="type">
-          <option value="">Select type</option>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Type</label>
+        </div>
+        <select class="custom-select" v-model="type">
+          <option value="">Choose a type...</option>
           <option v-for="t of types" :value="t">{{ t }}</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>Status</label>
-        <select class="form-control form-control-lg" v-model="status">
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            Status
+          </div>
+        </div>
+        <select class="custom-select" v-model="status">
           <option :value="s" v-for="s of allStatus">{{ s }}</option>
+
         </select>
       </div>
+
       <button class="btn btn-primary btn-lg btn-block" type="submit">Import To Sketch</button>
     </form>
 
@@ -151,7 +160,7 @@ export default {
     },
   },
   methods: {
-    handleSubmit() {
+    handleImport() {
       PluginCall('import', this.currentComponent, this.path);
     },
   },

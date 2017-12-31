@@ -11,7 +11,10 @@ export default {
       type: String,
       default: 'div',
     },
-    properties: Object,
+    properties: {
+      type: Object,
+      default: () => ({}),
+    },
     innerText: {
       type: String,
       default: '',
@@ -19,13 +22,11 @@ export default {
   },
   computed: {
     propertiesCode() {
-      return Object.keys(this.properties)
-        .reduce((str, key) => `${str} :${key}="${key}"`, '')
-        .substr(1);
+      return Object.keys(this.properties).reduce((str, key) => `${str} :${key}="${key}"`, '');
     },
     htmlCode() {
       const { tag, propertiesCode, innerText } = this;
-      return `<${tag} ${propertiesCode}>
+      return `<${tag}${propertiesCode}>
   ${innerText}
 </${tag}>`;
     },

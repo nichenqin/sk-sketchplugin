@@ -1,10 +1,11 @@
 import ContextManager from '../ContextManager';
 
 class VComponent extends ContextManager {
-  constructor(context, { name = '' } = {}) {
+  constructor(context, option = {}) {
     super(context);
-    this.name = name;
-    this.uikit = this.sketch.resourceNamed(`${name}.sketch`);
+    this.option = option;
+    this.name = option.name;
+    this.uikit = this.sketch.resourceNamed(`${option.name}.sketch`);
     this.state = {};
   }
 

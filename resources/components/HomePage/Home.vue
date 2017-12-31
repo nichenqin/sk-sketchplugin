@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      components: ['button', 'list', 'datePicker'],
+      components: ['button', 'list', 'text'],
     };
   },
   props: ['currentComponent'],

@@ -16,7 +16,7 @@
       <strong>{{ objectID }}</strong>
     </div>
 
-    <component :is="`sk-${currentComponent}`" :currentComponent="currentComponent"></component>
+    <component class="mb-3" :is="`sk-${currentComponent}`" :currentComponent="currentComponent"></component>
 
     <div class="btn-group btn-group-lg mb-3 d-flex" role="group">
       <button class="btn btn-primary" :disabled="!objectID" @click="handleSelect">Select</button>
@@ -37,6 +37,7 @@
 import pluginCall from 'sketch-module-web-view/client';
 import SkButton from '../Components/Button/Button.vue';
 import SkList from '../Components/List/List.vue';
+import SkText from '../Components/Text/Text.vue';
 import SkDatepicker from '../Components/Datepicker/Datepicker.vue';
 import bridgeHandler from '../../assets/js/handler';
 
@@ -45,6 +46,7 @@ export default {
   components: {
     SkButton,
     SkList,
+    SkText,
     SkDatepicker,
   },
   data() {
