@@ -13,6 +13,8 @@ class VComponent extends ContextManager {
       const value = state[key];
       this.state[key] = value;
     });
+
+    return this.state;
   }
 
   copyWithLayer(layer) {
@@ -20,8 +22,8 @@ class VComponent extends ContextManager {
     const objectID = sketchObject.objectID();
 
     const origin = Object.create(Object.getPrototypeOf(this));
-    const componet = this.updateObjectID(objectID).updateSketchObject(sketchObject);
-    const newComponent = Object.assign(origin, componet);
+    const component = this.updateObjectID(objectID).updateSketchObject(sketchObject);
+    const newComponent = Object.assign(origin, component);
 
     return newComponent;
   }

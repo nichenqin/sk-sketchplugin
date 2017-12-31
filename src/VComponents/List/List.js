@@ -1,5 +1,5 @@
 import VComponent from '../VComponent';
-import { setFrame, getRectOfNativeLayer } from '../../utils';
+import { setFrame, getRectOfNativeLayer, is } from '../../utils';
 
 const option = {
   name: 'list',
@@ -19,68 +19,68 @@ class List extends VComponent {
   import({ rows, columns }) {
     const { sketch, page, name } = this;
 
-    const list = page.newGroup({ name });
+    const listGroup = page.newGroup({ name });
 
     const style = new sketch.Style();
     style.borders = ['#ddd'];
 
     // region title
-    const title = list.newGroup({ name: 'title' });
-    const titleInstance = this.createSymbolInstanceByPath('list/header/normal');
-    const rect = getRectOfNativeLayer(titleInstance);
+    const titleGroup = listGroup.newGroup({ name: 'title' });
+    const titleItem = this.createSymbolInstanceByPath('list/header/normal');
+    const rect = getRectOfNativeLayer(titleItem);
     this.setState(rect);
     const { width, height } = this.state;
 
-    const titleInstances = [...new Array(columns)].map(() => titleInstance.copy());
-    title.newShape({
+    const titleItems = [...new Array(columns)].map(() => titleItem.copy());
+    titleGroup.newShape({
       frame: new sketch.Rectangle(0, height, width * columns, 0.5),
       name: 'divider',
       style,
     });
-    title.sketchObject.addLayers(titleInstances);
+    titleGroup.sketchObject.addLayers(titleItems);
 
     let titleIndex = 0;
-    title.iterate(layer => {
-      if (!layer.isShape) {
+    titleGroup.iterate(layer => {
+      if (is(layer, 'MSSymbolInstance')) {
         layer.sketchObject.frame().setX_(width * titleIndex);
         titleIndex += 1;
       }
     });
-    title.adjustToFit();
+    titleGroup.adjustToFit();
     // endregion title
 
     // region rows
-    const row = list.newGroup({ name: 'row' });
-    const itemInstance = this.createSymbolInstanceByPath('list/body/single');
-    const instances = [...new Array(columns)].map(() => itemInstance.copy());
-    row.newShape({
+    const rowGroup = listGroup.newGroup({ name: 'row' });
+    const rowItem = this.createSymbolInstanceByPath('list/body/single');
+    const rowItems = [...new Array(columns)].map(() => rowItem.copy());
+    rowGroup.newShape({
       frame: new sketch.Rectangle(0, height, width * columns, 0.5),
       name: 'divider',
       style,
     });
-    row.sketchObject.addLayers(instances);
-    setFrame(row, { y: height });
+    rowGroup.sketchObject.addLayers(rowItems);
+    setFrame(rowGroup, { y: height });
 
     let itemIndex = 0;
-    row.iterate(layer => {
-      if (!layer.isShape) {
+    rowGroup.iterate(layer => {
+      if (is(layer, 'MSSymbolInstance')) {
         layer.sketchObject.frame().setX_(width * itemIndex);
         itemIndex += 1;
       }
     });
-    row.adjustToFit();
+    rowGroup.adjustToFit();
     // endrigion rows
 
     // region duplicate rows
     for (let i = 1; i < rows; i += 1) {
-      const newRow = row.duplicate();
-      newRow.adjustToFit();
-      setFrame(newRow, { y: height * (i + 1) });
+      const newRowGroup = rowGroup.duplicate();
+      newRowGroup.adjustToFit();
+      setFrame(newRowGroup, { y: height * (i + 1) });
     }
     // endregion duplicate rows
 
-    list.adjustToFit();
-    list.select();
+    listGroup.adjustToFit();
+    listGroup.select();
   }
 }
 
