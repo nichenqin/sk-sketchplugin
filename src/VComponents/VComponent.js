@@ -29,10 +29,10 @@ class VComponent extends ContextManager {
   init(payload) {
     const target = this.import(payload);
     if (!target) {
-      throw new Error('import function should return something like group or symbol instance');
+      throw new Error('import function should return a layer like a group or a shape or a symbol instance');
     }
 
-    const id = target.id || target.sketchObject.objectID();
+    const id = target.id || target.objectID();
     this.updateObjectID(id);
 
     // TODO: add root component to store

@@ -7,6 +7,9 @@
           {{ path }}
         </div>
       </div>
+
+      <sk-toggle-radio :option.sync="isStatic"></sk-toggle-radio>
+
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <label class="input-group-text">Type</label>
@@ -48,6 +51,7 @@
 <script>
 import PluginCall from 'sketch-module-web-view/client';
 import { TbButton } from '@zhinan/tb-components';
+import SkToggleRadio from '../../Shared/ToggleRadio.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
 import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
 import SkPreview from '../../Shared/Preview.vue';
@@ -118,6 +122,7 @@ const data = {
 export default {
   data() {
     return {
+      isStatic: true,
       text: '按钮',
       type: '',
       status: 'normal',
@@ -127,6 +132,7 @@ export default {
   props: ['currentComponent'],
   components: {
     TbButton,
+    SkToggleRadio,
     SkCodeHtml,
     SkPreview,
     SkCodeJavascript,

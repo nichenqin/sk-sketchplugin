@@ -1,6 +1,9 @@
 <template>
   <div>
     <form @submit.prevent="handleImport">
+
+      <sk-toggle-radio :option.sync="isStatic"></sk-toggle-radio>
+
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">Text</span>
@@ -32,9 +35,12 @@
 
 <script>
 import PluginCall from 'sketch-module-web-view/client';
+
+import SkToggleRadio from '../../Shared/ToggleRadio.vue';
 import SkTextPreview from './TextPreview.vue';
 import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
+import SkCodeJavasript from '../../Shared/Code/CodeJavascript.vue';
 
 const fontSizes = {
   h1: 40,
@@ -48,6 +54,7 @@ const fontSizes = {
 export default {
   data() {
     return {
+      isStatic: true,
       innerText: 'from sketch plugin',
       currentTag: 'h1',
       fontSizes,
@@ -58,6 +65,8 @@ export default {
     SkTextPreview,
     SkPreview,
     SkCodeHtml,
+    SkCodeJavasript,
+    SkToggleRadio,
   },
   computed: {
     tags() {
@@ -73,3 +82,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.btn {
+  flex: 1;
+}
+</style>
