@@ -5,18 +5,11 @@
 </template>
 
 <script>
-function prettify(k, v) {
-  if (Array.isArray(v)) {
-    return [];
-  }
-  return v;
-}
-
 export default {
   props: ['properties'],
   computed: {
     javascriptCode() {
-      const data = JSON.stringify(this.properties, prettify, 2);
+      const data = JSON.stringify(this.properties, null, 2);
       return `export default {
   data() {
     return ${data}
