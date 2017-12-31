@@ -5,8 +5,8 @@ const option = {
 };
 
 class Text extends VComponent {
-  constructor(context) {
-    super(context, option);
+  constructor(context, payload) {
+    super(context, payload, option);
   }
 
   import({ text, fontSize }) {
@@ -15,7 +15,7 @@ class Text extends VComponent {
       text,
     });
     newText.sketchObject.setFontSize(fontSize);
-    newText.select();
+    return newText;
   }
 }
 

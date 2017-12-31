@@ -1,12 +1,44 @@
 import ContextManager from '../ContextManager';
 
 class VComponent extends ContextManager {
-  constructor(context, option = {}) {
+  constructor(context, payload, option = {}) {
     super(context);
     this.option = option;
-    this.name = option.name;
-    this.uikit = this.sketch.resourceNamed(`${option.name}.sketch`);
+    this.name = option.name.toLowerCase();
+    this.uikit = this.sketch.resourceNamed(`${this.name}.sketch`);
     this.state = {};
+
+    this.init(payload);
+  }
+
+  get isButton() {
+    return this.name === 'button';
+  }
+
+  get isList() {
+    return this.name === 'list';
+  }
+
+  get isText() {
+    return this.name === 'text';
+  }
+
+  init(payload) {
+    const target = this.import(payload);
+    if (!target) {
+      throw new Error('import function should return something like group or symbol instance');
+    }
+
+    const id = target.id || target.sketchObject.objectID();
+    this.updateObjectID(id);
+
+    // TODO: add root component to store
+
+    if (typeof target.select === 'function') {
+      target.select();
+    } else {
+      this.layer.select();
+    }
   }
 
   setState(state) {

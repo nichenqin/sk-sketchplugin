@@ -6,8 +6,8 @@ const option = {
 };
 
 class List extends VComponent {
-  constructor(context) {
-    super(context, option);
+  constructor(context, payload) {
+    super(context, payload, option);
     this.state = {
       x: 0,
       y: 0,
@@ -80,7 +80,7 @@ class List extends VComponent {
     // endregion duplicate rows
 
     listGroup.adjustToFit();
-    listGroup.select();
+    return listGroup;
   }
 }
 

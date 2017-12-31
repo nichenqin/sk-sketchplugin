@@ -7,17 +7,17 @@ import Text from './VComponents/Text';
 
 import store from './store';
 
-function createComponentInstance(context, name) {
+function createComponentInstance(context, name, payload) {
   const instance = (() => {
     switch (name.toLowerCase()) {
       case 'button':
-        return new Button(context);
+        return new Button(context, payload);
       case 'list':
-        return new List(context);
+        return new List(context, payload);
       case 'datepicker':
-        return new Datepicker(context);
+        return new Datepicker(context, payload);
       case 'text':
-        return new Text(context);
+        return new Text(context, payload);
 
       default:
         return null;
@@ -98,14 +98,12 @@ export default function (context) {
     },
     import: (name, payload) => {
       try {
-        const component = createComponentInstance(context, name);
+        const component = createComponentInstance(context, name, payload);
 
         if (!component) {
           sketch.alert('Failed to create component', `Name：${name}`);
           return;
         }
-
-        component.import(payload);
       } catch (error) {
         sketch.message(error.message);
       }

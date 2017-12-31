@@ -5,8 +5,8 @@ const option = {
 };
 
 class Datepicker extends VComponent {
-  constructor(context) {
-    super(context, option);
+  constructor(context, payload) {
+    super(context, payload, option);
   }
 }
 

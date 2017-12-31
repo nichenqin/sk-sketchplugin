@@ -108,12 +108,9 @@ class ContextManage {
       return this.symbolLibrary[path];
     }
 
-    const { sketch } = this;
     const symbols = this.getSymbolsFromLibrary();
-
     if (!symbols.count()) {
-      sketch.message('Tried to open library but no symbol found inside the file');
-      return false;
+      throw new Error('Tried to open library but no symbol found inside the file');
     }
 
     let symbol = null;
@@ -136,7 +133,6 @@ class ContextManage {
     }
 
     const symbol = this.getSymbolByPath(path);
-
     if (!symbol) {
       throw new Error(`symbol not found in path: ${path}`);
     }

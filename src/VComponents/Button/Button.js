@@ -5,8 +5,8 @@ const option = {
 };
 
 class Button extends VComponent {
-  constructor(context) {
-    super(context, option);
+  constructor(context, payload) {
+    super(context, payload, option);
   }
 
   import(path) {
@@ -14,7 +14,7 @@ class Button extends VComponent {
 
     this.addLayers([instance]);
 
-    this.layer.select();
+    return instance;
   }
 }
 
