@@ -9825,6 +9825,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -9864,6 +9868,11 @@ var fontSizes = {
   computed: {
     tags: function tags() {
       return Object.keys(fontSizes);
+    },
+    properties: function properties() {
+      var innerText = this.innerText;
+
+      return { innerText: innerText };
     }
   },
   methods: {
@@ -29484,8 +29493,15 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("sk-code-html", {
-        attrs: { tag: _vm.currentTag, "inner-text": _vm.innerText }
-      })
+        attrs: {
+          tag: _vm.currentTag,
+          "inner-text": _vm.isStatic ? _vm.innerText : "{{ innerText }}"
+        }
+      }),
+      _vm._v(" "),
+      !_vm.isStatic
+        ? _c("sk-code-javasript", { attrs: { properties: _vm.properties } })
+        : _vm._e()
     ],
     1
   )

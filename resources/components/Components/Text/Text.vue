@@ -21,6 +21,7 @@
       </div>
 
       <button type="submit" class="btn btn-primary btn-lg btn-block">Import To Sketch</button>
+
     </form>
 
     <sk-preview>
@@ -29,7 +30,10 @@
       </sk-text-preview>
     </sk-preview>
 
-    <sk-code-html :tag="currentTag" :inner-text="innerText"></sk-code-html>
+    <sk-code-html :tag="currentTag" :inner-text="isStatic ? innerText : '{{ innerText }}'"></sk-code-html>
+
+    <sk-code-javasript v-if="!isStatic" :properties="properties"></sk-code-javasript>
+
   </div>
 </template>
 
@@ -71,6 +75,10 @@ export default {
   computed: {
     tags() {
       return Object.keys(fontSizes);
+    },
+    properties() {
+      const { innerText } = this;
+      return { innerText };
     },
   },
   methods: {
