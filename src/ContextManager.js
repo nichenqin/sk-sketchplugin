@@ -10,6 +10,7 @@ class ContextManage {
 
     this.sketchObject = null;
     this.objectID = '';
+    this.allSymbols = null;
     this.symbolLibrary = {};
   }
 
@@ -97,15 +98,12 @@ class ContextManage {
     }
 
     const symbols = this.assetLibrary.document().allSymbols();
+    this.allSymbols = symbols;
     return symbols;
   }
 
   getSymbolByPath(path) {
-    if (this.symbolLibrary[path]) {
-      return this.symbolLibrary[path];
-    }
-
-    const symbols = this.getSymbolsFromLibrary();
+    const symbols = this.allSymbols || this.getSymbolsFromLibrary();
     if (!symbols.count()) {
       throw new Error('Tried to open library but no symbol found inside the file');
     }
@@ -129,7 +127,7 @@ class ContextManage {
       throw new Error('path required');
     }
 
-    const symbol = this.getSymbolByPath(path);
+    const symbol = this.symbolLibrary[path] || this.getSymbolByPath(path);
     if (!symbol) {
       throw new Error(`symbol not found in path: ${path}`);
     }
