@@ -3,9 +3,12 @@ import ContextManager from '../ContextManager';
 class VComponent extends ContextManager {
   constructor(context, payload, option = {}) {
     super(context);
+
+    const name = option.name || '';
+
     this.option = option;
-    this.name = option.name.toLowerCase();
-    this.uikit = this.sketch.resourceNamed(`${this.name}.sketch`);
+    this.name = name.toLowerCase();
+    this.uikit = this.sketch.resourceNamed(`${name}.sketch`);
     this.state = {};
 
     this.init(payload);
