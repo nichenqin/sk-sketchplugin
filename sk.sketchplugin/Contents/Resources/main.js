@@ -9436,7 +9436,6 @@ module.exports = g;
 //
 //
 //
-//
 
 
 
@@ -9785,18 +9784,44 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
 
+
+var r = 1;
+var c = 3;
+
+var rowItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
+  return 'Text';
+});
+var columnItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
+  return 'title';
+});
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      rows: 1,
-      columns: 3,
+      rows: r,
+      columns: c,
+      rowItems: rowItems,
+      columnItems: columnItems,
       maxRows: 5
     };
   },
@@ -9809,30 +9834,32 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   },
   computed: {
     columnsData: function columnsData() {
+      var _this = this;
+
       return [].concat(_toConsumableArray(new Array(this.columns))).map(function (val, index) {
         return {
           key: 'title' + index,
-          title: 'title'
+          title: _this.columnItems[index]
         };
       });
     },
-    dataSource: function dataSource() {
-      var _this = this;
+    rowsData: function rowsData() {
+      var _this2 = this;
 
-      return [].concat(_toConsumableArray(new Array(this.rows))).map(function () {
+      return [].concat(_toConsumableArray(new Array(this.rows))).map(function (val, index) {
         var obj = {};
-        for (var i = 0; i < _this.columns; i += 1) {
-          obj['title' + i] = 'Text';
+        for (var i = 0; i < _this2.columns; i += 1) {
+          obj['title' + i] = _this2.rowItems[i];
         }
         return obj;
       });
     },
     properties: function properties() {
       var columnsData = this.columnsData,
-          dataSource = this.dataSource,
+          rowsData = this.rowsData,
           maxRows = this.maxRows;
 
-      return { dataSource: dataSource, columns: columnsData, MaxRows: maxRows };
+      return { dataSource: rowsData, columns: columnsData, MaxRows: maxRows };
     }
   },
   methods: {
@@ -9860,8 +9887,15 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     rows: function rows(_rows) {
       if (_rows <= 0) this.rows = 1;
     },
-    columns: function columns(_columns) {
+    columns: function columns(_columns, oldColums) {
       if (_columns <= 0) this.columns = 1;
+      if (_columns > oldColums) {
+        this.columnItems.push('title');
+        this.rowItems.push('Text');
+      } else {
+        this.columnItems.pop();
+        this.rowItems.pop();
+      }
     }
   }
 });
@@ -11268,6 +11302,74 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c(
+        "div",
+        { staticClass: "form-row mb-3" },
+        _vm._l(_vm.columns, function(n) {
+          return _c("div", { key: n, staticClass: "col" }, [
+            _c("label", { attrs: { for: "list-column-" + n } }, [
+              _vm._v("column-" + _vm._s(n))
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.columnItems[n - 1],
+                  expression: "columnItems[n - 1]"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "list-column-" + n },
+              domProps: { value: _vm.columnItems[n - 1] },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.columnItems, n - 1, $event.target.value)
+                }
+              }
+            })
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-row mb-3" },
+        _vm._l(_vm.columns, function(n) {
+          return _c("div", { key: n, staticClass: "col" }, [
+            _c("label", { attrs: { for: "list-row-" + n } }, [
+              _vm._v("row-" + _vm._s(n))
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.rowItems[n - 1],
+                  expression: "rowItems[n - 1]"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "list-row-" + n },
+              domProps: { value: _vm.rowItems[n - 1] },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.rowItems, n - 1, $event.target.value)
+                }
+              }
+            })
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c(
         "button",
         {
           staticClass: "btn btn-block btn-success btn-lg",
@@ -11281,7 +11383,7 @@ var render = function() {
         [
           _c("tb-table", {
             attrs: {
-              dataSource: _vm.dataSource,
+              dataSource: _vm.rowsData,
               MaxRows: _vm.maxRows,
               columns: _vm.columnsData
             }

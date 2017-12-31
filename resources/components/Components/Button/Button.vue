@@ -28,7 +28,6 @@
         </div>
         <select class="custom-select" v-model="status">
           <option :value="s" v-for="s of allStatus">{{ s }}</option>
-
         </select>
       </div>
 

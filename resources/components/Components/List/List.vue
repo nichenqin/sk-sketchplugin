@@ -9,10 +9,24 @@
       <button class="btn btn-warning btn-lg" @click="decreaceColumn">Decreace Column</button>
     </div>
 
+    <div class="form-row mb-3">
+      <div class="col" v-for="n in columns" :key="n">
+        <label :for="`list-column-${n}`">column-{{n}}</label>
+        <input type="text" class="form-control" :id="`list-column-${n}`" v-model="columnItems[n - 1]">
+      </div>
+    </div>
+
+    <div class="form-row mb-3">
+      <div class="col" v-for="n in columns" :key="n">
+        <label :for="`list-row-${n}`">row-{{n}}</label>
+        <input type="text" class="form-control" :id="`list-row-${n}`" v-model="rowItems[n - 1]">
+      </div>
+    </div>
+
     <button @click="handleImport" class="btn btn-block btn-success btn-lg">Import To Sketch</button>
 
     <sk-preview>
-      <tb-table :dataSource="dataSource" :MaxRows="maxRows" :columns="columnsData"></tb-table>
+      <tb-table :dataSource="rowsData" :MaxRows="maxRows" :columns="columnsData"></tb-table>
     </sk-preview>
 
     <sk-code-html tag="tb-table" :properties="properties"></sk-code-html>
@@ -28,11 +42,19 @@ import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
 import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
 
+const r = 1;
+const c = 3;
+
+const rowItems = [...new Array(c)].map(() => 'Text');
+const columnItems = [...new Array(c)].map(() => 'title');
+
 export default {
   data() {
     return {
-      rows: 1,
-      columns: 3,
+      rows: r,
+      columns: c,
+      rowItems,
+      columnItems,
       maxRows: 5,
     };
   },
@@ -46,21 +68,21 @@ export default {
     columnsData() {
       return [...new Array(this.columns)].map((val, index) => ({
         key: `title${index}`,
-        title: 'title',
+        title: this.columnItems[index],
       }));
     },
-    dataSource() {
-      return [...new Array(this.rows)].map(() => {
+    rowsData() {
+      return [...new Array(this.rows)].map((val, index) => {
         const obj = {};
         for (let i = 0; i < this.columns; i += 1) {
-          obj[`title${i}`] = 'Text';
+          obj[`title${i}`] = this.rowItems[i];
         }
         return obj;
       });
     },
     properties() {
-      const { columnsData, dataSource, maxRows } = this;
-      return { dataSource, columns: columnsData, MaxRows: maxRows };
+      const { columnsData, rowsData, maxRows } = this;
+      return { dataSource: rowsData, columns: columnsData, MaxRows: maxRows };
     },
   },
   methods: {
@@ -86,8 +108,15 @@ export default {
     rows(rows) {
       if (rows <= 0) this.rows = 1;
     },
-    columns(columns) {
+    columns(columns, oldColums) {
       if (columns <= 0) this.columns = 1;
+      if (columns > oldColums) {
+        this.columnItems.push('title');
+        this.rowItems.push('Text');
+      } else {
+        this.columnItems.pop();
+        this.rowItems.pop();
+      }
     },
   },
 };
