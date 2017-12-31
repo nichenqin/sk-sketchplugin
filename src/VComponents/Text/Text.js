@@ -11,10 +11,12 @@ class Text extends VComponent {
 
   import({ text, fontSize }) {
     const { page } = this;
+
     const newText = page.newText({
       text,
     });
     newText.sketchObject.setFontSize(fontSize);
+    newText.sketchObject.changeTextColorTo(MSColor.rgbColorRed_green_blue(156, 39, 176));
     return newText;
   }
 }

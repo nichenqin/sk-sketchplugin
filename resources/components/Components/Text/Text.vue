@@ -89,9 +89,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.btn {
-  flex: 1;
-}
-</style>
