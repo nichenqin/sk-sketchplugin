@@ -4,6 +4,7 @@ import Button from './VComponents/Button';
 import List from './VComponents/List';
 import Datepicker from './VComponents/Datepicker';
 import Text from './VComponents/Text';
+import LongInput from './VComponents/LongInput';
 
 import store from './store';
 
@@ -18,6 +19,8 @@ function createComponentInstance(context, name, payload) {
         return new Datepicker(context, payload);
       case 'text':
         return new Text(context, payload);
+      case 'long-input':
+        return new LongInput(context, payload);
 
       default:
         return null;

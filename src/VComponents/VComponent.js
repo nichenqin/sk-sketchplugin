@@ -8,7 +8,7 @@ class VComponent extends ContextManager {
 
     this.identifier = 'superKit';
     this.option = option;
-    this.name = name.toLowerCase();
+    this.name = name;
     this.uikit = this.sketch.resourceNamed(`${name}.sketch`);
     this.state = {};
 
@@ -16,7 +16,7 @@ class VComponent extends ContextManager {
   }
 
   is(name) {
-    return this.name === name.toLowerCase();
+    return this.name.toLowerCase() === name.toLowerCase();
   }
 
   get isButton() {

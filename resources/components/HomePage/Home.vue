@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      components: ['button', 'list', 'text'],
+      components: ['button', 'list', 'text', 'long-input'],
     };
   },
   props: ['currentComponent'],
