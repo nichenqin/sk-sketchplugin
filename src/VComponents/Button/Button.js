@@ -10,7 +10,7 @@ class Button extends VComponent {
     super(context, payload, option);
   }
 
-  import({ path, text }) {
+  import({ path, text, iconPath = 'icon/camera_large' }) {
     const instance = this.createSymbolInstanceByPath(path);
     this.addLayers([instance]);
 
@@ -20,7 +20,7 @@ class Button extends VComponent {
         layer.stringValue = text;
       }
       if (is(layer, 'MSSymbolInstance')) {
-        const icon = this.createSymbolInstanceByPath('icon/camera_large');
+        const icon = this.createSymbolInstanceByPath(iconPath);
         layer.replaceWithInstanceOfSymbol(icon);
       }
     });
