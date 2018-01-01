@@ -9382,13 +9382,14 @@ module.exports = g;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Preview_vue__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_Radio_RadioGroup_vue__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Shared_Radio_RadioButton_vue__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__minxins_events__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__zhinan_tb_components__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeHtml_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeJavascript_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_Preview_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Shared_Radio_RadioGroup_vue__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Shared_Radio_RadioButton_vue__ = __webpack_require__(21);
 //
 //
 //
@@ -9449,6 +9450,19 @@ module.exports = g;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -9531,19 +9545,21 @@ var data = {
       text: '按钮',
       type: '',
       status: 'normal',
-      allStatus: ['normal', 'active', 'hover', 'disable']
+      allStatus: ['normal', 'active', 'hover', 'disable'],
+      componentEvents: ['btn']
     };
   },
 
   props: ['currentComponent'],
   components: {
-    TbButton: __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__["TbButton"],
-    SkCodeHtml: __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml_vue__["a" /* default */],
-    SkPreview: __WEBPACK_IMPORTED_MODULE_4__Shared_Preview_vue__["a" /* default */],
-    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__["a" /* default */],
-    SkRadioGroup: __WEBPACK_IMPORTED_MODULE_5__Shared_Radio_RadioGroup_vue__["a" /* default */],
-    SkRadioButton: __WEBPACK_IMPORTED_MODULE_6__Shared_Radio_RadioButton_vue__["a" /* default */]
+    TbButton: __WEBPACK_IMPORTED_MODULE_2__zhinan_tb_components__["TbButton"],
+    SkCodeHtml: __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeHtml_vue__["a" /* default */],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_5__Shared_Preview_vue__["a" /* default */],
+    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeJavascript_vue__["a" /* default */],
+    SkRadioGroup: __WEBPACK_IMPORTED_MODULE_6__Shared_Radio_RadioGroup_vue__["a" /* default */],
+    SkRadioButton: __WEBPACK_IMPORTED_MODULE_7__Shared_Radio_RadioButton_vue__["a" /* default */]
   },
+  mixins: [__WEBPACK_IMPORTED_MODULE_1__minxins_events__["a" /* default */]],
   computed: {
     path: function path() {
       var currentComponent = this.currentComponent,
@@ -11221,6 +11237,72 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary btn-lg btn-block mb-3",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.handleAddEvent($event)
+                }
+              }
+            },
+            [_vm._v("add event")]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.usedEvents, function(ev, index) {
+            return _c("div", { key: index, staticClass: "input-group mb-3" }, [
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.usedEvents[index].event,
+                      expression: "usedEvents[index].event"
+                    }
+                  ],
+                  staticClass: "custom-select",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.usedEvents[index],
+                        "event",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Choose a type...")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.domEvents, function(e) {
+                    return _c("option", { domProps: { value: e } }, [
+                      _vm._v(_vm._s(e))
+                    ])
+                  })
+                ],
+                2
+              )
+            ])
+          }),
+          _vm._v(" "),
           _c("h6", [_vm._v("数据类型")]),
           _vm._v(" "),
           _c(
@@ -11264,7 +11346,7 @@ var render = function() {
           _vm._v(" "),
           _vm.isStatic
             ? _c("div", { staticClass: "input-group mb-3" }, [
-                _vm._m(0),
+                _vm._m(1),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
@@ -11291,7 +11373,7 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "select",
@@ -11337,7 +11419,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c(
               "select",
@@ -11384,7 +11466,7 @@ var render = function() {
             [_vm._v("Import To Sketch")]
           )
         ],
-        1
+        2
       ),
       _vm._v(" "),
       _c(
@@ -11427,6 +11509,14 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("Events")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -30295,6 +30385,40 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "longInput.sketch?75e503ee7a49b664adf84b608f35696c";
+
+/***/ }),
+/* 258 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      nativeEvents: ['click', 'dbclick'],
+      componentEvents: [],
+      usedEvents: []
+    };
+  },
+
+  computed: {
+    domEvents: function domEvents() {
+      var nativeEvents = this.nativeEvents,
+          componentEvents = this.componentEvents;
+
+      return [].concat(_toConsumableArray(nativeEvents), _toConsumableArray(componentEvents));
+    }
+  },
+  methods: {
+    handleAddEvent: function handleAddEvent() {
+      this.usedEvents.push({
+        event: '',
+        desc: ''
+      });
+    }
+  }
+});
 
 /***/ })
 /******/ ]);

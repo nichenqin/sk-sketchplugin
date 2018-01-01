@@ -8,6 +8,18 @@
         </div>
       </div>
 
+      <button class="btn btn-secondary btn-lg btn-block mb-3" @click.prevent="handleAddEvent">add event</button>
+
+      <div class="input-group mb-3" v-for="(ev, index) in usedEvents" :key="index">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Events</label>
+        </div>
+        <select class="custom-select" v-model="usedEvents[index].event">
+          <option value="">Choose a type...</option>
+          <option v-for="e of domEvents" :value="e">{{ e }}</option>
+        </select>
+      </div>
+
       <h6>数据类型</h6>
       <sk-radio-group v-model="textType">
         <sk-radio-button value="static" name="button-text" :checked="isStatic">静态</sk-radio-button>
@@ -60,6 +72,7 @@
 
 <script>
 import PluginCall from 'sketch-module-web-view/client';
+import Events from '../../../minxins/events';
 
 import { TbButton } from '@zhinan/tb-components';
 
@@ -141,6 +154,7 @@ export default {
       type: '',
       status: 'normal',
       allStatus: ['normal', 'active', 'hover', 'disable'],
+      componentEvents: ['btn'],
     };
   },
   props: ['currentComponent'],
@@ -152,6 +166,7 @@ export default {
     SkRadioGroup,
     SkRadioButton,
   },
+  mixins: [Events],
   computed: {
     path() {
       const { currentComponent, type, status } = this;

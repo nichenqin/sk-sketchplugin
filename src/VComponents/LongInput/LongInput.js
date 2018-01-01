@@ -10,7 +10,6 @@ class LongInput extends VComponent {
   }
 
   import({ path }) {
-    console.log(path);
     const instance = this.createSymbolInstanceByPath(path);
     this.addLayers([instance]);
 
