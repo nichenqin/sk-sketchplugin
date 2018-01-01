@@ -19,7 +19,7 @@ class Text extends VComponent {
     const textStyle = newText.sketchObject.style().textStyle();
     const mutableAttributes = NSMutableDictionary.dictionaryWithDictionary(textStyle.attributes());
     mutableAttributes.setObject_forKey(
-      NSColor.colorWithRed_green_blue_alpha(1, 0, 0.56, 1),
+      NSColor.colorWithRed_green_blue_alpha(0, 0, 0, 1),
       'NSColor',
     );
     textStyle.setValue_forKey_(mutableAttributes, 'attributes');
