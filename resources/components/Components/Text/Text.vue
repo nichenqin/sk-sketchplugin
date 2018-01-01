@@ -15,9 +15,16 @@
         <div class="input-group-prepend">
           <label class="input-group-text">Tag</label>
         </div>
-        <select class="custom-select" v-model="currentTag">
-          <option v-for="tag of tags" :key="tag" :value="tag">{{ tag }}</option>
+        <select class="custom-select" v-model="currentFontSize">
+          <option v-for="size of sizes" :key="size" :value="size">{{ fontSizeConfig[size] }}</option>
         </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Font Size</label>
+        </div>
+        <input type="number" class="form-control" v-model.number="currentFontSize">
       </div>
 
       <button type="submit" class="btn btn-primary btn-lg btn-block">Import To Sketch</button>
@@ -25,7 +32,7 @@
     </form>
 
     <sk-preview>
-      <sk-text-preview :tag="currentTag">
+      <sk-text-preview :tag="currentTag" :font-size="currentFontSize">
         {{ innerText }}
       </sk-text-preview>
     </sk-preview>
@@ -46,13 +53,12 @@ import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
 import SkCodeJavasript from '../../Shared/Code/CodeJavascript.vue';
 
-const textConfig = {
-  h1: 40,
-  h2: 32,
-  h3: 28,
-  h6: 16,
-  p: 14,
-  span: 12,
+const fontSizeConfig = {
+  40: 'h1',
+  32: 'h2',
+  28: 'h3',
+  16: 'h6',
+  14: 'p',
 };
 
 export default {
@@ -60,7 +66,8 @@ export default {
     return {
       isStatic: true,
       innerText: 'from sketch plugin',
-      currentTag: 'h1',
+      fontSizeConfig,
+      currentFontSize: 40,
     };
   },
   props: ['currentComponent'],
@@ -72,8 +79,11 @@ export default {
     SkToggleRadio,
   },
   computed: {
-    tags() {
-      return Object.keys(textConfig);
+    sizes() {
+      return Object.keys(this.fontSizeConfig).sort((a, b) => b - a);
+    },
+    currentTag() {
+      return this.fontSizeConfig[this.currentFontSize] || 'span';
     },
     properties() {
       const { innerText } = this;
@@ -82,8 +92,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { innerText, currentTag } = this;
-      const payload = { text: innerText, fontSize: textConfig[currentTag] };
+      const { innerText, currentFontSize } = this;
+      const payload = { text: innerText, fontSize: currentFontSize };
       PluginCall('import', this.currentComponent, payload);
     },
   },

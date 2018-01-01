@@ -9951,6 +9951,13 @@ var columnItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9960,13 +9967,12 @@ var columnItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
 
 
 
-var textConfig = {
-  h1: 40,
-  h2: 32,
-  h3: 28,
-  h6: 16,
-  p: 14,
-  span: 12
+var fontSizeConfig = {
+  40: 'h1',
+  32: 'h2',
+  28: 'h3',
+  16: 'h6',
+  14: 'p'
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -9974,7 +9980,8 @@ var textConfig = {
     return {
       isStatic: true,
       innerText: 'from sketch plugin',
-      currentTag: 'h1'
+      fontSizeConfig: fontSizeConfig,
+      currentFontSize: 40
     };
   },
 
@@ -9987,8 +9994,13 @@ var textConfig = {
     SkToggleRadio: __WEBPACK_IMPORTED_MODULE_1__Shared_ToggleRadio_vue__["a" /* default */]
   },
   computed: {
-    tags: function tags() {
-      return Object.keys(textConfig);
+    sizes: function sizes() {
+      return Object.keys(this.fontSizeConfig).sort(function (a, b) {
+        return b - a;
+      });
+    },
+    currentTag: function currentTag() {
+      return this.fontSizeConfig[this.currentFontSize] || 'span';
     },
     properties: function properties() {
       var innerText = this.innerText;
@@ -9999,9 +10011,9 @@ var textConfig = {
   methods: {
     handleImport: function handleImport() {
       var innerText = this.innerText,
-          currentTag = this.currentTag;
+          currentFontSize = this.currentFontSize;
 
-      var payload = { text: innerText, fontSize: textConfig[currentTag] };
+      var payload = { text: innerText, fontSize: currentFontSize };
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.currentComponent, payload);
     }
   }
@@ -10015,15 +10027,20 @@ var textConfig = {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   render: function render(createElement) {
-    var tag = this.tag;
+    var tag = this.tag,
+        fontSize = this.fontSize;
 
-    return createElement(tag, this.$slots.default);
+    return createElement(tag, { style: { fontSize: fontSize + 'px' } }, this.$slots.default);
   },
 
   props: {
     tag: {
       type: String,
       default: 'h1'
+    },
+    fontSize: {
+      type: Number,
+      default: 40
     }
   }
 });
@@ -11583,8 +11600,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.currentTag,
-                    expression: "currentTag"
+                    value: _vm.currentFontSize,
+                    expression: "currentFontSize"
                   }
                 ],
                 staticClass: "custom-select",
@@ -11598,18 +11615,48 @@ var render = function() {
                         var val = "_value" in o ? o._value : o.value
                         return val
                       })
-                    _vm.currentTag = $event.target.multiple
+                    _vm.currentFontSize = $event.target.multiple
                       ? $$selectedVal
                       : $$selectedVal[0]
                   }
                 }
               },
-              _vm._l(_vm.tags, function(tag) {
-                return _c("option", { key: tag, domProps: { value: tag } }, [
-                  _vm._v(_vm._s(tag))
+              _vm._l(_vm.sizes, function(size) {
+                return _c("option", { key: size, domProps: { value: size } }, [
+                  _vm._v(_vm._s(_vm.fontSizeConfig[size]))
                 ])
               })
             )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model.number",
+                  value: _vm.currentFontSize,
+                  expression: "currentFontSize",
+                  modifiers: { number: true }
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number" },
+              domProps: { value: _vm.currentFontSize },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.currentFontSize = _vm._n($event.target.value)
+                },
+                blur: function($event) {
+                  _vm.$forceUpdate()
+                }
+              }
+            })
           ]),
           _vm._v(" "),
           _c(
@@ -11627,9 +11674,13 @@ var render = function() {
       _c(
         "sk-preview",
         [
-          _c("sk-text-preview", { attrs: { tag: _vm.currentTag } }, [
-            _vm._v("\n      " + _vm._s(_vm.innerText) + "\n    ")
-          ])
+          _c(
+            "sk-text-preview",
+            {
+              attrs: { tag: _vm.currentTag, "font-size": _vm.currentFontSize }
+            },
+            [_vm._v("\n      " + _vm._s(_vm.innerText) + "\n    ")]
+          )
         ],
         1
       ),
@@ -11663,6 +11714,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("label", { staticClass: "input-group-text" }, [_vm._v("Tag")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("Font Size")])
     ])
   }
 ]
