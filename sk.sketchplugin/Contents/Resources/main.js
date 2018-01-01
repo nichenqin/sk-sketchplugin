@@ -9382,9 +9382,9 @@ module.exports = g;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__minxins_events__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__zhinan_tb_components__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__minxins_events__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeHtml_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeJavascript_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_Preview_vue__ = __webpack_require__(5);
@@ -9552,14 +9552,14 @@ var data = {
 
   props: ['currentComponent'],
   components: {
-    TbButton: __WEBPACK_IMPORTED_MODULE_2__zhinan_tb_components__["TbButton"],
+    TbButton: __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__["TbButton"],
     SkCodeHtml: __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeHtml_vue__["a" /* default */],
     SkPreview: __WEBPACK_IMPORTED_MODULE_5__Shared_Preview_vue__["a" /* default */],
     SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeJavascript_vue__["a" /* default */],
     SkRadioGroup: __WEBPACK_IMPORTED_MODULE_6__Shared_Radio_RadioGroup_vue__["a" /* default */],
     SkRadioButton: __WEBPACK_IMPORTED_MODULE_7__Shared_Radio_RadioButton_vue__["a" /* default */]
   },
-  mixins: [__WEBPACK_IMPORTED_MODULE_1__minxins_events__["a" /* default */]],
+  mixins: [__WEBPACK_IMPORTED_MODULE_2__minxins_events__["a" /* default */]],
   computed: {
     path: function path() {
       var currentComponent = this.currentComponent,

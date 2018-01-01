@@ -47,6 +47,7 @@ class List extends VComponent {
       }
     });
     titleGroup.adjustToFit();
+    titleGroup.sketchObject.setIsLocked(true);
     // endregion title
 
     // region rows
@@ -69,6 +70,7 @@ class List extends VComponent {
       }
     });
     rowGroup.adjustToFit();
+    rowGroup.sketchObject.setIsLocked(true);
     // endrigion rows
 
     // region duplicate rows

@@ -72,9 +72,9 @@
 
 <script>
 import PluginCall from 'sketch-module-web-view/client';
-import Events from '../../../minxins/events';
-
 import { TbButton } from '@zhinan/tb-components';
+
+import Events from '../../../minxins/events';
 
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
 import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
