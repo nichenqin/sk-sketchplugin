@@ -19,6 +19,10 @@ class Button extends VComponent {
       if (is(layer, 'MSTextLayer')) {
         layer.stringValue = text;
       }
+      if (is(layer, 'MSSymbolInstance')) {
+        const icon = this.createSymbolInstanceByPath('icon/camera_large');
+        layer.replaceWithInstanceOfSymbol(icon);
+      }
     });
 
     return btnGroup;
