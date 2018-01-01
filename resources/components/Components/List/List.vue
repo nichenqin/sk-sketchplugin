@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <button @click="handleImport" class="btn btn-block btn-success btn-lg">Import To Sketch</button>
+    <button @click="handleImport" class="btn btn-block btn-primary btn-lg">Import To Sketch</button>
 
     <sk-preview>
       <tb-table :dataSource="rowsData" :MaxRows="maxRows" :columns="columnsData"></tb-table>
@@ -72,7 +72,7 @@ export default {
       }));
     },
     rowsData() {
-      return [...new Array(this.rows)].map((val, index) => {
+      return [...new Array(this.rows)].map(() => {
         const obj = {};
         for (let i = 0; i < this.columns; i += 1) {
           obj[`title${i}`] = this.rowItems[i];
