@@ -6,6 +6,7 @@ class VComponent extends ContextManager {
 
     const name = option.name || '';
 
+    this.identifier = 'superKit';
     this.option = option;
     this.name = name.toLowerCase();
     this.uikit = this.sketch.resourceNamed(`${name}.sketch`);
@@ -14,16 +15,20 @@ class VComponent extends ContextManager {
     this.init(payload);
   }
 
+  is(name) {
+    return this.name === name.toLowerCase();
+  }
+
   get isButton() {
-    return this.name === 'button';
+    return this.is('button');
   }
 
   get isList() {
-    return this.name === 'list';
+    return this.is('list');
   }
 
   get isText() {
-    return this.name === 'text';
+    return this.is('text');
   }
 
   init(payload) {

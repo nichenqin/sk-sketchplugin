@@ -2,11 +2,15 @@
   <div>
     <form @submit.prevent="handleImport">
 
-      <sk-toggle-radio :option.sync="isStatic"></sk-toggle-radio>
+      <h6>数据类型</h6>
+      <sk-radio-group v-model="textType">
+        <sk-radio-button value="static" name="button-text" :checked="isStatic">静态</sk-radio-button>
+        <sk-radio-button value="dynamic" name="button-text" :checked="!isStatic">动态</sk-radio-button>
+      </sk-radio-group>
 
-      <div class="input-group mb-3">
+      <div class="input-group mb-3" v-if="isStatic">
         <div class="input-group-prepend">
-          <span class="input-group-text">Text</span>
+          <span class="input-group-text">Custom Text</span>
         </div>
         <input type="text" class="form-control" placeholder="type something" v-model="innerText">
       </div>
@@ -47,11 +51,14 @@
 <script>
 import PluginCall from 'sketch-module-web-view/client';
 
-import SkToggleRadio from '../../Shared/ToggleRadio.vue';
 import SkTextPreview from './TextPreview.vue';
+
 import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
 import SkCodeJavasript from '../../Shared/Code/CodeJavascript.vue';
+
+import SkRadioGroup from '../../Shared/Radio/RadioGroup.vue';
+import SkRadioButton from '../../Shared/Radio/RadioButton.vue';
 
 const fontSizeConfig = {
   40: 'h1',
@@ -64,7 +71,7 @@ const fontSizeConfig = {
 export default {
   data() {
     return {
-      isStatic: true,
+      textType: 'static',
       innerText: 'from sketch plugin',
       fontSizeConfig,
       currentFontSize: 40,
@@ -76,9 +83,13 @@ export default {
     SkPreview,
     SkCodeHtml,
     SkCodeJavasript,
-    SkToggleRadio,
+    SkRadioGroup,
+    SkRadioButton,
   },
   computed: {
+    isStatic() {
+      return this.textType === 'static';
+    },
     sizes() {
       return Object.keys(this.fontSizeConfig).sort((a, b) => b - a);
     },

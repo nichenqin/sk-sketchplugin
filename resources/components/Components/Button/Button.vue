@@ -8,7 +8,18 @@
         </div>
       </div>
 
-      <sk-toggle-radio :option.sync="isStatic"></sk-toggle-radio>
+      <h6>数据类型</h6>
+      <sk-radio-group v-model="textType">
+        <sk-radio-button value="static" name="button-text" :checked="isStatic">静态</sk-radio-button>
+        <sk-radio-button value="dynamic" name="button-text" :checked="!isStatic">动态</sk-radio-button>
+      </sk-radio-group>
+
+      <div class="input-group mb-3" v-if="isStatic">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Custom Text</div>
+        </div>
+        <input type="text" class="form-control" v-model="text">
+      </div>
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -41,7 +52,7 @@
       </tb-button>
     </sk-preview>
 
-    <sk-code-html tag="button" :properties="properties" :innerText="text"></sk-code-html>
+    <sk-code-html tag="button" :properties="properties" :innerText="isStatic ? text : '{{ text }}'"></sk-code-html>
 
     <sk-code-javascript :properties="properties"></sk-code-javascript>
   </div>
@@ -49,11 +60,15 @@
 
 <script>
 import PluginCall from 'sketch-module-web-view/client';
+
 import { TbButton } from '@zhinan/tb-components';
-import SkToggleRadio from '../../Shared/ToggleRadio.vue';
+
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
 import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
 import SkPreview from '../../Shared/Preview.vue';
+
+import SkRadioGroup from '../../Shared/Radio/RadioGroup.vue';
+import SkRadioButton from '../../Shared/Radio/RadioButton.vue';
 
 const data = {
   risk: {
@@ -121,7 +136,7 @@ const data = {
 export default {
   data() {
     return {
-      isStatic: true,
+      textType: 'static',
       text: '按钮',
       type: '',
       status: 'normal',
@@ -131,10 +146,11 @@ export default {
   props: ['currentComponent'],
   components: {
     TbButton,
-    SkToggleRadio,
     SkCodeHtml,
     SkPreview,
     SkCodeJavascript,
+    SkRadioGroup,
+    SkRadioButton,
   },
   computed: {
     path() {
@@ -160,8 +176,13 @@ export default {
       return data[this.type].type;
     },
     properties() {
-      const { isAnother, previewType, disabled } = this;
-      return { isAnother, type: previewType, disabled };
+      const { isAnother, previewType, disabled, isStatic, text } = this;
+      const properties = { isAnother, type: previewType, disabled };
+      if (!isStatic) properties.text = text;
+      return properties;
+    },
+    isStatic() {
+      return this.textType === 'static';
     },
   },
   methods: {

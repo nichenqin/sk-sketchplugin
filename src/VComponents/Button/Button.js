@@ -1,4 +1,5 @@
 import VComponent from '../VComponent';
+import { is } from '../../utils';
 
 const option = {
   name: 'button',
@@ -9,11 +10,18 @@ class Button extends VComponent {
     super(context, payload, option);
   }
 
-  import(path) {
+  import({ path, text }) {
     const instance = this.createSymbolInstanceByPath(path);
     this.addLayers([instance]);
 
-    return instance;
+    const btnGroup = instance.detachByReplacingWithGroup();
+    btnGroup.children().forEach(layer => {
+      if (is(layer, 'MSTextLayer')) {
+        layer.stringValue = text;
+      }
+    });
+
+    return btnGroup;
   }
 }
 
