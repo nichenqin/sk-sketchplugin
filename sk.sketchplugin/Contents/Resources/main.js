@@ -9589,7 +9589,11 @@ var data = {
   },
   methods: {
     handleImport: function handleImport() {
-      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.currentComponent, this.path);
+      var text = this.text,
+          path = this.path;
+
+      var payload = { text: text, path: path };
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.currentComponent, payload);
     }
   }
 });

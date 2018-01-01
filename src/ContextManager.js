@@ -8,7 +8,6 @@ class ContextManage {
 
     this.assetLibrary = null;
 
-    this.sketchObject = null;
     this.objectID = '';
     this.allSymbols = null;
     this.symbolLibrary = {};
@@ -17,6 +16,10 @@ class ContextManage {
   get layer() {
     if (!this.objectID) return null;
     return this.getLayerByID(this.objectID);
+  }
+
+  get sketchObject() {
+    return this.layer.sketchObject;
   }
 
   get document() {
@@ -64,18 +67,8 @@ class ContextManage {
     return layer;
   }
 
-  getSketchObjectByID(objectID) {
-    const layer = this.getLayerByID(objectID);
-    return layer.sketchObject;
-  }
-
   updateObjectID(objectID) {
     this.objectID = objectID;
-    return this;
-  }
-
-  updateSketchObject(sketchObject) {
-    this.sketchObject = sketchObject;
     return this;
   }
 
@@ -139,7 +132,6 @@ class ContextManage {
     const instance = symbolMaster.newSymbolInstance();
 
     this.objectID = String(instance.objectID());
-    this.sketchObject = instance;
 
     return instance;
   }

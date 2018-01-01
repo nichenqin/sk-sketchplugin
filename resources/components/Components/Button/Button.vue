@@ -187,7 +187,9 @@ export default {
   },
   methods: {
     handleImport() {
-      PluginCall('import', this.currentComponent, this.path);
+      const { text, path } = this;
+      const payload = { text, path };
+      PluginCall('import', this.currentComponent, payload);
     },
   },
 };
