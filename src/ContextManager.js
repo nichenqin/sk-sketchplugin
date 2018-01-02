@@ -50,11 +50,10 @@ class ContextManage {
   }
 
   getLayerByID(objectID) {
-    const { document, sketch } = this;
+    const { document } = this;
 
     if (!objectID) {
-      sketch.message('objectID required');
-      return false;
+      throw new Error('objectID required');
     }
 
     const layer = document.layerWithID(objectID);
