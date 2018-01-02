@@ -1,6 +1,4 @@
 /* globals MSUserAssetLibrary MSForeignSymbol */
-import { is } from './utils';
-
 class ContextManage {
   constructor(context) {
     this.context = context;

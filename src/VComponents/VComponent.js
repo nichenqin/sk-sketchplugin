@@ -35,6 +35,11 @@ class VComponent extends ContextManager {
 
   init() {
     const { payload } = this;
+
+    if (this.componentWillImport) {
+      this.componentWillImport(payload);
+    }
+
     const target = this.import(payload);
     if (!target) {
       throw new Error('import function should return a layer like a group or a shape or a symbol instance');
@@ -45,7 +50,6 @@ class VComponent extends ContextManager {
 
     const { objectID, layer } = this;
     const data = { layer, payload, component: this };
-
     store.set(objectID, data);
 
     if (typeof target.select === 'function') {
