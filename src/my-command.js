@@ -41,60 +41,39 @@ export default function (context) {
     },
     test: () => {
       try {
-        sketch.log(ctm.nativeLayers);
+        console.log(store.entries());
       } catch (error) {
         sketch.message(error.message);
       }
     },
     select: objectID => {
       try {
-        store.getByID(objectID).layer.select();
+        const { layer } = store.get(objectID);
+        layer.select();
       } catch (error) {
         sketch.message(error.message);
       }
     },
     deselect: objectID => {
       try {
-        store.getByID(objectID).layer.deselect();
-      } catch (error) {
-        sketch.message(error.message);
-      }
-    },
-    detach: objectID => {
-      try {
-        store.getByID(objectID).detach();
-        // TODO: replace with a new component instance
+        const { layer } = store.get(objectID);
+        layer.deselect();
       } catch (error) {
         sketch.message(error.message);
       }
     },
     remove: objectID => {
       try {
-        store.getByID(objectID).layer.remove();
-        store.removeByID(objectID);
-        sketch.log(store.size());
+        const { component } = store.get(objectID);
+        component.remove();
       } catch (error) {
         sketch.message(error.message);
       }
     },
     duplicate: objectID => {
       try {
-        const layer = ctm.getLayerByID(objectID);
-        const component = store.getByID(objectID);
-
-        const newlayer = layer.duplicate();
-        const newComponent = component.copyWithLayer(newlayer);
-
-        newComponent.layer.select();
-        store.add(newComponent);
-      } catch (error) {
-        sketch.message(error.message);
-      }
-    },
-    replace: (objectID, path) => {
-      try {
-        const component = store.getByID(objectID);
-        component.replaceSymbolWith(path);
+        const { layer, component } = store.get(objectID);
+        component.copyWithLayer(layer);
       } catch (error) {
         sketch.message(error.message);
       }

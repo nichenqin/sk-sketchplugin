@@ -68,7 +68,7 @@ class ContextManage {
   }
 
   updateObjectID(objectID) {
-    this.objectID = objectID;
+    this.objectID = String(objectID);
     return this;
   }
 

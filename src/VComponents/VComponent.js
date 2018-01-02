@@ -1,4 +1,5 @@
 import ContextManager from '../ContextManager';
+import store from '../store';
 
 class VComponent extends ContextManager {
   constructor(context, payload, option = {}) {
@@ -12,7 +13,8 @@ class VComponent extends ContextManager {
     this.uikit = this.sketch.resourceNamed(`${name}.sketch`);
     this.state = {};
 
-    this.init(payload);
+    this.payload = payload;
+    this.init();
   }
 
   is(name) {
@@ -31,7 +33,8 @@ class VComponent extends ContextManager {
     return this.is('text');
   }
 
-  init(payload) {
+  init() {
+    const { payload } = this;
     const target = this.import(payload);
     if (!target) {
       throw new Error('import function should return a layer like a group or a shape or a symbol instance');
@@ -40,13 +43,22 @@ class VComponent extends ContextManager {
     const id = target.id || target.objectID();
     this.updateObjectID(id);
 
-    // TODO: add root component to store
+    const { objectID, layer } = this;
+    const data = { layer, payload, component: this };
+
+    store.set(objectID, data);
 
     if (typeof target.select === 'function') {
       target.select();
     } else {
       this.layer.select();
     }
+  }
+
+  remove() {
+    const { layer, objectID } = this;
+    layer.remove();
+    store.delete(objectID);
   }
 
   setState(state) {
@@ -66,6 +78,12 @@ class VComponent extends ContextManager {
     const component = this.updateObjectID(objectID);
     const newComponent = Object.assign(origin, component);
 
+    const newLayer = layer.duplicate();
+
+    const data = { layer: newLayer, component: newComponent, payload: this.payload };
+    store.set(String(newLayer.id), data);
+
+    newLayer.select();
     return newComponent;
   }
 
