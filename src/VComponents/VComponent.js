@@ -53,6 +53,10 @@ class VComponent extends ContextManager {
     } else {
       this.layer.select();
     }
+
+    if (this.componentDidSelected) {
+      this.componentDidSelected(payload);
+    }
   }
 
   remove() {

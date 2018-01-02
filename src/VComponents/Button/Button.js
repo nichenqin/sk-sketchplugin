@@ -10,20 +10,34 @@ class Button extends VComponent {
     super(context, payload, option);
   }
 
-  import({ path, text, iconPath = 'icon/camera_large' }) {
-    const instance = this.createSymbolInstanceByPath(path);
-    this.addLayers([instance]);
+  iterateGroup(group) {
+    const { text, iconPath = 'icon/camera_large' } = this.payload;
 
-    const btnGroup = instance.detachByReplacingWithGroup();
-    btnGroup.children().forEach(layer => {
-      if (is(layer, 'MSTextLayer')) {
-        layer.stringValue = text;
-      }
+    group.iterateWithFilter('isText', textLayer => {
+      textLayer.text = text;
+    });
+
+    group.sketchObject.children().forEach(layer => {
       if (is(layer, 'MSSymbolInstance')) {
         const icon = this.createSymbolInstanceByPath(iconPath);
         layer.replaceWithInstanceOfSymbol(icon);
       }
     });
+  }
+
+  componentDidSelected() {
+    const { selection } = this;
+
+    selection.iterateWithFilter('isGroup', group => {
+      this.iterateGroup(group);
+    });
+  }
+
+  import({ path }) {
+    const instance = this.createSymbolInstanceByPath(path);
+    this.addLayers([instance]);
+
+    const btnGroup = instance.detachByReplacingWithGroup();
 
     return btnGroup;
   }

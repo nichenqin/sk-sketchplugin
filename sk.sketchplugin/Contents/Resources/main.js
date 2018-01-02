@@ -9298,7 +9298,6 @@ module.exports = g;
 //
 //
 //
-//
 
 
 
@@ -9344,8 +9343,9 @@ module.exports = g;
       if (!this.objectID) return;
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('duplicate', this.objectID);
     },
-    handleReplace: function handleReplace() {
-      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('replace', this.objectID, 'button/risk/normal');
+    handleRemove: function handleRemove() {
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('remove', this.objectID);
+      this.clearObjectID();
     },
     test: function test() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('test');
@@ -9532,7 +9532,7 @@ var data = {
   data: function data() {
     return {
       textType: 'static',
-      text: '按钮',
+      text: 'ADD',
       type: '',
       status: 'normal',
       allStatus: ['normal', 'active', 'hover', 'disable'],
@@ -12502,16 +12502,6 @@ var render = function() {
               on: { click: _vm.handleRemove }
             },
             [_vm._v("Remove")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-danger",
-              attrs: { disabled: !_vm.objectID },
-              on: { click: _vm.handleReplace }
-            },
-            [_vm._v("Replace")]
           )
         ]
       ),

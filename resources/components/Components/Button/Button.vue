@@ -150,7 +150,7 @@ export default {
   data() {
     return {
       textType: 'static',
-      text: '按钮',
+      text: 'ADD',
       type: '',
       status: 'normal',
       allStatus: ['normal', 'active', 'hover', 'disable'],

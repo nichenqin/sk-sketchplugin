@@ -25,7 +25,6 @@
     <div class="btn-group btn-group-lg mb-3 d-flex" role="group">
       <button class="btn btn-warning" :disabled="!objectID" @click="handleDuplicate">Duplicate</button>
       <button class="btn btn-danger" :disabled="!objectID" @click="handleRemove">Remove</button>
-      <button class="btn btn-danger" :disabled="!objectID" @click="handleReplace">Replace</button>
     </div>
     <button class="btn btn-primary btn-lg btn-block mb-3" @click="test">Test</button>
 
@@ -76,8 +75,9 @@ export default {
       if (!this.objectID) return;
       pluginCall('duplicate', this.objectID);
     },
-    handleReplace() {
-      pluginCall('replace', this.objectID, 'button/risk/normal');
+    handleRemove() {
+      pluginCall('remove', this.objectID);
+      this.clearObjectID();
     },
     test() {
       pluginCall('test');
