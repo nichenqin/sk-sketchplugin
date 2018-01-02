@@ -1,10 +1,10 @@
-import VComponent from '../VComponent';
+import SketchComponent from '../SketchComponent';
 
 const option = {
   name: 'text',
 };
 
-class Text extends VComponent {
+class Text extends SketchComponent {
   constructor(context, payload) {
     super(context, payload, option);
   }

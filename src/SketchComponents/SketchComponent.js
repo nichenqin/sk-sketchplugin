@@ -1,7 +1,7 @@
 import ContextManager from '../ContextManager';
 import store from '../store';
 
-class VComponent extends ContextManager {
+class SketchComponent extends ContextManager {
   constructor(context, payload, option = {}) {
     super(context);
 
@@ -100,4 +100,4 @@ class VComponent extends ContextManager {
   }
 }
 
-export default VComponent;
+export default SketchComponent;

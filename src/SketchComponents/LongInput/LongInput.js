@@ -1,10 +1,10 @@
-import VComponent from '../VComponent';
+import SketchComponent from '../SketchComponent';
 
 const option = {
   name: 'longInput',
 };
 
-class LongInput extends VComponent {
+class LongInput extends SketchComponent {
   constructor(context, payload) {
     super(context, payload, option);
   }

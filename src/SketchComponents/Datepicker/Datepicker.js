@@ -1,10 +1,10 @@
-import VComponent from '../VComponent';
+import SketchComponent from '../SketchComponent';
 
 const option = {
   name: 'datepicker',
 };
 
-class Datepicker extends VComponent {
+class Datepicker extends SketchComponent {
   constructor(context, payload) {
     super(context, payload, option);
   }

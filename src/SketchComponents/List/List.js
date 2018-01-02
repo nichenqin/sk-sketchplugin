@@ -1,11 +1,11 @@
-import VComponent from '../VComponent';
+import SketchComponent from '../SketchComponent';
 import { setFrame, getRectOfNativeLayer, is } from '../../utils';
 
 const option = {
   name: 'list',
 };
 
-class List extends VComponent {
+class List extends SketchComponent {
   constructor(context, payload) {
     super(context, payload, option);
     this.state = {
