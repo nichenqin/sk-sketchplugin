@@ -13,11 +13,10 @@ class Button extends VComponent {
   iterateGroup(group) {
     const { text, iconPath = 'icon/camera_large' } = this.payload;
 
-    group.iterateWithFilter('isText', textLayer => {
-      textLayer.text = text;
-    });
-
     group.sketchObject.children().forEach(layer => {
+      if (is(layer, 'MSTextLayer')) {
+        layer.stringValue = text;
+      }
       if (is(layer, 'MSSymbolInstance')) {
         const icon = this.createSymbolInstanceByPath(iconPath);
         layer.replaceWithInstanceOfSymbol(icon);
