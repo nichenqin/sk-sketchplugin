@@ -202,8 +202,9 @@ export default {
   },
   methods: {
     handleImport() {
-      const { text, path } = this;
+      const { text, path, type } = this;
       const payload = { text, path };
+      if (type === 'menu') payload.iconPath = 'icon/arrowDown';
       PluginCall('import', this.currentComponent, payload);
     },
   },

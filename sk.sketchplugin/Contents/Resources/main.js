@@ -9597,9 +9597,11 @@ var data = {
   methods: {
     handleImport: function handleImport() {
       var text = this.text,
-          path = this.path;
+          path = this.path,
+          type = this.type;
 
       var payload = { text: text, path: path };
+      if (type === 'menu') payload.iconPath = 'icon/arrowDown';
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.currentComponent, payload);
     }
   }
