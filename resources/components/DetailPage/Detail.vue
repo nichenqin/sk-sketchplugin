@@ -77,7 +77,6 @@ export default {
     },
     handleRemove() {
       pluginCall('remove', this.objectID);
-      this.clearObjectID();
     },
     test() {
       pluginCall('test');

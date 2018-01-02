@@ -41,7 +41,7 @@ export default function (context) {
     },
     test: () => {
       try {
-        console.log(store.entries());
+        console.log([...store.keys()]);
       } catch (error) {
         sketch.message(error.message);
       }

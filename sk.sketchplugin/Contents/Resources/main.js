@@ -9345,7 +9345,6 @@ module.exports = g;
     },
     handleRemove: function handleRemove() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('remove', this.objectID);
-      this.clearObjectID();
     },
     test: function test() {
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('test');

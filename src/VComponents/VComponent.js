@@ -65,6 +65,8 @@ class VComponent extends ContextManager {
 
   remove() {
     const { layer, objectID } = this;
+    console.log(objectID);
+    console.log(layer);
     layer.remove();
     store.delete(objectID);
   }
@@ -79,17 +81,15 @@ class VComponent extends ContextManager {
   }
 
   copyWithLayer(layer) {
-    const { sketchObject } = layer;
-    const objectID = sketchObject.objectID();
-
     const origin = Object.create(Object.getPrototypeOf(this));
-    const component = this.updateObjectID(objectID);
-    const newComponent = Object.assign(origin, component);
 
     const newLayer = layer.duplicate();
 
+    const newObjectID = String(newLayer.id);
+    const newComponent = Object.assign(origin, this);
+    newComponent.updateObjectID(newObjectID);
     const data = { layer: newLayer, component: newComponent, payload: this.payload };
-    store.set(String(newLayer.id), data);
+    store.set(newObjectID, data);
 
     newLayer.select();
     return newComponent;

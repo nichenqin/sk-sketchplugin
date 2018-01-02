@@ -129,8 +129,6 @@ class ContextManage {
     const symbolMaster = foreignSymbol.symbolMaster();
     const instance = symbolMaster.newSymbolInstance();
 
-    this.objectID = String(instance.objectID());
-
     return instance;
   }
 
