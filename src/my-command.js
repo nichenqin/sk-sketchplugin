@@ -1,10 +1,10 @@
 import { createWebview, dispatchToWebview, parseFilePath } from './utils';
 import ContextManager from './ContextManager';
-import Button from './VComponents/Button';
-import List from './VComponents/List';
-import Datepicker from './VComponents/Datepicker';
-import Text from './VComponents/Text';
-import LongInput from './VComponents/LongInput';
+import Button from './SketchComponents/Button';
+import List from './SketchComponents/List';
+import Datepicker from './SketchComponents/Datepicker';
+import Text from './SketchComponents/Text';
+import LongInput from './SketchComponents/LongInput';
 
 import store from './store';
 
