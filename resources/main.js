@@ -15,6 +15,7 @@ import './assets/checkbox.sketch';
 import './assets/datepicker.sketch';
 import './assets/list.sketch';
 import './assets/longInput.sketch';
+import './assets/radio.sketch';
 
 // import your style files inside main.js, not html link tag
 import './styles/style.less';

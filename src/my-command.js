@@ -1,10 +1,11 @@
-import { createWebview, dispatchToWebview, parseFilePath } from './utils';
+import { createWebview, dispatchToWebview } from './utils';
 import ContextManager from './ContextManager';
 import Button from './SketchComponents/Button';
 import List from './SketchComponents/List';
 import Datepicker from './SketchComponents/Datepicker';
 import Text from './SketchComponents/Text';
 import LongInput from './SketchComponents/LongInput';
+import Radio from './SketchComponents/Radio';
 
 import store from './store';
 
@@ -21,6 +22,8 @@ function createComponentInstance(context, name, payload) {
         return new Text(context, payload);
       case 'long-input':
         return new LongInput(context, payload);
+      case 'radio':
+        return new Radio(context, payload);
 
       default:
         return null;

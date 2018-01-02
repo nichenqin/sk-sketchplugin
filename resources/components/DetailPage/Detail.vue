@@ -39,6 +39,7 @@ import SkButton from '../Components/Button';
 import SkList from '../Components/List';
 import SkText from '../Components/Text';
 import SkLongInput from '../Components/LongInput';
+import SkRadio from '../Components/Radio';
 
 export default {
   name: 'app',
@@ -47,6 +48,7 @@ export default {
     SkList,
     SkText,
     SkLongInput,
+    SkRadio,
   },
   data() {
     return {
