@@ -11,7 +11,6 @@ export function onSelectionChanged(context) {
   const payload = {
     layerName,
     objectID,
-    data,
   };
 
   dispatchToWebview('SEARCH', payload, 'onchange-sketch');
