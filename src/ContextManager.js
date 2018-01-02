@@ -136,31 +136,6 @@ class ContextManage {
     return instance;
   }
 
-  replaceSymbolWith(path) {
-    const { sketchObject } = this;
-    if (!is(sketchObject, 'MSSymbolInstance')) {
-      throw new Error('You can only replace a symbol instance');
-    }
-
-    const instance = this.createSymbolInstanceByPath(path);
-    console.log(instance);
-    const newInstance = sketchObject.replaceWithInstanceOfSymbol(instance);
-    console.log(newInstance);
-  }
-
-  detach() {
-    const { sketchObject } = this;
-    if (!is(sketchObject, 'MSSymbolInstance')) {
-      throw new Error('You can only detach symbol');
-    }
-
-    const layer = sketchObject.detachByReplacingWithGroup();
-
-    this.updateObjectID(layer.objectID());
-
-    return layer;
-  }
-
   addLayers(instances) {
     const { context } = this;
 
