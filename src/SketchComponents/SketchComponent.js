@@ -65,8 +65,6 @@ class SketchComponent extends ContextManager {
 
   remove() {
     const { layer, objectID } = this;
-    console.log(objectID);
-    console.log(layer);
     layer.remove();
     store.delete(objectID);
   }
@@ -81,13 +79,13 @@ class SketchComponent extends ContextManager {
   }
 
   copyWithLayer(layer) {
-    const origin = Object.create(Object.getPrototypeOf(this));
-
     const newLayer = layer.duplicate();
-
     const newObjectID = String(newLayer.id);
+
+    const origin = Object.create(Object.getPrototypeOf(this));
     const newComponent = Object.assign(origin, this);
     newComponent.updateObjectID(newObjectID);
+
     const data = { layer: newLayer, component: newComponent, payload: this.payload };
     store.set(newObjectID, data);
 

@@ -8,9 +8,6 @@ const option = {
 class Radio extends SketchComponent {
   constructor(context, payload) {
     super(context, payload, option);
-    this.state = {
-      height: 0,
-    };
   }
 
   import({ options }) {
@@ -19,7 +16,6 @@ class Radio extends SketchComponent {
     const radioGroup = page.newGroup({ name: 'radio' });
     const radioItem = this.createSymbolInstanceByPath('radio/normal');
     const { height } = getRectOfNativeLayer(radioItem);
-    this.setState({ height });
 
     const instances = options.map(() => radioItem.copy());
     radioGroup.sketchObject.addLayers(instances);
@@ -33,7 +29,6 @@ class Radio extends SketchComponent {
     });
 
     radioGroup.iterate(layer => {
-      console.log(layer);
       layer.sketchObject.detachByReplacingWithGroup();
     });
 
