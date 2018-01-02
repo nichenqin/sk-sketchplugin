@@ -19,14 +19,24 @@ export default {
       type: String,
       default: '',
     },
+    events: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
     propertiesCode() {
       return Object.keys(this.properties).reduce((str, key) => `${str} :${key}="${key}"`, '');
     },
+    eventsCode() {
+      return this.events.reduce(
+        (str, { event, description }) => `${str} @${event}="${description}"`,
+        '',
+      );
+    },
     htmlCode() {
-      const { tag, propertiesCode, innerText } = this;
-      return `<${tag}${propertiesCode}>
+      const { tag, propertiesCode, innerText, eventsCode } = this;
+      return `<${tag}${propertiesCode}${eventsCode}>
   ${innerText}
 </${tag}>`;
     },

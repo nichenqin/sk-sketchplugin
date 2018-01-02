@@ -9451,6 +9451,17 @@ module.exports = g;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -9633,6 +9644,12 @@ var data = {
     innerText: {
       type: String,
       default: ''
+    },
+    events: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
     }
   },
   computed: {
@@ -9641,12 +9658,20 @@ var data = {
         return str + ' :' + key + '="' + key + '"';
       }, '');
     },
+    eventsCode: function eventsCode() {
+      return this.events.reduce(function (str, _ref) {
+        var event = _ref.event,
+            description = _ref.description;
+        return str + ' @' + event + '="' + description + '"';
+      }, '');
+    },
     htmlCode: function htmlCode() {
       var tag = this.tag,
           propertiesCode = this.propertiesCode,
-          innerText = this.innerText;
+          innerText = this.innerText,
+          eventsCode = this.eventsCode;
 
-      return '<' + tag + propertiesCode + '>\n  ' + innerText + '\n</' + tag + '>';
+      return '<' + tag + propertiesCode + eventsCode + '>\n  ' + innerText + '\n</' + tag + '>';
     }
   }
 });
@@ -10963,7 +10988,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      nativeEvents: ['click', 'dbclick'],
+      nativeEvents: ['click', 'dbclick', 'mousedown', 'mouseup', 'mousemove', 'mouseup'],
       componentEvents: [],
       usedEvents: []
     };
@@ -10981,7 +11006,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     handleAddEvent: function handleAddEvent() {
       this.usedEvents.push({
         event: '',
-        desc: ''
+        description: ''
       });
     }
   }
@@ -11022,7 +11047,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -11240,6 +11265,16 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("div", { staticClass: "form-group mb-3" }, [
+        _c("label", [_vm._v(" Path ")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "alert alert-success", attrs: { role: "alert" } },
+          [_vm._v("\n      " + _vm._s(_vm.path) + "\n    ")]
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "form",
         {
@@ -11252,16 +11287,6 @@ var render = function() {
           }
         },
         [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v(" Path ")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "alert alert-success", attrs: { role: "alert" } },
-              [_vm._v("\n        " + _vm._s(_vm.path) + "\n      ")]
-            )
-          ]),
-          _vm._v(" "),
           _c(
             "button",
             {
@@ -11276,55 +11301,87 @@ var render = function() {
             [_vm._v("add event")]
           ),
           _vm._v(" "),
-          _vm._l(_vm.usedEvents, function(ev, index) {
-            return _c("div", { key: index, staticClass: "input-group mb-3" }, [
-              _vm._m(0, true),
+          _vm._l(_vm.usedEvents, function(usedEvent, index) {
+            return _c("div", { key: index, staticClass: "mb-3" }, [
+              _c("div", { staticClass: "input-group mb-3" }, [
+                _vm._m(0, true),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.usedEvents[index].event,
+                        expression: "usedEvents[index].event"
+                      }
+                    ],
+                    staticClass: "custom-select",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.usedEvents[index],
+                          "event",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("Choose a type...")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.domEvents, function(domEvent) {
+                      return _c("option", { domProps: { value: domEvent } }, [
+                        _vm._v(_vm._s(domEvent))
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ]),
               _vm._v(" "),
-              _c(
-                "select",
-                {
+              _c("div", { staticClass: "input-group" }, [
+                _vm._m(1, true),
+                _vm._v(" "),
+                _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.usedEvents[index].event,
-                      expression: "usedEvents[index].event"
+                      value: _vm.usedEvents[index].description,
+                      expression: "usedEvents[index].description"
                     }
                   ],
-                  staticClass: "custom-select",
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.usedEvents[index].description },
                   on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
                       _vm.$set(
                         _vm.usedEvents[index],
-                        "event",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
+                        "description",
+                        $event.target.value
                       )
                     }
                   }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("Choose a type...")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.domEvents, function(e) {
-                    return _c("option", { domProps: { value: e } }, [
-                      _vm._v(_vm._s(e))
-                    ])
-                  })
-                ],
-                2
-              )
+                })
+              ])
             ])
           }),
           _vm._v(" "),
@@ -11371,7 +11428,7 @@ var render = function() {
           _vm._v(" "),
           _vm.isStatic
             ? _c("div", { staticClass: "input-group mb-3" }, [
-                _vm._m(1),
+                _vm._m(2),
                 _vm._v(" "),
                 _c("input", {
                   directives: [
@@ -11398,7 +11455,7 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c(
               "select",
@@ -11444,7 +11501,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(3),
+            _vm._m(4),
             _vm._v(" "),
             _c(
               "select",
@@ -11524,7 +11581,8 @@ var render = function() {
         attrs: {
           tag: "button",
           properties: _vm.properties,
-          innerText: _vm.isStatic ? _vm.text : "{{ text }}"
+          innerText: _vm.isStatic ? _vm.text : "{{ text }}",
+          events: _vm.usedEvents
         }
       }),
       _vm._v(" "),
@@ -11540,6 +11598,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("label", { staticClass: "input-group-text" }, [_vm._v("Events")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("Description")])
     ])
   },
   function() {

@@ -1,23 +1,33 @@
 <template>
   <div>
-    <form class="mb-3" @submit.prevent="handleImport">
-      <div class="form-group">
-        <label> Path </label>
-        <div class="alert alert-success" role="alert">
-          {{ path }}
-        </div>
+    <div class="form-group mb-3">
+      <label> Path </label>
+      <div class="alert alert-success" role="alert">
+        {{ path }}
       </div>
+    </div>
+
+    <form class="mb-3" @submit.prevent="handleImport">
 
       <button class="btn btn-secondary btn-lg btn-block mb-3" @click.prevent="handleAddEvent">add event</button>
 
-      <div class="input-group mb-3" v-for="(ev, index) in usedEvents" :key="index">
-        <div class="input-group-prepend">
-          <label class="input-group-text">Events</label>
+      <div class="mb-3" v-for="(usedEvent, index) in usedEvents" :key="index">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text">Events</label>
+          </div>
+          <select class="custom-select" v-model="usedEvents[index].event">
+            <option value="">Choose a type...</option>
+            <option v-for="domEvent of domEvents" :value="domEvent">{{ domEvent }}</option>
+          </select>
         </div>
-        <select class="custom-select" v-model="usedEvents[index].event">
-          <option value="">Choose a type...</option>
-          <option v-for="e of domEvents" :value="e">{{ e }}</option>
-        </select>
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text">Description</label>
+          </div>
+          <input type="text" class="form-control" v-model="usedEvents[index].description">
+        </div>
       </div>
 
       <h6>数据类型</h6>
@@ -64,7 +74,8 @@
       </tb-button>
     </sk-preview>
 
-    <sk-code-html tag="button" :properties="properties" :innerText="isStatic ? text : '{{ text }}'"></sk-code-html>
+    <sk-code-html tag="button" :properties="properties" :innerText="isStatic ? text : '{{ text }}'"
+      :events="usedEvents"></sk-code-html>
 
     <sk-code-javascript :properties="properties"></sk-code-javascript>
   </div>

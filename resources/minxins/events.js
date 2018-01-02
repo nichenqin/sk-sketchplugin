@@ -1,7 +1,7 @@
 export default {
   data() {
     return {
-      nativeEvents: ['click', 'dbclick'],
+      nativeEvents: ['click', 'dbclick', 'mousedown', 'mouseup', 'mousemove', 'mouseup'],
       componentEvents: [],
       usedEvents: [],
     };
@@ -16,7 +16,7 @@ export default {
     handleAddEvent() {
       this.usedEvents.push({
         event: '',
-        desc: '',
+        description: '',
       });
     },
   },
