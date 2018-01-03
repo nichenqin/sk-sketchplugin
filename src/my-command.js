@@ -6,6 +6,7 @@ import Datepicker from './SketchComponents/Datepicker';
 import Text from './SketchComponents/Text';
 import LongInput from './SketchComponents/LongInput';
 import Radio from './SketchComponents/Radio';
+import Switch from './SketchComponents/Switch';
 
 import store from './store';
 
@@ -24,6 +25,8 @@ function createComponentInstance(context, name, payload) {
         return new LongInput(context, payload);
       case 'radio':
         return new Radio(context, payload);
+      case 'switch':
+        return new Switch(context, payload);
 
       default:
         return null;

@@ -9241,7 +9241,7 @@ module.exports = g;
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      components: ['button', 'list', 'text', 'long-input', 'radio', 'datepicker']
+      components: ['button', 'switch', 'list', 'text', 'long-input', 'radio', 'datepicker']
     };
   },
 
@@ -9267,6 +9267,7 @@ module.exports = g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Components_LongInput__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Components_Radio__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Components_Datepicker__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Components_Switch__ = __webpack_require__(270);
 //
 //
 //
@@ -9300,6 +9301,7 @@ module.exports = g;
 //
 //
 //
+
 
 
 
@@ -9319,7 +9321,8 @@ module.exports = g;
     SkText: __WEBPACK_IMPORTED_MODULE_4__Components_Text__["a" /* default */],
     SkLongInput: __WEBPACK_IMPORTED_MODULE_5__Components_LongInput__["a" /* default */],
     SkRadio: __WEBPACK_IMPORTED_MODULE_6__Components_Radio__["a" /* default */],
-    SkDatepicker: __WEBPACK_IMPORTED_MODULE_7__Components_Datepicker__["a" /* default */]
+    SkDatepicker: __WEBPACK_IMPORTED_MODULE_7__Components_Datepicker__["a" /* default */],
+    SkSwitch: __WEBPACK_IMPORTED_MODULE_8__Components_Switch__["a" /* default */]
   },
   data: function data() {
     return {
@@ -10380,8 +10383,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__assets_longInput_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__assets_longInput_sketch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__assets_radio_sketch__ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__assets_radio_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__assets_radio_sketch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__styles_style_less__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__styles_style_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__assets_switch_sketch__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__assets_switch_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__assets_switch_sketch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__styles_style_less__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__styles_style_less__);
 /* eslint-disable */
 
 
@@ -10392,6 +10397,7 @@ __webpack_require__(255);
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_4__zhinan_tb_components__);
+
 
 
 
@@ -30899,6 +30905,169 @@ var TOTAL_LENGTH = 42;
     }
   }
 });
+
+/***/ }),
+/* 270 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Switch_vue__ = __webpack_require__(271);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__Switch_vue__["a" /* default */]);
+
+/***/ }),
+/* 271 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Switch_vue__ = __webpack_require__(273);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1a149427_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Switch_vue__ = __webpack_require__(272);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Switch_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1a149427_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Switch_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Components/Switch/Switch.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1a149427", Component.options)
+  } else {
+    hotAPI.reload("data-v-1a149427", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 272 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    [
+      _c("h1", [_vm._v("Switch")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary btn-lg btn-block mb-3",
+          on: { click: _vm.handleImport }
+        },
+        [_vm._v("Import To Sketch")]
+      ),
+      _vm._v(" "),
+      _c("sk-preview", [_c("tb-switch")], 1)
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1a149427", esExports)
+  }
+}
+
+/***/ }),
+/* 273 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Preview_vue__ = __webpack_require__(5);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      status: 'on'
+    };
+  },
+
+  props: ['currentComponent'],
+  components: {
+    TbSwitch: __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__["TbSwitch"],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_2__Shared_Preview_vue__["a" /* default */]
+  },
+  computed: {
+    path: function path() {
+      var status = this.status;
+
+      return 'switch/' + status;
+    }
+  },
+  methods: {
+    handleImport: function handleImport() {
+      var currentComponent = this.currentComponent,
+          path = this.path;
+
+      var payload = { path: path };
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', currentComponent, payload);
+    }
+  }
+});
+
+/***/ }),
+/* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "switch.sketch?7121c15a1356eb898108acd8882af71a";
 
 /***/ })
 /******/ ]);
