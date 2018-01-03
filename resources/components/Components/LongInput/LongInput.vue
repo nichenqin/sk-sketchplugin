@@ -19,7 +19,7 @@
             Height
           </div>
         </div>
-        <input type="number" v-model="height" class="form-control">
+        <input type="number" v-model.number="height" class="form-control">
       </div>
 
       <div class="input-group mb-3">

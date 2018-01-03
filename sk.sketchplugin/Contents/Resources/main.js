@@ -12695,9 +12695,10 @@ var render = function() {
               directives: [
                 {
                   name: "model",
-                  rawName: "v-model",
+                  rawName: "v-model.number",
                   value: _vm.height,
-                  expression: "height"
+                  expression: "height",
+                  modifiers: { number: true }
                 }
               ],
               staticClass: "form-control",
@@ -12708,7 +12709,10 @@ var render = function() {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.height = $event.target.value
+                  _vm.height = _vm._n($event.target.value)
+                },
+                blur: function($event) {
+                  _vm.$forceUpdate()
                 }
               }
             })
