@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      components: ['button', 'list', 'text', 'long-input', 'radio'],
+      components: ['button', 'list', 'text', 'long-input', 'radio', 'datepicker'],
     };
   },
   props: ['currentComponent'],

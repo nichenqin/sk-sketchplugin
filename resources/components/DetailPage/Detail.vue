@@ -40,6 +40,7 @@ import SkList from '../Components/List';
 import SkText from '../Components/Text';
 import SkLongInput from '../Components/LongInput';
 import SkRadio from '../Components/Radio';
+import SkDatepicker from '../Components/Datepicker';
 
 export default {
   name: 'app',
@@ -49,6 +50,7 @@ export default {
     SkText,
     SkLongInput,
     SkRadio,
+    SkDatepicker,
   },
   data() {
     return {

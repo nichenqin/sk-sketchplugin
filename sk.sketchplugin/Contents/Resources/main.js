@@ -9241,7 +9241,7 @@ module.exports = g;
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      components: ['button', 'list', 'text', 'long-input', 'radio']
+      components: ['button', 'list', 'text', 'long-input', 'radio', 'datepicker']
     };
   },
 
@@ -9266,6 +9266,7 @@ module.exports = g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Components_Text__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Components_LongInput__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Components_Radio__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Components_Datepicker__ = __webpack_require__(266);
 //
 //
 //
@@ -9299,6 +9300,7 @@ module.exports = g;
 //
 //
 //
+
 
 
 
@@ -9316,7 +9318,8 @@ module.exports = g;
     SkList: __WEBPACK_IMPORTED_MODULE_3__Components_List__["a" /* default */],
     SkText: __WEBPACK_IMPORTED_MODULE_4__Components_Text__["a" /* default */],
     SkLongInput: __WEBPACK_IMPORTED_MODULE_5__Components_LongInput__["a" /* default */],
-    SkRadio: __WEBPACK_IMPORTED_MODULE_6__Components_Radio__["a" /* default */]
+    SkRadio: __WEBPACK_IMPORTED_MODULE_6__Components_Radio__["a" /* default */],
+    SkDatepicker: __WEBPACK_IMPORTED_MODULE_7__Components_Datepicker__["a" /* default */]
   },
   data: function data() {
     return {
@@ -30713,6 +30716,189 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 
 // exports
 
+
+/***/ }),
+/* 266 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Datepicker_vue__ = __webpack_require__(267);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__Datepicker_vue__["a" /* default */]);
+
+/***/ }),
+/* 267 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Datepicker_vue__ = __webpack_require__(269);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7c5849a7_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Datepicker_vue__ = __webpack_require__(268);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Datepicker_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7c5849a7_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Datepicker_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Components/Datepicker/Datepicker.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7c5849a7", Component.options)
+  } else {
+    hotAPI.reload("data-v-7c5849a7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 268 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", [
+    _c("h1", [_vm._v("Datepicker")]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary btn-lg btn-block",
+        on: { click: _vm.handleImport }
+      },
+      [_vm._v("Import To Sketch")]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7c5849a7", esExports)
+  }
+}
+
+/***/ }),
+/* 269 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__);
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+//
+//
+//
+//
+//
+//
+//
+
+
+
+var TOTAL_LENGTH = 42;
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  props: ['currentComponent'],
+  data: function data() {
+    return {
+      currentYear: new Date().getFullYear(),
+      currentMonth: new Date().getMonth(),
+      currentDay: new Date().getDate()
+    };
+  },
+
+  computed: {
+    currentMonthLength: function currentMonthLength() {
+      return new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
+    },
+    currentMonthDateList: function currentMonthDateList() {
+      var _this = this;
+
+      return [].concat(_toConsumableArray(new Array(this.currentMonthLength))).map(function (value, index) {
+        return {
+          year: _this.currentYear,
+          month: _this.currentMonth + 1,
+          day: index + 1
+        };
+      });
+    },
+    currentMonthStartDay: function currentMonthStartDay() {
+      return new Date(this.currentYear, this.currentMonth, 1).getDay();
+    },
+    previousMonthDateList: function previousMonthDateList() {
+      var previousMonthLength = new Date(this.currentYear, this.currentMonth, 0).getDate();
+      var year = this.currentMonth <= 0 ? this.currentYear - 1 : this.currentYear;
+      var month = this.currentMonth <= 0 ? 12 : this.currentMonth;
+      return [].concat(_toConsumableArray(new Array(previousMonthLength))).map(function (value, index) {
+        return {
+          year: year,
+          month: month,
+          day: index + 1
+        };
+      }).reverse().slice(0, this.currentMonthStartDay).reverse();
+    },
+    nextMonthDateList: function nextMonthDateList() {
+      var length = TOTAL_LENGTH - this.currentMonthLength - this.currentMonthStartDay;
+      var year = this.currentMonth + 2 >= 12 ? this.currentYear + 1 : this.currentYear;
+      var month = this.currentMonth + 2 >= 12 ? 1 : this.currentMonth + 2;
+      return [].concat(_toConsumableArray(new Array(length))).map(function (value, index) {
+        return {
+          year: year,
+          month: month,
+          day: index + 1
+        };
+      });
+    },
+    dateList: function dateList() {
+      return [].concat(_toConsumableArray(this.previousMonthDateList), _toConsumableArray(this.currentMonthDateList), _toConsumableArray(this.nextMonthDateList));
+    }
+  },
+  methods: {
+    handleImport: function handleImport() {
+      var currentComponent = this.currentComponent,
+          dateList = this.dateList;
+
+      var payload = { dateList: dateList };
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', currentComponent, payload);
+    }
+  }
+});
 
 /***/ })
 /******/ ]);
