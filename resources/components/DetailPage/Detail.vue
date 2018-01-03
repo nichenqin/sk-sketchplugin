@@ -39,6 +39,7 @@ import SkButton from '../Components/Button';
 import SkList from '../Components/List';
 import SkText from '../Components/Text';
 import SkLongInput from '../Components/LongInput';
+import SkShortInput from '../Components/ShortInput';
 import SkRadio from '../Components/Radio';
 import SkDatepicker from '../Components/Datepicker';
 import SkSwitch from '../Components/Switch';
@@ -50,6 +51,7 @@ export default {
     SkList,
     SkText,
     SkLongInput,
+    SkShortInput,
     SkRadio,
     SkDatepicker,
     SkSwitch,

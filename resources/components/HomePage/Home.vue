@@ -14,7 +14,16 @@
 export default {
   data() {
     return {
-      components: ['button', 'switch', 'list', 'text', 'long-input', 'radio', 'datepicker'],
+      components: [
+        'button',
+        'switch',
+        'list',
+        'text',
+        'longInput',
+        'radio',
+        'datepicker',
+        'shortInput',
+      ],
     };
   },
   props: ['currentComponent'],

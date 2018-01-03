@@ -5,6 +5,7 @@ import List from './SketchComponents/List';
 import Datepicker from './SketchComponents/Datepicker';
 import Text from './SketchComponents/Text';
 import LongInput from './SketchComponents/LongInput';
+import ShortInput from './SketchComponents/ShortInput';
 import Radio from './SketchComponents/Radio';
 import Switch from './SketchComponents/Switch';
 
@@ -12,7 +13,7 @@ import store from './store';
 
 function createComponentInstance(context, name, payload) {
   const instance = (() => {
-    switch (name.toLowerCase()) {
+    switch (name) {
       case 'button':
         return new Button(context, payload);
       case 'list':
@@ -21,8 +22,10 @@ function createComponentInstance(context, name, payload) {
         return new Datepicker(context, payload);
       case 'text':
         return new Text(context, payload);
-      case 'long-input':
+      case 'longInput':
         return new LongInput(context, payload);
+      case 'shortInput':
+        return new ShortInput(context, payload);
       case 'radio':
         return new Radio(context, payload);
       case 'switch':
