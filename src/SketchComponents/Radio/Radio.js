@@ -13,28 +13,31 @@ class Radio extends SketchComponent {
     };
   }
 
-  // iterateGroup(group) {
-  //   const { icon } = this.state;
-  //   group.iterate(itemGroup => {
-  //     itemGroup.iterate(layer => {
-  //       console.log(layer);
-  //     });
-  //   });
-  // }
+  iterateItemGroup(itemGroup, index) {
+    const { icon } = this.state;
+    const { options } = this.payload;
+    itemGroup.sketchObject.children().forEach(layer => {
+      if (is(layer, 'MSSymbolInstance')) {
+        itemGroup.sketchObject.removeLayer_(layer);
+        itemGroup.sketchObject.insertLayer_atIndex_(icon.copy(), 0);
+      }
+      if (is(layer, 'MSTextLayer')) {
+        layer.stringValue = options[index].value;
+      }
+    });
+    itemGroup.sketchObject.setIsLocked(true);
+  }
 
-  // componentDidSelected() {
-  //   const { selection } = this;
-  //   selection.iterateWithFilter('isGroup', group => {
-  //     group.iterateWithFilter('isGroup', itemGroup => {
-  //       itemGroup.sketchObject.children().forEach(c => {
-  //         if (is(c, 'MSSymbolInstance')) {
-  //           const icon = this.createSymbolInstanceByPath('icon/radio');
-  //           c.replaceWithInstanceOfSymbol(icon);
-  //         }
-  //       });
-  //     });
-  //   });
-  // }
+  componentDidSelected() {
+    const { selection } = this;
+    selection.iterateWithFilter('isGroup', group => {
+      let index = 0;
+      group.iterateWithFilter('isGroup', itemGroup => {
+        this.iterateItemGroup(itemGroup, index);
+        index += 1;
+      });
+    });
+  }
 
   import({ options }) {
     const { page } = this;

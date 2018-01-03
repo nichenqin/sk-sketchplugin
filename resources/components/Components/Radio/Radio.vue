@@ -19,7 +19,7 @@ import { RadioGroup as TbRadioGroup } from '@zhinan/tb-components';
 import SkPreview from '../../Shared/Preview.vue';
 
 const optionsData = [...new Array(3)].map((val, index) => ({
-  value: `选项${index}`,
+  value: `option-${index + 1}`,
   type: 'normal',
 }));
 
@@ -41,7 +41,8 @@ export default {
   },
   methods: {
     addOption() {
-      this.options.push({ value: 'option', type: 'normal' });
+      const len = this.options.length;
+      this.options.push({ value: `option-${len + 1}`, type: 'normal' });
     },
     removeOption() {
       this.options.pop();
