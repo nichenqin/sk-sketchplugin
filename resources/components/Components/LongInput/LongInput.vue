@@ -28,7 +28,7 @@
             Width
           </div>
         </div>
-        <input type="number" v-model="width" class="form-control">
+        <input type="number" v-model.number="width" class="form-control">
       </div>
 
       <button class="btn btn-primary btn-block btn-lg" type="submit">Import To Sketch</button>
