@@ -10,16 +10,16 @@ class Button extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ path }) {
+  import({ text, path, iconPath = 'icon/camera_large' }) {
     const button = this.createSymbolInstanceByPath(path);
     this.document.sketchObject.addLayer(button);
 
     button.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'text')) {
-        button.setValue_forOverridePoint_('test!!', overridePoint);
+        button.setValue_forOverridePoint_(text, overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon')) {
-        const icon = this.createSymbolInstanceByPath('icon/camera_large');
+        const icon = this.createSymbolInstanceByPath(iconPath);
         button.setValue_forOverridePoint_(icon.symbolID(), overridePoint);
       }
     });
