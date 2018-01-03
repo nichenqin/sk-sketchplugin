@@ -18,7 +18,10 @@ import PluginCall from 'sketch-module-web-view/client';
 import { RadioGroup as TbRadioGroup } from '@zhinan/tb-components';
 import SkPreview from '../../Shared/Preview.vue';
 
-const optionsData = [...new Array(3)].map(() => ({ value: 'option', type: 'normal' }));
+const optionsData = [...new Array(3)].map((val, index) => ({
+  value: `选项${index}`,
+  type: 'normal',
+}));
 
 export default {
   data() {
