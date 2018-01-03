@@ -30978,7 +30978,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "section",
+    "div",
     [
       _c("h1", [_vm._v("Switch")]),
       _vm._v(" "),
@@ -30991,7 +30991,21 @@ var render = function() {
         [_vm._v("Import To Sketch")]
       ),
       _vm._v(" "),
-      _c("sk-preview", [_c("tb-switch")], 1)
+      _c(
+        "sk-preview",
+        [
+          _c("tb-switch", {
+            model: {
+              value: _vm.status,
+              callback: function($$v) {
+                _vm.status = $$v
+              },
+              expression: "status"
+            }
+          })
+        ],
+        1
+      )
     ],
     1
   )

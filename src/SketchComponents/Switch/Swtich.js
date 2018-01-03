@@ -10,9 +10,7 @@ class Switch extends SketchComponent {
   }
 
   import({ path }) {
-    console.log(path);
     const instance = this.createSymbolInstanceByPath(path);
-    console.log(instance);
     this.document.sketchObject.addLayer(instance);
 
     return instance;

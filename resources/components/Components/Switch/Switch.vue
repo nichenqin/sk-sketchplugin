@@ -1,11 +1,11 @@
 <template>
-  <section>
+  <div>
     <h1>Switch</h1>
     <button class="btn btn-primary btn-lg btn-block mb-3" @click="handleImport">Import To Sketch</button>
     <sk-preview>
-      <tb-switch></tb-switch>
+      <tb-switch v-model="status"></tb-switch>
     </sk-preview>
-  </section>
+  </div>
 </template>
 
 <script>
