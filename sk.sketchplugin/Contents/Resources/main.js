@@ -10242,6 +10242,22 @@ var fontSizeConfig = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10250,8 +10266,11 @@ var fontSizeConfig = {
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      content: 'content',
+      content: '',
       status: 'normal',
+      height: 300,
+      width: 300,
+      placeholder: 'default placeholder',
       allStatus: ['normal', 'active', 'error', 'disable']
     };
   },
@@ -10272,9 +10291,14 @@ var fontSizeConfig = {
   methods: {
     handleImport: function handleImport() {
       var currentComponent = this.currentComponent,
-          path = this.path;
+          path = this.path,
+          content = this.content,
+          width = this.width,
+          height = this.height,
+          placeholder = this.placeholder;
 
-      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', currentComponent, { path: path });
+      var payload = { path: path, content: content, width: width, height: height, placeholder: placeholder };
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', currentComponent, payload);
     }
   }
 });
@@ -12441,27 +12465,6 @@ var render = function() {
           }
         },
         [
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.content,
-                expression: "content"
-              }
-            ],
-            staticClass: "form-control mb-3",
-            domProps: { value: _vm.content },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.content = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
             _vm._m(0),
             _vm._v(" "),
@@ -12501,6 +12504,58 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.height,
+                  expression: "height"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number" },
+              domProps: { value: _vm.height },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.height = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.width,
+                  expression: "width"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number" },
+              domProps: { value: _vm.width },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.width = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -12516,6 +12571,11 @@ var render = function() {
         "sk-preview",
         [
           _c("tb-long-input", {
+            attrs: {
+              height: _vm.height,
+              width: _vm.width,
+              placeholder: _vm.placeholder
+            },
             model: {
               value: _vm.content,
               callback: function($$v) {
@@ -12539,6 +12599,26 @@ var staticRenderFns = [
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("div", { staticClass: "input-group-text" }, [
         _vm._v("\n          Status\n        ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _vm._v("\n          Height\n        ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _vm._v("\n          Width\n        ")
       ])
     ])
   }

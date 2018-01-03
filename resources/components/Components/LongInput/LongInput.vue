@@ -2,8 +2,6 @@
   <div>
     <form @submit.prevent="handleImport">
 
-      <textarea class="form-control mb-3" v-model="content"></textarea>
-
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text">
@@ -15,12 +13,30 @@
         </select>
       </div>
 
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            Height
+          </div>
+        </div>
+        <input type="number" v-model="height" class="form-control">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            Width
+          </div>
+        </div>
+        <input type="number" v-model="width" class="form-control">
+      </div>
+
       <button class="btn btn-primary btn-block btn-lg" type="submit">Import To Sketch</button>
 
     </form>
 
     <sk-preview>
-      <tb-long-input v-model="content"></tb-long-input>
+      <tb-long-input v-model="content" :height="height" :width="width" :placeholder="placeholder"></tb-long-input>
     </sk-preview>
   </div>
 </template>
@@ -33,8 +49,11 @@ import SkPreview from '../../Shared/Preview.vue';
 export default {
   data() {
     return {
-      content: 'content',
+      content: '',
       status: 'normal',
+      height: 300,
+      width: 300,
+      placeholder: 'default placeholder',
       allStatus: ['normal', 'active', 'error', 'disable'],
     };
   },
@@ -51,8 +70,9 @@ export default {
   },
   methods: {
     handleImport() {
-      const { currentComponent, path } = this;
-      PluginCall('import', currentComponent, { path });
+      const { currentComponent, path, content, width, height, placeholder } = this;
+      const payload = { path, content, width, height, placeholder };
+      PluginCall('import', currentComponent, payload);
     },
   },
 };
