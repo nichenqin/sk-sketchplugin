@@ -52,6 +52,10 @@ export function is(layer, className) {
   return String(layer.className()) === className;
 }
 
+export function isOverridePointName(overridePoint, name) {
+  return String(overridePoint.layerName()) === name;
+}
+
 export function setFrame(
   layer,
   {
