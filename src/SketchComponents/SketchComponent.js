@@ -89,7 +89,11 @@ class SketchComponent extends ContextManager {
     const data = { layer: newLayer, component: newComponent, payload: this.payload };
     store.set(newObjectID, data);
 
-    newLayer.select();
+    if (typeof newLayer.select === 'function') {
+      newLayer.select();
+    } else {
+      newLayer.sketchObject.select_byExpandingSelection(true, false);
+    }
     return newComponent;
   }
 
