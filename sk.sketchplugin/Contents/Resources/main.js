@@ -32092,6 +32092,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -32101,6 +32106,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
+      showIcon: false,
       paths: [].concat(_toConsumableArray(new Array(4))).map(function (val, index) {
         return { value: 'path-' + (index + 1) };
       })
@@ -32131,9 +32137,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     },
     handleImport: function handleImport() {
       var currentComponent = this.currentComponent,
-          paths = this.paths;
+          paths = this.paths,
+          showIcon = this.showIcon;
 
-      var payload = { paths: paths };
+      var payload = { paths: paths, showIcon: showIcon };
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', currentComponent, payload);
     }
   }
@@ -32260,6 +32267,56 @@ var render = function() {
             })
           ),
           _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showIcon,
+                  expression: "showIcon"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "bread-icon" },
+              domProps: {
+                checked: Array.isArray(_vm.showIcon)
+                  ? _vm._i(_vm.showIcon, null) > -1
+                  : _vm.showIcon
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showIcon,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showIcon = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showIcon = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showIcon = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "bread-icon" }
+              },
+              [_vm._v("show icon")]
+            )
+          ]),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -32276,6 +32333,7 @@ var render = function() {
         [
           _c(
             "tb-breadcrumb",
+            { attrs: { "is-icon": _vm.showIcon } },
             _vm._l(_vm.paths, function(path) {
               return _c("tb-breadcrumb-item", [_vm._v(_vm._s(path.value))])
             })

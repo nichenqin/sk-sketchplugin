@@ -16,11 +16,16 @@
         </div>
       </div>
 
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="bread-icon" v-model="showIcon">
+        <label class="custom-control-label" for="bread-icon">show icon</label>
+      </div>
+
       <button class="btn btn-block btn-lg btn-primary" type="submit">Import To Sketch</button>
     </form>
 
     <sk-preview>
-      <tb-breadcrumb>
+      <tb-breadcrumb :is-icon="showIcon">
         <tb-breadcrumb-item v-for="path of paths">{{ path.value }}</tb-breadcrumb-item>
       </tb-breadcrumb>
     </sk-preview>
@@ -39,6 +44,7 @@ import SkPreview from '../../Shared/Preview.vue';
 export default {
   data() {
     return {
+      showIcon: false,
       paths: [...new Array(4)].map((val, index) => ({ value: `path-${index + 1}` })),
     };
   },
@@ -65,8 +71,8 @@ export default {
       this.paths.pop();
     },
     handleImport() {
-      const { currentComponent, paths } = this;
-      const payload = { paths };
+      const { currentComponent, paths, showIcon } = this;
+      const payload = { paths, showIcon };
       PluginCall('import', currentComponent, payload);
     },
   },

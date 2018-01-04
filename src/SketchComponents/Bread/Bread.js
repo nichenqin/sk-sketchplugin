@@ -10,14 +10,18 @@ class Bread extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ paths }) {
+  import({ paths, showIcon }) {
     const levels = paths.length;
-    const path = `bread/level_${levels}`;
+    const path = ['bread', showIcon ? 'Icon' : '', `level_${levels}`].filter(p => !!p).join('/');
     const instance = this.createSymbolInstanceByPath(path);
     this.document.sketchObject.addLayer(instance);
 
     const overridePoints = instance.overridePoints();
     overridePoints.forEach((overridePoint, index) => {
+      if (isOverridePointName(overridePoint, 'icon_home')) {
+        const icon = this.createSymbolInstanceByPath('icon/home');
+        instance.setValue_forOverridePoint(icon.symbolID(), overridePoint);
+      }
       if (isOverridePointName(overridePoint, `path_${index + 1}`)) {
         instance.setValue_forOverridePoint(paths[index].value, overridePoint);
       }
