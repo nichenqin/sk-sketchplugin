@@ -10544,6 +10544,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -10559,6 +10564,7 @@ var optionsData = [].concat(_toConsumableArray(new Array(3))).map(function (val,
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
+      isCol: true,
       options: optionsData
     };
   },
@@ -10569,6 +10575,9 @@ var optionsData = [].concat(_toConsumableArray(new Array(3))).map(function (val,
     TbRadioGroup: __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__["RadioGroup"]
   },
   computed: {
+    arrange: function arrange() {
+      return this.isCol ? undefined : 'row';
+    },
     optionValues: function optionValues() {
       return this.options.map(function (_ref) {
         var value = _ref.value;
@@ -13669,6 +13678,51 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
+      _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.isCol,
+              expression: "isCol"
+            }
+          ],
+          staticClass: "custom-control-input",
+          attrs: { type: "checkbox", id: "radioIsCol" },
+          domProps: {
+            checked: Array.isArray(_vm.isCol)
+              ? _vm._i(_vm.isCol, null) > -1
+              : _vm.isCol
+          },
+          on: {
+            change: function($event) {
+              var $$a = _vm.isCol,
+                $$el = $event.target,
+                $$c = $$el.checked ? true : false
+              if (Array.isArray($$a)) {
+                var $$v = null,
+                  $$i = _vm._i($$a, $$v)
+                if ($$el.checked) {
+                  $$i < 0 && (_vm.isCol = $$a.concat([$$v]))
+                } else {
+                  $$i > -1 &&
+                    (_vm.isCol = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+                }
+              } else {
+                _vm.isCol = $$c
+              }
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          { staticClass: "custom-control-label", attrs: { for: "radioIsCol" } },
+          [_vm._v("Column")]
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "button",
         {
@@ -13680,7 +13734,11 @@ var render = function() {
       _vm._v(" "),
       _c(
         "sk-preview",
-        [_c("tb-radio-group", { attrs: { options: _vm.optionValues } })],
+        [
+          _c("tb-radio-group", {
+            attrs: { options: _vm.optionValues, arrange: _vm.arrange }
+          })
+        ],
         1
       )
     ],

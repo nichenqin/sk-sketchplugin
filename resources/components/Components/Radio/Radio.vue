@@ -5,10 +5,15 @@
       <button class="btn btn-warning" @click="removeOption">Remove Option</button>
     </div>
 
+    <div class="custom-control custom-checkbox mb-3">
+      <input type="checkbox" class="custom-control-input" id="radioIsCol" v-model="isCol">
+      <label class="custom-control-label" for="radioIsCol">Column</label>
+    </div>
+
     <button class="btn btn-primary btn-lg btn-block" @click="handleImport">Import To Sketch</button>
 
     <sk-preview>
-      <tb-radio-group :options="optionValues"></tb-radio-group>
+      <tb-radio-group :options="optionValues" :arrange="arrange"></tb-radio-group>
     </sk-preview>
   </section>
 </template>
@@ -26,6 +31,7 @@ const optionsData = [...new Array(3)].map((val, index) => ({
 export default {
   data() {
     return {
+      isCol: true,
       options: optionsData,
     };
   },
@@ -35,6 +41,9 @@ export default {
     TbRadioGroup,
   },
   computed: {
+    arrange() {
+      return this.isCol ? undefined : 'row';
+    },
     optionValues() {
       return this.options.map(({ value }) => value);
     },
