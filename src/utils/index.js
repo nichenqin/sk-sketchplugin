@@ -10,7 +10,7 @@ const IDENTIFIER = 'superKit.webView';
 export function createWebview(context, handlers, title) {
   const options = {
     identifier: IDENTIFIER,
-    x: 0,
+    x: 300,
     y: 0,
     width: 400,
     height: 700,

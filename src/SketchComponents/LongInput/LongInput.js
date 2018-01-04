@@ -14,8 +14,8 @@ class LongInput extends SketchComponent {
     path, content, width, height, placeholder,
   }) {
     const instance = this.createSymbolInstanceByPath(path);
-    this.document.sketchObject.addLayer(instance);
     const icon = this.createSymbolInstanceByPath('icon_drag');
+    this.document.sketchObject.addLayer(instance);
 
     instance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'content')) {
