@@ -10268,6 +10268,15 @@ var fontSizeConfig = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10434,6 +10443,19 @@ var fontSizeConfig = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10446,6 +10468,8 @@ var fontSizeConfig = {
   data: function data() {
     return {
       type: 'text',
+      verify: '',
+      verifies: ['number', 'phone', 'email'],
       content: '',
       unit: '',
       autofocus: true,
@@ -12848,6 +12872,32 @@ var render = function() {
               directives: [
                 {
                   name: "model",
+                  rawName: "v-model",
+                  value: _vm.placeholder,
+                  expression: "placeholder"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.placeholder },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.placeholder = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
                   rawName: "v-model.number",
                   value: _vm.height,
                   expression: "height",
@@ -12872,7 +12922,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -12954,6 +13004,16 @@ var staticRenderFns = [
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("div", { staticClass: "input-group-text" }, [
         _vm._v("\n          Status\n        ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _vm._v("\n          Placeholder\n        ")
       ])
     ])
   },
@@ -13231,6 +13291,50 @@ var render = function() {
           _c("div", { staticClass: "input-group mb-3" }, [
             _vm._m(5),
             _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.verify,
+                    expression: "verify"
+                  }
+                ],
+                staticClass: "custom-select",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.verify = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [_vm._v("select one")]),
+                _vm._v(" "),
+                _vm._l(_vm.verifies, function(v) {
+                  return _c("option", { domProps: { value: v } }, [
+                    _vm._v(_vm._s(v))
+                  ])
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(6),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -13326,7 +13430,8 @@ var render = function() {
               unit: _vm.unit,
               autofocus: _vm.autofocus,
               placeholder: _vm.placeholder,
-              width: _vm.width
+              width: _vm.width,
+              verify: _vm.verify
             },
             model: {
               value: _vm.content,
@@ -13391,6 +13496,16 @@ var staticRenderFns = [
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("div", { staticClass: "input-group-text" }, [
         _vm._v("\n          Unit\n        ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _vm._v("\n          Verify\n        ")
       ])
     ])
   },

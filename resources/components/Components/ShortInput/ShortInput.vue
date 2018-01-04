@@ -52,6 +52,18 @@
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text">
+            Verify
+          </div>
+        </div>
+        <select class="custom-select" v-model="verify">
+          <option value="">select one</option>
+          <option :value="v" v-for="v of verifies">{{ v }}</option>
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
             Placeholder
           </div>
         </div>
@@ -69,7 +81,8 @@
 
     <sk-preview>
       <tb-short-input v-model="content" :type="type" :min-length="minLength" :max-length="maxLength"
-        :unit="unit" :autofocus="autofocus" :placeholder="placeholder" :width="width"></tb-short-input>
+        :unit="unit" :autofocus="autofocus" :placeholder="placeholder" :width="width"
+        :verify="verify"></tb-short-input>
     </sk-preview>
   </div>
 </template>
@@ -86,6 +99,8 @@ export default {
   data() {
     return {
       type: 'text',
+      verify: '',
+      verifies: ['number', 'phone', 'email'],
       content: '',
       unit: '',
       autofocus: true,

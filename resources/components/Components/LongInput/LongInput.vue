@@ -16,6 +16,15 @@
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text">
+            Placeholder
+          </div>
+        </div>
+        <input type="text" class="form-control" v-model="placeholder">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
             Height
           </div>
         </div>
