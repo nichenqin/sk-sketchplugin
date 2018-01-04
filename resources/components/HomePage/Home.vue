@@ -25,6 +25,7 @@ export default {
         'datepicker',
         'shortInput',
         'uploadFile',
+        'pagination',
       ],
     };
   },

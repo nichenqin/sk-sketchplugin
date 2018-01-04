@@ -10,6 +10,7 @@ import ShortInput from './SketchComponents/ShortInput';
 import Radio from './SketchComponents/Radio';
 import Switch from './SketchComponents/Switch';
 import UploadFile from './SketchComponents/UploadFile';
+import Pagination from './SketchComponents/Pagination';
 
 import store from './store';
 
@@ -36,6 +37,8 @@ function createComponentInstance(context, name, payload) {
         return new Switch(context, payload);
       case 'uploadFile':
         return new UploadFile(context, payload);
+      case 'pagination':
+        return new Pagination(context, payload);
 
       default:
         return null;

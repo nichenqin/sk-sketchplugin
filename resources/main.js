@@ -19,7 +19,8 @@ import './assets/longInput.sketch';
 import './assets/shortInput.sketch';
 import './assets/radio.sketch';
 import './assets/switch.sketch';
-import './assets/uploadFile.sketch';
+import './assets/switch.sketch';
+import './assets/pagination.sketch';
 
 // import your style files inside main.js, not html link tag
 import './styles/style.less';
