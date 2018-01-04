@@ -47,7 +47,7 @@
         <div class="input-group-prepend">
           <label class="input-group-text">Type</label>
         </div>
-        <select class="custom-select" v-model="type" @change="updatePath">
+        <select class="custom-select" v-model="type">
           <option value="">Choose a type...</option>
           <option v-for="t of types" :value="t">{{ t }}</option>
         </select>
@@ -59,7 +59,7 @@
             Status
           </div>
         </div>
-        <select class="custom-select" v-model="status" @change="updatePath">
+        <select class="custom-select" v-model="status">
           <option :value="s" v-for="s of allStatus">{{ s }}</option>
         </select>
       </div>
@@ -230,6 +230,9 @@ export default {
   watch: {
     text(text) {
       this.updateText(text);
+    },
+    path(path) {
+      this.updatePath(path);
     },
   },
 };
