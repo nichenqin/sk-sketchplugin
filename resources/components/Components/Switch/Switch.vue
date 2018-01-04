@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import PluginCall from 'sketch-module-web-view/client';
 import { TbSwitch } from '@zhinan/tb-components';
 
 import SkPreview from '../../Shared/Preview.vue';
@@ -20,7 +19,6 @@ export default {
       status: 'on',
     };
   },
-  props: ['currentComponent'],
   components: {
     TbSwitch,
     SkPreview,
@@ -33,9 +31,9 @@ export default {
   },
   methods: {
     handleImport() {
-      const { currentComponent, path } = this;
+      const { path } = this;
       const payload = { path };
-      PluginCall('import', currentComponent, payload);
+      this.$emit('import', payload);
     },
   },
 };

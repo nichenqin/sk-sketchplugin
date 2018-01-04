@@ -49,8 +49,6 @@
 </template>
 
 <script>
-import PluginCall from 'sketch-module-web-view/client';
-
 import SkTextPreview from './TextPreview.vue';
 
 import SkPreview from '../../Shared/Preview.vue';
@@ -77,7 +75,6 @@ export default {
       currentFontSize: 40,
     };
   },
-  props: ['currentComponent'],
   components: {
     SkTextPreview,
     SkPreview,
@@ -105,7 +102,7 @@ export default {
     handleImport() {
       const { innerText, currentFontSize } = this;
       const payload = { text: innerText, fontSize: currentFontSize };
-      PluginCall('import', this.currentComponent, payload);
+      this.$emit('import', payload);
     },
   },
 };

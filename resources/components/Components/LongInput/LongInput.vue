@@ -56,7 +56,6 @@
 </template>
 
 <script>
-import PluginCall from 'sketch-module-web-view/client';
 import { LongInput as TbLongInput } from '@zhinan/tb-components';
 
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
@@ -77,7 +76,6 @@ export default {
       allStatus: ['normal', 'active', 'error', 'disable'],
     };
   },
-  props: ['currentComponent'],
   components: {
     TbLongInput,
     SkPreview,
@@ -118,9 +116,9 @@ export default {
   },
   methods: {
     handleImport() {
-      const { currentComponent, path, content, width, height, placeholder } = this;
+      const { path, content, width, height, placeholder } = this;
       const payload = { path, content, width, height, placeholder };
-      PluginCall('import', currentComponent, payload);
+      this.$emit('import', payload);
     },
   },
 };

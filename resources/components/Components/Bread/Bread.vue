@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import PluginCall from 'sketch-module-web-view/client';
 import {
   Breadcrumb as TbBreadcrumb,
   BreadcrumbItem as TbBreadcrumbItem,
@@ -48,7 +47,6 @@ export default {
       paths: [...new Array(4)].map((val, index) => ({ value: `path-${index + 1}` })),
     };
   },
-  props: ['currentComponent'],
   components: {
     TbBreadcrumb,
     TbBreadcrumbItem,
@@ -71,9 +69,9 @@ export default {
       this.paths.pop();
     },
     handleImport() {
-      const { currentComponent, paths, showIcon } = this;
+      const { paths, showIcon } = this;
       const payload = { paths, showIcon };
-      PluginCall('import', currentComponent, payload);
+      this.$emit('import', payload);
     },
   },
 };

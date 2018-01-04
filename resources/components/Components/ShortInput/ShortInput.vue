@@ -88,7 +88,6 @@
 </template>
 
 <script>
-import PluginCall from 'sketch-module-web-view/client';
 import { ShortInput as TbShortInput } from '@zhinan/tb-components';
 
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
@@ -130,9 +129,9 @@ export default {
   },
   methods: {
     handleImport() {
-      const { currentComponent, path, content, unit, placeholder, width } = this;
+      const { path, content, unit, placeholder, width } = this;
       const payload = { path, content, unit, placeholder, width };
-      PluginCall('import', currentComponent, payload);
+      this.$emit('import', payload);
     },
   },
 };

@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import PluginCall from 'sketch-module-web-view/client';
 import { TbTable } from '@zhinan/tb-components';
 import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
@@ -101,7 +100,7 @@ export default {
     handleImport() {
       const { rows, columns } = this;
       const payload = { rows, columns };
-      PluginCall('import', 'list', payload);
+      this.$emit('import', payload);
     },
   },
   watch: {

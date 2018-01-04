@@ -82,7 +82,6 @@
 </template>
 
 <script>
-import PluginCall from 'sketch-module-web-view/client';
 import { TbButton } from '@zhinan/tb-components';
 
 import Events from '../../../minxins/events';
@@ -216,7 +215,7 @@ export default {
       const { text, path, type } = this;
       const payload = { text, path };
       if (type === 'menu') payload.iconPath = 'icon/arrowDown';
-      PluginCall('import', this.currentComponent, payload);
+      this.$emit('import', payload);
     },
   },
 };

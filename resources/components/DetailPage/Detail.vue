@@ -16,7 +16,8 @@
       <strong>{{ objectID }}</strong>
     </div>
 
-    <component class="mb-3" :is="`sk-${currentComponent}`" :currentComponent="currentComponent"></component>
+    <component class="mb-3" :is="`sk-${currentComponent}`" :currentComponent="currentComponent"
+      @import="handleImport"></component>
 
     <div class="btn-group btn-group-lg mb-3 d-flex" role="group">
       <button class="btn btn-primary" :disabled="!objectID" @click="handleSelect">Select</button>
@@ -32,7 +33,7 @@
 </template>
 
 <script>
-import pluginCall from 'sketch-module-web-view/client';
+import PluginCall from 'sketch-module-web-view/client';
 import bridgeHandler from '../../assets/js/handler';
 
 import SkBread from '../Components/Bread';
@@ -74,26 +75,29 @@ export default {
     },
     handleSelect() {
       if (!this.objectID) return;
-      pluginCall('select', this.objectID);
+      PluginCall('select', this.objectID);
     },
     handelDeselect() {
       if (!this.objectID) return;
-      pluginCall('deselect', this.objectID);
+      PluginCall('deselect', this.objectID);
       this.clearObjectID();
     },
     handleDuplicate() {
       if (!this.objectID) return;
-      pluginCall('duplicate', this.objectID);
+      PluginCall('duplicate', this.objectID);
     },
     handleRemove() {
-      pluginCall('remove', this.objectID);
+      PluginCall('remove', this.objectID);
+    },
+    handleImport(payload) {
+      PluginCall('import', this.currentComponent, payload);
     },
     test() {
-      pluginCall('test');
+      PluginCall('test');
     },
   },
   beforeCreate() {
-    pluginCall('appLoaded');
+    PluginCall('appLoaded');
     bridgeHandler(({ layerName, objectID }) => {
       this.layerName = layerName;
       this.objectID = objectID;

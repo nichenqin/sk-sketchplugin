@@ -35,7 +35,6 @@ export default {
       options: optionsData,
     };
   },
-  props: ['currentComponent'],
   components: {
     SkPreview,
     TbRadioGroup,
@@ -57,9 +56,9 @@ export default {
       this.options.pop();
     },
     handleImport() {
-      const { currentComponent, options } = this;
+      const { options } = this;
       const payload = { options };
-      PluginCall('import', currentComponent, payload);
+      this.$emit('import', payload);
     },
   },
 };
