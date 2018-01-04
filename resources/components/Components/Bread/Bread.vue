@@ -1,0 +1,80 @@
+<template>
+  <section>
+    <h1>Bread</h1>
+
+    <div class="btn-group d-flex mb-3">
+      <button class="btn btn-primary btn-lg" :disabled="levels >= 4" @click="add">Add</button>
+      <button class="btn btn-warning btn-lg" :disabled="levels <= 1" @click="remove">Remove</button>
+    </div>
+
+    <form @submit.prevent="handleImport">
+
+      <div class="form-row mb-3">
+        <div class="col" v-for="(path, index) of paths" :key="index">
+          <label :for="`bread-path-${index}`">path-{{ index + 1 }}</label>
+          <input type="text" class="form-control" :id="`bread-path-${index}`" v-model="path.value">
+        </div>
+      </div>
+
+      <button class="btn btn-block btn-lg btn-primary" type="submit">Import To Sketch</button>
+    </form>
+
+    <sk-preview>
+      <tb-breadcrumb>
+        <tb-breadcrumb-item v-for="path of paths">{{ path.value }}</tb-breadcrumb-item>
+      </tb-breadcrumb>
+    </sk-preview>
+  </section>
+</template>
+
+<script>
+import PluginCall from 'sketch-module-web-view/client';
+import {
+  Breadcrumb as TbBreadcrumb,
+  BreadcrumbItem as TbBreadcrumbItem,
+} from '@zhinan/tb-components';
+
+import SkPreview from '../../Shared/Preview.vue';
+
+export default {
+  data() {
+    return {
+      paths: [...new Array(4)].map((val, index) => ({ value: `path-${index + 1}` })),
+    };
+  },
+  props: ['currentComponent'],
+  components: {
+    TbBreadcrumb,
+    TbBreadcrumbItem,
+    SkPreview,
+  },
+  computed: {
+    levels() {
+      return this.paths.length;
+    },
+  },
+  methods: {
+    add() {
+      if (this.levels >= 4) return;
+
+      this.paths.push({ value: `path-${this.levels + 1}` });
+    },
+    remove() {
+      if (this.levels <= 1) return;
+
+      this.paths.pop();
+    },
+    handleImport() {
+      const { currentComponent, paths } = this;
+      const payload = { paths };
+      PluginCall('import', currentComponent, payload);
+    },
+  },
+};
+</script>
+
+<style scoped>
+.btn {
+  flex: 1;
+}
+</style>

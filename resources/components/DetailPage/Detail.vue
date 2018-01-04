@@ -35,6 +35,7 @@
 import pluginCall from 'sketch-module-web-view/client';
 import bridgeHandler from '../../assets/js/handler';
 
+import SkBread from '../Components/Bread';
 import SkButton from '../Components/Button';
 import SkList from '../Components/List';
 import SkText from '../Components/Text';
@@ -47,6 +48,7 @@ import SkSwitch from '../Components/Switch';
 export default {
   name: 'app',
   components: {
+    SkBread,
     SkButton,
     SkList,
     SkText,

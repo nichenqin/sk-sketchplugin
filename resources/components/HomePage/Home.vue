@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       components: [
+        'bread',
         'button',
         'switch',
         'list',

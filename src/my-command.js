@@ -1,5 +1,6 @@
 import { createWebview, dispatchToWebview } from './utils';
 import ContextManager from './ContextManager';
+import Bread from './SketchComponents/Bread';
 import Button from './SketchComponents/Button';
 import List from './SketchComponents/List';
 import Datepicker from './SketchComponents/Datepicker';
@@ -14,6 +15,8 @@ import store from './store';
 function createComponentInstance(context, name, payload) {
   const instance = (() => {
     switch (name) {
+      case 'bread':
+        return new Bread(context, payload);
       case 'button':
         return new Button(context, payload);
       case 'list':
