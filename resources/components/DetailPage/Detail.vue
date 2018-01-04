@@ -45,6 +45,7 @@ import SkShortInput from '../Components/ShortInput';
 import SkRadio from '../Components/Radio';
 import SkDatepicker from '../Components/Datepicker';
 import SkSwitch from '../Components/Switch';
+import SkUploadFile from '../Components/UploadFile';
 
 export default {
   name: 'app',
@@ -58,6 +59,7 @@ export default {
     SkRadio,
     SkDatepicker,
     SkSwitch,
+    SkUploadFile,
   },
   data() {
     return {

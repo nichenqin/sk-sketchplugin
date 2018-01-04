@@ -24,6 +24,7 @@ export default {
         'radio',
         'datepicker',
         'shortInput',
+        'uploadFile',
       ],
     };
   },

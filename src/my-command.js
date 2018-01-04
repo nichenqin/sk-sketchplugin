@@ -9,6 +9,7 @@ import LongInput from './SketchComponents/LongInput';
 import ShortInput from './SketchComponents/ShortInput';
 import Radio from './SketchComponents/Radio';
 import Switch from './SketchComponents/Switch';
+import UploadFile from './SketchComponents/UploadFile';
 
 import store from './store';
 
@@ -33,6 +34,8 @@ function createComponentInstance(context, name, payload) {
         return new Radio(context, payload);
       case 'switch':
         return new Switch(context, payload);
+      case 'uploadFile':
+        return new UploadFile(context, payload);
 
       default:
         return null;

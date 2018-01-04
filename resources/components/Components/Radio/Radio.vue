@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import PluginCall from 'sketch-module-web-view/client';
 import { RadioGroup as TbRadioGroup } from '@zhinan/tb-components';
 import SkPreview from '../../Shared/Preview.vue';
 
