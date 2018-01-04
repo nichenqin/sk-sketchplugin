@@ -108,6 +108,30 @@ export default function (context) {
         sketch.message(error.message);
       }
     },
+    'button:updateText': (objectID, text) => {
+      try {
+        const { component: button } = store.get(objectID);
+        if (!button || !(button instanceof Button)) {
+          throw new TypeError();
+        }
+
+        button.updateText(text);
+      } catch (error) {
+        sketch.message(error.message);
+      }
+    },
+    'button:updatePath': (objectID, path) => {
+      try {
+        const { component: button } = store.get(objectID);
+        if (!button || !(button instanceof Button)) {
+          throw new TypeError();
+        }
+
+        button.replaceWithPath(path);
+      } catch (error) {
+        sketch.message(error.message);
+      }
+    },
   };
 
   createWebview(context, handlers, 'SuperKit');

@@ -17,7 +17,7 @@
     </div>
 
     <component class="mb-3" :is="`sk-${currentComponent}`" :currentComponent="currentComponent"
-      @import="handleImport"></component>
+      @import="handleImport" :objectID="objectID"></component>
 
     <div class="btn-group btn-group-lg mb-3 d-flex" role="group">
       <button class="btn btn-primary" :disabled="!objectID" @click="handleSelect">Select</button>
@@ -97,7 +97,7 @@ export default {
       PluginCall('import', this.currentComponent, payload);
     },
     test() {
-      PluginCall('test');
+      PluginCall('test', this.objectID);
     },
   },
   beforeCreate() {

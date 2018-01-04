@@ -9372,7 +9372,7 @@ module.exports = g;
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('import', this.currentComponent, payload);
     },
     test: function test() {
-      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('test');
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('test', this.objectID);
     }
   },
   beforeCreate: function beforeCreate() {
@@ -9506,14 +9506,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__minxins_events__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml_vue__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Preview_vue__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_Radio_RadioGroup_vue__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Shared_Radio_RadioButton_vue__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__minxins_events__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeHtml_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeJavascript_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_Preview_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Shared_Radio_RadioGroup_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Shared_Radio_RadioButton_vue__ = __webpack_require__(22);
 //
 //
 //
@@ -9597,6 +9599,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+
 
 
 
@@ -9684,16 +9687,16 @@ var data = {
     };
   },
 
-  props: ['currentComponent'],
+  props: ['currentComponent', 'objectID'],
   components: {
-    TbButton: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TbButton"],
-    SkCodeHtml: __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml_vue__["a" /* default */],
-    SkPreview: __WEBPACK_IMPORTED_MODULE_4__Shared_Preview_vue__["a" /* default */],
-    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__["a" /* default */],
-    SkRadioGroup: __WEBPACK_IMPORTED_MODULE_5__Shared_Radio_RadioGroup_vue__["a" /* default */],
-    SkRadioButton: __WEBPACK_IMPORTED_MODULE_6__Shared_Radio_RadioButton_vue__["a" /* default */]
+    TbButton: __WEBPACK_IMPORTED_MODULE_1__zhinan_tb_components__["TbButton"],
+    SkCodeHtml: __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeHtml_vue__["a" /* default */],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_5__Shared_Preview_vue__["a" /* default */],
+    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeJavascript_vue__["a" /* default */],
+    SkRadioGroup: __WEBPACK_IMPORTED_MODULE_6__Shared_Radio_RadioGroup_vue__["a" /* default */],
+    SkRadioButton: __WEBPACK_IMPORTED_MODULE_7__Shared_Radio_RadioButton_vue__["a" /* default */]
   },
-  mixins: [__WEBPACK_IMPORTED_MODULE_1__minxins_events__["a" /* default */]],
+  mixins: [__WEBPACK_IMPORTED_MODULE_2__minxins_events__["a" /* default */]],
   computed: {
     path: function path() {
       var currentComponent = this.currentComponent,
@@ -9747,6 +9750,19 @@ var data = {
       var payload = { text: text, path: path };
       if (type === 'menu') payload.iconPath = 'icon/arrowDown';
       this.$emit('import', payload);
+    },
+    updateText: function updateText(text) {
+      if (!this.objectID) return;
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('button:updateText', this.objectID, text);
+    },
+    updatePath: function updatePath() {
+      if (!this.objectID) return;
+      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('button:updatePath', this.objectID, this.path);
+    }
+  },
+  watch: {
+    text: function text(_text) {
+      this.updateText(_text);
     }
   }
 });
@@ -12316,19 +12332,22 @@ var render = function() {
                 ],
                 staticClass: "custom-select",
                 on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.type = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.type = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    _vm.updatePath
+                  ]
                 }
               },
               [
@@ -12362,19 +12381,22 @@ var render = function() {
                 ],
                 staticClass: "custom-select",
                 on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.status = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.status = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    _vm.updatePath
+                  ]
                 }
               },
               _vm._l(_vm.allStatus, function(s) {
@@ -14377,7 +14399,10 @@ var render = function() {
       _c("sk-" + _vm.currentComponent, {
         tag: "component",
         staticClass: "mb-3",
-        attrs: { currentComponent: _vm.currentComponent },
+        attrs: {
+          currentComponent: _vm.currentComponent,
+          objectID: _vm.objectID
+        },
         on: { import: _vm.handleImport }
       }),
       _vm._v(" "),

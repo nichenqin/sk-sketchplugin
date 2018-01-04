@@ -47,7 +47,7 @@
         <div class="input-group-prepend">
           <label class="input-group-text">Type</label>
         </div>
-        <select class="custom-select" v-model="type">
+        <select class="custom-select" v-model="type" @change="updatePath">
           <option value="">Choose a type...</option>
           <option v-for="t of types" :value="t">{{ t }}</option>
         </select>
@@ -59,7 +59,7 @@
             Status
           </div>
         </div>
-        <select class="custom-select" v-model="status">
+        <select class="custom-select" v-model="status" @change="updatePath">
           <option :value="s" v-for="s of allStatus">{{ s }}</option>
         </select>
       </div>
@@ -82,6 +82,7 @@
 </template>
 
 <script>
+import PluginCall from 'sketch-module-web-view/client';
 import { TbButton } from '@zhinan/tb-components';
 
 import Events from '../../../minxins/events';
@@ -167,7 +168,7 @@ export default {
       componentEvents: ['btn'],
     };
   },
-  props: ['currentComponent'],
+  props: ['currentComponent', 'objectID'],
   components: {
     TbButton,
     SkCodeHtml,
@@ -216,6 +217,19 @@ export default {
       const payload = { text, path };
       if (type === 'menu') payload.iconPath = 'icon/arrowDown';
       this.$emit('import', payload);
+    },
+    updateText(text) {
+      if (!this.objectID) return;
+      PluginCall('button:updateText', this.objectID, text);
+    },
+    updatePath() {
+      if (!this.objectID) return;
+      PluginCall('button:updatePath', this.objectID, this.path);
+    },
+  },
+  watch: {
+    text(text) {
+      this.updateText(text);
     },
   },
 };
