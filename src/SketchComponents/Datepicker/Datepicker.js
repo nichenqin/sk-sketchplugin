@@ -10,21 +10,32 @@ class Datepicker extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ dateList }) {
-    const { page } = this;
-    const datepickerPage = page.newGroup({ name: 'datepicker' });
-    const itemInstance = this.createSymbolInstanceByPath('datepicker/day/light');
-    const { height, width } = getRectOfNativeLayer(itemInstance);
+  import({
+    previousMonthDateList, currentMonthDateList, nextMonthDateList, dateList,
+  }) {
+    const { page, name } = this;
+    const datepickerPage = page.newGroup({ name });
 
-    const itemInstances = dateList.map(() => itemInstance.copy());
-    datepickerPage.sketchObject.addLayers(itemInstances);
+    const lightInstance = this.createSymbolInstanceByPath('datepicker/day/light');
+    const normalInstance = this.createSymbolInstanceByPath('datepicker/day/normal');
+    const { height, width } = getRectOfNativeLayer(normalInstance);
 
-    for (let i = 0; i < itemInstances.length; i += 1) {
-      const day = itemInstances[i];
+    const dayInstances = [
+      ...previousMonthDateList.map(() => lightInstance.copy()),
+      ...currentMonthDateList.map(() => normalInstance.copy()),
+      ...nextMonthDateList.map(() => lightInstance.copy()),
+    ];
+    datepickerPage.sketchObject.addLayers(dayInstances);
+
+    for (let i = 0; i < dayInstances.length; i += 1) {
+      const day = dayInstances[i];
       const row = Math.floor(i / 7);
       const column = i % 7;
       day.frame().setX_(width * column);
       day.frame().setY_(height * row);
+      day.overridePoints().forEach(overridePoint => {
+        day.setValue_forOverridePoint(String(dateList[i].day), overridePoint);
+      });
     }
 
     datepickerPage.adjustToFit();

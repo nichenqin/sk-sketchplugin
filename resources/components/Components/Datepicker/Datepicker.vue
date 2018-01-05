@@ -1,23 +1,37 @@
 <template>
   <section>
-    <h1>Datepicker</h1>
+
     <button class="btn btn-primary btn-lg btn-block" @click="handleImport">Import To Sketch</button>
+
+    <sk-preview>
+      <tb-picker v-model="today">
+        <tb-datepicker v-model="today"></tb-datepicker>
+      </tb-picker>
+    </sk-preview>
+
   </section>
 </template>
 
 <script>
-import PluginCall from 'sketch-module-web-view/client';
+import { Picker as TbPicker, Datepicker as TbDatepicker } from '@zhinan/tb-components';
+
+import SkPreview from '../../Shared/Preview.vue';
 
 const TOTAL_LENGTH = 42;
 
 export default {
-  props: ['currentComponent'],
   data() {
     return {
+      today: '',
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth(),
       currentDay: new Date().getDate(),
     };
+  },
+  components: {
+    SkPreview,
+    TbPicker,
+    TbDatepicker,
   },
   computed: {
     currentMonthLength() {
@@ -67,9 +81,9 @@ export default {
   },
   methods: {
     handleImport() {
-      const { currentComponent, dateList } = this;
-      const payload = { dateList };
-      PluginCall('import', currentComponent, payload);
+      const { previousMonthDateList, currentMonthDateList, nextMonthDateList, dateList } = this;
+      const payload = { previousMonthDateList, currentMonthDateList, nextMonthDateList, dateList };
+      this.$emit('import', payload);
     },
   },
 };
