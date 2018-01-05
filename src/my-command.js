@@ -11,6 +11,7 @@ import Radio from './SketchComponents/Radio';
 import Switch from './SketchComponents/Switch';
 import UploadFile from './SketchComponents/UploadFile';
 import Pagination from './SketchComponents/Pagination';
+import Rectangle from './SketchComponents/Rectangle';
 
 import store from './store';
 
@@ -39,6 +40,8 @@ function createComponentInstance(context, name, payload) {
         return new UploadFile(context, payload);
       case 'pagination':
         return new Pagination(context, payload);
+      case 'rectangle':
+        return new Rectangle(context, payload);
 
       default:
         return null;

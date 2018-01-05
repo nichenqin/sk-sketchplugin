@@ -47,6 +47,7 @@ import SkDatepicker from '../Components/Datepicker';
 import SkSwitch from '../Components/Switch';
 import SkUploadFile from '../Components/UploadFile';
 import SkPagination from '../Components/Pagination';
+import SkRectangle from '../Components/Rectangle';
 
 export default {
   name: 'app',
@@ -62,6 +63,7 @@ export default {
     SkSwitch,
     SkUploadFile,
     SkPagination,
+    SkRectangle,
   },
   data() {
     return {

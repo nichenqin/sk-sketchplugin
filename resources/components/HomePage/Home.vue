@@ -26,6 +26,7 @@ export default {
         'shortInput',
         'uploadFile',
         'pagination',
+        'rectangle',
       ],
     };
   },
