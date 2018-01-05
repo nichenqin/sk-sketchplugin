@@ -26,7 +26,7 @@
 
     <sk-preview>
       <tb-breadcrumb :is-icon="showIcon">
-        <tb-breadcrumb-item v-for="path of paths">{{ path.value }}</tb-breadcrumb-item>
+        <tb-breadcrumb-item v-for="(path, index) of paths" :key="index">{{ path.value }}</tb-breadcrumb-item>
       </tb-breadcrumb>
     </sk-preview>
   </section>

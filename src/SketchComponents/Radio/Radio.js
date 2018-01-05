@@ -23,7 +23,7 @@ class Radio extends SketchComponent {
     itemInstances.forEach((item, index) => {
       item.overridePoints().forEach(overridePoint => {
         if (isOverridePointName(overridePoint, 'option')) {
-          item.setValue_forOverridePoint_(options[index].value, overridePoint);
+          item.setValue_forOverridePoint_(String(options[index].value), overridePoint);
         }
         if (isOverridePointName(overridePoint, 'icon_status')) {
           item.setValue_forOverridePoint_(icon.symbolID(), overridePoint);

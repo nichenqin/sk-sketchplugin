@@ -6,17 +6,70 @@
 
     <form @submit.prevent="handleImport">
 
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Margin Right</label>
+        </div>
+        <input type="number" class="form-control" v-model.number="marginRight"></input>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text">Total Page</label>
+        </div>
+        <input type="number" class="form-control" v-model.number="totalPage"></input>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="paginationShowLimit" v-model="showLimit">
+        <label class="custom-control-label" for="paginationShowLimit">Show Limit</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="paginationShowJump" v-model="showJump">
+        <label class="custom-control-label" for="paginationShowJump">Show Jump</label>
+      </div>
+
       <button class="btn btn-primary btn-lg btn-block">Import To Sketch</button>
 
     </form>
+
+    <sk-preview>
+      <tb-pagination :total-page="totalPage"></tb-pagination>
+    </sk-preview>
   </section>
 </template>
 
 <script>
+import { Pagination as TbPagination } from '@zhinan/tb-components';
+import SkPreview from '../../Shared/Preview.vue';
+
 export default {
+  data() {
+    return {
+      marginRight: 5,
+      totalPage: 10,
+      showLimit: false,
+      showJump: false,
+    };
+  },
+  components: {
+    TbPagination,
+    SkPreview,
+  },
   methods: {
     handleImport() {
-      this.$emit('import');
+      const { marginRight, totalPage, showLimit, showJump } = this;
+      const payload = { marginRight, totalPage, showLimit, showJump };
+      this.$emit('import', payload);
+    },
+  },
+  watch: {
+    marginRight(num) {
+      if (num <= 0) this.marginRight = 0;
+    },
+    totalPage(num) {
+      if (num <= 0) this.totalPage = 0;
     },
   },
 };

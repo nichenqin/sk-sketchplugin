@@ -18,13 +18,13 @@ class ShortInput extends SketchComponent {
 
     instance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'content')) {
-        instance.setValue_forOverridePoint_(content, overridePoint);
+        instance.setValue_forOverridePoint_(String(content), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'unit')) {
-        instance.setValue_forOverridePoint_(unit, overridePoint);
+        instance.setValue_forOverridePoint_(String(unit), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'placeholder')) {
-        instance.setValue_forOverridePoint_(placeholder, overridePoint);
+        instance.setValue_forOverridePoint_(String(placeholder), overridePoint);
       }
     });
 

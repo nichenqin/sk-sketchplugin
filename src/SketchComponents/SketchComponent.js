@@ -11,10 +11,9 @@ class SketchComponent extends ContextManager {
     this.option = option;
     this.name = name;
     this.uikit = this.sketch.resourceNamed(`${name}.sketch`);
-    this.state = {};
 
     this.payload = payload;
-    this.init();
+    this.init(payload);
   }
 
   is(name) {
@@ -33,14 +32,12 @@ class SketchComponent extends ContextManager {
     return this.is('text');
   }
 
-  init() {
-    const { payload } = this;
-
+  init(payload) {
     if (this.componentWillImport) {
       this.componentWillImport(payload);
     }
 
-    const target = this.import(payload);
+    const target = this.import.call(this, payload);
     if (!target) {
       throw new Error('import function should return a layer like a group or a shape or a symbol instance');
     }
@@ -67,15 +64,6 @@ class SketchComponent extends ContextManager {
     const { layer, objectID } = this;
     layer.remove();
     store.delete(objectID);
-  }
-
-  setState(state) {
-    Object.keys(state).forEach(key => {
-      const value = state[key];
-      this.state[key] = value;
-    });
-
-    return this.state;
   }
 
   copyWithLayer(layer) {

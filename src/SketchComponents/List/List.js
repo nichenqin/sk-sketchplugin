@@ -8,12 +8,6 @@ const option = {
 class List extends SketchComponent {
   constructor(context, payload) {
     super(context, payload, option);
-    this.state = {
-      x: 0,
-      y: 0,
-      width: 0,
-      height: 0,
-    };
   }
 
   import({ rows, columns }) {
@@ -27,9 +21,7 @@ class List extends SketchComponent {
     // region title
     const titleGroup = listGroup.newGroup({ name: 'title' });
     const titleItem = this.createSymbolInstanceByPath('list/header/normal');
-    const rect = getRectOfNativeLayer(titleItem);
-    this.setState(rect);
-    const { width, height } = this.state;
+    const { width, height } = getRectOfNativeLayer(titleItem);
 
     const titleItems = [...new Array(columns)].map(() => titleItem.copy());
     titleGroup.newShape({
