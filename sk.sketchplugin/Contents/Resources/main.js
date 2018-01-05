@@ -9794,6 +9794,12 @@ var data = {
         return {};
       }
     },
+    directives: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
     innerText: {
       type: String,
       default: ''
@@ -10796,6 +10802,8 @@ var TOTAL_LENGTH = 42;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__ = __webpack_require__(6);
 //
 //
 //
@@ -10813,6 +10821,15 @@ var TOTAL_LENGTH = 42;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -10828,7 +10845,17 @@ var TOTAL_LENGTH = 42;
 
   components: {
     TbSwitch: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Switcher"],
-    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
+    SkCodeHtml: __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml_vue__["a" /* default */],
+    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__["a" /* default */]
+  },
+  computed: {
+    properties: function properties() {
+      var disabled = this.disabled,
+          isOn = this.isOn;
+
+      return { disabled: disabled, isOn: isOn };
+    }
   },
   methods: {
     handleImport: function handleImport() {
@@ -12126,7 +12153,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -14570,7 +14597,11 @@ var render = function() {
           })
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("sk-code-html", { attrs: { properties: _vm.properties } }),
+      _vm._v(" "),
+      _c("sk-code-javascript", { attrs: { properties: _vm.properties } })
     ],
     1
   )

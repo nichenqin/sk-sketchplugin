@@ -15,6 +15,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    directives: {
+      type: Object,
+      default: () => ({}),
+    },
     innerText: {
       type: String,
       default: '',
