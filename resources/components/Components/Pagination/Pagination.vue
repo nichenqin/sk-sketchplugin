@@ -35,7 +35,7 @@
     </form>
 
     <sk-preview>
-      <tb-pagination :total-page="totalPage"></tb-pagination>
+      <tb-pagination :total-page.sync="totalPage" :current.sync="currentPage"></tb-pagination>
     </sk-preview>
   </section>
 </template>
@@ -49,6 +49,7 @@ export default {
     return {
       marginRight: 5,
       totalPage: 10,
+      currentPage: 1,
       showLimit: false,
       showJump: false,
     };
@@ -59,8 +60,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { marginRight, totalPage, showLimit, showJump } = this;
-      const payload = { marginRight, totalPage, showLimit, showJump };
+      const { marginRight, totalPage, showLimit, showJump, currentPage } = this;
+      const payload = { marginRight, totalPage, showLimit, showJump, currentPage };
       this.$emit('import', payload);
     },
   },

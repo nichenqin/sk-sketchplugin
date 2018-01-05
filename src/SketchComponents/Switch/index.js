@@ -1,3 +1,3 @@
-import Switch from './Swtich';
+import Switch from './Switch';
 
 export default Switch;

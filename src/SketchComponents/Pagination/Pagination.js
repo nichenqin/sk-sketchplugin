@@ -13,7 +13,7 @@ class Pagination extends SketchComponent {
   }
 
   import({
-    totalPage, marginRight, showLimit, showJump,
+    totalPage, marginRight, showLimit, showJump, currentPage,
   }) {
     const maxPage = 7;
     const { page, name } = this;
@@ -23,6 +23,7 @@ class Pagination extends SketchComponent {
     let limitInstance;
     const arrowLeftInstance = this.createSymbolInstanceByPath('pagination/arrowLeft/normal');
     const arrowRightInstance = this.createSymbolInstanceByPath('pagination/arrowRight/normal');
+    const pageActiceInstance = this.createSymbolInstanceByPath('pagination/page/active');
     const pageItemInstance = this.createSymbolInstanceByPath('pagination/page/normal');
     const { width } = getRectOfNativeLayer(pageItemInstance);
 
@@ -32,6 +33,7 @@ class Pagination extends SketchComponent {
     else count = totalPage;
 
     const pages = [...new Array(count)].map(() => pageItemInstance.copy());
+    pages.splice(currentPage - 1, 1, pageActiceInstance);
 
     const instances = [arrowLeftInstance, ...pages, arrowRightInstance];
     group.sketchObject.addLayers(instances);
@@ -72,8 +74,8 @@ class Pagination extends SketchComponent {
 
     if (showJump) {
       jumpInstance = this.createSymbolInstanceByPath('pagination/show/jump');
-      group.sketchObject.addLayer(jumpInstance);
       const { width: groupWidth } = group.frame;
+      group.sketchObject.addLayer(jumpInstance);
       jumpInstance.frame().setX(groupWidth + marginRight);
       group.adjustToFit();
     }

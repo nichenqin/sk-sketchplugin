@@ -10806,6 +10806,13 @@ var TOTAL_LENGTH = 42;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10814,27 +10821,27 @@ var TOTAL_LENGTH = 42;
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      status: 'on'
+      isOn: true,
+      disabled: false
     };
   },
 
   components: {
-    TbSwitch: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TbSwitch"],
+    TbSwitch: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Switcher"],
     SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
-  },
-  computed: {
-    path: function path() {
-      var status = this.status;
-
-      return 'switch/' + status;
-    }
   },
   methods: {
     handleImport: function handleImport() {
-      var path = this.path;
+      var isOn = this.isOn,
+          disabled = this.disabled;
 
-      var payload = { path: path };
+      var payload = { isOn: isOn, disabled: disabled };
       this.$emit('import', payload);
+    }
+  },
+  watch: {
+    disabled: function disabled(_disabled) {
+      if (_disabled) this.isOn = false;
     }
   }
 });
@@ -10973,6 +10980,7 @@ var TOTAL_LENGTH = 42;
     return {
       marginRight: 5,
       totalPage: 10,
+      currentPage: 1,
       showLimit: false,
       showJump: false
     };
@@ -10987,9 +10995,10 @@ var TOTAL_LENGTH = 42;
       var marginRight = this.marginRight,
           totalPage = this.totalPage,
           showLimit = this.showLimit,
-          showJump = this.showJump;
+          showJump = this.showJump,
+          currentPage = this.currentPage;
 
-      var payload = { marginRight: marginRight, totalPage: totalPage, showLimit: showLimit, showJump: showJump };
+      var payload = { marginRight: marginRight, totalPage: totalPage, showLimit: showLimit, showJump: showJump, currentPage: currentPage };
       this.$emit('import', payload);
     }
   },
@@ -14476,27 +14485,89 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h1", [_vm._v("Switch")]),
-      _vm._v(" "),
       _c(
-        "button",
+        "form",
         {
-          staticClass: "btn btn-primary btn-lg btn-block mb-3",
-          on: { click: _vm.handleImport }
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.handleImport($event)
+            }
+          }
         },
-        [_vm._v("Import To Sketch")]
+        [
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.disabled,
+                  expression: "disabled"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "switch-disabled" },
+              domProps: {
+                checked: Array.isArray(_vm.disabled)
+                  ? _vm._i(_vm.disabled, null) > -1
+                  : _vm.disabled
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.disabled,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.disabled = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.disabled = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.disabled = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "switch-disabled" }
+              },
+              [_vm._v("Disabled")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-lg btn-block mb-3",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Import To Sketch")]
+          )
+        ]
       ),
       _vm._v(" "),
       _c(
         "sk-preview",
         [
           _c("tb-switch", {
+            attrs: { disabled: _vm.disabled },
             model: {
-              value: _vm.status,
+              value: _vm.isOn,
               callback: function($$v) {
-                _vm.status = $$v
+                _vm.isOn = $$v
               },
-              expression: "status"
+              expression: "isOn"
             }
           })
         ],
@@ -15017,7 +15088,19 @@ var render = function() {
       _vm._v(" "),
       _c(
         "sk-preview",
-        [_c("tb-pagination", { attrs: { "total-page": _vm.totalPage } })],
+        [
+          _c("tb-pagination", {
+            attrs: { "total-page": _vm.totalPage, current: _vm.currentPage },
+            on: {
+              "update:totalPage": function($event) {
+                _vm.totalPage = $event
+              },
+              "update:current": function($event) {
+                _vm.currentPage = $event
+              }
+            }
+          })
+        ],
         1
       )
     ],
