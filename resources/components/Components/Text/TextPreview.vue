@@ -2,7 +2,13 @@
 export default {
   render(createElement) {
     const { tag, fontSize } = this;
-    return createElement(tag, { style: { fontSize: `${fontSize}px` } }, this.$slots.default);
+    return createElement(
+      tag,
+      {
+        style: { fontSize: `${fontSize}px` },
+      },
+      this.$slots.default,
+    );
   },
   props: {
     tag: {

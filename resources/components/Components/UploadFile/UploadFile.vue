@@ -7,7 +7,7 @@
           <label class="input-group-text">Status</label>
         </div>
         <select class="custom-select" v-model="status">
-          <option v-for="s of allStatus" :value="s">{{ s }}</option>
+          <option v-for="s of allStatus" :value="s" :key="s">{{ s }}</option>
         </select>
       </div>
 

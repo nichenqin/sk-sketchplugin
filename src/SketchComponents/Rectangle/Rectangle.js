@@ -10,7 +10,7 @@ class Rectangle extends SketchComponent {
   }
 
   import({
-    width, height, name = 'rectangle', backgroundColor, borderColor,
+    width, height, name = 'rectangle', backgroundColor = '#D8D8D8', borderColor = '#979797',
   }) {
     const { page, sketch } = this;
     const style = new sketch.Style();

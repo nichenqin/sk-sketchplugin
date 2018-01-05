@@ -18,7 +18,7 @@
           </div>
           <select class="custom-select" v-model="usedEvents[index].event">
             <option value="">Choose a type...</option>
-            <option v-for="domEvent of domEvents" :value="domEvent">{{ domEvent }}</option>
+            <option v-for="domEvent of domEvents" :value="domEvent" :key="domEvent">{{ domEvent }}</option>
           </select>
         </div>
 
@@ -49,7 +49,7 @@
         </div>
         <select class="custom-select" v-model="type">
           <option value="">Choose a type...</option>
-          <option v-for="t of types" :value="t">{{ t }}</option>
+          <option v-for="t of types" :value="t" :key="t">{{ t }}</option>
         </select>
       </div>
 
@@ -60,7 +60,7 @@
           </div>
         </div>
         <select class="custom-select" v-model="status">
-          <option :value="s" v-for="s of allStatus">{{ s }}</option>
+          <option :value="s" v-for="s of allStatus" :key="s">{{ s }}</option>
         </select>
       </div>
 

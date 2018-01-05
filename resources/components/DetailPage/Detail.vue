@@ -4,13 +4,16 @@
       <i class="fa fa-arrow-left"></i>
       Back
     </button>
+
     <h1>Component:
       <span class="badge badge-secondary">{{ currentComponent }}</span>
     </h1>
+
     <div class="alert alert-primary" role="alert">
       LayerName:
       <strong>{{ layerName }}</strong>
     </div>
+
     <div class="alert alert-primary" role="alert">
       ObjectID:
       <strong>{{ objectID }}</strong>
@@ -23,10 +26,12 @@
       <button class="btn btn-primary" :disabled="!objectID" @click="handleSelect">Select</button>
       <button class="btn btn-danger" :disabled="!objectID" @click="handelDeselect">Deselect</button>
     </div>
+
     <div class="btn-group btn-group-lg mb-3 d-flex" role="group">
       <button class="btn btn-warning" :disabled="!objectID" @click="handleDuplicate">Duplicate</button>
       <button class="btn btn-danger" :disabled="!objectID" @click="handleRemove">Remove</button>
     </div>
+
     <button class="btn btn-primary btn-lg btn-block mb-3" @click="test">Test</button>
 
   </div>

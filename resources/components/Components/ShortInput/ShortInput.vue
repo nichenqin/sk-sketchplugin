@@ -9,7 +9,7 @@
           </div>
         </div>
         <select class="custom-select" v-model="status">
-          <option :value="s" v-for="s of allStatus">{{ s }}</option>
+          <option :value="s" v-for="s of allStatus" :key="s">{{ s }}</option>
         </select>
       </div>
 
