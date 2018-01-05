@@ -110,6 +110,13 @@ class ContextManage {
     return symbol;
   }
 
+  /**
+   * create a symbol instance from user asset library
+   *
+   * @param {string} path
+   * @returns {MSSymbolInstance}
+   * @memberof ContextManage
+   */
   createSymbolInstanceByPath(path) {
     const { context, assetLibrary } = this;
 
@@ -135,6 +142,34 @@ class ContextManage {
     const { context } = this;
 
     context.document.currentPage().addLayers(instances);
+  }
+
+  /**
+   * create a bg rectangle inside a group
+   *
+   * @param {MSLayerGroup} group
+   * @returns {MSShapeGroup}
+   * @memberof ContextManage
+   */
+  createBgAtGroup(group) {
+    if (!group.isGroup) {
+      throw new Error('shape should be added inside a group');
+    }
+
+    const { sketch } = this;
+    const style = new sketch.Style();
+    style.fills = ['#ffffff'];
+
+    const { width, height } = group.frame;
+
+    const bg = group.newShape({
+      name: 'bg',
+      frame: new sketch.Rectangle(0, 0, width, height),
+      style,
+    });
+    bg.moveToBack();
+
+    return bg;
   }
 }
 

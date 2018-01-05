@@ -14,7 +14,7 @@ class Datepicker extends SketchComponent {
     previousMonthDateList, currentMonthDateList, nextMonthDateList, dateList, currentDay,
   }) {
     const { page, name } = this;
-    const datepickerPage = page.newGroup({ name });
+    const datepickerGroup = page.newGroup({ name });
 
     const lightInstance = this.createSymbolInstanceByPath('datepicker/day/light');
     const selectedInstance = this.createSymbolInstanceByPath('datepicker/day/selected');
@@ -27,7 +27,7 @@ class Datepicker extends SketchComponent {
     const nextInstances = nextMonthDateList.map(() => lightInstance.copy());
 
     const dayInstances = [...previousInstances, ...currentInstances, ...nextInstances];
-    datepickerPage.sketchObject.addLayers(dayInstances);
+    datepickerGroup.sketchObject.addLayers(dayInstances);
 
     dayInstances.forEach((day, index) => {
       const row = Math.floor(index / 7);
@@ -39,11 +39,11 @@ class Datepicker extends SketchComponent {
       });
     });
 
-    datepickerPage.adjustToFit();
+    datepickerGroup.adjustToFit();
 
     const weekData = ['日', '一', '二', '三', '四', '五', '六'];
     const weekInstances = weekData.map(() => weekInstance.copy());
-    datepickerPage.sketchObject.addLayers(weekInstances);
+    datepickerGroup.sketchObject.addLayers(weekInstances);
 
     weekInstances.forEach((week, index) => {
       week.frame().setX_(width * index);
@@ -53,10 +53,14 @@ class Datepicker extends SketchComponent {
       });
     });
 
-    datepickerPage.adjustToFit();
-    this.document.centerOnLayer(datepickerPage);
+    datepickerGroup.adjustToFit();
+    this.createBgAtGroup(datepickerGroup);
+    this.document.centerOnLayer(datepickerGroup);
+    datepickerGroup.iterate(layer => {
+      layer.sketchObject.setIsLocked(true);
+    });
 
-    return datepickerPage;
+    return datepickerGroup;
   }
 }
 

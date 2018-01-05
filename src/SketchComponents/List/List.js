@@ -84,6 +84,11 @@ class List extends SketchComponent {
     // endregion duplicate rows
 
     listGroup.adjustToFit();
+    this.createBgAtGroup(listGroup);
+    listGroup.iterate(layer => {
+      layer.sketchObject.setIsLocked(true);
+    });
+
     return listGroup;
   }
 }
