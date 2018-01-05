@@ -5,6 +5,13 @@
       <button class="btn btn-warning" @click="removeOption">Remove Option</button>
     </div>
 
+    <div class="input-group mb-3" v-for="(option, index) of options" :key="index">
+      <div class="input-group-prepend">
+        <label class="input-group-text">option-{{index + 1}}</label>
+      </div>
+      <input type="text" class="form-control" v-model="option.value">
+    </div>
+
     <div class="custom-control custom-checkbox mb-3">
       <input type="checkbox" class="custom-control-input" id="radioIsCol" v-model="isCol">
       <label class="custom-control-label" for="radioIsCol">Column</label>

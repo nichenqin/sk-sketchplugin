@@ -10655,6 +10655,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -14287,6 +14294,38 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
+      _vm._l(_vm.options, function(option, index) {
+        return _c("div", { key: index, staticClass: "input-group mb-3" }, [
+          _c("div", { staticClass: "input-group-prepend" }, [
+            _c("label", { staticClass: "input-group-text" }, [
+              _vm._v("option-" + _vm._s(index + 1))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: option.value,
+                expression: "option.value"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: option.value },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(option, "value", $event.target.value)
+              }
+            }
+          })
+        ])
+      }),
+      _vm._v(" "),
       _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
         _c("input", {
           directives: [
@@ -14351,7 +14390,7 @@ var render = function() {
         1
       )
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
