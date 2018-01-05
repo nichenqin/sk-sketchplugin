@@ -73,7 +73,7 @@ class List extends SketchComponent {
     });
     rowGroup.adjustToFit();
     rowGroup.sketchObject.setIsLocked(true);
-    // endrigion rows
+    // endregion rows
 
     // region duplicate rows
     for (let i = 1; i < rows; i += 1) {
