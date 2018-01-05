@@ -13,18 +13,20 @@ class Pagination extends SketchComponent {
   }
 
   import({
-    totalPage, marginRight, showLimit, showJump, currentPage,
+    totalPage, marginRight, showLimit, showJump, currentPage, isSmall,
   }) {
     const maxPage = 7;
     const { page, name } = this;
     const group = page.newGroup({ name });
+    const small = isSmall ? '/small' : '';
 
     let jumpInstance;
+    let jumpPageInstance;
     let limitInstance;
-    const arrowLeftInstance = this.createSymbolInstanceByPath('pagination/arrowLeft/normal');
-    const arrowRightInstance = this.createSymbolInstanceByPath('pagination/arrowRight/normal');
-    const pageActiceInstance = this.createSymbolInstanceByPath('pagination/page/active');
-    const pageItemInstance = this.createSymbolInstanceByPath('pagination/page/normal');
+    const arrowLeftInstance = this.createSymbolInstanceByPath(`pagination/arrowLeft${small}/normal`);
+    const arrowRightInstance = this.createSymbolInstanceByPath(`pagination/arrowRight${small}/normal`);
+    const pageActiceInstance = this.createSymbolInstanceByPath(`pagination/page${small}/active`);
+    const pageItemInstance = this.createSymbolInstanceByPath(`pagination/page${small}/normal`);
     const { width } = getRectOfNativeLayer(pageItemInstance);
 
     let count;
@@ -65,18 +67,24 @@ class Pagination extends SketchComponent {
     group.adjustToFit();
 
     if (showLimit) {
-      limitInstance = this.createSymbolInstanceByPath('pagination/show/limit');
-      const { width: groupWidth } = group.frame;
+      const path = isSmall ? 'pagination/limit/show/small' : 'pagination/show/limit';
+      limitInstance = this.createSymbolInstanceByPath(path);
       group.sketchObject.addLayer(limitInstance);
-      limitInstance.frame().setX(groupWidth + marginRight);
+      limitInstance.frame().setX(group.frame.width + marginRight);
       group.adjustToFit();
     }
 
     if (showJump) {
-      jumpInstance = this.createSymbolInstanceByPath('pagination/show/jump');
-      const { width: groupWidth } = group.frame;
+      const jumpPagePath = `pagination/jumpPage/show${small}/normal`;
+      jumpPageInstance = this.createSymbolInstanceByPath(jumpPagePath);
+      group.sketchObject.addLayer(jumpPageInstance);
+      jumpPageInstance.frame().setX(group.frame.width + marginRight);
+      group.adjustToFit();
+
+      const path = isSmall ? 'pagination/jump/show/small' : 'pagination/show/jump';
+      jumpInstance = this.createSymbolInstanceByPath(path);
       group.sketchObject.addLayer(jumpInstance);
-      jumpInstance.frame().setX(groupWidth + marginRight);
+      jumpInstance.frame().setX(group.frame.width + marginRight);
       group.adjustToFit();
     }
 

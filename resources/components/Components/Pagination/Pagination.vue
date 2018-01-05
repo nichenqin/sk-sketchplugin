@@ -7,14 +7,14 @@
         <div class="input-group-prepend">
           <label class="input-group-text">Margin Right</label>
         </div>
-        <input type="number" class="form-control" v-model.number="marginRight"></input>
+        <input type="number" class="form-control" v-model.number="marginRight">
       </div>
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <label class="input-group-text">Total Page</label>
         </div>
-        <input type="number" class="form-control" v-model.number="totalPage"></input>
+        <input type="number" class="form-control" v-model.number="totalPage">
       </div>
 
       <div class="custom-control custom-checkbox mb-3">
@@ -27,12 +27,18 @@
         <label class="custom-control-label" for="paginationShowJump">Show Jump</label>
       </div>
 
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="paginationIsSmall" v-model="isSmall">
+        <label class="custom-control-label" for="paginationIsSmall">Small Size</label>
+      </div>
+
       <button class="btn btn-primary btn-lg btn-block">Import To Sketch</button>
 
     </form>
 
     <sk-preview>
-      <tb-pagination :total-page.sync="totalPage" :current.sync="currentPage"></tb-pagination>
+      <tb-pagination :total-page.sync="totalPage" :current.sync="currentPage" :type="type"
+        :is-skip="showJump"></tb-pagination>
     </sk-preview>
 
   </section>
@@ -50,16 +56,22 @@ export default {
       currentPage: 1,
       showJump: false,
       showLimit: false,
+      isSmall: false,
     };
   },
   components: {
     TbPagination,
     SkPreview,
   },
+  computed: {
+    type() {
+      return this.isSmall ? 'small' : '';
+    },
+  },
   methods: {
     handleImport() {
-      const { marginRight, totalPage, showLimit, showJump, currentPage } = this;
-      const payload = { marginRight, totalPage, showLimit, showJump, currentPage };
+      const { marginRight, totalPage, showLimit, showJump, currentPage, isSmall } = this;
+      const payload = { marginRight, totalPage, showLimit, showJump, currentPage, isSmall };
       this.$emit('import', payload);
     },
   },

@@ -11027,6 +11027,12 @@ var TOTAL_LENGTH = 42;
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -11038,7 +11044,8 @@ var TOTAL_LENGTH = 42;
       totalPage: 10,
       currentPage: 1,
       showJump: false,
-      showLimit: false
+      showLimit: false,
+      isSmall: false
     };
   },
 
@@ -11046,15 +11053,21 @@ var TOTAL_LENGTH = 42;
     TbPagination: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Pagination"],
     SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
   },
+  computed: {
+    type: function type() {
+      return this.isSmall ? 'small' : '';
+    }
+  },
   methods: {
     handleImport: function handleImport() {
       var marginRight = this.marginRight,
           totalPage = this.totalPage,
           showLimit = this.showLimit,
           showJump = this.showJump,
-          currentPage = this.currentPage;
+          currentPage = this.currentPage,
+          isSmall = this.isSmall;
 
-      var payload = { marginRight: marginRight, totalPage: totalPage, showLimit: showLimit, showJump: showJump, currentPage: currentPage };
+      var payload = { marginRight: marginRight, totalPage: totalPage, showLimit: showLimit, showJump: showJump, currentPage: currentPage, isSmall: isSmall };
       this.$emit('import', payload);
     }
   },
@@ -15203,6 +15216,56 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.isSmall,
+                  expression: "isSmall"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "paginationIsSmall" },
+              domProps: {
+                checked: Array.isArray(_vm.isSmall)
+                  ? _vm._i(_vm.isSmall, null) > -1
+                  : _vm.isSmall
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.isSmall,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.isSmall = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.isSmall = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.isSmall = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "paginationIsSmall" }
+              },
+              [_vm._v("Small Size")]
+            )
+          ]),
+          _vm._v(" "),
           _c("button", { staticClass: "btn btn-primary btn-lg btn-block" }, [
             _vm._v("Import To Sketch")
           ])
@@ -15213,7 +15276,12 @@ var render = function() {
         "sk-preview",
         [
           _c("tb-pagination", {
-            attrs: { "total-page": _vm.totalPage, current: _vm.currentPage },
+            attrs: {
+              "total-page": _vm.totalPage,
+              current: _vm.currentPage,
+              type: _vm.type,
+              "is-skip": _vm.showJump
+            },
             on: {
               "update:totalPage": function($event) {
                 _vm.totalPage = $event
