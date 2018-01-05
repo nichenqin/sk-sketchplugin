@@ -10969,8 +10969,6 @@ var TOTAL_LENGTH = 42;
 //
 //
 //
-//
-//
 
 
 
@@ -10981,8 +10979,8 @@ var TOTAL_LENGTH = 42;
       marginRight: 5,
       totalPage: 10,
       currentPage: 1,
-      showLimit: false,
-      showJump: false
+      showJump: false,
+      showLimit: false
     };
   },
 
@@ -14907,8 +14905,6 @@ var render = function() {
   return _c(
     "section",
     [
-      _c("h1", [_vm._v("\n    Pagination\n  ")]),
-      _vm._v(" "),
       _c(
         "form",
         {

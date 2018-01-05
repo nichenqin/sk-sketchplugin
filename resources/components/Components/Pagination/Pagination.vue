@@ -1,8 +1,5 @@
 <template>
   <section>
-    <h1>
-      Pagination
-    </h1>
 
     <form @submit.prevent="handleImport">
 
@@ -37,6 +34,7 @@
     <sk-preview>
       <tb-pagination :total-page.sync="totalPage" :current.sync="currentPage"></tb-pagination>
     </sk-preview>
+
   </section>
 </template>
 
@@ -50,8 +48,8 @@ export default {
       marginRight: 5,
       totalPage: 10,
       currentPage: 1,
-      showLimit: false,
       showJump: false,
+      showLimit: false,
     };
   },
   components: {
