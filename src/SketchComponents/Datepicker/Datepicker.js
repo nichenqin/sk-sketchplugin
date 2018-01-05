@@ -54,6 +54,7 @@ class Datepicker extends SketchComponent {
     });
 
     datepickerPage.adjustToFit();
+    this.document.centerOnLayer(datepickerPage);
 
     return datepickerPage;
   }
