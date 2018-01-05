@@ -11,8 +11,8 @@
 
     <div class="form-row mb-3">
       <div class="col" v-for="n in columns" :key="n">
-        <label :for="`list-column-${n}`">column-{{n}}</label>
-        <input type="text" class="form-control" :id="`list-column-${n}`" v-model="columnItems[n - 1]">
+        <label :for="`list-column-${n}`">title-{{n}}</label>
+        <input type="text" class="form-control" :id="`list-column-${n}`" v-model="titleItems[n - 1]">
       </div>
     </div>
 
@@ -45,7 +45,7 @@ const r = 1;
 const c = 3;
 
 const rowItems = [...new Array(c)].map(() => 'Text');
-const columnItems = [...new Array(c)].map(() => 'title');
+const titleItems = [...new Array(c)].map(() => 'title');
 
 export default {
   data() {
@@ -53,7 +53,7 @@ export default {
       rows: r,
       columns: c,
       rowItems,
-      columnItems,
+      titleItems,
       maxRows: 5,
     };
   },
@@ -67,7 +67,7 @@ export default {
     columnsData() {
       return [...new Array(this.columns)].map((val, index) => ({
         key: `title${index}`,
-        title: this.columnItems[index],
+        title: this.titleItems[index],
       }));
     },
     rowsData() {
@@ -99,7 +99,7 @@ export default {
     },
     handleImport() {
       const { rows, columns } = this;
-      const payload = { rows, columns };
+      const payload = { rows, columns, titleItems: this.titleItems, rowItems: this.rowItems };
       this.$emit('import', payload);
     },
   },
@@ -110,10 +110,10 @@ export default {
     columns(columns, oldColums) {
       if (columns <= 0) this.columns = 1;
       if (columns > oldColums) {
-        this.columnItems.push('title');
+        this.titleItems.push('title');
         this.rowItems.push('Text');
       } else {
-        this.columnItems.pop();
+        this.titleItems.pop();
         this.rowItems.pop();
       }
     },

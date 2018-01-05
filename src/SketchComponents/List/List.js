@@ -10,7 +10,9 @@ class List extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ rows, columns }) {
+  import({
+    rows, columns, titleItems, rowItems,
+  }) {
     const { sketch, page, name } = this;
 
     const listGroup = page.newGroup({ name });
@@ -20,21 +22,25 @@ class List extends SketchComponent {
 
     // region title
     const titleGroup = listGroup.newGroup({ name: 'title' });
-    const titleItem = this.createSymbolInstanceByPath('list/header/normal');
-    const { width, height } = getRectOfNativeLayer(titleItem);
+    const titleInstance = this.createSymbolInstanceByPath('list/header/normal');
+    const { width, height } = getRectOfNativeLayer(titleInstance);
 
-    const titleItems = [...new Array(columns)].map(() => titleItem.copy());
+    const titleInstances = [...new Array(columns)].map(() => titleInstance.copy());
     titleGroup.newShape({
       frame: new sketch.Rectangle(0, height, width * columns, 0.5),
       name: 'divider',
       style,
     });
-    titleGroup.sketchObject.addLayers(titleItems);
+    titleGroup.sketchObject.addLayers(titleInstances);
 
     let titleIndex = 0;
     titleGroup.iterate(layer => {
-      if (is(layer.sketchObject, 'MSSymbolInstance')) {
-        layer.sketchObject.frame().setX_(width * titleIndex);
+      const titleItem = layer.sketchObject;
+      if (is(titleItem, 'MSSymbolInstance')) {
+        titleItem.frame().setX_(width * titleIndex);
+        titleItem.overridePoints().forEach(overridePoint => {
+          titleItem.setValue_forOverridePoint(String(titleItems[titleIndex]), overridePoint);
+        });
         titleIndex += 1;
       }
     });
@@ -44,21 +50,25 @@ class List extends SketchComponent {
 
     // region rows
     const rowGroup = listGroup.newGroup({ name: 'row' });
-    const rowItem = this.createSymbolInstanceByPath('list/body/single');
-    const rowItems = [...new Array(columns)].map(() => rowItem.copy());
+    const rowInstance = this.createSymbolInstanceByPath('list/body/single');
+    const rowInstances = [...new Array(columns)].map(() => rowInstance.copy());
     rowGroup.newShape({
       frame: new sketch.Rectangle(0, height, width * columns, 0.5),
       name: 'divider',
       style,
     });
-    rowGroup.sketchObject.addLayers(rowItems);
+    rowGroup.sketchObject.addLayers(rowInstances);
     setFrame(rowGroup, { y: height });
 
-    let itemIndex = 0;
+    let rowIndex = 0;
     rowGroup.iterate(layer => {
-      if (is(layer.sketchObject, 'MSSymbolInstance')) {
-        layer.sketchObject.frame().setX_(width * itemIndex);
-        itemIndex += 1;
+      const rowItem = layer.sketchObject;
+      if (is(rowItem, 'MSSymbolInstance')) {
+        rowItem.frame().setX_(width * rowIndex);
+        rowItem.overridePoints().forEach(overridePoint => {
+          rowItem.setValue_forOverridePoint(String(rowItems[rowIndex]), overridePoint);
+        });
+        rowIndex += 1;
       }
     });
     rowGroup.adjustToFit();

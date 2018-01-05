@@ -10078,7 +10078,7 @@ var c = 3;
 var rowItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
   return 'Text';
 });
-var columnItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
+var titleItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
   return 'title';
 });
 
@@ -10088,7 +10088,7 @@ var columnItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
       rows: r,
       columns: c,
       rowItems: rowItems,
-      columnItems: columnItems,
+      titleItems: titleItems,
       maxRows: 5
     };
   },
@@ -10106,7 +10106,7 @@ var columnItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
       return [].concat(_toConsumableArray(new Array(this.columns))).map(function (val, index) {
         return {
           key: 'title' + index,
-          title: _this.columnItems[index]
+          title: _this.titleItems[index]
         };
       });
     },
@@ -10146,7 +10146,7 @@ var columnItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
       var rows = this.rows,
           columns = this.columns;
 
-      var payload = { rows: rows, columns: columns };
+      var payload = { rows: rows, columns: columns, titleItems: this.titleItems, rowItems: this.rowItems };
       this.$emit('import', payload);
     }
   },
@@ -10157,10 +10157,10 @@ var columnItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
     columns: function columns(_columns, oldColums) {
       if (_columns <= 0) this.columns = 1;
       if (_columns > oldColums) {
-        this.columnItems.push('title');
+        this.titleItems.push('title');
         this.rowItems.push('Text');
       } else {
-        this.columnItems.pop();
+        this.titleItems.pop();
         this.rowItems.pop();
       }
     }
@@ -12855,7 +12855,7 @@ var render = function() {
         _vm._l(_vm.columns, function(n) {
           return _c("div", { key: n, staticClass: "col" }, [
             _c("label", { attrs: { for: "list-column-" + n } }, [
-              _vm._v("column-" + _vm._s(n))
+              _vm._v("title-" + _vm._s(n))
             ]),
             _vm._v(" "),
             _c("input", {
@@ -12863,19 +12863,19 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.columnItems[n - 1],
-                  expression: "columnItems[n - 1]"
+                  value: _vm.titleItems[n - 1],
+                  expression: "titleItems[n - 1]"
                 }
               ],
               staticClass: "form-control",
               attrs: { type: "text", id: "list-column-" + n },
-              domProps: { value: _vm.columnItems[n - 1] },
+              domProps: { value: _vm.titleItems[n - 1] },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.columnItems, n - 1, $event.target.value)
+                  _vm.$set(_vm.titleItems, n - 1, $event.target.value)
                 }
               }
             })
