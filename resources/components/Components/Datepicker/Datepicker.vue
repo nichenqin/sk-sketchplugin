@@ -81,8 +81,20 @@ export default {
   },
   methods: {
     handleImport() {
-      const { previousMonthDateList, currentMonthDateList, nextMonthDateList, dateList } = this;
-      const payload = { previousMonthDateList, currentMonthDateList, nextMonthDateList, dateList };
+      const {
+        previousMonthDateList,
+        currentMonthDateList,
+        nextMonthDateList,
+        dateList,
+        currentDay,
+      } = this;
+      const payload = {
+        previousMonthDateList,
+        currentMonthDateList,
+        nextMonthDateList,
+        dateList,
+        currentDay,
+      };
       this.$emit('import', payload);
     },
   },

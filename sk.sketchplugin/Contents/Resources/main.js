@@ -10803,9 +10803,16 @@ var TOTAL_LENGTH = 42;
       var previousMonthDateList = this.previousMonthDateList,
           currentMonthDateList = this.currentMonthDateList,
           nextMonthDateList = this.nextMonthDateList,
-          dateList = this.dateList;
+          dateList = this.dateList,
+          currentDay = this.currentDay;
 
-      var payload = { previousMonthDateList: previousMonthDateList, currentMonthDateList: currentMonthDateList, nextMonthDateList: nextMonthDateList, dateList: dateList };
+      var payload = {
+        previousMonthDateList: previousMonthDateList,
+        currentMonthDateList: currentMonthDateList,
+        nextMonthDateList: nextMonthDateList,
+        dateList: dateList,
+        currentDay: currentDay
+      };
       this.$emit('import', payload);
     }
   }

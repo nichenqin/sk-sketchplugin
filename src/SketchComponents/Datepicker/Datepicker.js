@@ -11,32 +11,47 @@ class Datepicker extends SketchComponent {
   }
 
   import({
-    previousMonthDateList, currentMonthDateList, nextMonthDateList, dateList,
+    previousMonthDateList, currentMonthDateList, nextMonthDateList, dateList, currentDay,
   }) {
     const { page, name } = this;
     const datepickerPage = page.newGroup({ name });
 
     const lightInstance = this.createSymbolInstanceByPath('datepicker/day/light');
+    const selectedInstance = this.createSymbolInstanceByPath('datepicker/day/selected');
     const normalInstance = this.createSymbolInstanceByPath('datepicker/day/normal');
+    const weekInstance = this.createSymbolInstanceByPath('datepicker/week');
     const { height, width } = getRectOfNativeLayer(normalInstance);
 
-    const dayInstances = [
-      ...previousMonthDateList.map(() => lightInstance.copy()),
-      ...currentMonthDateList.map(() => normalInstance.copy()),
-      ...nextMonthDateList.map(() => lightInstance.copy()),
-    ];
+    const previousInstances = previousMonthDateList.map(() => lightInstance.copy());
+    const currentInstances = currentMonthDateList.map(({ day }) => (day === currentDay ? selectedInstance.copy() : normalInstance.copy()));
+    const nextInstances = nextMonthDateList.map(() => lightInstance.copy());
+
+    const dayInstances = [...previousInstances, ...currentInstances, ...nextInstances];
     datepickerPage.sketchObject.addLayers(dayInstances);
 
-    for (let i = 0; i < dayInstances.length; i += 1) {
-      const day = dayInstances[i];
-      const row = Math.floor(i / 7);
-      const column = i % 7;
+    dayInstances.forEach((day, index) => {
+      const row = Math.floor(index / 7);
+      const column = index % 7;
       day.frame().setX_(width * column);
       day.frame().setY_(height * row);
       day.overridePoints().forEach(overridePoint => {
-        day.setValue_forOverridePoint(String(dateList[i].day), overridePoint);
+        day.setValue_forOverridePoint(String(dateList[index].day), overridePoint);
       });
-    }
+    });
+
+    datepickerPage.adjustToFit();
+
+    const weekData = ['日', '一', '二', '三', '四', '五', '六'];
+    const weekInstances = weekData.map(() => weekInstance.copy());
+    datepickerPage.sketchObject.addLayers(weekInstances);
+
+    weekInstances.forEach((week, index) => {
+      week.frame().setX_(width * index);
+      week.frame().setY_(height * -1);
+      week.overridePoints().forEach(overridePoint => {
+        week.setValue_forOverridePoint(String(weekData[index]), overridePoint);
+      });
+    });
 
     datepickerPage.adjustToFit();
 
