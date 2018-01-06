@@ -40,6 +40,10 @@ class Radio extends SketchComponent {
     });
 
     radioGroup.adjustToFit();
+    this.createBgAtGroup(radioGroup);
+    radioGroup.iterate(layer => {
+      layer.sketchObject.setIsLocked(true);
+    });
 
     return radioGroup;
   }

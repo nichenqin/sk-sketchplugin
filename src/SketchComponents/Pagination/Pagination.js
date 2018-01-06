@@ -89,6 +89,10 @@ class Pagination extends SketchComponent {
     }
 
     group.adjustToFit();
+    this.createBgAtGroup(group);
+    group.iterate(layer => {
+      layer.sketchObject.setIsLocked_(true);
+    });
 
     return group;
   }

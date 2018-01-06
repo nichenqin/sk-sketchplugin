@@ -159,6 +159,7 @@ class ContextManage {
     const { sketch } = this;
     const style = new sketch.Style();
     style.fills = ['#ffffff'];
+    style.borders = ['rgba(0,0,0,0)'];
 
     const { width, height } = group.frame;
 
