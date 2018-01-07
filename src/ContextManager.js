@@ -138,12 +138,6 @@ class ContextManage {
     return instance;
   }
 
-  addLayers(instances) {
-    const { context } = this;
-
-    context.document.currentPage().addLayers(instances);
-  }
-
   /**
    * create a bg rectangle inside a group
    *
@@ -210,11 +204,11 @@ class ContextManage {
     const style = new sketch.Style();
     const msColor = style.colorFromString(color);
 
-    const screenShadow = group.sketchObject.style().addStylePartOfType(2);
-    screenShadow.setColor(msColor);
-    screenShadow.offsetX = 0;
-    screenShadow.offsetY = 2;
-    screenShadow.blurRadius = 15;
+    const shadow = group.sketchObject.style().addStylePartOfType(2);
+    shadow.setColor(msColor);
+    shadow.offsetX = 0;
+    shadow.offsetY = 2;
+    shadow.blurRadius = 15;
   }
 }
 
