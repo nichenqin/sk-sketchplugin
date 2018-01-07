@@ -201,7 +201,7 @@ class ContextManage {
     return divider;
   }
 
-  createShadowAtGroup(group, { color = 'rgba(0, 0, 0, 0.5)' } = {}) {
+  createShadowAtGroup(group, { color = 'rgba(0, 0, 0, 0.1)' } = {}) {
     if (!group.isGroup) {
       throw new Error('shape should be added inside a group');
     }
@@ -214,7 +214,7 @@ class ContextManage {
     screenShadow.setColor(msColor);
     screenShadow.offsetX = 0;
     screenShadow.offsetY = 2;
-    screenShadow.blurRadius = 4;
+    screenShadow.blurRadius = 15;
   }
 }
 
