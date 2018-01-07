@@ -12,6 +12,7 @@ import Switch from './SketchComponents/Switch';
 import UploadFile from './SketchComponents/UploadFile';
 import Pagination from './SketchComponents/Pagination';
 import Rectangle from './SketchComponents/Rectangle';
+import Dropdown from './SketchComponents/Dropdown';
 
 import store from './store';
 
@@ -42,6 +43,8 @@ function createComponentInstance(context, name, payload) {
         return new Pagination(context, payload);
       case 'rectangle':
         return new Rectangle(context, payload);
+      case 'dropdown':
+        return new Dropdown(context, payload);
 
       default:
         return null;

@@ -29,6 +29,7 @@ export default {
         'uploadFile',
         'pagination',
         'rectangle',
+        'dropdown',
       ],
     };
   },
