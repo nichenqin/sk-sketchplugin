@@ -34,8 +34,8 @@ class Pagination extends SketchComponent {
     else if (totalPage > maxPage) count = maxPage;
     else count = totalPage;
 
-    const pages = [...new Array(count)].map(() => pageItemInstance.copy());
-    pages.splice(currentPage - 1, 1, pageActiceInstance);
+    const pages = [...new Array(count)].map((val, index) =>
+      (index + 1 === currentPage ? pageActiceInstance.copy() : pageItemInstance.copy()));
 
     const instances = [arrowLeftInstance, ...pages, arrowRightInstance];
     group.sketchObject.addLayers(instances);

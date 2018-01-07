@@ -17,17 +17,27 @@ class Datepicker extends SketchComponent {
     const datepickerGroup = page.newGroup({ name });
 
     const headerInstance = this.createSymbolInstanceByPath('datepicker/header/normal');
+    const { width: headerWidth } = getRectOfNativeLayer(headerInstance);
     const lightInstance = this.createSymbolInstanceByPath('datepicker/day/light');
     const selectedInstance = this.createSymbolInstanceByPath('datepicker/day/selected');
     const normalInstance = this.createSymbolInstanceByPath('datepicker/day/normal');
     const weekInstance = this.createSymbolInstanceByPath('datepicker/week');
     const { height, width } = getRectOfNativeLayer(normalInstance);
+    const padding = (headerWidth - width * 7) / 2;
 
     datepickerGroup.sketchObject.addLayer(headerInstance);
     headerInstance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'date')) {
         const date = new Date();
         headerInstance.setValue_forOverridePoint(String(date.getFullYear()), overridePoint);
+      }
+      if (isOverridePointName(overridePoint, 'icon_previousMonth')) {
+        const icon = this.createSymbolInstanceByPath('icon/arrowLeft/normal');
+        headerInstance.setValue_forOverridePoint(icon.symbolID(), overridePoint);
+      }
+      if (isOverridePointName(overridePoint, 'icon_nextMonth')) {
+        const icon = this.createSymbolInstanceByPath('icon/arrowRight/normal');
+        headerInstance.setValue_forOverridePoint(icon.symbolID(), overridePoint);
       }
     });
     datepickerGroup.adjustToFit();
@@ -37,7 +47,7 @@ class Datepicker extends SketchComponent {
     datepickerGroup.sketchObject.addLayers(weekInstances);
 
     weekInstances.forEach((week, index) => {
-      week.frame().setX_(width * index);
+      week.frame().setX_(width * index + padding);
       week.frame().setY_(datepickerGroup.frame.height);
       week.overridePoints().forEach(overridePoint => {
         week.setValue_forOverridePoint(String(weekData[index]), overridePoint);
@@ -45,6 +55,8 @@ class Datepicker extends SketchComponent {
     });
 
     datepickerGroup.adjustToFit();
+
+    this.createDividerAtGroup(datepickerGroup);
 
     const previousInstances = previousMonthDateList.map(() => lightInstance.copy());
     const currentInstances = currentMonthDateList.map(({ day }) => (day === currentDay ? selectedInstance.copy() : normalInstance.copy()));
@@ -56,7 +68,7 @@ class Datepicker extends SketchComponent {
     dayInstances.forEach((day, index) => {
       const row = Math.floor(index / 7);
       const column = index % 7;
-      day.frame().setX_(width * column);
+      day.frame().setX_(width * column + padding);
       day.frame().setY_(height * row + datepickerGroup.frame.height);
       day.overridePoints().forEach(overridePoint => {
         day.setValue_forOverridePoint(String(dateList[index].day), overridePoint);

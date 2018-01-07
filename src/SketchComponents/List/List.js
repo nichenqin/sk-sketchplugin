@@ -17,20 +17,12 @@ class List extends SketchComponent {
 
     const listGroup = page.newGroup({ name });
 
-    const style = new sketch.Style();
-    style.borders = ['#ddd'];
-
     // region title
     const titleGroup = listGroup.newGroup({ name: 'title' });
     const titleInstance = this.createSymbolInstanceByPath('list/header/normal');
     const { width, height } = getRectOfNativeLayer(titleInstance);
 
     const titleInstances = [...new Array(columns)].map(() => titleInstance.copy());
-    titleGroup.newShape({
-      frame: new sketch.Rectangle(0, height, width * columns, 0.5),
-      name: 'divider',
-      style,
-    });
     titleGroup.sketchObject.addLayers(titleInstances);
 
     let titleIndex = 0;
@@ -45,6 +37,7 @@ class List extends SketchComponent {
       }
     });
     titleGroup.adjustToFit();
+    this.createDividerAtGroup(titleGroup);
     titleGroup.sketchObject.setIsLocked(true);
     // endregion title
 
@@ -52,11 +45,6 @@ class List extends SketchComponent {
     const rowGroup = listGroup.newGroup({ name: 'row' });
     const rowInstance = this.createSymbolInstanceByPath('list/body/single');
     const rowInstances = [...new Array(columns)].map(() => rowInstance.copy());
-    rowGroup.newShape({
-      frame: new sketch.Rectangle(0, height, width * columns, 0.5),
-      name: 'divider',
-      style,
-    });
     rowGroup.sketchObject.addLayers(rowInstances);
     setFrame(rowGroup, { y: height });
 
@@ -72,6 +60,7 @@ class List extends SketchComponent {
       }
     });
     rowGroup.adjustToFit();
+    this.createDividerAtGroup(rowGroup);
     rowGroup.sketchObject.setIsLocked(true);
     // endregion rows
 

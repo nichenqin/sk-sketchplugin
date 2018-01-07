@@ -172,6 +172,22 @@ class ContextManage {
 
     return bg;
   }
+
+  createDividerAtGroup(group) {
+    const { sketch } = this;
+    const style = new sketch.Style();
+    style.borders = ['#ddd'];
+
+    const { width, height } = group.frame;
+
+    const divider = group.newShape({
+      name: 'divider',
+      frame: new sketch.Rectangle(0, height, width, 0.5),
+      style,
+    });
+
+    return divider;
+  }
 }
 
 export default ContextManage;
