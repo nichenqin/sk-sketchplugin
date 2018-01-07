@@ -1,7 +1,26 @@
 <template>
   <section>
 
-    <button class="btn btn-primary btn-lg btn-block" @click="handleImport">Import To Sketch</button>
+    <form @submit.prevent="handleImport">
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="datepickerShowToday" v-model="showToday">
+        <label for="datepickerShowToday" class="custom-control-label">Show Today</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="datepickerShowTomorrow" v-model="showTomorrow">
+        <label for="datepickerShowTomorrow" class="custom-control-label">Show Tomorrow</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="datepickerShowClear" v-model="showClear">
+        <label for="datepickerShowClear" class="custom-control-label">Show Clear</label>
+      </div>
+
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Import To Sketch</button>
+
+    </form>
 
     <sk-preview>
       <tb-picker v-model="today">
@@ -23,6 +42,9 @@ export default {
   data() {
     return {
       today: '',
+      showToday: false,
+      showTomorrow: false,
+      showClear: false,
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth(),
       currentDay: new Date().getDate(),
@@ -87,6 +109,9 @@ export default {
         nextMonthDateList,
         dateList,
         currentDay,
+        showToday,
+        showTomorrow,
+        showClear,
       } = this;
       const payload = {
         previousMonthDateList,
@@ -94,6 +119,9 @@ export default {
         nextMonthDateList,
         dateList,
         currentDay,
+        showToday,
+        showTomorrow,
+        showClear,
       };
       this.$emit('import', payload);
     },

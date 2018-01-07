@@ -18,9 +18,9 @@ class Radio extends SketchComponent {
     const iconInstance = this.createSymbolInstanceByPath('icon/radio');
     const { height } = getRectOfNativeLayer(radioInstance);
 
-    const itemInstances = options.map(() => radioInstance.copy());
-    radioGroup.sketchObject.addLayers(itemInstances);
-    itemInstances.forEach((item, index) => {
+    const radioInstances = options.map(() => radioInstance.copy());
+    radioGroup.sketchObject.addLayers(radioInstances);
+    radioInstances.forEach((item, index) => {
       item.overridePoints().forEach(overridePoint => {
         if (isOverridePointName(overridePoint, 'option')) {
           item.setValue_forOverridePoint_(String(options[index].value), overridePoint);
@@ -31,12 +31,9 @@ class Radio extends SketchComponent {
       });
     });
 
-    let index = 0;
-    radioGroup.iterate(item => {
-      if (is(item.sketchObject, 'MSSymbolInstance')) {
-        item.sketchObject.frame().setY_(height * index);
-        index += 1;
-      }
+    radioInstances.forEach((radioItem, index) => {
+      radioItem.frame().setY_(height * index);
+      index += 1;
     });
 
     radioGroup.adjustToFit();

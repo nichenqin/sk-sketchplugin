@@ -147,8 +147,8 @@ class ContextManage {
   /**
    * create a bg rectangle inside a group
    *
-   * @param {MSLayerGroup} group
-   * @returns {MSShapeGroup}
+   * @param {object} group
+   * @returns {object}
    * @memberof ContextManage
    */
   createBgAtGroup(group) {
@@ -173,7 +173,19 @@ class ContextManage {
     return bg;
   }
 
+  /**
+   *
+   *
+   * @param {object} group
+   * @param {object} [{ color = '#ddd', name = 'divider' }={}]
+   * @returns {object}
+   * @memberof ContextManage
+   */
   createDividerAtGroup(group, { color = '#ddd', name = 'divider' } = {}) {
+    if (!group.isGroup) {
+      throw new Error('shape should be added inside a group');
+    }
+
     const { sketch } = this;
     const style = new sketch.Style();
     style.borders = [color];
@@ -187,6 +199,22 @@ class ContextManage {
     });
 
     return divider;
+  }
+
+  createShadowAtGroup(group, { color = 'rgba(0, 0, 0, 0.5)' } = {}) {
+    if (!group.isGroup) {
+      throw new Error('shape should be added inside a group');
+    }
+
+    const { sketch } = this;
+    const style = new sketch.Style();
+    const msColor = style.colorFromString(color);
+
+    const screenShadow = group.sketchObject.style().addStylePartOfType(2);
+    screenShadow.setColor(msColor);
+    screenShadow.offsetX = 0;
+    screenShadow.offsetY = 2;
+    screenShadow.blurRadius = 4;
   }
 }
 

@@ -10749,6 +10749,25 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10760,6 +10779,9 @@ var TOTAL_LENGTH = 42;
   data: function data() {
     return {
       today: '',
+      showToday: false,
+      showTomorrow: false,
+      showClear: false,
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth(),
       currentDay: new Date().getDate()
@@ -10823,14 +10845,20 @@ var TOTAL_LENGTH = 42;
           currentMonthDateList = this.currentMonthDateList,
           nextMonthDateList = this.nextMonthDateList,
           dateList = this.dateList,
-          currentDay = this.currentDay;
+          currentDay = this.currentDay,
+          showToday = this.showToday,
+          showTomorrow = this.showTomorrow,
+          showClear = this.showClear;
 
       var payload = {
         previousMonthDateList: previousMonthDateList,
         currentMonthDateList: currentMonthDateList,
         nextMonthDateList: nextMonthDateList,
         dateList: dateList,
-        currentDay: currentDay
+        currentDay: currentDay,
+        showToday: showToday,
+        showTomorrow: showTomorrow,
+        showClear: showClear
       };
       this.$emit('import', payload);
     }
@@ -14649,12 +14677,175 @@ var render = function() {
     "section",
     [
       _c(
-        "button",
+        "form",
         {
-          staticClass: "btn btn-primary btn-lg btn-block",
-          on: { click: _vm.handleImport }
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.handleImport($event)
+            }
+          }
         },
-        [_vm._v("Import To Sketch")]
+        [
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showToday,
+                  expression: "showToday"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "datepickerShowToday" },
+              domProps: {
+                checked: Array.isArray(_vm.showToday)
+                  ? _vm._i(_vm.showToday, null) > -1
+                  : _vm.showToday
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showToday,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showToday = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showToday = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showToday = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "datepickerShowToday" }
+              },
+              [_vm._v("Show Today")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showTomorrow,
+                  expression: "showTomorrow"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "datepickerShowTomorrow" },
+              domProps: {
+                checked: Array.isArray(_vm.showTomorrow)
+                  ? _vm._i(_vm.showTomorrow, null) > -1
+                  : _vm.showTomorrow
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showTomorrow,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showTomorrow = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showTomorrow = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showTomorrow = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "datepickerShowTomorrow" }
+              },
+              [_vm._v("Show Tomorrow")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showClear,
+                  expression: "showClear"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "datepickerShowClear" },
+              domProps: {
+                checked: Array.isArray(_vm.showClear)
+                  ? _vm._i(_vm.showClear, null) > -1
+                  : _vm.showClear
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showClear,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showClear = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showClear = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showClear = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "datepickerShowClear" }
+              },
+              [_vm._v("Show Clear")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-lg btn-block",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Import To Sketch")]
+          )
+        ]
       ),
       _vm._v(" "),
       _c(

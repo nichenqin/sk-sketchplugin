@@ -36,7 +36,7 @@ class List extends SketchComponent {
     titleGroup.sketchObject.setIsLocked(true);
     // endregion title
 
-    // region rows
+    // region row
     const rowGroup = listGroup.newGroup({ name: 'row' });
     const rowInstance = this.createSymbolInstanceByPath('list/body/single');
     const rowInstances = [...new Array(columns)].map(() => rowInstance.copy());
@@ -53,7 +53,7 @@ class List extends SketchComponent {
     rowGroup.adjustToFit();
     this.createDividerAtGroup(rowGroup);
     rowGroup.sketchObject.setIsLocked(true);
-    // endregion rows
+    // endregion row
 
     // region duplicate rows
     for (let i = 1; i < rows; i += 1) {
@@ -65,6 +65,7 @@ class List extends SketchComponent {
 
     listGroup.adjustToFit();
     this.createBgAtGroup(listGroup);
+    this.createShadowAtGroup(listGroup);
     listGroup.iterate(layer => {
       layer.sketchObject.setIsLocked(true);
     });

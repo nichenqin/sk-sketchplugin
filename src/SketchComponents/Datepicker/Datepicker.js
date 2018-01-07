@@ -11,11 +11,19 @@ class Datepicker extends SketchComponent {
   }
 
   import({
-    previousMonthDateList, currentMonthDateList, nextMonthDateList, dateList, currentDay,
+    previousMonthDateList,
+    currentMonthDateList,
+    nextMonthDateList,
+    dateList,
+    currentDay,
+    showToday,
+    showTomorrow,
+    showClear,
   }) {
     const { page, name } = this;
     const datepickerGroup = page.newGroup({ name });
 
+    let footerInstance;
     const headerInstance = this.createSymbolInstanceByPath('datepicker/header/normal');
     const { width: headerWidth } = getRectOfNativeLayer(headerInstance);
     const lightInstance = this.createSymbolInstanceByPath('datepicker/day/light');
@@ -25,6 +33,7 @@ class Datepicker extends SketchComponent {
     const { height, width } = getRectOfNativeLayer(normalInstance);
     const padding = (headerWidth - width * 7) / 2;
 
+    // region add header
     datepickerGroup.sketchObject.addLayer(headerInstance);
     headerInstance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'date')) {
@@ -41,7 +50,9 @@ class Datepicker extends SketchComponent {
       }
     });
     datepickerGroup.adjustToFit();
+    // endregion add header
 
+    // region add week
     const weekData = ['日', '一', '二', '三', '四', '五', '六'];
     const weekInstances = weekData.map(() => weekInstance.copy());
     datepickerGroup.sketchObject.addLayers(weekInstances);
@@ -57,7 +68,9 @@ class Datepicker extends SketchComponent {
     datepickerGroup.adjustToFit();
 
     this.createDividerAtGroup(datepickerGroup);
+    // endregion add week
 
+    // region add days
     const previousInstances = previousMonthDateList.map(() => lightInstance.copy());
     const currentInstances = currentMonthDateList.map(({ day }) => (day === currentDay ? selectedInstance.copy() : normalInstance.copy()));
     const nextInstances = nextMonthDateList.map(() => lightInstance.copy());
@@ -76,8 +89,24 @@ class Datepicker extends SketchComponent {
     });
 
     datepickerGroup.adjustToFit();
+    // endregion add days
+
+    // region add footer
+    if (showToday || showTomorrow || showClear) {
+      const today = showToday ? 'today' : '';
+      const tomorrow = showTomorrow ? 'tomorrow' : '';
+      const clear = showClear ? 'clear' : '';
+      const footerPath = [today, tomorrow, clear].filter(p => !!p).join('/');
+      footerInstance = this.createSymbolInstanceByPath(`datepicker/footer/${footerPath}`);
+
+      datepickerGroup.sketchObject.addLayer(footerInstance);
+      footerInstance.frame().setY_(datepickerGroup.frame.height);
+      datepickerGroup.adjustToFit();
+    }
+    // endregion add footer
 
     this.createBgAtGroup(datepickerGroup);
+    this.createShadowAtGroup(datepickerGroup);
     datepickerGroup.iterate(layer => {
       layer.sketchObject.setIsLocked(true);
     });
