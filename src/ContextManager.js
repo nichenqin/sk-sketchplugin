@@ -173,15 +173,15 @@ class ContextManage {
     return bg;
   }
 
-  createDividerAtGroup(group) {
+  createDividerAtGroup(group, { color = '#ddd', name = 'divider' } = {}) {
     const { sketch } = this;
     const style = new sketch.Style();
-    style.borders = ['#ddd'];
+    style.borders = [color];
 
     const { width, height } = group.frame;
 
     const divider = group.newShape({
-      name: 'divider',
+      name,
       frame: new sketch.Rectangle(0, height, width, 0.5),
       style,
     });

@@ -13,7 +13,7 @@ class List extends SketchComponent {
   import({
     rows, columns, titleItems, rowItems,
   }) {
-    const { sketch, page, name } = this;
+    const { page, name } = this;
 
     const listGroup = page.newGroup({ name });
 
@@ -25,16 +25,11 @@ class List extends SketchComponent {
     const titleInstances = [...new Array(columns)].map(() => titleInstance.copy());
     titleGroup.sketchObject.addLayers(titleInstances);
 
-    let titleIndex = 0;
-    titleGroup.iterate(layer => {
-      const titleItem = layer.sketchObject;
-      if (is(titleItem, 'MSSymbolInstance')) {
-        titleItem.frame().setX_(width * titleIndex);
-        titleItem.overridePoints().forEach(overridePoint => {
-          titleItem.setValue_forOverridePoint(String(titleItems[titleIndex]), overridePoint);
-        });
-        titleIndex += 1;
-      }
+    titleInstances.forEach((titleItem, index) => {
+      titleItem.frame().setX_(width * index);
+      titleItem.overridePoints().forEach(overridePoint => {
+        titleItem.setValue_forOverridePoint(String(titleItems[index]), overridePoint);
+      });
     });
     titleGroup.adjustToFit();
     this.createDividerAtGroup(titleGroup);
@@ -48,17 +43,13 @@ class List extends SketchComponent {
     rowGroup.sketchObject.addLayers(rowInstances);
     setFrame(rowGroup, { y: height });
 
-    let rowIndex = 0;
-    rowGroup.iterate(layer => {
-      const rowItem = layer.sketchObject;
-      if (is(rowItem, 'MSSymbolInstance')) {
-        rowItem.frame().setX_(width * rowIndex);
-        rowItem.overridePoints().forEach(overridePoint => {
-          rowItem.setValue_forOverridePoint(String(rowItems[rowIndex]), overridePoint);
-        });
-        rowIndex += 1;
-      }
+    rowInstances.forEach((rowItem, index) => {
+      rowItem.frame().setX_(width * index);
+      rowItem.overridePoints().forEach(overridePoint => {
+        rowItem.setValue_forOverridePoint(String(rowItems[index]), overridePoint);
+      });
     });
+
     rowGroup.adjustToFit();
     this.createDividerAtGroup(rowGroup);
     rowGroup.sketchObject.setIsLocked(true);
