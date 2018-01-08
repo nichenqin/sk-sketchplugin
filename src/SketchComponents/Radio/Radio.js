@@ -10,12 +10,13 @@ class Radio extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ options }) {
+  import({ options, option: optionValue }) {
     const { page } = this;
 
     const radioGroup = page.newGroup({ name: 'radio' });
     const radioInstance = this.createSymbolInstanceByPath('radio/normal');
     const iconInstance = this.createSymbolInstanceByPath('icon/radio');
+    const iconSelectedInstance = this.createSymbolInstanceByPath('icon/radio_selected');
     const { height } = getRectOfNativeLayer(radioInstance);
 
     const radioInstances = options.map(() => radioInstance.copy());
@@ -26,13 +27,17 @@ class Radio extends SketchComponent {
           item.setValue_forOverridePoint_(String(options[index].value), overridePoint);
         }
         if (isOverridePointName(overridePoint, 'icon_status')) {
-          item.setValue_forOverridePoint_(iconInstance.symbolID(), overridePoint);
+          const symbolID =
+            options[index].value === optionValue
+              ? iconSelectedInstance.symbolID()
+              : iconInstance.symbolID();
+          item.setValue_forOverridePoint_(symbolID, overridePoint);
         }
       });
     });
 
     radioInstances.forEach((radioItem, index) => {
-      radioItem.frame().setY_(height * index);
+      radioItem.frame().setY_((height + 10) * index);
       index += 1;
     });
 

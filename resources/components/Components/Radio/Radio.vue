@@ -20,7 +20,7 @@
     <button class="btn btn-primary btn-lg btn-block" @click="handleImport">Import To Sketch</button>
 
     <sk-preview>
-      <tb-radio-group :options="optionValues" :arrange="arrange"></tb-radio-group>
+      <tb-radio-group :options="optionValues" :arrange="arrange" v-model="option"></tb-radio-group>
     </sk-preview>
   </section>
 </template>
@@ -38,6 +38,7 @@ export default {
   data() {
     return {
       isCol: true,
+      option: 'option-1',
       options: optionsData,
     };
   },
@@ -62,8 +63,8 @@ export default {
       this.options.pop();
     },
     handleImport() {
-      const { options } = this;
-      const payload = { options };
+      const { options, option } = this;
+      const payload = { options, option };
       this.$emit('import', payload);
     },
   },
