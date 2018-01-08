@@ -11302,6 +11302,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -11310,7 +11315,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   data: function data() {
     return {
       showPicker: true,
-      showSearch: false,
+      showSearch: true,
       searchWord: 'search word',
       option: '',
       options: [].concat(_toConsumableArray(new Array(3))).map(function (val, index) {
@@ -16190,6 +16195,56 @@ var render = function() {
           }
         },
         [
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showPicker,
+                  expression: "showPicker"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "dropdownShowPicker" },
+              domProps: {
+                checked: Array.isArray(_vm.showPicker)
+                  ? _vm._i(_vm.showPicker, null) > -1
+                  : _vm.showPicker
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showPicker,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showPicker = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showPicker = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showPicker = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "dropdownShowPicker" }
+              },
+              [_vm._v("Show Picker")]
+            )
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
             _c("input", {
               directives: [

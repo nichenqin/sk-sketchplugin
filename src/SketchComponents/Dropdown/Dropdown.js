@@ -70,6 +70,9 @@ class Dropdown extends SketchComponent {
     setFrame(dropdownGroup, { y: rootGroup.frame.height });
 
     rootGroup.adjustToFit();
+    rootGroup.iterate(layer => {
+      layer.sketchObject.setIsLocked_(true);
+    });
 
     return rootGroup;
   }

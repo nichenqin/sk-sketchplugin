@@ -3,6 +3,11 @@
     <form @submit.prevent="handleImport">
 
       <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="dropdownShowPicker" v-model="showPicker">
+        <label for="dropdownShowPicker" class="custom-control-label">Show Picker</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
         <input type="checkbox" class="custom-control-input" id="dropdownShowSearch" v-model="showSearch">
         <label for="dropdownShowSearch" class="custom-control-label">Show Search</label>
       </div>
@@ -28,7 +33,7 @@ export default {
   data() {
     return {
       showPicker: true,
-      showSearch: false,
+      showSearch: true,
       searchWord: 'search word',
       option: '',
       options: [...new Array(3)].map((val, index) => ({ title: `option-${index + 1}` })),
