@@ -14,16 +14,18 @@ class Dropdown extends SketchComponent {
   import({ showPicker, showSearch, searchWord }) {
     const { page, name, context } = this;
 
-    const dropdownGroup = page.newGroup({ name });
+    const rootGroup = page.newGroup({ name });
 
     let pickerInstance;
     if (showPicker) {
       const picker = new Picker(context);
       pickerInstance = picker.layer.sketchObject;
-      dropdownGroup.sketchObject.addLayer(pickerInstance.copy());
-      dropdownGroup.adjustToFit();
+      rootGroup.sketchObject.addLayer(pickerInstance.copy());
+      page.sketchObject.removeLayer_(pickerInstance);
+      rootGroup.adjustToFit();
     }
 
+    const dropdownGroup = rootGroup.newGroup({ name });
     const searchInstance = this.createSymbolInstanceByPath('dropdown/search/normal');
     const optionInstance = this.createSymbolInstanceByPath('dropdown/option/normal');
     const selectionInstance = this.createSymbolInstanceByPath('icon/none');
@@ -31,7 +33,7 @@ class Dropdown extends SketchComponent {
 
     if (showSearch) {
       dropdownGroup.sketchObject.addLayer(searchInstance);
-      searchInstance.frame().setY_(dropdownGroup.frame.height);
+      searchInstance.frame().setY_(rootGroup.frame.height);
       searchInstance.overridePoints().forEach(overridePoint => {
         if (isOverridePointName(overridePoint, 'content')) {
           searchInstance.setValue_forOverridePoint_(String(searchWord), overridePoint);
@@ -43,7 +45,7 @@ class Dropdown extends SketchComponent {
     const optionInstances = [...new Array(3)].map(() => optionInstance.copy());
     dropdownGroup.sketchObject.addLayers(optionInstances);
     optionInstances.forEach((optionItem, index) => {
-      optionItem.frame().setY_(height * index + dropdownGroup.frame.height);
+      optionItem.frame().setY_(height * index + rootGroup.frame.height);
       optionItem.overridePoints().forEach(overridePoint => {
         if (isOverridePointName(overridePoint, 'icon_selection')) {
           optionItem.setValue_forOverridePoint_(selectionInstance.symbolID(), overridePoint);
@@ -56,8 +58,9 @@ class Dropdown extends SketchComponent {
     this.createShadowAtGroup(dropdownGroup);
 
     dropdownGroup.adjustToFit();
+    rootGroup.adjustToFit();
 
-    return dropdownGroup;
+    return rootGroup;
   }
 }
 
