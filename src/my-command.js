@@ -13,6 +13,7 @@ import UploadFile from './SketchComponents/UploadFile';
 import Pagination from './SketchComponents/Pagination';
 import Rectangle from './SketchComponents/Rectangle';
 import Dropdown from './SketchComponents/Dropdown';
+import Picker from './SketchComponents/Picker';
 
 import store from './store';
 
@@ -45,6 +46,8 @@ function createComponentInstance(context, name, payload) {
         return new Rectangle(context, payload);
       case 'dropdown':
         return new Dropdown(context, payload);
+      case 'picker':
+        return new Picker(context, payload);
 
       default:
         return null;

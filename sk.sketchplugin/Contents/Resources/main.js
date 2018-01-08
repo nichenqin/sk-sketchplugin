@@ -9225,7 +9225,7 @@ module.exports = g;
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      components: ['bread', 'button', 'switch', 'list', 'text', 'longInput', 'radio', 'datepicker', 'shortInput', 'uploadFile', 'pagination', 'rectangle', 'dropdown']
+      components: ['bread', 'button', 'switch', 'list', 'text', 'longInput', 'radio', 'datepicker', 'shortInput', 'uploadFile', 'pagination', 'rectangle', 'dropdown', 'picker']
     };
   },
 
@@ -9258,6 +9258,7 @@ module.exports = g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Components_Pagination__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Components_Rectangle__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Components_Dropdown__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Components_Picker__ = __webpack_require__(306);
 //
 //
 //
@@ -9297,6 +9298,7 @@ module.exports = g;
 //
 //
 //
+
 
 
 
@@ -9330,7 +9332,8 @@ module.exports = g;
     SkUploadFile: __WEBPACK_IMPORTED_MODULE_11__Components_UploadFile__["a" /* default */],
     SkPagination: __WEBPACK_IMPORTED_MODULE_12__Components_Pagination__["a" /* default */],
     SkRectangle: __WEBPACK_IMPORTED_MODULE_13__Components_Rectangle__["a" /* default */],
-    SkDropdown: __WEBPACK_IMPORTED_MODULE_14__Components_Dropdown__["a" /* default */]
+    SkDropdown: __WEBPACK_IMPORTED_MODULE_14__Components_Dropdown__["a" /* default */],
+    SkPicker: __WEBPACK_IMPORTED_MODULE_15__Components_Picker__["a" /* default */]
   },
   data: function data() {
     return {
@@ -11272,6 +11275,23 @@ var TOTAL_LENGTH = 42;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11283,10 +11303,35 @@ var TOTAL_LENGTH = 42;
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      showPicker: true,
+      showSearch: false,
+      searchWord: 'search word',
+      option: '',
+      options: [].concat(_toConsumableArray(new Array(3))).map(function (val, index) {
+        return { title: 'option-' + (index + 1) };
+      })
+    };
+  },
+
+  components: {
+    TbDropdown: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Dropdown"],
+    TbPicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Picker"],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
+  },
   methods: {
     handleImport: function handleImport() {
-      this.$emit('import');
+      var showPicker = this.showPicker,
+          showSearch = this.showSearch,
+          searchWord = this.searchWord;
+
+      var payload = { showPicker: showPicker, showSearch: showSearch, searchWord: searchWord };
+      this.$emit('import', payload);
     }
   }
 });
@@ -11338,8 +11383,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__assets_pagination_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__assets_pagination_sketch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__assets_dropdown_sketch__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__assets_dropdown_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__assets_dropdown_sketch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__styles_style_less__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__styles_style_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__assets_picker_sketch__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__assets_picker_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__assets_picker_sketch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__styles_style_less__ = __webpack_require__(304);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__styles_style_less__);
 /* eslint-disable */
 
 
@@ -11350,6 +11397,7 @@ __webpack_require__(293);
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_4__zhinan_tb_components__);
+
 
 
 
@@ -16128,24 +16176,115 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            _vm.handleImport($event)
+  return _c(
+    "section",
+    [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.handleImport($event)
+            }
           }
-        }
-      },
-      [
-        _c("button", { staticClass: "btn btn-lg btn-block btn-primary" }, [
-          _vm._v("Import To Sketch")
-        ])
-      ]
-    )
-  ])
+        },
+        [
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showSearch,
+                  expression: "showSearch"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "dropdownShowSearch" },
+              domProps: {
+                checked: Array.isArray(_vm.showSearch)
+                  ? _vm._i(_vm.showSearch, null) > -1
+                  : _vm.showSearch
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showSearch,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showSearch = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showSearch = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showSearch = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "dropdownShowSearch" }
+              },
+              [_vm._v("Show Search")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-lg btn-block btn-primary",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Import To Sketch")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "sk-preview",
+        [
+          _c(
+            "tb-picker",
+            {
+              model: {
+                value: _vm.option,
+                callback: function($$v) {
+                  _vm.option = $$v
+                },
+                expression: "option"
+              }
+            },
+            [
+              _c("tb-dropdown", {
+                attrs: { options: _vm.options, hasSearch: _vm.showSearch },
+                model: {
+                  value: _vm.option,
+                  callback: function($$v) {
+                    _vm.option = $$v
+                  },
+                  expression: "option"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -34175,6 +34314,186 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 
 // exports
 
+
+/***/ }),
+/* 306 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Picker_vue__ = __webpack_require__(308);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__Picker_vue__["a" /* default */]);
+
+/***/ }),
+/* 307 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      content: 'picker content'
+    };
+  },
+
+  components: {
+    TbPicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Picker"],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
+  },
+  methods: {
+    handleImport: function handleImport() {
+      var content = this.content;
+
+      var payload = { content: content };
+      this.$emit('import', payload);
+    }
+  }
+});
+
+/***/ }),
+/* 308 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Picker_vue__ = __webpack_require__(307);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_9fc04a32_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Picker_vue__ = __webpack_require__(309);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Picker_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_9fc04a32_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Picker_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Components/Picker/Picker.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9fc04a32", Component.options)
+  } else {
+    hotAPI.reload("data-v-9fc04a32", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 309 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.handleImport($event)
+            }
+          }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-lg btn-block btn-primary",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Import To Sketch")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "sk-preview",
+        [
+          _c("tb-picker", {
+            model: {
+              value: _vm.content,
+              callback: function($$v) {
+                _vm.content = $$v
+              },
+              expression: "content"
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9fc04a32", esExports)
+  }
+}
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "picker.sketch?e91cf4f14f6f78000f205b2e6f30060e";
 
 /***/ })
 /******/ ]);

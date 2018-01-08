@@ -2,7 +2,7 @@ import ContextManager from '../ContextManager';
 import store from '../store';
 
 class SketchComponent extends ContextManager {
-  constructor(context, payload, option = {}) {
+  constructor(context, payload = {}, option = {}) {
     super(context);
 
     const name = option.name || '';
@@ -13,7 +13,7 @@ class SketchComponent extends ContextManager {
     this.uikit = this.sketch.resourceNamed(`${name}.sketch`);
 
     this.payload = payload;
-    this.init(payload);
+    this.init(this.payload);
   }
 
   is(name) {

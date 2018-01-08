@@ -30,6 +30,7 @@ export default {
         'pagination',
         'rectangle',
         'dropdown',
+        'picker',
       ],
     };
   },

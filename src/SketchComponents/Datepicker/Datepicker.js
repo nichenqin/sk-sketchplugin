@@ -24,6 +24,7 @@ class Datepicker extends SketchComponent {
     const datepickerGroup = page.newGroup({ name });
 
     let footerInstance;
+    const date = new Date();
     const headerInstance = this.createSymbolInstanceByPath('datepicker/header/normal');
     const { width: headerWidth } = getRectOfNativeLayer(headerInstance);
     const lightInstance = this.createSymbolInstanceByPath('datepicker/day/light');
@@ -37,7 +38,6 @@ class Datepicker extends SketchComponent {
     datepickerGroup.sketchObject.addLayer(headerInstance);
     headerInstance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'date')) {
-        const date = new Date();
         headerInstance.setValue_forOverridePoint(String(date.getFullYear()), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon_previousMonth')) {

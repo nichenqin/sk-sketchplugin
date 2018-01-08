@@ -10,17 +10,25 @@ class Dropdown extends SketchComponent {
     super(context, payload, option);
   }
 
-  import() {
+  import({ showPicker, showSearch, searchWord }) {
     const { page, name } = this;
-    const dropdownGroup = page.newGroup({ name });
+    const root = page.newGroup({ name });
+    const dropdownGroup = root.newGroup({ name });
 
     const searchInstance = this.createSymbolInstanceByPath('dropdown/search/normal');
     const optionInstance = this.createSymbolInstanceByPath('dropdown/option/normal');
     const selectionInstance = this.createSymbolInstanceByPath('icon/none');
     const { height } = getRectOfNativeLayer(optionInstance);
 
-    dropdownGroup.sketchObject.addLayer(searchInstance);
-    dropdownGroup.adjustToFit();
+    if (showSearch) {
+      dropdownGroup.sketchObject.addLayer(searchInstance);
+      searchInstance.overridePoints().forEach(overridePoint => {
+        if (isOverridePointName(overridePoint, 'content')) {
+          searchInstance.setValue_forOverridePoint_(String(searchWord), overridePoint);
+        }
+      });
+      dropdownGroup.adjustToFit();
+    }
 
     const optionInstances = [...new Array(3)].map(() => optionInstance.copy());
     dropdownGroup.sketchObject.addLayers(optionInstances);
@@ -36,6 +44,8 @@ class Dropdown extends SketchComponent {
     dropdownGroup.adjustToFit();
     this.createBgAtGroup(dropdownGroup);
     this.createShadowAtGroup(dropdownGroup);
+
+    root.adjustToFit();
 
     return dropdownGroup;
   }
