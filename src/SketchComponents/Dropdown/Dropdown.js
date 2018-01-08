@@ -37,10 +37,13 @@ class Dropdown extends SketchComponent {
     const searchInstance = this.createSymbolInstanceByPath('dropdown/search/normal');
     const optionInstance = this.createSymbolInstanceByPath('dropdown/option/normal');
     const selectionInstance = this.createSymbolInstanceByPath('icon/none');
+    const { width } = getRectOfNativeLayer(searchInstance);
+    const padding = showPicker ? (getRectOfNativeLayer(pickerInstance).width - width) / 2 : 0;
 
     if (showSearch) {
       dropdownGroup.sketchObject.addLayer(searchInstance);
       searchInstance.overridePoints().forEach(overridePoint => {
+        searchInstance.frame().setX_(padding);
         if (isOverridePointName(overridePoint, 'content')) {
           searchInstance.setValue_forOverridePoint_(String(searchWord), overridePoint);
         }
