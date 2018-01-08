@@ -1,6 +1,6 @@
 import SketchComponent from '../SketchComponent';
 import Picker from '../Picker';
-import { getRectOfNativeLayer, isOverridePointName } from '../../utils/index';
+import { getRectOfNativeLayer, isOverridePointName, setFrame } from '../../utils/index';
 
 const option = {
   name: 'dropdown',
@@ -12,9 +12,14 @@ class Dropdown extends SketchComponent {
   }
 
   import({ showPicker, showSearch, searchWord }) {
-    const { page, name, context } = this;
+    const {
+      page, name, context, sketch,
+    } = this;
 
-    const rootGroup = page.newGroup({ name });
+    const rootGroup = page.newGroup({
+      name,
+      frame: new sketch.Rectangle(0, 0, 0.5, 0.5),
+    });
 
     let pickerInstance;
     if (showPicker) {
@@ -25,39 +30,42 @@ class Dropdown extends SketchComponent {
       rootGroup.adjustToFit();
     }
 
-    const dropdownGroup = rootGroup.newGroup({ name });
+    const dropdownGroup = rootGroup.newGroup({
+      name,
+      frame: new sketch.Rectangle(0, 0, 0.5, 0.5),
+    });
     const searchInstance = this.createSymbolInstanceByPath('dropdown/search/normal');
     const optionInstance = this.createSymbolInstanceByPath('dropdown/option/normal');
     const selectionInstance = this.createSymbolInstanceByPath('icon/none');
-    const { height } = getRectOfNativeLayer(optionInstance);
 
     if (showSearch) {
       dropdownGroup.sketchObject.addLayer(searchInstance);
-      searchInstance.frame().setY_(rootGroup.frame.height);
       searchInstance.overridePoints().forEach(overridePoint => {
         if (isOverridePointName(overridePoint, 'content')) {
           searchInstance.setValue_forOverridePoint_(String(searchWord), overridePoint);
         }
       });
+
       dropdownGroup.adjustToFit();
     }
 
     const optionInstances = [...new Array(3)].map(() => optionInstance.copy());
     dropdownGroup.sketchObject.addLayers(optionInstances);
-    optionInstances.forEach((optionItem, index) => {
-      optionItem.frame().setY_(height * index + rootGroup.frame.height);
+    optionInstances.forEach(optionItem => {
+      optionItem.frame().setY_(dropdownGroup.frame.height);
       optionItem.overridePoints().forEach(overridePoint => {
         if (isOverridePointName(overridePoint, 'icon_selection')) {
           optionItem.setValue_forOverridePoint_(selectionInstance.symbolID(), overridePoint);
         }
       });
+      dropdownGroup.adjustToFit();
     });
 
     dropdownGroup.adjustToFit();
     this.createBgAtGroup(dropdownGroup);
     this.createShadowAtGroup(dropdownGroup);
+    setFrame(dropdownGroup, { y: rootGroup.frame.height });
 
-    dropdownGroup.adjustToFit();
     rootGroup.adjustToFit();
 
     return rootGroup;
