@@ -10,13 +10,18 @@ class Picker extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ content, status }) {
-    const pickerInstance = this.createSymbolInstanceByPath(`picker/${status}`);
+  import({ content, status = 'normal', placeholder = 'default placeholder' }) {
+    const path = content ? `picker/${status}` : 'picker/placeholder';
+
+    const pickerInstance = this.createSymbolInstanceByPath(path);
     this.document.sketchObject.addLayer(pickerInstance);
 
     pickerInstance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'content') && content) {
         pickerInstance.setValue_forOverridePoint_(String(content), overridePoint);
+      }
+      if (isOverridePointName(overridePoint, 'placeholder') && !content) {
+        pickerInstance.setValue_forOverridePoint_(String(placeholder), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon_arrow')) {
         const iconStatuc = status === 'active' ? 'arrowUp' : 'arrowDown';
