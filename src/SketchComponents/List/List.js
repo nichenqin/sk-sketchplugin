@@ -1,5 +1,5 @@
 import SketchComponent from '../SketchComponent';
-import { setFrame, getRectOfNativeLayer, is } from '../../utils';
+import { setFrame, getRectOfNativeLayer, isOverridePointName } from '../../utils';
 
 const option = {
   name: 'list',
@@ -28,7 +28,7 @@ class List extends SketchComponent {
     titleInstances.forEach((titleItem, index) => {
       titleItem.frame().setX_(width * index);
       titleItem.overridePoints().forEach(overridePoint => {
-        titleItem.setValue_forOverridePoint(String(titleItems[index]), overridePoint);
+        titleItem.setValue_forOverridePoint(String(titleItems[index].title), overridePoint);
       });
     });
     titleGroup.adjustToFit();
@@ -38,15 +38,27 @@ class List extends SketchComponent {
 
     // region row
     const rowGroup = listGroup.newGroup({ name: 'row' });
-    const rowInstance = this.createSymbolInstanceByPath('list/body/single');
-    const rowInstances = [...new Array(columns)].map(() => rowInstance.copy());
+    const rowInstance = {
+      single: this.createSymbolInstanceByPath('list/body/single'),
+      double: this.createSymbolInstanceByPath('list/body/double'),
+    };
+    const rowInstances = [...new Array(columns)].map((val, index) => {
+      const rowItem = rowItems[index];
+      const rowStatus = rowItem.subtitle ? 'double' : 'single';
+      return rowInstance[rowStatus].copy();
+    });
     rowGroup.sketchObject.addLayers(rowInstances);
     setFrame(rowGroup, { y: height });
 
     rowInstances.forEach((rowItem, index) => {
       rowItem.frame().setX_(width * index);
       rowItem.overridePoints().forEach(overridePoint => {
-        rowItem.setValue_forOverridePoint(String(rowItems[index]), overridePoint);
+        if (isOverridePointName(overridePoint, 'text')) {
+          rowItem.setValue_forOverridePoint(String(rowItems[index].title), overridePoint);
+        }
+        if (isOverridePointName(overridePoint, 'sup_info')) {
+          rowItem.setValue_forOverridePoint(String(rowItems[index].subtitle), overridePoint);
+        }
       });
     });
 

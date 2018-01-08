@@ -12,21 +12,33 @@
     <div class="form-row mb-3">
       <div class="col" v-for="n in columns" :key="n">
         <label :for="`list-column-${n}`">title-{{n}}</label>
-        <input type="text" class="form-control" :id="`list-column-${n}`" v-model="titleItems[n - 1]">
+        <input type="text" class="form-control" :id="`list-column-${n}`" v-model="titleItems[n - 1].title">
       </div>
     </div>
 
     <div class="form-row mb-3">
       <div class="col" v-for="n in columns" :key="n">
         <label :for="`list-row-${n}`">row-{{n}}</label>
-        <input type="text" class="form-control" :id="`list-row-${n}`" v-model="rowItems[n - 1]">
+        <input type="text" class="form-control" :id="`list-row-${n}`" v-model="rowItems[n - 1].title">
+      </div>
+    </div>
+
+    <div class="form-row mb-3">
+      <div class="col" v-for="n in columns" :key="n">
+        <input type="text" class="form-control" v-model="rowItems[n - 1].subtitle" placeholder="sub title">
+      </div>
+    </div>
+
+    <div class="form-row mb-3">
+      <div class="col" v-for="n in columns" :key="n">
+        <input type="text" class="form-control" v-model="rowItems[n - 1].icon" placeholder="icon">
       </div>
     </div>
 
     <button @click="handleImport" class="btn btn-block btn-primary btn-lg">Import To Sketch</button>
 
     <sk-preview>
-      <tb-table :dataSource="rowsData" :MaxRows="maxRows" :columns="columnsData"></tb-table>
+      <tb-table :dataSource="rowsData" :MaxRows="maxRows" :columns="columnsData" type="double"></tb-table>
     </sk-preview>
 
     <sk-code-html tag="tb-table" :properties="properties"></sk-code-html>
@@ -44,8 +56,12 @@ import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
 const r = 1;
 const c = 3;
 
-const rowItems = [...new Array(c)].map(() => 'Text');
-const titleItems = [...new Array(c)].map(() => 'title');
+const rowItems = [...new Array(c)].map(() => ({
+  title: 'Text',
+  icon: '',
+  subtitle: '',
+}));
+const titleItems = [...new Array(c)].map(() => ({ title: 'title' }));
 
 export default {
   data() {
@@ -67,14 +83,18 @@ export default {
     columnsData() {
       return [...new Array(this.columns)].map((val, index) => ({
         key: `title${index}`,
-        title: this.titleItems[index],
+        title: this.titleItems[index].title,
       }));
     },
     rowsData() {
       return [...new Array(this.rows)].map(() => {
         const obj = {};
         for (let i = 0; i < this.columns; i += 1) {
-          obj[`title${i}`] = this.rowItems[i];
+          obj[`title${i}`] = {
+            title: this.rowItems[i].title,
+            subtitle: this.rowItems[i].subtitle,
+            icon: this.rowItems[i].icon,
+          };
         }
         return obj;
       });
@@ -99,7 +119,12 @@ export default {
     },
     handleImport() {
       const { rows, columns } = this;
-      const payload = { rows, columns, titleItems: this.titleItems, rowItems: this.rowItems };
+      const payload = {
+        rows,
+        columns,
+        titleItems: this.titleItems,
+        rowItems: this.rowItems,
+      };
       this.$emit('import', payload);
     },
   },
@@ -110,8 +135,8 @@ export default {
     columns(columns, oldColums) {
       if (columns <= 0) this.columns = 1;
       if (columns > oldColums) {
-        this.titleItems.push('title');
-        this.rowItems.push('Text');
+        this.titleItems.push({ title: 'title' });
+        this.rowItems.push({ title: 'Text' });
       } else {
         this.titleItems.pop();
         this.rowItems.pop();
