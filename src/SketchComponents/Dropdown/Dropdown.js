@@ -1,4 +1,5 @@
 import SketchComponent from '../SketchComponent';
+import Picker from '../Picker';
 import { getRectOfNativeLayer, isOverridePointName } from '../../utils/index';
 
 const option = {
@@ -11,9 +12,17 @@ class Dropdown extends SketchComponent {
   }
 
   import({ showPicker, showSearch, searchWord }) {
-    const { page, name } = this;
-    const root = page.newGroup({ name });
-    const dropdownGroup = root.newGroup({ name });
+    const { page, name, context } = this;
+
+    const dropdownGroup = page.newGroup({ name });
+
+    let pickerInstance;
+    if (showPicker) {
+      const picker = new Picker(context);
+      pickerInstance = picker.layer.sketchObject;
+      dropdownGroup.sketchObject.addLayer(pickerInstance.copy());
+      dropdownGroup.adjustToFit();
+    }
 
     const searchInstance = this.createSymbolInstanceByPath('dropdown/search/normal');
     const optionInstance = this.createSymbolInstanceByPath('dropdown/option/normal');
@@ -22,6 +31,7 @@ class Dropdown extends SketchComponent {
 
     if (showSearch) {
       dropdownGroup.sketchObject.addLayer(searchInstance);
+      searchInstance.frame().setY_(dropdownGroup.frame.height);
       searchInstance.overridePoints().forEach(overridePoint => {
         if (isOverridePointName(overridePoint, 'content')) {
           searchInstance.setValue_forOverridePoint_(String(searchWord), overridePoint);
@@ -45,7 +55,7 @@ class Dropdown extends SketchComponent {
     this.createBgAtGroup(dropdownGroup);
     this.createShadowAtGroup(dropdownGroup);
 
-    root.adjustToFit();
+    dropdownGroup.adjustToFit();
 
     return dropdownGroup;
   }
