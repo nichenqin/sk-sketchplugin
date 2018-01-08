@@ -9225,7 +9225,7 @@ module.exports = g;
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      components: ['bread', 'button', 'switch', 'list', 'text', 'longInput', 'radio', 'datepicker', 'shortInput', 'uploadFile', 'pagination', 'rectangle', 'dropdown', 'picker']
+      components: ['bread', 'button', 'switch', 'list', 'text', 'longInput', 'radio', 'datepicker', 'shortInput', 'uploadFile', 'pagination', 'rectangle', 'dropdown', 'picker', 'timepicker']
     };
   },
 
@@ -9259,6 +9259,7 @@ module.exports = g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Components_Rectangle__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Components_Dropdown__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Components_Picker__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__Components_Timepicker__ = __webpack_require__(311);
 //
 //
 //
@@ -9298,6 +9299,7 @@ module.exports = g;
 //
 //
 //
+
 
 
 
@@ -9333,7 +9335,8 @@ module.exports = g;
     SkPagination: __WEBPACK_IMPORTED_MODULE_12__Components_Pagination__["a" /* default */],
     SkRectangle: __WEBPACK_IMPORTED_MODULE_13__Components_Rectangle__["a" /* default */],
     SkDropdown: __WEBPACK_IMPORTED_MODULE_14__Components_Dropdown__["a" /* default */],
-    SkPicker: __WEBPACK_IMPORTED_MODULE_15__Components_Picker__["a" /* default */]
+    SkPicker: __WEBPACK_IMPORTED_MODULE_15__Components_Picker__["a" /* default */],
+    SkTimepicker: __WEBPACK_IMPORTED_MODULE_16__Components_Timepicker__["a" /* default */]
   },
   data: function data() {
     return {
@@ -11481,8 +11484,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__assets_dropdown_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__assets_dropdown_sketch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__assets_picker_sketch__ = __webpack_require__(308);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__assets_picker_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__assets_picker_sketch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__styles_style_less__ = __webpack_require__(309);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__styles_style_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__assets_timepicker_sketch__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__assets_timepicker_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__assets_timepicker_sketch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__styles_style_less__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__styles_style_less__);
 /* eslint-disable */
 
 
@@ -11493,6 +11498,7 @@ __webpack_require__(297);
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_4__zhinan_tb_components__);
+
 
 
 
@@ -34730,6 +34736,142 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 
 // exports
 
+
+/***/ }),
+/* 311 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Timepicker_vue__ = __webpack_require__(312);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__Timepicker_vue__["a" /* default */]);
+
+/***/ }),
+/* 312 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Timepicker_vue__ = __webpack_require__(315);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_17b0af72_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Timepicker_vue__ = __webpack_require__(313);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Timepicker_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_17b0af72_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Timepicker_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Components/Timepicker/Timepicker.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-17b0af72", Component.options)
+  } else {
+    hotAPI.reload("data-v-17b0af72", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 313 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.handleImport($event)
+          }
+        }
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-lg btn-primary btn-block",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Import To Sketch")]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-17b0af72", esExports)
+  }
+}
+
+/***/ }),
+/* 314 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "timepicker.sketch?00b9827ead5266e94c1ce478dc13987b";
+
+/***/ }),
+/* 315 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  methods: {
+    handleImport: function handleImport() {
+      this.$emit('import');
+    }
+  }
+});
 
 /***/ })
 /******/ ]);

@@ -55,6 +55,7 @@ import SkPagination from '../Components/Pagination';
 import SkRectangle from '../Components/Rectangle';
 import SkDropdown from '../Components/Dropdown';
 import SkPicker from '../Components/Picker';
+import SkTimepicker from '../Components/Timepicker';
 
 export default {
   name: 'app',
@@ -73,6 +74,7 @@ export default {
     SkRectangle,
     SkDropdown,
     SkPicker,
+    SkTimepicker,
   },
   data() {
     return {

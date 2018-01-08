@@ -23,6 +23,7 @@ import './assets/switch.sketch';
 import './assets/pagination.sketch';
 import './assets/dropdown.sketch';
 import './assets/picker.sketch';
+import './assets/timepicker.sketch';
 
 // import your style files inside main.js, not html link tag
 import './styles/style.less';
