@@ -11,22 +11,15 @@ class Menu extends SketchComponent {
     super(context, payload, option);
   }
 
-  generateLevelThree(children = []) {
-    const levelThreeInstance = this.createSymbolInstanceByPath('menu/level_3/single/normal');
-    const optionInstances = children.map(() => levelThreeInstance.copy());
-    return optionInstances;
-  }
-
-  generateLevelTwo(children = []) {
-    const levelTwoInstance = this.createSymbolInstanceByPath('menu/level_2/single/normal');
-    const optionInstances = children.reduce((instances, option) => {
-      instances.push(levelTwoInstance.copy());
+  generateInstances(options, index = 1) {
+    const instance = this.createSymbolInstanceByPath(`menu/level_${index}/single/normal`);
+    return options.reduce((instances, option) => {
+      instances.push(instance.copy());
       if (option.children && option.children.length) {
-        instances.push(...this.generateLevelThree(option.children));
+        instances.push(...this.generateInstances.call(this, option.children, index + 1));
       }
       return instances;
     }, []);
-    return optionInstances;
   }
 
   import({ options = [] }) {
@@ -37,13 +30,7 @@ class Menu extends SketchComponent {
     const optionInstance = this.createSymbolInstanceByPath('menu/level_1/single/normal');
     const { height } = getRectOfNativeLayer(optionInstance);
 
-    const optionInstances = options.reduce((instances, option) => {
-      instances.push(optionInstance.copy());
-      if (option.children && option.children.length) {
-        instances.push(...this.generateLevelTwo(option.children));
-      }
-      return instances;
-    }, []);
+    const optionInstances = this.generateInstances(options);
     menuGroup.sketchObject.addLayers(optionInstances);
 
     optionInstances.forEach((optionItem, index) => {

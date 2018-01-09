@@ -124,7 +124,9 @@ class ContextManage {
       throw new Error('path required');
     }
 
-    const symbol = this.symbolLibrary[path] || this.getSymbolByPath(path);
+    const symbol = this.symbolLibrary[path]
+      ? this.symbolLibrary[path].copy()
+      : this.getSymbolByPath(path);
     if (!symbol) {
       throw new Error(`symbol not found in path: ${path}`);
     }
