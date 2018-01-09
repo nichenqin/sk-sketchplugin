@@ -11636,6 +11636,9 @@ var optionsData = [].concat(_toConsumableArray(new Array(3))).map(function (val,
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
 //
 //
 //
@@ -11657,6 +11660,18 @@ var optionsData = [].concat(_toConsumableArray(new Array(3))).map(function (val,
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 var sizeConfigs = {
   large: {
@@ -11677,10 +11692,15 @@ var sizeConfigs = {
   data: function data() {
     return {
       size: 'large',
+      showFooter: true,
       sizeConfigs: sizeConfigs
     };
   },
 
+  components: {
+    TbPopover: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TbPopover"],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
+  },
   computed: {
     rect: function rect() {
       return this.sizeConfigs[this.size];
@@ -11688,11 +11708,15 @@ var sizeConfigs = {
   },
   methods: {
     handleImport: function handleImport() {
-      var rect = this.rect;
+      var rect = this.rect,
+          showFooter = this.showFooter;
 
-      var payload = { rect: rect };
+      var payload = { rect: rect, showFooter: showFooter };
       this.$emit('import', payload);
     }
+  },
+  mounted: function mounted() {
+    this.$refs.popover.doShow();
   }
 });
 
@@ -17692,68 +17716,130 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            _vm.handleImport($event)
+  return _c(
+    "section",
+    [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.handleImport($event)
+            }
           }
-        }
-      },
-      [
-        _c("div", { staticClass: "input-group mb-3" }, [
-          _vm._m(0),
+        },
+        [
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.size,
+                    expression: "size"
+                  }
+                ],
+                staticClass: "custom-select",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.size = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              _vm._l(_vm.sizeConfigs, function(value, size) {
+                return _c("option", { key: size, domProps: { value: size } }, [
+                  _vm._v(_vm._s(size))
+                ])
+              })
+            )
+          ]),
           _vm._v(" "),
-          _c(
-            "select",
-            {
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.size,
-                  expression: "size"
+                  value: _vm.showFooter,
+                  expression: "showFooter"
                 }
               ],
-              staticClass: "custom-select",
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "popoverShowFooter" },
+              domProps: {
+                checked: Array.isArray(_vm.showFooter)
+                  ? _vm._i(_vm.showFooter, null) > -1
+                  : _vm.showFooter
+              },
               on: {
                 change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.size = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
+                  var $$a = _vm.showFooter,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showFooter = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showFooter = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showFooter = $$c
+                  }
                 }
               }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "popoverShowFooter" }
+              },
+              [_vm._v("Show Footer")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-lg btn-block btn-primary",
+              attrs: { type: "submit" }
             },
-            _vm._l(_vm.sizeConfigs, function(value, size) {
-              return _c("option", { key: size, domProps: { value: size } }, [
-                _vm._v(_vm._s(size))
-              ])
-            })
+            [_vm._v("Import To Sketch")]
           )
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-lg btn-block btn-primary",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Import To Sketch")]
-        )
-      ]
-    )
-  ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "sk-preview",
+        [
+          _c("tb-popover", { ref: "popover", attrs: { width: _vm.rect.width } })
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {

@@ -12,14 +12,26 @@
         </select>
       </div>
 
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="popoverShowFooter" v-model="showFooter">
+        <label class="custom-control-label" for="popoverShowFooter">Show Footer</label>
+      </div>
+
       <button type="submit" class="btn btn-lg btn-block btn-primary">Import To Sketch</button>
 
     </form>
+
+    <sk-preview>
+      <tb-popover ref="popover" :width="rect.width"></tb-popover>
+    </sk-preview>
 
   </section>
 </template>
 
 <script>
+import { TbPopover } from '@zhinan/tb-components';
+import SkPreview from '../../Shared/Preview.vue';
+
 const sizeConfigs = {
   large: {
     width: 500,
@@ -39,8 +51,13 @@ export default {
   data() {
     return {
       size: 'large',
+      showFooter: true,
       sizeConfigs,
     };
+  },
+  components: {
+    TbPopover,
+    SkPreview,
   },
   computed: {
     rect() {
@@ -49,10 +66,13 @@ export default {
   },
   methods: {
     handleImport() {
-      const { rect } = this;
-      const payload = { rect };
+      const { rect, showFooter } = this;
+      const payload = { rect, showFooter };
       this.$emit('import', payload);
     },
+  },
+  mounted() {
+    this.$refs.popover.doShow();
   },
 };
 </script>

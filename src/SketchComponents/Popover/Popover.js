@@ -1,5 +1,5 @@
 import SketchComponent from '../SketchComponent';
-import { isOverridePointName } from '../../utils';
+import { isOverridePointName, getRectOfNativeLayer } from '../../utils';
 
 const option = {
   name: 'popover',
@@ -10,7 +10,7 @@ class Popover extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ rect: { width, height } }) {
+  import({ rect: { width, height }, showFooter }) {
     const { sketch, page, name } = this;
 
     const popoverGroup = page.newGroup({ name });
@@ -31,17 +31,34 @@ class Popover extends SketchComponent {
     style.fills = ['#fff'];
     style.borders = ['#fff'];
 
-    popoverGroup.newShape({
+    const footerHeight = showFooter ? getRectOfNativeLayer(titleInstance).height : 0;
+    const contentGroup = popoverGroup.newGroup({ name: 'content' });
+    contentGroup.newShape({
       name: 'content',
       frame: new sketch.Rectangle(
         0,
         popoverGroup.frame.height,
         width,
-        height - popoverGroup.frame.height,
+        height - popoverGroup.frame.height - footerHeight,
       ),
       style,
     });
+    contentGroup.adjustToFit();
 
+    popoverGroup.adjustToFit();
+
+    if (showFooter) {
+      const footerGroup = popoverGroup.newGroup({ name: 'footer' });
+      footerGroup.newShape({
+        name: 'footer',
+        frame: new sketch.Rectangle(0, popoverGroup.frame.height, width, footerHeight),
+        style,
+      });
+      footerGroup.adjustToFit();
+      this.createDividerAtGroup(footerGroup, { y: 0 });
+    }
+
+    contentGroup.adjustToFit();
     popoverGroup.adjustToFit();
     this.createBgAtGroup(popoverGroup);
     this.createShadowAtGroup(popoverGroup);

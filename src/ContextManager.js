@@ -175,7 +175,7 @@ class ContextManage {
    * @returns {object}
    * @memberof ContextManage
    */
-  createDividerAtGroup(group, { color = '#ddd', name = 'divider' } = {}) {
+  createDividerAtGroup(group, { color = '#ddd', name = 'divider', y = group.frame.height } = {}) {
     if (!group.isGroup) {
       throw new Error('shape should be added inside a group');
     }
@@ -184,11 +184,11 @@ class ContextManage {
     const style = new sketch.Style();
     style.borders = [color];
 
-    const { width, height } = group.frame;
+    const { width } = group.frame;
 
     const divider = group.newShape({
       name,
-      frame: new sketch.Rectangle(0, height, width, 0.5),
+      frame: new sketch.Rectangle(0, y, width, 0.5),
       style,
     });
 
