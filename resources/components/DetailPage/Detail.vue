@@ -57,6 +57,7 @@ import SkDropdown from '../Components/Dropdown';
 import SkPicker from '../Components/Picker';
 import SkTimepicker from '../Components/Timepicker';
 import SkCheckbox from '../Components/Checkbox';
+import SkPopover from '../Components/Popover';
 
 export default {
   name: 'app',
@@ -77,6 +78,7 @@ export default {
     SkPicker,
     SkTimepicker,
     SkCheckbox,
+    SkPopover,
   },
   data() {
     return {

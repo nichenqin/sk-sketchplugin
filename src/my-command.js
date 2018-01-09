@@ -16,6 +16,7 @@ import Dropdown from './SketchComponents/Dropdown';
 import Picker from './SketchComponents/Picker';
 import Timepicker from './SketchComponents/Timepicker';
 import Checkbox from './SketchComponents/Checkbox';
+import Popover from './SketchComponents/Popover';
 
 import store from './store';
 
@@ -54,6 +55,8 @@ function createComponentInstance(context, name, payload) {
         return new Timepicker(context, payload);
       case 'checkbox':
         return new Checkbox(context, payload);
+      case 'popover':
+        return new Popover(context, payload);
 
       default:
         return null;
