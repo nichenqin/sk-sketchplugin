@@ -10136,7 +10136,8 @@ var titleItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
       columns: c,
       rowItems: rowItems,
       titleItems: titleItems,
-      maxRows: 5
+      maxRows: 5,
+      showPagination: true
     };
   },
 
@@ -10195,13 +10196,15 @@ var titleItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
     },
     handleImport: function handleImport() {
       var rows = this.rows,
-          columns = this.columns;
+          columns = this.columns,
+          showPagination = this.showPagination;
 
       var payload = {
         rows: rows,
         columns: columns,
         titleItems: this.titleItems,
-        rowItems: this.rowItems
+        rowItems: this.rowItems,
+        showPagination: showPagination
       };
       this.$emit('import', payload);
     }

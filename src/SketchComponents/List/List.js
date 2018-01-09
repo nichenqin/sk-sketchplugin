@@ -1,5 +1,6 @@
 import SketchComponent from '../SketchComponent';
 import { setFrame, getRectOfNativeLayer, isOverridePointName } from '../../utils';
+import Pagination from '../Pagination/Pagination';
 
 const option = {
   name: 'list',
@@ -11,9 +12,9 @@ class List extends SketchComponent {
   }
 
   import({
-    rows, columns, titleItems, rowItems,
+    rows, columns, titleItems, rowItems, showPagination,
   }) {
-    const { page, name } = this;
+    const { context, page, name } = this;
 
     const listGroup = page.newGroup({ name });
 
@@ -73,11 +74,22 @@ class List extends SketchComponent {
       newRowGroup.adjustToFit();
       setFrame(newRowGroup, { y: height * (i + 1) });
     }
-    // endregion duplicate rows
-
     listGroup.adjustToFit();
     this.createBgAtGroup(listGroup);
     this.createShadowAtGroup(listGroup);
+    // endregion duplicate rows
+
+    if (showPagination) {
+      const pagination = new Pagination(context);
+      const paginationInstance = pagination.layer.sketchObject;
+      const cloneInstane = paginationInstance.copy();
+      listGroup.sketchObject.addLayer(cloneInstane);
+      page.sketchObject.removeLayer(paginationInstance);
+      cloneInstane.frame().setY_(listGroup.frame.height + 10);
+      listGroup.adjustToFit();
+    }
+
+    listGroup.adjustToFit();
     listGroup.iterate(layer => {
       layer.sketchObject.setIsLocked(true);
     });

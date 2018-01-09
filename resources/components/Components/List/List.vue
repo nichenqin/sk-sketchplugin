@@ -71,6 +71,7 @@ export default {
       rowItems,
       titleItems,
       maxRows: 5,
+      showPagination: true,
     };
   },
   components: {
@@ -118,12 +119,13 @@ export default {
       this.columns -= 1;
     },
     handleImport() {
-      const { rows, columns } = this;
+      const { rows, columns, showPagination } = this;
       const payload = {
         rows,
         columns,
         titleItems: this.titleItems,
         rowItems: this.rowItems,
+        showPagination,
       };
       this.$emit('import', payload);
     },
