@@ -35900,6 +35900,15 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -35913,10 +35922,30 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 //
 //
 
+function generateOption(name) {
+  var children = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+  return {
+    name: name,
+    children: children
+  };
+}
+
 /* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      options: [].concat(_toConsumableArray(new Array(3))).map(function (val, index) {
+        return generateOption('level-1-' + (index + 1), [generateOption('level-2-' + (index + 1), [generateOption('level-3-' + (index + 1))])]);
+      })
+    };
+  },
+
   methods: {
     handleImport: function handleImport() {
-      this.$emit('import');
+      var options = this.options;
+
+      var payload = { options: options };
+      this.$emit('import', payload);
     }
   }
 });
@@ -36004,6 +36033,38 @@ var render = function() {
         }
       },
       [
+        _vm._l(_vm.options, function(option, index) {
+          return _c("div", { key: index, staticClass: "input-group mb-3" }, [
+            _c("div", { staticClass: "input-group-prepend" }, [
+              _c("label", { staticClass: "input-group-text" }, [
+                _vm._v("option-" + _vm._s(index + 1))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: option.name,
+                  expression: "option.name"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: option.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(option, "name", $event.target.value)
+                }
+              }
+            })
+          ])
+        }),
+        _vm._v(" "),
         _c(
           "button",
           {
@@ -36012,7 +36073,8 @@ var render = function() {
           },
           [_vm._v("Import To Sketch")]
         )
-      ]
+      ],
+      2
     )
   ])
 }
