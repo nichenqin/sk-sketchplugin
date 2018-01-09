@@ -40,6 +40,9 @@ class Timepicker extends SketchComponent {
     this.createShadowAtGroup(timepickerGroup);
 
     rootGroup.adjustToFit();
+    rootGroup.iterate(layer => {
+      layer.sketchObject.setIsLocked_(true);
+    });
 
     return rootGroup;
   }

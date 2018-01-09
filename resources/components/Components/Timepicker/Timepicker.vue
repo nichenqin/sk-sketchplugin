@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       time: '',
+      showSeconds: true,
       showPicker: true,
     };
   },
@@ -38,8 +39,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { showPicker } = this;
-      const payload = { showPicker };
+      const { showPicker, showSeconds } = this;
+      const payload = { showPicker, showSeconds };
       this.$emit('import', payload);
     },
   },

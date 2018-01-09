@@ -11473,6 +11473,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   data: function data() {
     return {
       time: '',
+      showSeconds: true,
       showPicker: true
     };
   },
@@ -11484,9 +11485,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   },
   methods: {
     handleImport: function handleImport() {
-      var showPicker = this.showPicker;
+      var showPicker = this.showPicker,
+          showSeconds = this.showSeconds;
 
-      var payload = { showPicker: showPicker };
+      var payload = { showPicker: showPicker, showSeconds: showSeconds };
       this.$emit('import', payload);
     }
   }
