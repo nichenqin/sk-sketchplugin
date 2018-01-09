@@ -11440,6 +11440,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
 //
 //
 //
@@ -11455,14 +11458,30 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
+      time: '',
       showPicker: true
     };
   },
 
+  components: {
+    TbPikcer: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Picker"],
+    TbTimePicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TimePicker"],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
+  },
   methods: {
     handleImport: function handleImport() {
       var showPicker = this.showPicker;
@@ -16822,79 +16841,114 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            _vm.handleImport($event)
+  return _c(
+    "section",
+    [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.handleImport($event)
+            }
           }
-        }
-      },
-      [
-        _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.showPicker,
-                expression: "showPicker"
-              }
-            ],
-            staticClass: "custom-control-input",
-            attrs: { type: "checkbox", id: "timepickerShowPicker" },
-            domProps: {
-              checked: Array.isArray(_vm.showPicker)
-                ? _vm._i(_vm.showPicker, null) > -1
-                : _vm.showPicker
-            },
-            on: {
-              change: function($event) {
-                var $$a = _vm.showPicker,
-                  $$el = $event.target,
-                  $$c = $$el.checked ? true : false
-                if (Array.isArray($$a)) {
-                  var $$v = null,
-                    $$i = _vm._i($$a, $$v)
-                  if ($$el.checked) {
-                    $$i < 0 && (_vm.showPicker = $$a.concat([$$v]))
+        },
+        [
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showPicker,
+                  expression: "showPicker"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "timepickerShowPicker" },
+              domProps: {
+                checked: Array.isArray(_vm.showPicker)
+                  ? _vm._i(_vm.showPicker, null) > -1
+                  : _vm.showPicker
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showPicker,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showPicker = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showPicker = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
                   } else {
-                    $$i > -1 &&
-                      (_vm.showPicker = $$a
-                        .slice(0, $$i)
-                        .concat($$a.slice($$i + 1)))
+                    _vm.showPicker = $$c
                   }
-                } else {
-                  _vm.showPicker = $$c
                 }
               }
-            }
-          }),
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "timepickerShowPicker" }
+              },
+              [_vm._v("Show Picker")]
+            )
+          ]),
           _vm._v(" "),
           _c(
-            "label",
+            "button",
             {
-              staticClass: "custom-control-label",
-              attrs: { for: "timepickerShowPicker" }
+              staticClass: "btn btn-lg btn-primary btn-block",
+              attrs: { type: "submit" }
             },
-            [_vm._v("Show Picker")]
+            [_vm._v("Import To Sketch")]
           )
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-lg btn-primary btn-block",
-            attrs: { type: "submit" }
-          },
-          [_vm._v("Import To Sketch")]
-        )
-      ]
-    )
-  ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "sk-preview",
+        [
+          _c(
+            "tb-pikcer",
+            {
+              model: {
+                value: _vm.time,
+                callback: function($$v) {
+                  _vm.time = $$v
+                },
+                expression: "time"
+              }
+            },
+            [
+              _c("tb-time-picker", {
+                model: {
+                  value: _vm.time,
+                  callback: function($$v) {
+                    _vm.time = $$v
+                  },
+                  expression: "time"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
