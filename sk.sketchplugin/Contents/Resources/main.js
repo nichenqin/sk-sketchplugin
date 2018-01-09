@@ -9502,7 +9502,7 @@ module.exports = g;
           objectID = _ref.objectID;
 
       _this.layerName = layerName;
-      _this.$emit('updateComponent', layerName);
+      _this.$emit('updateComponent', layerName.split('/')[0]);
       _this.objectID = objectID;
     });
   }

@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import SketchComponent from '../SketchComponent';
 import { getRectOfNativeLayer } from '../../utils';
 
@@ -12,11 +11,11 @@ class Menu extends SketchComponent {
   }
 
   generateInstances(options, instance, index = 1) {
-    return options.reduce((instances, option) => {
+    return options.reduce((instances, { children }) => {
       instances.push(instance.copy());
-      if (option.children && option.children.length) {
+      if (children && children.length) {
         const nextInstance = this.createSymbolInstanceByPath(`menu/level_${index + 1}/single/normal`);
-        instances.push(...this.generateInstances.call(this, option.children, nextInstance, index + 1));
+        instances.push(...this.generateInstances.call(this, children, nextInstance, index + 1));
       }
       return instances;
     }, []);

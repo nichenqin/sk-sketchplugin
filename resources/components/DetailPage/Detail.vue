@@ -123,7 +123,7 @@ export default {
     PluginCall('appLoaded');
     bridgeHandler(({ layerName, objectID }) => {
       this.layerName = layerName;
-      this.$emit('updateComponent', layerName);
+      this.$emit('updateComponent', layerName.split('/')[0]);
       this.objectID = objectID;
     });
   },
