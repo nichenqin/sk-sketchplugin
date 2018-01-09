@@ -15,6 +15,7 @@ import Rectangle from './SketchComponents/Rectangle';
 import Dropdown from './SketchComponents/Dropdown';
 import Picker from './SketchComponents/Picker';
 import Timepicker from './SketchComponents/Timepicker';
+import Checkbox from './SketchComponents/Checkbox';
 
 import store from './store';
 
@@ -51,6 +52,8 @@ function createComponentInstance(context, name, payload) {
         return new Picker(context, payload);
       case 'timepicker':
         return new Timepicker(context, payload);
+      case 'checkbox':
+        return new Checkbox(context, payload);
 
       default:
         return null;

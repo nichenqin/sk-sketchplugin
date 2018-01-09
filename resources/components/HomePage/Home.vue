@@ -32,6 +32,7 @@ export default {
         'dropdown',
         'picker',
         'timepicker',
+        'checkbox',
       ],
     };
   },

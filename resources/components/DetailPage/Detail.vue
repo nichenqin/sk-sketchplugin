@@ -56,6 +56,7 @@ import SkRectangle from '../Components/Rectangle';
 import SkDropdown from '../Components/Dropdown';
 import SkPicker from '../Components/Picker';
 import SkTimepicker from '../Components/Timepicker';
+import SkCheckbox from '../Components/Checkbox';
 
 export default {
   name: 'app',
@@ -75,6 +76,7 @@ export default {
     SkDropdown,
     SkPicker,
     SkTimepicker,
+    SkCheckbox,
   },
   data() {
     return {

@@ -9225,7 +9225,7 @@ module.exports = g;
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      components: ['bread', 'button', 'switch', 'list', 'text', 'longInput', 'radio', 'datepicker', 'shortInput', 'uploadFile', 'pagination', 'rectangle', 'dropdown', 'picker', 'timepicker']
+      components: ['bread', 'button', 'switch', 'list', 'text', 'longInput', 'radio', 'datepicker', 'shortInput', 'uploadFile', 'pagination', 'rectangle', 'dropdown', 'picker', 'timepicker', 'checkbox']
     };
   },
 
@@ -9260,6 +9260,7 @@ module.exports = g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Components_Dropdown__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Components_Picker__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__Components_Timepicker__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__Components_Checkbox__ = __webpack_require__(317);
 //
 //
 //
@@ -9299,6 +9300,7 @@ module.exports = g;
 //
 //
 //
+
 
 
 
@@ -9336,7 +9338,8 @@ module.exports = g;
     SkRectangle: __WEBPACK_IMPORTED_MODULE_13__Components_Rectangle__["a" /* default */],
     SkDropdown: __WEBPACK_IMPORTED_MODULE_14__Components_Dropdown__["a" /* default */],
     SkPicker: __WEBPACK_IMPORTED_MODULE_15__Components_Picker__["a" /* default */],
-    SkTimepicker: __WEBPACK_IMPORTED_MODULE_16__Components_Timepicker__["a" /* default */]
+    SkTimepicker: __WEBPACK_IMPORTED_MODULE_16__Components_Timepicker__["a" /* default */],
+    SkCheckbox: __WEBPACK_IMPORTED_MODULE_17__Components_Checkbox__["a" /* default */]
   },
   data: function data() {
     return {
@@ -11590,6 +11593,7 @@ __webpack_require__(301);
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_4__zhinan_tb_components__);
+
 
 
 
@@ -35220,6 +35224,355 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 
 // exports
 
+
+/***/ }),
+/* 316 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+var optionsData = [].concat(_toConsumableArray(new Array(3))).map(function (val, index) {
+  return {
+    value: 'option-' + (index + 1),
+    type: 'normal'
+  };
+});
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      isCol: true,
+      selectedOptions: ['option-1'],
+      options: optionsData
+    };
+  },
+
+  components: {
+    TbCheckboxGroup: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["CheckboxGroup"],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
+  },
+  computed: {
+    arrange: function arrange() {
+      return this.isCol ? undefined : 'row';
+    },
+    optionValues: function optionValues() {
+      return this.options.map(function (_ref) {
+        var value = _ref.value;
+        return value;
+      });
+    }
+  },
+  methods: {
+    addOption: function addOption() {
+      var len = this.options.length;
+      this.options.push({ value: 'option-' + (len + 1), type: 'normal' });
+    },
+    removeOption: function removeOption() {
+      this.options.pop();
+    },
+    handleImport: function handleImport() {
+      var options = this.options,
+          selectedOptions = this.selectedOptions,
+          isCol = this.isCol;
+
+      var payload = { options: options, selectedOptions: selectedOptions, isCol: isCol };
+      this.$emit('import', payload);
+    }
+  }
+});
+
+/***/ }),
+/* 317 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Checkbox_vue__ = __webpack_require__(318);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__Checkbox_vue__["a" /* default */]);
+
+/***/ }),
+/* 318 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Checkbox_vue__ = __webpack_require__(316);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_34148a47_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Checkbox_vue__ = __webpack_require__(319);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Checkbox_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_34148a47_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Checkbox_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Components/Checkbox/Checkbox.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-34148a47", Component.options)
+  } else {
+    hotAPI.reload("data-v-34148a47", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 319 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    [
+      _c(
+        "div",
+        {
+          staticClass: "btn-group btn-group-lg mb-3 d-flex",
+          attrs: { role: "group" }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  _vm.addOption($event)
+                }
+              }
+            },
+            [_vm._v("Add Option")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-warning",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  _vm.removeOption($event)
+                }
+              }
+            },
+            [_vm._v("Remove Option")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.handleImport($event)
+            }
+          }
+        },
+        [
+          _vm._l(_vm.options, function(option, index) {
+            return _c("div", { key: index, staticClass: "input-group mb-3" }, [
+              _c("div", { staticClass: "input-group-prepend" }, [
+                _c("label", { staticClass: "input-group-text" }, [
+                  _vm._v("option-" + _vm._s(index + 1))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: option.value,
+                    expression: "option.value"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: option.value },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(option, "value", $event.target.value)
+                  }
+                }
+              })
+            ])
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.isCol,
+                  expression: "isCol"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "checkboxIsCol" },
+              domProps: {
+                checked: Array.isArray(_vm.isCol)
+                  ? _vm._i(_vm.isCol, null) > -1
+                  : _vm.isCol
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.isCol,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.isCol = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.isCol = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.isCol = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "checkboxIsCol" }
+              },
+              [_vm._v("Column")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-lg btn-block btn-primary",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Import To Sketch")]
+          )
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "sk-preview",
+        [
+          _c("tb-checkbox-group", {
+            attrs: {
+              options: _vm.optionValues,
+              arrange: _vm.arrange,
+              width: "100"
+            },
+            model: {
+              value: _vm.selectedOptions,
+              callback: function($$v) {
+                _vm.selectedOptions = $$v
+              },
+              expression: "selectedOptions"
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-34148a47", esExports)
+  }
+}
 
 /***/ })
 /******/ ]);
