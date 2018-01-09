@@ -1,5 +1,5 @@
 import SketchComponent from '../SketchComponent';
-import { isOverridePointName } from '../../utils/index';
+import { isOverridePointName, generatePath } from '../../utils/index';
 
 const option = {
   name: 'uploadFile',
@@ -11,7 +11,7 @@ class UploadFile extends SketchComponent {
   }
 
   import({ canDelete, status, fileName }) {
-    const path = [this.name, canDelete ? 'canDelete' : '', status].filter(p => !!p).join('/');
+    const path = generatePath(this.name, canDelete ? 'canDelete' : '', status);
     const instance = this.createSymbolInstanceByPath(path);
     const icon = this.createSymbolInstanceByPath('icon/placeholder');
     const iconDelete = this.createSymbolInstanceByPath('icon/delete');

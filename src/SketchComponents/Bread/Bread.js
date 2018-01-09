@@ -1,5 +1,5 @@
 import SketchComponent from '../SketchComponent';
-import { isOverridePointName } from '../../utils';
+import { isOverridePointName, generatePath } from '../../utils';
 
 const option = {
   name: 'bread',
@@ -12,7 +12,7 @@ class Bread extends SketchComponent {
 
   import({ paths, showIcon }) {
     const levels = paths.length;
-    const path = ['bread', showIcon ? 'Icon' : '', `level_${levels}`].filter(p => !!p).join('/');
+    const path = generatePath('bread', showIcon ? 'Icon' : '', `level_${levels}`);
     const instance = this.createSymbolInstanceByPath(path);
     this.document.sketchObject.addLayer(instance);
 

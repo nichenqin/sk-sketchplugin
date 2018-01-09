@@ -1,5 +1,5 @@
 import SketchComponent from '../SketchComponent';
-import { getRectOfNativeLayer, isOverridePointName } from '../../utils';
+import { getRectOfNativeLayer, isOverridePointName, generatePath } from '../../utils';
 
 const option = {
   name: 'datepicker',
@@ -96,8 +96,8 @@ class Datepicker extends SketchComponent {
       const today = showToday ? 'today' : '';
       const tomorrow = showTomorrow ? 'tomorrow' : '';
       const clear = showClear ? 'clear' : '';
-      const footerPath = [today, tomorrow, clear].filter(p => !!p).join('/');
-      footerInstance = this.createSymbolInstanceByPath(`datepicker/footer/${footerPath}`);
+      const footerPath = generatePath('datepicker', 'footer', today, tomorrow, clear);
+      footerInstance = this.createSymbolInstanceByPath(footerPath);
 
       datepickerGroup.sketchObject.addLayer(footerInstance);
       footerInstance.frame().setY_(datepickerGroup.frame.height);
