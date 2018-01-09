@@ -11,12 +11,12 @@ class Menu extends SketchComponent {
     super(context, payload, option);
   }
 
-  generateInstances(options, index = 1) {
-    const instance = this.createSymbolInstanceByPath(`menu/level_${index}/single/normal`);
+  generateInstances(options, instance, index = 1) {
     return options.reduce((instances, option) => {
       instances.push(instance.copy());
       if (option.children && option.children.length) {
-        instances.push(...this.generateInstances.call(this, option.children, index + 1));
+        const nextInstance = this.createSymbolInstanceByPath(`menu/level_${index + 1}/single/normal`);
+        instances.push(...this.generateInstances.call(this, option.children, nextInstance, index + 1));
       }
       return instances;
     }, []);
@@ -30,7 +30,7 @@ class Menu extends SketchComponent {
     const optionInstance = this.createSymbolInstanceByPath('menu/level_1/single/normal');
     const { height } = getRectOfNativeLayer(optionInstance);
 
-    const optionInstances = this.generateInstances(options);
+    const optionInstances = this.generateInstances(options, optionInstance);
     menuGroup.sketchObject.addLayers(optionInstances);
 
     optionInstances.forEach((optionItem, index) => {
