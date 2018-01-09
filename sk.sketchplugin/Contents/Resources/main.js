@@ -11648,11 +11648,50 @@ var optionsData = [].concat(_toConsumableArray(new Array(3))).map(function (val,
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var sizeConfigs = {
+  large: {
+    width: 500,
+    height: 400
+  },
+  medium: {
+    width: 400,
+    height: 300
+  },
+  small: {
+    width: 250,
+    height: 200
+  }
+};
 
 /* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      size: 'large',
+      sizeConfigs: sizeConfigs
+    };
+  },
+
+  computed: {
+    rect: function rect() {
+      return this.sizeConfigs[this.size];
+    }
+  },
   methods: {
     handleImport: function handleImport() {
-      this.$emit('import');
+      var rect = this.rect;
+
+      var payload = { rect: rect };
+      this.$emit('import', payload);
     }
   }
 });
@@ -17665,6 +17704,45 @@ var render = function() {
         }
       },
       [
+        _c("div", { staticClass: "input-group mb-3" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.size,
+                  expression: "size"
+                }
+              ],
+              staticClass: "custom-select",
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.size = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            _vm._l(_vm.sizeConfigs, function(value, size) {
+              return _c("option", { key: size, domProps: { value: size } }, [
+                _vm._v(_vm._s(size))
+              ])
+            })
+          )
+        ]),
+        _vm._v(" "),
         _c(
           "button",
           {
@@ -17677,7 +17755,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("Size")])
+    ])
+  }
+]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
