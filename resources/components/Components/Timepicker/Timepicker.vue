@@ -12,6 +12,16 @@
         <label for="timepickerShowSeconds" class="custom-control-label">Show Seconds</label>
       </div>
 
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="timepickerShowNow" v-model="showNow">
+        <label for="timepickerShowNow" class="custom-control-label">Show Now</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="timepickerShowClear" v-model="showClear">
+        <label for="timepickerShowClear" class="custom-control-label">Show Clear</label>
+      </div>
+
       <sk-radio-group v-model="timeType">
         <sk-radio-button name="timepicker" :value="12" :checked="timeType === 12">12</sk-radio-button>
         <sk-radio-button name="timepicker" :value="24" :checked="timeType === 24">24</sk-radio-button>
@@ -43,6 +53,8 @@ export default {
       timeType: 12,
       showSeconds: true,
       showPicker: true,
+      showNow: true,
+      showClear: true,
     };
   },
   components: {
@@ -54,8 +66,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { showPicker, showSeconds, timeType } = this;
-      const payload = { showPicker, showSeconds, timeType };
+      const { showPicker, showSeconds, timeType, showNow, showClear } = this;
+      const payload = { showPicker, showSeconds, timeType, showNow, showClear };
       this.$emit('import', payload);
     },
   },

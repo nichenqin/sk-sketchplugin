@@ -11477,6 +11477,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -11489,7 +11499,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       time: '',
       timeType: 12,
       showSeconds: true,
-      showPicker: true
+      showPicker: true,
+      showNow: true,
+      showClear: true
     };
   },
 
@@ -11504,9 +11516,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     handleImport: function handleImport() {
       var showPicker = this.showPicker,
           showSeconds = this.showSeconds,
-          timeType = this.timeType;
+          timeType = this.timeType,
+          showNow = this.showNow,
+          showClear = this.showClear;
 
-      var payload = { showPicker: showPicker, showSeconds: showSeconds, timeType: timeType };
+      var payload = { showPicker: showPicker, showSeconds: showSeconds, timeType: timeType, showNow: showNow, showClear: showClear };
       this.$emit('import', payload);
     }
   }
@@ -16972,6 +16986,106 @@ var render = function() {
                 attrs: { for: "timepickerShowSeconds" }
               },
               [_vm._v("Show Seconds")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showNow,
+                  expression: "showNow"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "timepickerShowNow" },
+              domProps: {
+                checked: Array.isArray(_vm.showNow)
+                  ? _vm._i(_vm.showNow, null) > -1
+                  : _vm.showNow
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showNow,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showNow = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showNow = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showNow = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "timepickerShowNow" }
+              },
+              [_vm._v("Show Now")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showClear,
+                  expression: "showClear"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "timepickerShowClear" },
+              domProps: {
+                checked: Array.isArray(_vm.showClear)
+                  ? _vm._i(_vm.showClear, null) > -1
+                  : _vm.showClear
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showClear,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showClear = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showClear = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showClear = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "timepickerShowClear" }
+              },
+              [_vm._v("Show Clear")]
             )
           ]),
           _vm._v(" "),

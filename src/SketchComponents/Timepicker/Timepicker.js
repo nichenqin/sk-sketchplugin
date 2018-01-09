@@ -1,6 +1,6 @@
 import SketchComponent from '../SketchComponent';
 import Picker from '../Picker';
-import { getRectOfNativeLayer, setFrame } from '../../utils/index';
+import { getRectOfNativeLayer, setFrame, generatePath } from '../../utils/index';
 
 const option = {
   name: 'timepicker',
@@ -11,7 +11,9 @@ class Timepicker extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ showPicker, showSeconds, timeType }) {
+  import({
+    showPicker, showSeconds, timeType, showNow, showClear,
+  }) {
     const { context, page, name } = this;
 
     const rootGroup = page.newGroup({ name });
@@ -28,9 +30,9 @@ class Timepicker extends SketchComponent {
 
     const seconds = showSeconds ? 'second' : '';
     const format = timeType === 12 ? '12h' : '';
-    const path = ['timepicker', 'body', format, seconds].filter(p => !!p).join('/');
+    const timepickerPath = generatePath('timepicker', 'body', format, seconds);
 
-    const timepickerInstance = this.createSymbolInstanceByPath(path);
+    const timepickerInstance = this.createSymbolInstanceByPath(timepickerPath);
     const timepickerGroup = rootGroup.newGroup({ name });
     timepickerGroup.sketchObject.addLayer(timepickerInstance);
 
@@ -40,6 +42,18 @@ class Timepicker extends SketchComponent {
 
     timepickerGroup.adjustToFit();
     setFrame(timepickerGroup, { y: rootGroup.frame.height });
+
+    if (showNow || showClear) {
+      const now = showNow ? 'now' : '';
+      const clear = showClear ? 'clear' : '';
+      const footerPath = generatePath('timepicker', 'footer', now, clear);
+      const footerInstance = this.createSymbolInstanceByPath(footerPath);
+      timepickerGroup.sketchObject.addLayer(footerInstance);
+      footerInstance.frame().setY_(timepickerGroup.frame.height);
+      footerInstance.frame().setWidth_(timepickerGroup.frame.width);
+      timepickerGroup.adjustToFit();
+    }
+
     this.createBgAtGroup(timepickerGroup);
     this.createShadowAtGroup(timepickerGroup);
 
