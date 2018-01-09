@@ -11,9 +11,9 @@ class Radio extends SketchComponent {
   }
 
   import({ options, option: optionValue, isCol }) {
-    const { page } = this;
+    const { page, name } = this;
 
-    const radioGroup = page.newGroup({ name: 'radio' });
+    const radioGroup = page.newGroup({ name });
     const radioInstance = this.createSymbolInstanceByPath('radio/normal');
     const iconInstance = this.createSymbolInstanceByPath('icon/radio');
     const iconSelectedInstance = this.createSymbolInstanceByPath('icon/radio_selected');
