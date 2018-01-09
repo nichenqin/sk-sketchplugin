@@ -43,7 +43,6 @@ class Checkbox extends SketchComponent {
       } else {
         radioItem.frame().setX_((width + 10) * index);
       }
-      index += 1;
     });
 
     checkboxGroup.adjustToFit();

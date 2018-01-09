@@ -1,8 +1,12 @@
 <template>
   <section>
+
     <form @submit.prevent="handleImport">
+
       <button type="submit" class="btn btn-lg btn-primary btn-block">Import To Sketch</button>
+
     </form>
+
   </section>
 </template>
 
