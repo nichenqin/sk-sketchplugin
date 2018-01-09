@@ -9333,7 +9333,7 @@ module.exports = g;
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      components: ['bread', 'button', 'switch', 'list', 'text', 'longInput', 'radio', 'datepicker', 'shortInput', 'uploadFile', 'pagination', 'rectangle', 'dropdown', 'picker', 'timepicker', 'checkbox', 'popover']
+      components: ['bread', 'button', 'switch', 'list', 'text', 'longInput', 'radio', 'datepicker', 'shortInput', 'uploadFile', 'pagination', 'rectangle', 'dropdown', 'picker', 'timepicker', 'checkbox', 'popover', 'menu']
     };
   },
 
@@ -9370,6 +9370,7 @@ module.exports = g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__Components_Timepicker__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__Components_Checkbox__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__Components_Popover__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__Components_Menu__ = __webpack_require__(326);
 //
 //
 //
@@ -9409,6 +9410,7 @@ module.exports = g;
 //
 //
 //
+
 
 
 
@@ -9450,7 +9452,8 @@ module.exports = g;
     SkPicker: __WEBPACK_IMPORTED_MODULE_15__Components_Picker__["a" /* default */],
     SkTimepicker: __WEBPACK_IMPORTED_MODULE_16__Components_Timepicker__["a" /* default */],
     SkCheckbox: __WEBPACK_IMPORTED_MODULE_17__Components_Checkbox__["a" /* default */],
-    SkPopover: __WEBPACK_IMPORTED_MODULE_18__Components_Popover__["a" /* default */]
+    SkPopover: __WEBPACK_IMPORTED_MODULE_18__Components_Popover__["a" /* default */],
+    SkMenu: __WEBPACK_IMPORTED_MODULE_19__Components_Menu__["a" /* default */]
   },
   data: function data() {
     return {
@@ -11779,8 +11782,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__assets_timepicker_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__assets_timepicker_sketch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__assets_popover_sketch__ = __webpack_require__(322);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__assets_popover_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__assets_popover_sketch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__styles_style_less__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__styles_style_less__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__assets_menu_sketch__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__assets_menu_sketch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__assets_menu_sketch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__styles_style_less__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__styles_style_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__styles_style_less__);
 /* eslint-disable */
 
 
@@ -11791,6 +11796,7 @@ __webpack_require__(310);
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_4__zhinan_tb_components__);
+
 
 
 
@@ -35888,6 +35894,140 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 
 // exports
 
+
+/***/ }),
+/* 325 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  methods: {
+    handleImport: function handleImport() {
+      this.$emit('import');
+    }
+  }
+});
+
+/***/ }),
+/* 326 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Menu_vue__ = __webpack_require__(327);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__Menu_vue__["a" /* default */]);
+
+/***/ }),
+/* 327 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Menu_vue__ = __webpack_require__(325);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e8eb7c72_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Menu_vue__ = __webpack_require__(328);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Menu_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e8eb7c72_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Menu_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Components/Menu/Menu.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e8eb7c72", Component.options)
+  } else {
+    hotAPI.reload("data-v-e8eb7c72", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 328 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.handleImport($event)
+          }
+        }
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-lg btn-primary btn-block",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Import To Sketch")]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e8eb7c72", esExports)
+  }
+}
+
+/***/ }),
+/* 329 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "menu.sketch?359118417ccc8d1ab8a301d051210369";
 
 /***/ })
 /******/ ]);

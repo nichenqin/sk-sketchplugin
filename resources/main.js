@@ -26,6 +26,7 @@ import './assets/picker.sketch';
 import './assets/timepicker.sketch';
 import './assets/checkbox.sketch';
 import './assets/popover.sketch';
+import './assets/menu.sketch';
 
 // import your style files inside main.js, not html link tag
 import './styles/style.less';
