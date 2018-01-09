@@ -10,14 +10,14 @@ class Radio extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ options, option: optionValue }) {
+  import({ options, option: optionValue, isCol }) {
     const { page } = this;
 
     const radioGroup = page.newGroup({ name: 'radio' });
     const radioInstance = this.createSymbolInstanceByPath('radio/normal');
     const iconInstance = this.createSymbolInstanceByPath('icon/radio');
     const iconSelectedInstance = this.createSymbolInstanceByPath('icon/radio_selected');
-    const { height } = getRectOfNativeLayer(radioInstance);
+    const { width, height } = getRectOfNativeLayer(radioInstance);
 
     const radioInstances = options.map(() => radioInstance.copy());
     radioGroup.sketchObject.addLayers(radioInstances);
@@ -37,7 +37,11 @@ class Radio extends SketchComponent {
     });
 
     radioInstances.forEach((radioItem, index) => {
-      radioItem.frame().setY_((height + 10) * index);
+      if (isCol) {
+        radioItem.frame().setY_((height + 10) * index);
+      } else {
+        radioItem.frame().setX_((width + 10) * index);
+      }
       index += 1;
     });
 

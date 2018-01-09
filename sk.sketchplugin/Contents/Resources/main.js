@@ -10753,9 +10753,10 @@ var optionsData = [].concat(_toConsumableArray(new Array(3))).map(function (val,
     },
     handleImport: function handleImport() {
       var options = this.options,
-          option = this.option;
+          option = this.option,
+          isCol = this.isCol;
 
-      var payload = { options: options, option: option };
+      var payload = { options: options, option: option, isCol: isCol };
       this.$emit('import', payload);
     }
   }
@@ -14914,7 +14915,11 @@ var render = function() {
         "sk-preview",
         [
           _c("tb-radio-group", {
-            attrs: { options: _vm.optionValues, arrange: _vm.arrange },
+            attrs: {
+              options: _vm.optionValues,
+              arrange: _vm.arrange,
+              width: "100"
+            },
             model: {
               value: _vm.option,
               callback: function($$v) {
