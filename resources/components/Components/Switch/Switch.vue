@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { Switcher as TbSwitch } from '@zhinan/tb-components';
+import { TbSwitch } from '@zhinan/tb-components';
 
 import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';

@@ -10951,7 +10951,7 @@ var TOTAL_LENGTH = 42;
   },
 
   components: {
-    TbSwitch: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Switcher"],
+    TbSwitch: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TbSwitch"],
     SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
     SkCodeHtml: __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml_vue__["a" /* default */],
     SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__["a" /* default */]
