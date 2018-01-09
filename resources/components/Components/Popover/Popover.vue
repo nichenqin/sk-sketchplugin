@@ -22,7 +22,7 @@
     </form>
 
     <sk-preview>
-      <tb-popover ref="popover" :width="rect.width"></tb-popover>
+      <tb-popover :width="rect.width"></tb-popover>
     </sk-preview>
 
   </section>
@@ -70,9 +70,6 @@ export default {
       const payload = { rect, showFooter };
       this.$emit('import', payload);
     },
-  },
-  mounted() {
-    this.$refs.popover.doShow();
   },
 };
 </script>

@@ -11717,9 +11717,6 @@ var sizeConfigs = {
       var payload = { rect: rect, showFooter: showFooter };
       this.$emit('import', payload);
     }
-  },
-  mounted: function mounted() {
-    this.$refs.popover.doShow();
   }
 });
 
@@ -17835,9 +17832,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "sk-preview",
-        [
-          _c("tb-popover", { ref: "popover", attrs: { width: _vm.rect.width } })
-        ],
+        [_c("tb-popover", { attrs: { width: _vm.rect.width } })],
         1
       )
     ],
