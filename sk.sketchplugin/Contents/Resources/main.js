@@ -10036,8 +10036,8 @@ if (false) {(function () {
     }
   },
   methods: {
-    handleChange: function handleChange(e) {
-      this.$parent.handleChange(e.target.value);
+    handleChange: function handleChange() {
+      this.$parent.handleChange(this.value);
     }
   }
 });
@@ -11443,6 +11443,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioGroup_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Radio_RadioButton_vue__ = __webpack_require__(22);
 //
 //
 //
@@ -11465,6 +11467,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -11473,6 +11487,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   data: function data() {
     return {
       time: '',
+      timeType: 12,
       showSeconds: true,
       showPicker: true
     };
@@ -11481,14 +11496,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   components: {
     TbPikcer: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Picker"],
     TbTimePicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TimePicker"],
-    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
+    SkRadioGroup: __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioGroup_vue__["a" /* default */],
+    SkRadioButton: __WEBPACK_IMPORTED_MODULE_3__Shared_Radio_RadioButton_vue__["a" /* default */]
   },
   methods: {
     handleImport: function handleImport() {
       var showPicker = this.showPicker,
-          showSeconds = this.showSeconds;
+          showSeconds = this.showSeconds,
+          timeType = this.timeType;
 
-      var payload = { showPicker: showPicker, showSeconds: showSeconds };
+      var payload = { showPicker: showPicker, showSeconds: showSeconds, timeType: timeType };
       this.$emit('import', payload);
     }
   }
@@ -16907,6 +16925,95 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showSeconds,
+                  expression: "showSeconds"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "timepickerShowSeconds" },
+              domProps: {
+                checked: Array.isArray(_vm.showSeconds)
+                  ? _vm._i(_vm.showSeconds, null) > -1
+                  : _vm.showSeconds
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showSeconds,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showSeconds = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showSeconds = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showSeconds = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "timepickerShowSeconds" }
+              },
+              [_vm._v("Show Seconds")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "sk-radio-group",
+            {
+              model: {
+                value: _vm.timeType,
+                callback: function($$v) {
+                  _vm.timeType = $$v
+                },
+                expression: "timeType"
+              }
+            },
+            [
+              _c(
+                "sk-radio-button",
+                {
+                  attrs: {
+                    name: "timepicker",
+                    value: 12,
+                    checked: _vm.timeType === 12
+                  }
+                },
+                [_vm._v("12")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sk-radio-button",
+                {
+                  attrs: {
+                    name: "timepicker",
+                    value: 24,
+                    checked: _vm.timeType === 24
+                  }
+                },
+                [_vm._v("24")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -16915,7 +17022,8 @@ var render = function() {
             },
             [_vm._v("Import To Sketch")]
           )
-        ]
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
@@ -16934,6 +17042,7 @@ var render = function() {
             },
             [
               _c("tb-time-picker", {
+                attrs: { "time-type": _vm.timeType, isSecond: _vm.showSeconds },
                 model: {
                   value: _vm.time,
                   callback: function($$v) {

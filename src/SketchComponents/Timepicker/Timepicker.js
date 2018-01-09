@@ -11,7 +11,7 @@ class Timepicker extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ showPicker }) {
+  import({ showPicker, showSeconds, timeType }) {
     const { context, page, name } = this;
 
     const rootGroup = page.newGroup({ name });
@@ -26,7 +26,11 @@ class Timepicker extends SketchComponent {
       pickerWidth = getRectOfNativeLayer(pickerInstance).width;
     }
 
-    const timepickerInstance = this.createSymbolInstanceByPath('timepicker/body');
+    const seconds = showSeconds ? 'second' : '';
+    const format = timeType === 12 ? '12h' : '';
+    const path = ['timepicker', 'body', format, seconds].filter(p => !!p).join('/');
+
+    const timepickerInstance = this.createSymbolInstanceByPath(path);
     const timepickerGroup = rootGroup.newGroup({ name });
     timepickerGroup.sketchObject.addLayer(timepickerInstance);
 

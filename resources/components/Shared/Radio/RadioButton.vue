@@ -25,8 +25,8 @@ export default {
     },
   },
   methods: {
-    handleChange(e) {
-      this.$parent.handleChange(e.target.value);
+    handleChange() {
+      this.$parent.handleChange(this.value);
     },
   },
 };
