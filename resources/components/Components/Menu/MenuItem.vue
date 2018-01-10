@@ -13,6 +13,14 @@
       </div>
       <input type="text" class="form-control mb-1 mr-1" v-model="option.subtitle">
 
+      <div class="input-group-prepend">
+        <label class="input-group-text">icon</label>
+      </div>
+      <select class="custom-select" v-model="option.icon">
+        <option value="">Choose a icon...</option>
+        <option v-for="icon of icons" :value="icon" :key="icon">{{ icon }}</option>
+      </select>
+
       <i class="fa fa-plus-circle mr-1" @click="addOption" v-if="level < 3"></i>
 
       <i class="fa fa-minus-circle" @click="$emit('remove', index)"></i>
@@ -22,7 +30,7 @@
     <template v-if="option.children && option.children.length">
       <sk-menu-item :style="{ marginLeft }" v-for="(child, index) of option.children" :key="index"
         :option="child" :generateOption="generateOption" :level="level + 1" :index="index"
-        @remove="removeOption"></sk-menu-item>
+        :icons="icons" @remove="removeOption"></sk-menu-item>
     </template>
 
   </div>
@@ -41,6 +49,10 @@ export default {
     level: {
       type: Number,
       default: 1,
+    },
+    icons: {
+      type: Array,
+      required: true,
     },
   },
   computed: {

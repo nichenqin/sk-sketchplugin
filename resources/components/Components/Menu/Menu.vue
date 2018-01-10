@@ -8,7 +8,7 @@
     <form @submit.prevent="handleImport">
 
       <sk-menu-item class="mb-3" v-for="(option, index) in options" :generateOption="generateOption"
-        :key="index" :option="option" :index="index" @remove="removeOption"></sk-menu-item>
+        :key="index" :option="option" :index="index" @remove="removeOption" :icons="icons"></sk-menu-item>
 
       <button type="submit" class="btn btn-lg btn-primary btn-block">Import To Sketch</button>
 
@@ -34,6 +34,7 @@ function generateOption(name, children = []) {
     name,
     subtitle: '',
     id,
+    icon: '',
     expand: true,
     children,
   };
@@ -48,6 +49,7 @@ export default {
         ]),
       ),
       selectedMenu: 1,
+      icons: ['user', 'icon'],
     };
   },
   components: {

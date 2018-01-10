@@ -1,5 +1,6 @@
+import camelCase from 'lodash.camelcase';
 import SketchComponent from '../SketchComponent';
-import { getRectOfNativeLayer } from '../../utils';
+import { getRectOfNativeLayer, isOverridePointName, generatePath } from '../../utils';
 
 const option = {
   name: 'menu',
@@ -16,19 +17,27 @@ function flatten(options) {
 }
 
 class Menu extends SketchComponent {
-  constructor(context, payload) {
+  constructor(context, payload = { options: [] }) {
     super(context, payload, option);
   }
 
-  generateInstances(options, instance, index = 1) {
-    return options.reduce((instances, { expand, children }) => {
-      instances.push(instance.copy());
-      if (expand && children && children.length) {
-        const nextInstance = this.createSymbolInstanceByPath(`menu/level_${index + 1}/single/normal`);
-        instances.push(...this.generateInstances.call(this, children, nextInstance, index + 1));
-      }
-      return instances;
-    }, []);
+  generateInstances(options, index = 1) {
+    return options.reduce(
+      (instances, {
+        expand, children, subtitle, icon = '', status = 'normal',
+      }) => {
+        const rows = subtitle ? 'double' : 'single';
+        const iconRows = camelCase(`${icon} ${rows}`);
+        const path = generatePath('menu', `level_${index}`, iconRows, '', status);
+        const instance = this.createSymbolInstanceByPath(path);
+        instances.push(instance.copy());
+        if (expand && children && children.length) {
+          instances.push(...this.generateInstances.call(this, children, index + 1));
+        }
+        return instances;
+      },
+      [],
+    );
   }
 
   import({ options = [] }) {
@@ -37,9 +46,11 @@ class Menu extends SketchComponent {
     const menuGroup = page.newGroup({ name });
 
     const optionInstance = this.createSymbolInstanceByPath('menu/level_1/single/normal');
+    const avatar = this.createSymbolInstanceByPath('avatar');
+    const icon = this.createSymbolInstanceByPath('icon/placeholder');
     const { height } = getRectOfNativeLayer(optionInstance);
 
-    const optionInstances = this.generateInstances(options, optionInstance);
+    const optionInstances = this.generateInstances(options);
     menuGroup.sketchObject.addLayers(optionInstances);
 
     optionInstances.forEach((optionItem, index) => {
@@ -49,7 +60,15 @@ class Menu extends SketchComponent {
     const renderedOptions = flatten(options);
     optionInstances.forEach((instance, index) => {
       instance.overridePoints().forEach(overridePoint => {
-        instance.setValue_forOverridePoint_(String(renderedOptions[index]), overridePoint);
+        if (isOverridePointName(overridePoint, ['option', 'username'])) {
+          instance.setValue_forOverridePoint_(String(renderedOptions[index]), overridePoint);
+        }
+        if (isOverridePointName(overridePoint, 'avatar')) {
+          instance.setValue_forOverridePoint_(avatar.symbolID(), overridePoint);
+        }
+        if (isOverridePointName(overridePoint, 'icon')) {
+          instance.setValue_forOverridePoint_(icon.symbolID(), overridePoint);
+        }
       });
     });
 

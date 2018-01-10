@@ -95,6 +95,13 @@ export function getRectOfNativeLayer(layer) {
   };
 }
 
+/**
+ *
+ *
+ * @export
+ * @param {string[]} args
+ * @returns
+ */
 export function generatePath(...args) {
   return args.filter(p => !!p).join('/');
 }
