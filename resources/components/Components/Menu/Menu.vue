@@ -1,10 +1,14 @@
 <template>
   <section>
 
+    <button class="btn btn-lg btn-block btn-primary mb-3" @click="addOption">
+      Add Option
+    </button>
+
     <form @submit.prevent="handleImport">
 
       <sk-menu-item class="mb-3" v-for="(option, index) in options" :generateOption="generateOption"
-        :key="index" :option="option"></sk-menu-item>
+        :key="index" :option="option" :index="index" @remove="removeOption"></sk-menu-item>
 
       <button type="submit" class="btn btn-lg btn-primary btn-block">Import To Sketch</button>
 
@@ -30,7 +34,7 @@ function generateOption(name, children = []) {
     name,
     subtitle: '',
     id,
-    expand: !!children.length,
+    expand: true,
     children,
   };
 }
@@ -38,7 +42,7 @@ function generateOption(name, children = []) {
 export default {
   data() {
     return {
-      options: [...new Array(3)].map((val, index) =>
+      options: [...new Array(2)].map((val, index) =>
         generateOption(`level-1-${index + 1}`, [
           generateOption(`level-2-${index + 1}`, [generateOption(`level-3-${index + 1}`)]),
         ]),
@@ -58,6 +62,12 @@ export default {
       this.$emit('import', payload);
     },
     generateOption,
+    addOption() {
+      this.options.push(this.generateOption(`level-1-${this.options.length + 1}`, []));
+    },
+    removeOption(index) {
+      this.options.splice(index, 1);
+    },
   },
 };
 </script>

@@ -13,13 +13,16 @@
       </div>
       <input type="text" class="form-control mb-1 mr-1" v-model="option.subtitle">
 
-      <i class="fa fa-plus-circle" @click="addOption"></i>
+      <i class="fa fa-plus-circle mr-1" @click="addOption" v-if="level < 3"></i>
+
+      <i class="fa fa-minus-circle" @click="$emit('remove', index)"></i>
 
     </div>
 
     <template v-if="option.children && option.children.length">
       <sk-menu-item :style="{ marginLeft }" v-for="(child, index) of option.children" :key="index"
-        :option="child" :generateOption="generateOption" :level="level + 1"></sk-menu-item>
+        :option="child" :generateOption="generateOption" :level="level + 1" :index="index"
+        @remove="removeOption"></sk-menu-item>
     </template>
 
   </div>
@@ -33,6 +36,7 @@ export default {
       type: Object,
       required: true,
     },
+    index: Number,
     generateOption: Function,
     level: {
       type: Number,
@@ -46,9 +50,33 @@ export default {
   },
   methods: {
     addOption() {
-      const { option: { children }, generateOption, level } = this;
-      children.push(generateOption(`level-${level + 1}-${children.length + 1}`));
+      const { option: { children }, level } = this;
+      children.push(this.generateOption(`level-${level + 1}-${children.length + 1}`));
+      console.log(children);
+    },
+    removeOption(index) {
+      this.option.children.splice(index, 1);
     },
   },
 };
 </script>
+
+<style lang="less" scoped>
+i.fa {
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.1s;
+  &.fa-plus-circle {
+    color: #80e27e;
+    &:hover {
+      color: #087f23;
+    }
+  }
+  &.fa-minus-circle {
+    color: #fdd835;
+    &:hover {
+      color: #c6a700;
+    }
+  }
+}
+</style>
