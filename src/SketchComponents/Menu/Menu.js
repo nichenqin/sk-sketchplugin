@@ -5,13 +5,13 @@ const option = {
   name: 'menu',
 };
 
-function flatten(tree) {
-  return tree.reduce((pre, item) => {
-    pre.push(item.name);
-    if (item.expand && item.children && item.children.length) {
-      pre.push(...flatten(item.children));
+function flatten(options) {
+  return options.reduce((result, { name, expand, children }) => {
+    result.push(name);
+    if (expand && children && children.length) {
+      result.push(...flatten(children));
     }
-    return pre;
+    return result;
   }, []);
 }
 
