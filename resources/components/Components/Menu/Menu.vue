@@ -14,13 +14,25 @@
 
     </form>
 
+    <sk-preview>
+      <tb-menu :menu-data="options" v-model="selectedMenu"></tb-menu>
+    </sk-preview>
+
   </section>
 </template>
 
 <script>
+import { NavMenu as TbMenu } from '@zhinan/tb-components';
+import SkPreview from '../../Shared/Preview.vue';
+
+let id = 1;
+
 function generateOption(name, children = []) {
+  id += 1;
   return {
     name,
+    id,
+    expand: true,
     children,
   };
 }
@@ -33,7 +45,12 @@ export default {
           generateOption(`level-2-${index + 1}`, [generateOption(`level-3-${index + 1}`)]),
         ]),
       ),
+      selectedMenu: 1,
     };
+  },
+  components: {
+    TbMenu,
+    SkPreview,
   },
   methods: {
     handleImport() {
