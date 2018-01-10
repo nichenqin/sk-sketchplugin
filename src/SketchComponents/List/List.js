@@ -42,7 +42,7 @@ class List extends SketchComponent {
     const rowGroup = listGroup.newGroup({ name: 'row' });
     const rowInstances = [...new Array(columns)].map((val, index) => {
       const rowItem = rowItems[index];
-      const { icon } = rowItem;
+      const { icon = '' } = rowItem;
       const double = rowItem.subtitle ? 'double' : 'single';
       const iconRows = camelcase(`${icon} ${double}`);
       const path = generatePath('list', 'body', iconRows);

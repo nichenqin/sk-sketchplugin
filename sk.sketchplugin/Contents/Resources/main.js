@@ -10229,7 +10229,7 @@ var titleItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
       if (_columns <= 0) this.columns = 1;
       if (_columns > oldColums) {
         this.titleItems.push({ title: 'title' });
-        this.rowItems.push({ title: 'Text' });
+        this.rowItems.push({ title: 'Text', icon: '' });
       } else {
         this.titleItems.pop();
         this.rowItems.pop();
