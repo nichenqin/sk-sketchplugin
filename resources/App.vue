@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="container">
-    <component :is="currentPage" :currentComponent="currentComponent" @updateComponent="updateComponent"
-      @updateCurrentPage="updateCurrentPage"></component>
+    <keep-alive>
+      <component :is="currentPage" :currentComponent="currentComponent" @updateComponent="updateComponent"
+        @updateCurrentPage="updateCurrentPage"></component>
+    </keep-alive>
   </div>
 </template>
 

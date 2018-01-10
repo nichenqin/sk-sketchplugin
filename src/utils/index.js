@@ -52,8 +52,17 @@ export function is(layer, className) {
   return String(layer.className()) === className;
 }
 
-export function isOverridePointName(overridePoint, name) {
-  return String(overridePoint.layerName()) === name;
+/**
+ *
+ *
+ * @export
+ * @param {any} overridePoint
+ * @param {string|string[]} name
+ * @returns {boolean}
+ */
+export function isOverridePointName(overridePoint, names) {
+  const layerName = String(overridePoint.layerName());
+  return Array.isArray(names) ? names.includes(layerName) : layerName === names;
 }
 
 export function setFrame(

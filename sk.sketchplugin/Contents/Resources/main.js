@@ -9283,6 +9283,8 @@ module.exports = g;
 //
 //
 //
+//
+//
 
 
 
@@ -9371,6 +9373,8 @@ module.exports = g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__Components_Checkbox__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__Components_Popover__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__Components_Menu__ = __webpack_require__(127);
+//
+//
 //
 //
 //
@@ -18151,15 +18155,21 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("sk-" + _vm.currentComponent, {
-        tag: "component",
-        staticClass: "mb-3",
-        attrs: {
-          currentComponent: _vm.currentComponent,
-          objectID: _vm.objectID
-        },
-        on: { import: _vm.handleImport }
-      }),
+      _c(
+        "keep-alive",
+        [
+          _c("sk-" + _vm.currentComponent, {
+            tag: "component",
+            staticClass: "mb-3",
+            attrs: {
+              currentComponent: _vm.currentComponent,
+              objectID: _vm.objectID
+            },
+            on: { import: _vm.handleImport }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -18255,14 +18265,20 @@ var render = function() {
     "div",
     { staticClass: "container", attrs: { id: "app" } },
     [
-      _c(_vm.currentPage, {
-        tag: "component",
-        attrs: { currentComponent: _vm.currentComponent },
-        on: {
-          updateComponent: _vm.updateComponent,
-          updateCurrentPage: _vm.updateCurrentPage
-        }
-      })
+      _c(
+        "keep-alive",
+        [
+          _c(_vm.currentPage, {
+            tag: "component",
+            attrs: { currentComponent: _vm.currentComponent },
+            on: {
+              updateComponent: _vm.updateComponent,
+              updateCurrentPage: _vm.updateCurrentPage
+            }
+          })
+        ],
+        1
+      )
     ],
     1
   )

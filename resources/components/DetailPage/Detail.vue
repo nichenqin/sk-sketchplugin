@@ -19,8 +19,10 @@
       <strong>{{ objectID }}</strong>
     </div>
 
-    <component class="mb-3" :is="`sk-${currentComponent}`" :currentComponent="currentComponent"
-      @import="handleImport" :objectID="objectID"></component>
+    <keep-alive>
+      <component class="mb-3" :is="`sk-${currentComponent}`" :currentComponent="currentComponent"
+        @import="handleImport" :objectID="objectID"></component>
+    </keep-alive>
 
     <div class="btn-group btn-group-lg mb-3 d-flex" role="group">
       <button class="btn btn-primary" :disabled="!objectID" @click="handleSelect">Select</button>
