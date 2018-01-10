@@ -10117,6 +10117,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
 
 
 
@@ -10145,7 +10148,8 @@ var titleItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
       rowItems: rowItems,
       titleItems: titleItems,
       maxRows: 5,
-      showPagination: true
+      showPagination: true,
+      icons: ['user', 'icon']
     };
   },
 
@@ -13853,27 +13857,51 @@ var render = function() {
         { staticClass: "form-row mb-3" },
         _vm._l(_vm.columns, function(n) {
           return _c("div", { key: n, staticClass: "col" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.rowItems[n - 1].icon,
-                  expression: "rowItems[n - 1].icon"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "icon" },
-              domProps: { value: _vm.rowItems[n - 1].icon },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.rowItems[n - 1].icon,
+                    expression: "rowItems[n - 1].icon"
                   }
-                  _vm.$set(_vm.rowItems[n - 1], "icon", $event.target.value)
+                ],
+                staticClass: "custom-select",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.rowItems[n - 1],
+                      "icon",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
                 }
-              }
-            })
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("Choose a icon...")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.icons, function(icon) {
+                  return _c(
+                    "option",
+                    { key: icon, domProps: { value: icon } },
+                    [_vm._v(_vm._s(icon))]
+                  )
+                })
+              ],
+              2
+            )
           ])
         })
       ),

@@ -31,7 +31,10 @@
 
     <div class="form-row mb-3">
       <div class="col" v-for="n in columns" :key="n">
-        <input type="text" class="form-control" v-model="rowItems[n - 1].icon" placeholder="icon">
+        <select class="custom-select" v-model="rowItems[n - 1].icon">
+          <option value="">Choose a icon...</option>
+          <option :value="icon" v-for="icon of icons" :key="icon">{{ icon }}</option>
+        </select>
       </div>
     </div>
 
@@ -72,6 +75,7 @@ export default {
       titleItems,
       maxRows: 5,
       showPagination: true,
+      icons: ['user', 'icon'],
     };
   },
   components: {

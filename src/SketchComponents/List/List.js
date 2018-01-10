@@ -1,6 +1,7 @@
+import camelcase from 'lodash.camelcase';
 import SketchComponent from '../SketchComponent';
-import { setFrame, getRectOfNativeLayer, isOverridePointName } from '../../utils';
-import Pagination from '../Pagination/Pagination';
+import { setFrame, getRectOfNativeLayer, isOverridePointName, generatePath } from '../../utils';
+import Pagination from '../Pagination';
 
 const option = {
   name: 'list',
@@ -39,17 +40,20 @@ class List extends SketchComponent {
 
     // region row
     const rowGroup = listGroup.newGroup({ name: 'row' });
-    const rowInstance = {
-      single: this.createSymbolInstanceByPath('list/body/single'),
-      double: this.createSymbolInstanceByPath('list/body/double'),
-    };
     const rowInstances = [...new Array(columns)].map((val, index) => {
       const rowItem = rowItems[index];
-      const rowStatus = rowItem.subtitle ? 'double' : 'single';
-      return rowInstance[rowStatus].copy();
+      const { icon } = rowItem;
+      const double = rowItem.subtitle ? 'double' : 'single';
+      const iconRows = camelcase(`${icon} ${double}`);
+      const path = generatePath('list', 'body', iconRows);
+      const rowInstance = this.createSymbolInstanceByPath(path);
+      return rowInstance.copy();
     });
     rowGroup.sketchObject.addLayers(rowInstances);
     setFrame(rowGroup, { y: height });
+
+    const avatar = this.createSymbolInstanceByPath('avatar');
+    const placeholder = this.createSymbolInstanceByPath('icon/placeholder');
 
     rowInstances.forEach((rowItem, index) => {
       rowItem.frame().setX_(width * index);
@@ -59,6 +63,12 @@ class List extends SketchComponent {
         }
         if (isOverridePointName(overridePoint, 'sup_info')) {
           rowItem.setValue_forOverridePoint(String(rowItems[index].subtitle), overridePoint);
+        }
+        if (isOverridePointName(overridePoint, 'avatar')) {
+          rowItem.setValue_forOverridePoint(avatar.symbolID(), overridePoint);
+        }
+        if (isOverridePointName(overridePoint, 'icon')) {
+          rowItem.setValue_forOverridePoint(placeholder.symbolID(), overridePoint);
         }
       });
     });

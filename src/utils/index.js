@@ -57,7 +57,7 @@ export function is(layer, className) {
  *
  * @export
  * @param {any} overridePoint
- * @param {string|string[]} name
+ * @param {string|string[]} names
  * @returns {boolean}
  */
 export function isOverridePointName(overridePoint, names) {

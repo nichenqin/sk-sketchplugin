@@ -28,13 +28,8 @@ class Menu extends SketchComponent {
       }) => {
         const rows = subtitle ? 'double' : 'single';
         const iconRows = camelCase(`${icon} ${rows}`);
-        const path = generatePath(
-          'menu',
-          `level_${level}`,
-          iconRows,
-          children.length ? 'foldable' : '',
-          status,
-        );
+        const foldable = children.length ? 'foldable' : '';
+        const path = generatePath('menu', `level_${level}`, iconRows, foldable, status);
         const instance = this.createSymbolInstanceByPath(path);
         instances.push(instance.copy());
         if (expand && children && children.length) {
