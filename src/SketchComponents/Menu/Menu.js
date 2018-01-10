@@ -1,6 +1,6 @@
 import camelCase from 'lodash.camelcase';
 import SketchComponent from '../SketchComponent';
-import { getRectOfNativeLayer, isOverridePointName, generatePath } from '../../utils';
+import { isOverridePointName, generatePath } from '../../utils';
 
 const option = {
   name: 'menu',
@@ -51,18 +51,17 @@ class Menu extends SketchComponent {
 
     const menuGroup = page.newGroup({ name });
 
-    const optionInstance = this.createSymbolInstanceByPath('menu/level_1/single/normal');
     const avatar = this.createSymbolInstanceByPath('avatar');
     const icon = this.createSymbolInstanceByPath('icon/placeholder');
     const arrowUp = this.createSymbolInstanceByPath('icon/smallArrow/active');
     const arrowDown = this.createSymbolInstanceByPath('icon/smallArrow/normal');
-    const { height } = getRectOfNativeLayer(optionInstance);
 
     const optionInstances = this.generateInstances(options);
     menuGroup.sketchObject.addLayers(optionInstances);
 
-    optionInstances.forEach((optionItem, index) => {
-      optionItem.frame().setY_(height * index);
+    optionInstances.forEach(optionItem => {
+      menuGroup.adjustToFit();
+      optionItem.frame().setY_(menuGroup.frame.height);
     });
 
     const renderedOptions = flatten(options);
