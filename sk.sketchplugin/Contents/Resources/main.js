@@ -11732,6 +11732,7 @@ var sizeConfigs = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MenuItem_vue__ = __webpack_require__(331);
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 //
@@ -11755,8 +11756,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-//
-//
+
 
 
 
@@ -11787,7 +11787,8 @@ function generateOption(name) {
 
   components: {
     TbMenu: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["NavMenu"],
-    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
+    SkMenuItem: __WEBPACK_IMPORTED_MODULE_2__MenuItem_vue__["a" /* default */]
   },
   methods: {
     handleImport: function handleImport() {
@@ -18027,35 +18028,15 @@ var render = function() {
         },
         [
           _vm._l(_vm.options, function(option, index) {
-            return _c("div", { key: index, staticClass: "input-group mb-3" }, [
-              _c("div", { staticClass: "input-group-prepend" }, [
-                _c("label", { staticClass: "input-group-text" }, [
-                  _vm._v("option-" + _vm._s(index + 1))
-                ])
-              ]),
+            return [
+              _c("label", { key: option.name }, [_vm._v(_vm._s(option.name))]),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: option.name,
-                    expression: "option.name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: option.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(option, "name", $event.target.value)
-                  }
-                }
+              _c("sk-menu-item", {
+                key: index,
+                staticClass: "mb-3",
+                attrs: { option: option }
               })
-            ])
+            ]
           }),
           _vm._v(" "),
           _c(
@@ -36136,6 +36117,137 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 
 // exports
 
+
+/***/ }),
+/* 330 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'sk-menu-item',
+  props: {
+    option: {
+      type: Object,
+      required: true
+    }
+  }
+});
+
+/***/ }),
+/* 331 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_MenuItem_vue__ = __webpack_require__(330);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_74b9a00c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_MenuItem_vue__ = __webpack_require__(332);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_MenuItem_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_74b9a00c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_MenuItem_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Components/Menu/MenuItem.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-74b9a00c", Component.options)
+  } else {
+    hotAPI.reload("data-v-74b9a00c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 332 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "li",
+    [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.option.name,
+            expression: "option.name"
+          }
+        ],
+        staticClass: "form-control mb-1",
+        attrs: { type: "text" },
+        domProps: { value: _vm.option.name },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.option, "name", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm.option.children && _vm.option.children.length
+        ? _vm._l(_vm.option.children, function(child, index) {
+            return _c("sk-menu-item", { key: index, attrs: { option: child } })
+          })
+        : _vm._e()
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-74b9a00c", esExports)
+  }
+}
 
 /***/ })
 /******/ ]);

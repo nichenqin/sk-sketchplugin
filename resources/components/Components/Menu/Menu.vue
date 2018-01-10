@@ -3,12 +3,10 @@
 
     <form @submit.prevent="handleImport">
 
-      <div class="input-group mb-3" v-for="(option, index) of options" :key="index">
-        <div class="input-group-prepend">
-          <label class="input-group-text">option-{{index + 1}}</label>
-        </div>
-        <input type="text" class="form-control" v-model="option.name">
-      </div>
+      <template v-for="(option, index) in options">
+        <label :key="option.name">{{option.name}}</label>
+        <sk-menu-item class="mb-3" :key="index" :option="option"></sk-menu-item>
+      </template>
 
       <button type="submit" class="btn btn-lg btn-primary btn-block">Import To Sketch</button>
 
@@ -24,6 +22,7 @@
 <script>
 import { NavMenu as TbMenu } from '@zhinan/tb-components';
 import SkPreview from '../../Shared/Preview.vue';
+import SkMenuItem from './MenuItem.vue';
 
 let id = 1;
 
@@ -51,6 +50,7 @@ export default {
   components: {
     TbMenu,
     SkPreview,
+    SkMenuItem,
   },
   methods: {
     handleImport() {
