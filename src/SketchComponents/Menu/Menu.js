@@ -11,9 +11,9 @@ class Menu extends SketchComponent {
   }
 
   generateInstances(options, instance, index = 1) {
-    return options.reduce((instances, { children }) => {
+    return options.reduce((instances, { expand, children }) => {
       instances.push(instance.copy());
-      if (children && children.length) {
+      if (expand && children && children.length) {
         const nextInstance = this.createSymbolInstanceByPath(`menu/level_${index + 1}/single/normal`);
         instances.push(...this.generateInstances.call(this, children, nextInstance, index + 1));
       }

@@ -5,7 +5,7 @@
 
       <template v-for="(option, index) in options">
         <label :key="option.name">{{option.name}}</label>
-        <sk-menu-item class="mb-3" :key="index" :option="option"></sk-menu-item>
+        <sk-menu-item :key="index" :option="option"></sk-menu-item>
       </template>
 
       <button type="submit" class="btn btn-lg btn-primary btn-block">Import To Sketch</button>
@@ -13,7 +13,7 @@
     </form>
 
     <sk-preview>
-      <tb-menu :menu-data="options" v-model="selectedMenu"></tb-menu>
+      <tb-menu :menu-data="options" v-model="selectedMenu" type="double"></tb-menu>
     </sk-preview>
 
   </section>

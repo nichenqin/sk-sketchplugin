@@ -18031,11 +18031,7 @@ var render = function() {
             return [
               _c("label", { key: option.name }, [_vm._v(_vm._s(option.name))]),
               _vm._v(" "),
-              _c("sk-menu-item", {
-                key: index,
-                staticClass: "mb-3",
-                attrs: { option: option }
-              })
+              _c("sk-menu-item", { key: index, attrs: { option: option } })
             ]
           }),
           _vm._v(" "),
@@ -18055,7 +18051,7 @@ var render = function() {
         "sk-preview",
         [
           _c("tb-menu", {
-            attrs: { "menu-data": _vm.options },
+            attrs: { "menu-data": _vm.options, type: "double" },
             model: {
               value: _vm.selectedMenu,
               callback: function($$v) {
@@ -36132,6 +36128,13 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'sk-menu-item',
@@ -36205,8 +36208,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "li",
+    "div",
+    { staticClass: "input-group mb-3" },
     [
+      _vm._m(0),
+      _vm._v(" "),
       _c("input", {
         directives: [
           {
@@ -36229,6 +36235,30 @@ var render = function() {
         }
       }),
       _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.option.expand,
+            expression: "option.expand"
+          }
+        ],
+        staticClass: "form-control mb-1",
+        attrs: { type: "text", disabled: "" },
+        domProps: { value: _vm.option.expand },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.option, "expand", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
       _vm.option.children && _vm.option.children.length
         ? _vm._l(_vm.option.children, function(child, index) {
             return _c("sk-menu-item", { key: index, attrs: { option: child } })
@@ -36238,7 +36268,24 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("name")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("expand")])
+    ])
+  }
+]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
