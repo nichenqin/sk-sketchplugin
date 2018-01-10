@@ -11754,8 +11754,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-//
-//
 
 
 
@@ -11769,8 +11767,9 @@ function generateOption(name) {
   id += 1;
   return {
     name: name,
+    subtitle: '',
     id: id,
-    expand: true,
+    expand: !!children.length,
     children: children
   };
 }
@@ -11796,7 +11795,9 @@ function generateOption(name) {
 
       var payload = { options: options };
       this.$emit('import', payload);
-    }
+    },
+
+    generateOption: generateOption
   }
 });
 
@@ -18028,11 +18029,11 @@ var render = function() {
         },
         [
           _vm._l(_vm.options, function(option, index) {
-            return [
-              _c("label", { key: option.name }, [_vm._v(_vm._s(option.name))]),
-              _vm._v(" "),
-              _c("sk-menu-item", { key: index, attrs: { option: option } })
-            ]
+            return _c("sk-menu-item", {
+              key: index,
+              staticClass: "mb-3",
+              attrs: { generateOption: _vm.generateOption, option: option }
+            })
           }),
           _vm._v(" "),
           _c(
@@ -36135,6 +36136,17 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'sk-menu-item',
@@ -36142,6 +36154,25 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
     option: {
       type: Object,
       required: true
+    },
+    generateOption: Function,
+    level: {
+      type: Number,
+      default: 1
+    }
+  },
+  computed: {
+    marginLeft: function marginLeft() {
+      return this.level * 10 + 'px';
+    }
+  },
+  methods: {
+    addOption: function addOption() {
+      var children = this.option.children,
+          generateOption = this.generateOption,
+          level = this.level;
+
+      children.push(generateOption('level-' + (level + 1) + '-' + (children.length + 1)));
     }
   }
 });
@@ -36209,59 +36240,73 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "input-group mb-3" },
     [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.option.name,
-            expression: "option.name"
-          }
-        ],
-        staticClass: "form-control mb-1",
-        attrs: { type: "text" },
-        domProps: { value: _vm.option.name },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "input-group mb-2" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.option.name,
+              expression: "option.name"
             }
-            _vm.$set(_vm.option, "name", $event.target.value)
-          }
-        }
-      }),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.option.expand,
-            expression: "option.expand"
-          }
-        ],
-        staticClass: "form-control mb-1",
-        attrs: { type: "text", disabled: "" },
-        domProps: { value: _vm.option.expand },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+          ],
+          staticClass: "form-control mb-1 mr-1",
+          attrs: { type: "text" },
+          domProps: { value: _vm.option.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.option, "name", $event.target.value)
             }
-            _vm.$set(_vm.option, "expand", $event.target.value)
           }
-        }
-      }),
+        }),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.option.subtitle,
+              expression: "option.subtitle"
+            }
+          ],
+          staticClass: "form-control mb-1 mr-1",
+          attrs: { type: "text" },
+          domProps: { value: _vm.option.subtitle },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.option, "subtitle", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("i", {
+          staticClass: "fa fa-plus-circle",
+          on: { click: _vm.addOption }
+        })
+      ]),
       _vm._v(" "),
       _vm.option.children && _vm.option.children.length
         ? _vm._l(_vm.option.children, function(child, index) {
-            return _c("sk-menu-item", { key: index, attrs: { option: child } })
+            return _c("sk-menu-item", {
+              key: index,
+              style: { marginLeft: _vm.marginLeft },
+              attrs: {
+                option: child,
+                generateOption: _vm.generateOption,
+                level: _vm.level + 1
+              }
+            })
           })
         : _vm._e()
     ],
@@ -36282,7 +36327,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("label", { staticClass: "input-group-text" }, [_vm._v("expand")])
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("sub title")])
     ])
   }
 ]

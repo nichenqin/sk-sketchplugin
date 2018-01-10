@@ -5,6 +5,16 @@ const option = {
   name: 'menu',
 };
 
+function flatten(tree) {
+  return tree.reduce((pre, item) => {
+    pre.push(item.name);
+    if (item.expand && item.children && item.children.length) {
+      pre.push(...flatten(item.children));
+    }
+    return pre;
+  }, []);
+}
+
 class Menu extends SketchComponent {
   constructor(context, payload) {
     super(context, payload, option);
@@ -34,6 +44,13 @@ class Menu extends SketchComponent {
 
     optionInstances.forEach((optionItem, index) => {
       optionItem.frame().setY_(height * index);
+    });
+
+    const renderedOptions = flatten(options);
+    optionInstances.forEach((instance, index) => {
+      instance.overridePoints().forEach(overridePoint => {
+        instance.setValue_forOverridePoint_(String(renderedOptions[index]), overridePoint);
+      });
     });
 
     menuGroup.adjustToFit();
