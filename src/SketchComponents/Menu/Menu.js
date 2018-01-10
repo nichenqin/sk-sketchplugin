@@ -8,7 +8,7 @@ const option = {
 
 function flatten(options) {
   return options.reduce((result, { name, expand, children }) => {
-    result.push(name);
+    result.push({ name, expand });
     if (expand && children && children.length) {
       result.push(...flatten(children));
     }
@@ -21,18 +21,24 @@ class Menu extends SketchComponent {
     super(context, payload, option);
   }
 
-  generateInstances(options, index = 1) {
+  generateInstances(options, level = 1) {
     return options.reduce(
       (instances, {
         expand, children, subtitle, icon = '', status = 'normal',
       }) => {
         const rows = subtitle ? 'double' : 'single';
         const iconRows = camelCase(`${icon} ${rows}`);
-        const path = generatePath('menu', `level_${index}`, iconRows, '', status);
+        const path = generatePath(
+          'menu',
+          `level_${level}`,
+          iconRows,
+          children.length ? 'foldable' : '',
+          status,
+        );
         const instance = this.createSymbolInstanceByPath(path);
         instances.push(instance.copy());
         if (expand && children && children.length) {
-          instances.push(...this.generateInstances.call(this, children, index + 1));
+          instances.push(...this.generateInstances.call(this, children, level + 1));
         }
         return instances;
       },
@@ -48,6 +54,8 @@ class Menu extends SketchComponent {
     const optionInstance = this.createSymbolInstanceByPath('menu/level_1/single/normal');
     const avatar = this.createSymbolInstanceByPath('avatar');
     const icon = this.createSymbolInstanceByPath('icon/placeholder');
+    const arrowUp = this.createSymbolInstanceByPath('icon/smallArrow/active');
+    const arrowDown = this.createSymbolInstanceByPath('icon/smallArrow/normal');
     const { height } = getRectOfNativeLayer(optionInstance);
 
     const optionInstances = this.generateInstances(options);
@@ -61,13 +69,17 @@ class Menu extends SketchComponent {
     optionInstances.forEach((instance, index) => {
       instance.overridePoints().forEach(overridePoint => {
         if (isOverridePointName(overridePoint, ['option', 'username'])) {
-          instance.setValue_forOverridePoint_(String(renderedOptions[index]), overridePoint);
+          instance.setValue_forOverridePoint_(String(renderedOptions[index].name), overridePoint);
         }
         if (isOverridePointName(overridePoint, 'avatar')) {
           instance.setValue_forOverridePoint_(avatar.symbolID(), overridePoint);
         }
         if (isOverridePointName(overridePoint, 'icon')) {
           instance.setValue_forOverridePoint_(icon.symbolID(), overridePoint);
+        }
+        if (isOverridePointName(overridePoint, 'icon_arrow')) {
+          const arrow = renderedOptions[index].expand ? arrowUp : arrowDown;
+          instance.setValue_forOverridePoint_(arrow.symbolID(), overridePoint);
         }
       });
     });

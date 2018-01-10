@@ -11776,8 +11776,8 @@ function generateOption(name) {
   return {
     name: name,
     subtitle: '',
-    id: id,
-    icon: '',
+    // TODO: convert to number
+    id: String(id),
     expand: true,
     children: children
   };
@@ -11789,7 +11789,7 @@ function generateOption(name) {
       options: [].concat(_toConsumableArray(new Array(2))).map(function (val, index) {
         return generateOption('level-1-' + (index + 1), [generateOption('level-2-' + (index + 1), [generateOption('level-3-' + (index + 1))])]);
       }),
-      selectedMenu: 1,
+      selectedMenu: '1',
       icons: ['user', 'icon']
     };
   },
@@ -11852,14 +11852,6 @@ function generateOption(name) {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   name: 'sk-menu-item',
@@ -11890,7 +11882,6 @@ function generateOption(name) {
           level = this.level;
 
       children.push(this.generateOption('level-' + (level + 1) + '-' + (children.length + 1)));
-      console.log(children);
     },
     removeOption: function removeOption(index) {
       this.option.children.splice(index, 1);
@@ -18259,52 +18250,6 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.option.icon,
-                expression: "option.icon"
-              }
-            ],
-            staticClass: "custom-select",
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.option,
-                  "icon",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                )
-              }
-            }
-          },
-          [
-            _c("option", { attrs: { value: "" } }, [
-              _vm._v("Choose a icon...")
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.icons, function(icon) {
-              return _c("option", { key: icon, domProps: { value: icon } }, [
-                _vm._v(_vm._s(icon))
-              ])
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
         _vm.level < 3
           ? _c("i", {
               staticClass: "fa fa-plus-circle mr-1",
@@ -18357,14 +18302,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("label", { staticClass: "input-group-text" }, [_vm._v("sub title")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("label", { staticClass: "input-group-text" }, [_vm._v("icon")])
     ])
   }
 ]

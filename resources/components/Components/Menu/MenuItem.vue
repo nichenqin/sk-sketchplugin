@@ -13,14 +13,6 @@
       </div>
       <input type="text" class="form-control mb-1 mr-1" v-model="option.subtitle">
 
-      <div class="input-group-prepend">
-        <label class="input-group-text">icon</label>
-      </div>
-      <select class="custom-select" v-model="option.icon">
-        <option value="">Choose a icon...</option>
-        <option v-for="icon of icons" :value="icon" :key="icon">{{ icon }}</option>
-      </select>
-
       <i class="fa fa-plus-circle mr-1" @click="addOption" v-if="level < 3"></i>
 
       <i class="fa fa-minus-circle" @click="$emit('remove', index)"></i>
@@ -64,7 +56,6 @@ export default {
     addOption() {
       const { option: { children }, level } = this;
       children.push(this.generateOption(`level-${level + 1}-${children.length + 1}`));
-      console.log(children);
     },
     removeOption(index) {
       this.option.children.splice(index, 1);

@@ -33,8 +33,8 @@ function generateOption(name, children = []) {
   return {
     name,
     subtitle: '',
-    id,
-    icon: '',
+    // TODO: convert to number
+    id: String(id),
     expand: true,
     children,
   };
@@ -48,7 +48,7 @@ export default {
           generateOption(`level-2-${index + 1}`, [generateOption(`level-3-${index + 1}`)]),
         ]),
       ),
-      selectedMenu: 1,
+      selectedMenu: '1',
       icons: ['user', 'icon'],
     };
   },
