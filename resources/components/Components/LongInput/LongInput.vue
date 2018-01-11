@@ -83,10 +83,6 @@ export default {
     SkCodeJavascript,
   },
   computed: {
-    path() {
-      const { content, status } = this;
-      return content ? `longInput/${status}` : 'longInput/placeholder';
-    },
     disabled() {
       return this.status === 'disable';
     },
@@ -116,8 +112,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { path, content, width, height, placeholder } = this;
-      const payload = { path, content, width, height, placeholder };
+      const { status, content, width, height, placeholder } = this;
+      const payload = { status, content, width, height, placeholder };
       this.$emit('import', payload);
     },
   },

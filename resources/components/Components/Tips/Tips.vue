@@ -21,7 +21,7 @@ export default {
       content: '提示',
 
       direction: 'up',
-      directions: ['up', 'right', 'bottom', 'left'],
+      directions: ['up', 'right', 'down', 'left'],
     };
   },
   components: {

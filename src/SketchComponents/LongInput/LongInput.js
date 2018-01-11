@@ -11,8 +11,10 @@ class LongInput extends SketchComponent {
   }
 
   import({
-    path, content, width, height, placeholder,
+    status = 'normal', content, width, height, placeholder = 'placeholder',
   }) {
+    const path = content ? `longInput/${status}` : 'longInput/placeholder';
+
     const instance = this.getInstanceByPath(path);
     const icon = this.getInstanceByPath('icon_drag');
     this.document.sketchObject.addLayer(instance);

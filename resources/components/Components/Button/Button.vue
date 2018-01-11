@@ -64,6 +64,13 @@
         </select>
       </div>
 
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="buttonShowTips" v-model="showTips">
+        <label class="custom-control-label" for="buttonShowTips">Show Tips</label>
+      </div>
+
+      <sk-tips-direction :direction.sync="tipsDirection"></sk-tips-direction>
+
       <button class="btn btn-primary btn-lg btn-block" type="submit">Import To Sketch</button>
     </form>
 
@@ -93,6 +100,7 @@ import SkPreview from '../../Shared/Preview.vue';
 
 import SkRadioGroup from '../../Shared/Radio/RadioGroup.vue';
 import SkRadioButton from '../../Shared/Radio/RadioButton.vue';
+import SkTipsDirection from '../../Shared/Radio/TipsDirection.vue';
 
 const data = {
   risk: {
@@ -163,8 +171,13 @@ export default {
       textType: 'static',
       text: 'ADD',
       type: '',
+
       status: 'normal',
       allStatus: ['normal', 'active', 'hover', 'disable'],
+
+      showTips: true,
+      tipsDirection: 'left',
+
       componentEvents: ['btn'],
     };
   },
@@ -176,6 +189,7 @@ export default {
     SkCodeJavascript,
     SkRadioGroup,
     SkRadioButton,
+    SkTipsDirection,
   },
   mixins: [Events],
   computed: {
@@ -213,8 +227,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { text, path, type } = this;
-      const payload = { text, path };
+      const { text, path, type, showTips, tipsDirection } = this;
+      const payload = { text, path, showTips, tipsDirection };
       if (type === 'menu') payload.iconPath = 'icon/arrowDown';
       this.$emit('import', payload);
     },

@@ -120,3 +120,34 @@ export function setAlignment(layer, target, alignment = 'left') {
     layerObject.frame().setX_(left);
   }
 }
+
+export function setTipsPosition(tipsInstance, target, direction = 'up') {
+  const targetObject = target.sketchObject || target;
+
+  const x = (() => {
+    switch (direction) {
+      case 'left':
+        return targetObject.frame().width() + 10;
+      case 'right':
+        return (tipsInstance.frame().width() + 10) * -1;
+
+      default:
+        return targetObject.frame().width() / 2 - tipsInstance.frame().width() / 2;
+    }
+  })();
+
+  const y = (() => {
+    switch (direction) {
+      case 'up':
+        return targetObject.frame().height() + 10;
+      case 'down':
+        return (tipsInstance.frame().height() + 10) * -1;
+
+      default:
+        return targetObject.frame().height() / 2 - tipsInstance.frame().height() / 2;
+    }
+  })();
+
+  tipsInstance.frame().setX_(x);
+  tipsInstance.frame().setY_(y);
+}
