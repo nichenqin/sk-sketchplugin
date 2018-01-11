@@ -10063,11 +10063,10 @@ var data = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Radio_RadioGroup_vue__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioButton_vue__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Preview_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeHtml_vue__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_Code_CodeJavascript_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Radio_Alignment_vue__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Preview_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeHtml_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeJavascript_vue__ = __webpack_require__(6);
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 //
@@ -10140,12 +10139,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-//
-//
-//
-//
-//
-
 
 
 
@@ -10182,18 +10175,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       showPagination: true,
       icons: ['user', 'icon'],
 
-      paginationAlign: 'left',
-      alignments: ['left', 'center', 'right']
+      paginationAlign: 'right'
     };
   },
 
   components: {
-    SkPreview: __WEBPACK_IMPORTED_MODULE_3__Shared_Preview_vue__["a" /* default */],
-    SkCodeHtml: __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeHtml_vue__["a" /* default */],
-    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_5__Shared_Code_CodeJavascript_vue__["a" /* default */],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_2__Shared_Preview_vue__["a" /* default */],
+    SkCodeHtml: __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeHtml_vue__["a" /* default */],
+    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeJavascript_vue__["a" /* default */],
     TbTable: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TbTable"],
-    SkRadioGroup: __WEBPACK_IMPORTED_MODULE_1__Shared_Radio_RadioGroup_vue__["a" /* default */],
-    SkRadioButton: __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioButton_vue__["a" /* default */]
+    SkAlignment: __WEBPACK_IMPORTED_MODULE_1__Shared_Radio_Alignment_vue__["a" /* default */]
   },
   computed: {
     columnsData: function columnsData() {
@@ -14112,32 +14103,14 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c(
-        "sk-radio-group",
-        {
-          model: {
-            value: _vm.paginationAlign,
-            callback: function($$v) {
-              _vm.paginationAlign = $$v
-            },
-            expression: "paginationAlign"
+      _c("sk-alignment", {
+        attrs: { alignment: _vm.paginationAlign },
+        on: {
+          "update:alignment": function($event) {
+            _vm.paginationAlign = $event
           }
-        },
-        _vm._l(_vm.alignments, function(align) {
-          return _c(
-            "sk-radio-button",
-            {
-              key: align,
-              attrs: {
-                value: align,
-                name: align,
-                checked: _vm.paginationAlign === align
-              }
-            },
-            [_vm._v("\n      " + _vm._s(align) + "\n    ")]
-          )
-        })
-      ),
+        }
+      }),
       _vm._v(" "),
       _c(
         "button",
@@ -14153,7 +14126,7 @@ var render = function() {
         [
           _c("tb-table", {
             attrs: {
-              dataSource: _vm.rowsData,
+              "data-source": _vm.rowsData,
               MaxRows: _vm.maxRows,
               columns: _vm.columnsData,
               type: "double"
@@ -36820,6 +36793,151 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 
 // exports
 
+
+/***/ }),
+/* 335 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__RadioGroup_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RadioButton_vue__ = __webpack_require__(9);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      internalAlignment: this.alignment,
+      alignments: ['left', 'center', 'right']
+    };
+  },
+
+  props: {
+    alignment: {
+      type: String,
+      required: true,
+      default: 'left'
+    }
+  },
+  components: {
+    SkRadioGroup: __WEBPACK_IMPORTED_MODULE_0__RadioGroup_vue__["a" /* default */],
+    SkRadioButton: __WEBPACK_IMPORTED_MODULE_1__RadioButton_vue__["a" /* default */]
+  },
+  watch: {
+    internalAlignment: function internalAlignment(alignment) {
+      this.$emit('update:alignment', alignment);
+    }
+  }
+});
+
+/***/ }),
+/* 336 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Alignment_vue__ = __webpack_require__(335);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5757d696_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Alignment_vue__ = __webpack_require__(337);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Alignment_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5757d696_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Alignment_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Shared/Radio/Alignment.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5757d696", Component.options)
+  } else {
+    hotAPI.reload("data-v-5757d696", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 337 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "sk-radio-group",
+    {
+      model: {
+        value: _vm.internalAlignment,
+        callback: function($$v) {
+          _vm.internalAlignment = $$v
+        },
+        expression: "internalAlignment"
+      }
+    },
+    _vm._l(_vm.alignments, function(align) {
+      return _c(
+        "sk-radio-button",
+        {
+          key: align,
+          attrs: {
+            value: align,
+            name: align,
+            checked: _vm.internalAlignment === align
+          }
+        },
+        [_vm._v("\n    " + _vm._s(align) + "\n  ")]
+      )
+    })
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5757d696", esExports)
+  }
+}
 
 /***/ })
 /******/ ]);

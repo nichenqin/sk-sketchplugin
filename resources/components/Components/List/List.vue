@@ -54,17 +54,12 @@
       <label class="custom-control-label" for="paginationShowPagination">Show Picker</label>
     </div>
 
-    <sk-radio-group v-model="paginationAlign">
-      <sk-radio-button v-for="align of alignments" :key="align" :value="align" :name="align"
-        :checked="paginationAlign === align">
-        {{ align }}
-      </sk-radio-button>
-    </sk-radio-group>
+    <sk-alignment :alignment.sync="paginationAlign"></sk-alignment>
 
     <button @click="handleImport" class="btn btn-block btn-primary btn-lg">Import To Sketch</button>
 
     <sk-preview>
-      <tb-table :dataSource="rowsData" :MaxRows="maxRows" :columns="columnsData" type="double"></tb-table>
+      <tb-table :data-source="rowsData" :MaxRows="maxRows" :columns="columnsData" type="double"></tb-table>
     </sk-preview>
 
     <sk-code-html tag="tb-table" :properties="properties"></sk-code-html>
@@ -76,8 +71,7 @@
 <script>
 import { TbTable } from '@zhinan/tb-components';
 
-import SkRadioGroup from '../../Shared/Radio/RadioGroup.vue';
-import SkRadioButton from '../../Shared/Radio/RadioButton.vue';
+import SkAlignment from '../../Shared/Radio/Alignment.vue';
 
 import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
@@ -106,8 +100,7 @@ export default {
       showPagination: true,
       icons: ['user', 'icon'],
 
-      paginationAlign: 'left',
-      alignments: ['left', 'center', 'right'],
+      paginationAlign: 'right',
     };
   },
   components: {
@@ -115,8 +108,7 @@ export default {
     SkCodeHtml,
     SkCodeJavascript,
     TbTable,
-    SkRadioGroup,
-    SkRadioButton,
+    SkAlignment,
   },
   computed: {
     columnsData() {
