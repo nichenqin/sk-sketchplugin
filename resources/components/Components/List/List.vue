@@ -38,6 +38,16 @@
       </div>
     </div>
 
+    <div class="form-row mb-3">
+      <div class="col" v-for="n in columns" :key="n">
+        <div class="custom-control custom-checkbox mb-3">
+          <input type="checkbox" :disabled="rowItems[n - 1].icon !== 'icon' || !!rowItems[n - 1].subtitle"
+            class="custom-control-input" :id="`listIsLargeIcon${n}`" v-model="rowItems[n - 1].isLargeIcon">
+          <label class="custom-control-label" :for="`listIsLargeIcon${n}`">large icon</label>
+        </div>
+      </div>
+    </div>
+
     <button @click="handleImport" class="btn btn-block btn-primary btn-lg">Import To Sketch</button>
 
     <sk-preview>
@@ -62,6 +72,7 @@ const c = 3;
 const rowItems = [...new Array(c)].map(() => ({
   title: 'Text',
   icon: '',
+  isLargeIcon: false,
   subtitle: '',
 }));
 const titleItems = [...new Array(c)].map(() => ({ title: 'title' }));
@@ -142,7 +153,7 @@ export default {
       if (columns <= 0) this.columns = 1;
       if (columns > oldColums) {
         this.titleItems.push({ title: 'title' });
-        this.rowItems.push({ title: 'Text', icon: '' });
+        this.rowItems.push({ title: 'Text', icon: '', isLargeIcon: false });
       } else {
         this.titleItems.pop();
         this.rowItems.pop();

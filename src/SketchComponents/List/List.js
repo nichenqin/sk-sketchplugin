@@ -41,10 +41,12 @@ class List extends SketchComponent {
     // region row
     const rowGroup = listGroup.newGroup({ name: 'row' });
     const rowInstances = [...new Array(columns)].map((val, index) => {
+      // TODO: 规范路径的命名
       const rowItem = rowItems[index];
-      const { icon = '' } = rowItem;
+      const { icon = '', isLargeIcon = false } = rowItem;
+      const iconSize = isLargeIcon && icon === 'icon' ? 'large' : '';
       const double = rowItem.subtitle ? 'double' : 'single';
-      const iconRows = camelcase(`${icon} ${double}`);
+      const iconRows = camelcase(`${iconSize} ${icon} ${isLargeIcon ? '' : double}`);
       const path = generatePath('list', 'body', iconRows);
       const rowInstance = this.createSymbolInstanceByPath(path);
       return rowInstance.copy();

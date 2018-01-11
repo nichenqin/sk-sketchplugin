@@ -10120,6 +10120,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10133,6 +10143,7 @@ var rowItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
   return {
     title: 'Text',
     icon: '',
+    isLargeIcon: false,
     subtitle: ''
   };
 });
@@ -10229,7 +10240,7 @@ var titleItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
       if (_columns <= 0) this.columns = 1;
       if (_columns > oldColums) {
         this.titleItems.push({ title: 'title' });
-        this.rowItems.push({ title: 'Text', icon: '' });
+        this.rowItems.push({ title: 'Text', icon: '', isLargeIcon: false });
       } else {
         this.titleItems.pop();
         this.rowItems.pop();
@@ -13902,6 +13913,71 @@ var render = function() {
               ],
               2
             )
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-row mb-3" },
+        _vm._l(_vm.columns, function(n) {
+          return _c("div", { key: n, staticClass: "col" }, [
+            _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.rowItems[n - 1].isLargeIcon,
+                    expression: "rowItems[n - 1].isLargeIcon"
+                  }
+                ],
+                staticClass: "custom-control-input",
+                attrs: {
+                  type: "checkbox",
+                  disabled:
+                    _vm.rowItems[n - 1].icon !== "icon" ||
+                    !!_vm.rowItems[n - 1].subtitle,
+                  id: "listIsLargeIcon" + n
+                },
+                domProps: {
+                  checked: Array.isArray(_vm.rowItems[n - 1].isLargeIcon)
+                    ? _vm._i(_vm.rowItems[n - 1].isLargeIcon, null) > -1
+                    : _vm.rowItems[n - 1].isLargeIcon
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.rowItems[n - 1].isLargeIcon,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          (_vm.rowItems[n - 1].isLargeIcon = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.rowItems[n - 1].isLargeIcon = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
+                    } else {
+                      _vm.$set(_vm.rowItems[n - 1], "isLargeIcon", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "custom-control-label",
+                  attrs: { for: "listIsLargeIcon" + n }
+                },
+                [_vm._v("large icon")]
+              )
+            ])
           ])
         })
       ),
