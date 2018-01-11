@@ -6,11 +6,13 @@ const option = {
 };
 
 class Picker extends SketchComponent {
-  constructor(context, payload = { content: 'default', status: 'active' }) {
+  constructor(context, payload = { content: 'default', icon: 'arrowUp', status: 'active' }) {
     super(context, payload, option);
   }
 
-  import({ content, status = 'normal', placeholder = 'default placeholder' }) {
+  import({
+    content, icon = 'arrowDown', status = 'normal', placeholder = 'default placeholder',
+  }) {
     const path = content ? `picker/${status}` : 'picker/placeholder';
 
     const pickerInstance = this.createSymbolInstanceByPath(path);
@@ -24,9 +26,8 @@ class Picker extends SketchComponent {
         pickerInstance.setValue_forOverridePoint_(String(placeholder), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon_arrow')) {
-        const iconStatuc = status === 'active' ? 'arrowUp' : 'arrowDown';
-        const icon = this.createSymbolInstanceByPath(`icon/${iconStatuc}`);
-        pickerInstance.setValue_forOverridePoint_(icon.symbolID(), overridePoint);
+        const iconInstance = this.createSymbolInstanceByPath(`icon/${icon}`);
+        pickerInstance.setValue_forOverridePoint_(iconInstance.symbolID(), overridePoint);
       }
     });
 
