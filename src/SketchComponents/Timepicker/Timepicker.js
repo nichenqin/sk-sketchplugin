@@ -1,6 +1,6 @@
 import SketchComponent from '../SketchComponent';
 import Picker from '../Picker';
-import { getRectOfNativeLayer, setFrame, generatePath, setAlignment } from '../../utils/index';
+import { setFrame, generatePath, setAlignment } from '../../utils/index';
 
 const option = {
   name: 'timepicker',
