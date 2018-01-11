@@ -36,8 +36,8 @@
     </form>
 
     <sk-preview>
-      <tb-picker v-model="today">
-        <tb-datepicker v-model="today" :show-today="showToday" :show-tomorrow="showTomorrow"
+      <tb-picker v-model="selectedDate">
+        <tb-datepicker v-model="selectedDate" :show-today="showToday" :show-tomorrow="showTomorrow"
           :show-clear="showClear" :start-time="startTime" :stop-time="stopTime"></tb-datepicker>
       </tb-picker>
     </sk-preview>
@@ -59,7 +59,7 @@ const TOTAL_LENGTH = 42;
 export default {
   data() {
     return {
-      today: '',
+      selectedDate: '',
       showPicker: true,
       showToday: true,
       showTomorrow: true,
@@ -145,7 +145,7 @@ export default {
         showTomorrow,
         showClear,
         selectedDateList,
-        today,
+        selectedDate,
       } = this;
       const payload = {
         previousMonthDateList,
@@ -158,7 +158,7 @@ export default {
         showTomorrow,
         showClear,
         selectedDateList,
-        today,
+        selectedDate,
       };
       this.$emit('import', payload);
     },

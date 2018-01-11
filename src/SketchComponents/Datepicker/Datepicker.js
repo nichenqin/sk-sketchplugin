@@ -12,18 +12,19 @@ class Datepicker extends SketchComponent {
   }
 
   getDuringInstance(time) {
+    const { selectedDateList = [] } = this.payload;
+    if (!time || !selectedDateList.length || !selectedDateList.includes(time)) return null;
+
     const duringInstance = this.createSymbolInstanceByPath('datepicker/day/during');
     const startInstance = this.createSymbolInstanceByPath('datepicker/day/start');
     const endInstance = this.createSymbolInstanceByPath('datepicker/day/end');
-    const { selectedDateList = [] } = this.payload;
+
     const [firstSelectedTime] = selectedDateList;
     const lastSelectedTime = selectedDateList[selectedDateList.length - 1];
-    if (selectedDateList && selectedDateList.length && selectedDateList.includes(time)) {
-      if (firstSelectedTime === time) return startInstance.copy();
-      else if (lastSelectedTime === time) return endInstance.copy();
-      return duringInstance.copy();
-    }
-    return null;
+
+    if (firstSelectedTime === time) return startInstance.copy();
+    else if (lastSelectedTime === time) return endInstance.copy();
+    return duringInstance.copy();
   }
 
   import({
@@ -35,32 +36,34 @@ class Datepicker extends SketchComponent {
     showToday,
     showTomorrow,
     showClear,
-    today,
+    selectedDate = '',
   }) {
     const { context, page, name } = this;
     const rootGroup = page.newGroup({ name });
 
-    let footerInstance;
-    const now = new Date();
-
     if (showPicker) {
       const picker = new Picker(context, {
-        content: today,
+        content: selectedDate,
         icon: 'arrowUp',
         status: 'active',
-        placeholder: 'choose a date',
+        placeholder: '不限',
       });
       picker.moveToGroup(rootGroup);
       rootGroup.adjustToFit();
     }
 
+    let footerInstance;
+    const now = new Date();
+    const today = now.getDate();
     const datepickerGroup = rootGroup.newGroup({ name });
     const headerInstance = this.createSymbolInstanceByPath('datepicker/header/normal');
     const { width: headerWidth } = getRectOfNativeLayer(headerInstance);
     const lightInstance = this.createSymbolInstanceByPath('datepicker/day/light');
     const selectedInstance = this.createSymbolInstanceByPath('datepicker/day/selected');
     const normalInstance = this.createSymbolInstanceByPath('datepicker/day/normal');
+    const todayInstance = this.createSymbolInstanceByPath('datepicker/day/today');
     const weekInstance = this.createSymbolInstanceByPath('datepicker/week');
+    const [, , selectedDay] = selectedDate.split('-');
     const { height, width } = getRectOfNativeLayer(normalInstance);
     const padding = (headerWidth - width * 7) / 2;
 
@@ -102,13 +105,13 @@ class Datepicker extends SketchComponent {
     // endregion add week
 
     // region add days
-
     const previousInstances = previousMonthDateList.map(({ time }) => this.getDuringInstance(time) || lightInstance.copy());
     const currentInstances = currentMonthDateList.map(({ day, time }) => {
       const during = this.getDuringInstance(time);
       if (during) return during;
-      const [, , currentDay] = today.split('-');
-      return day === Number(currentDay) ? selectedInstance.copy() : normalInstance.copy();
+      if (day === Number(selectedDay)) return selectedInstance.copy();
+      if (day === today) return todayInstance.copy();
+      return normalInstance.copy();
     });
     const nextInstances = nextMonthDateList.map(({ time }) => this.getDuringInstance(time) || lightInstance.copy());
 
@@ -130,10 +133,10 @@ class Datepicker extends SketchComponent {
 
     // region add footer
     if (showToday || showTomorrow || showClear) {
-      const today = showToday ? 'today' : '';
-      const tomorrow = showTomorrow ? 'tomorrow' : '';
-      const clear = showClear ? 'clear' : '';
-      const footerPath = generatePath('datepicker', 'footer', today, tomorrow, clear);
+      const todayStr = showToday ? 'today' : '';
+      const tomorrowStr = showTomorrow ? 'tomorrow' : '';
+      const clearStr = showClear ? 'clear' : '';
+      const footerPath = generatePath('datepicker', 'footer', todayStr, tomorrowStr, clearStr);
       footerInstance = this.createSymbolInstanceByPath(footerPath);
 
       datepickerGroup.sketchObject.addLayer(footerInstance);

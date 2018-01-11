@@ -10874,7 +10874,7 @@ var TOTAL_LENGTH = 42;
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      today: '',
+      selectedDate: '',
       showPicker: true,
       showToday: true,
       showTomorrow: true,
@@ -10967,7 +10967,7 @@ var TOTAL_LENGTH = 42;
           showTomorrow = this.showTomorrow,
           showClear = this.showClear,
           selectedDateList = this.selectedDateList,
-          today = this.today;
+          selectedDate = this.selectedDate;
 
       var payload = {
         previousMonthDateList: previousMonthDateList,
@@ -10980,7 +10980,7 @@ var TOTAL_LENGTH = 42;
         showTomorrow: showTomorrow,
         showClear: showClear,
         selectedDateList: selectedDateList,
-        today: today
+        selectedDate: selectedDate
       };
       this.$emit('import', payload);
     }
@@ -15832,11 +15832,11 @@ var render = function() {
             "tb-picker",
             {
               model: {
-                value: _vm.today,
+                value: _vm.selectedDate,
                 callback: function($$v) {
-                  _vm.today = $$v
+                  _vm.selectedDate = $$v
                 },
-                expression: "today"
+                expression: "selectedDate"
               }
             },
             [
@@ -15849,11 +15849,11 @@ var render = function() {
                   "stop-time": _vm.stopTime
                 },
                 model: {
-                  value: _vm.today,
+                  value: _vm.selectedDate,
                   callback: function($$v) {
-                    _vm.today = $$v
+                    _vm.selectedDate = $$v
                   },
-                  expression: "today"
+                  expression: "selectedDate"
                 }
               })
             ],
