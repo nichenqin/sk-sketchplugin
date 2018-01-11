@@ -99,7 +99,7 @@ class ContextManage {
     }
 
     let symbol = null;
-    const len = symbol.count();
+    const len = symbols.count();
     for (let i = 0; i < len; i += 1) {
       const symbolName = String(symbols[i].name());
       if (path === symbolName) {
