@@ -1,4 +1,5 @@
 import SketchComponent from '../SketchComponent';
+import Picker from '../Picker';
 import { getRectOfNativeLayer, isOverridePointName, generatePath } from '../../utils';
 
 const option = {
@@ -16,15 +17,24 @@ class Datepicker extends SketchComponent {
     nextMonthDateList,
     dateList,
     currentDay,
+    showPicker,
     showToday,
     showTomorrow,
     showClear,
   }) {
-    const { page, name } = this;
-    const datepickerGroup = page.newGroup({ name });
+    const { context, page, name } = this;
+    const rootGroup = page.newGroup({ name });
 
     let footerInstance;
     const date = new Date();
+
+    if (showPicker) {
+      const picker = new Picker(context);
+      picker.moveToGroup(rootGroup);
+      rootGroup.adjustToFit();
+    }
+
+    const datepickerGroup = rootGroup.newGroup({ name });
     const headerInstance = this.createSymbolInstanceByPath('datepicker/header/normal');
     const { width: headerWidth } = getRectOfNativeLayer(headerInstance);
     const lightInstance = this.createSymbolInstanceByPath('datepicker/day/light');
@@ -36,6 +46,7 @@ class Datepicker extends SketchComponent {
 
     // region add header
     datepickerGroup.sketchObject.addLayer(headerInstance);
+    headerInstance.frame().setY_(rootGroup.frame.height + 10);
     headerInstance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'date')) {
         headerInstance.setValue_forOverridePoint(String(date.getFullYear()), overridePoint);
@@ -107,11 +118,13 @@ class Datepicker extends SketchComponent {
 
     this.createBgAtGroup(datepickerGroup);
     this.createShadowAtGroup(datepickerGroup);
-    datepickerGroup.iterate(layer => {
+
+    rootGroup.adjustToFit();
+    rootGroup.iterate(layer => {
       layer.sketchObject.setIsLocked(true);
     });
 
-    return datepickerGroup;
+    return rootGroup;
   }
 }
 

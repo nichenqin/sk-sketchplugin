@@ -10918,6 +10918,7 @@ var TOTAL_LENGTH = 42;
           nextMonthDateList = this.nextMonthDateList,
           dateList = this.dateList,
           currentDay = this.currentDay,
+          showPicker = this.showPicker,
           showToday = this.showToday,
           showTomorrow = this.showTomorrow,
           showClear = this.showClear;
@@ -10928,6 +10929,7 @@ var TOTAL_LENGTH = 42;
         nextMonthDateList: nextMonthDateList,
         dateList: dateList,
         currentDay: currentDay,
+        showPicker: showPicker,
         showToday: showToday,
         showTomorrow: showTomorrow,
         showClear: showClear
