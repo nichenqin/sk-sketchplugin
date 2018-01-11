@@ -13,7 +13,7 @@ class Button extends SketchComponent {
   replaceWithPath(path) {
     if (path === this.payload.path) return;
     const button = this.layer.sketchObject;
-    const newButton = this.createSymbolInstanceByPath(path);
+    const newButton = this.getInstanceByPath(path);
     button.replaceWithInstanceOfSymbol(newButton);
   }
 
@@ -28,7 +28,7 @@ class Button extends SketchComponent {
   }
 
   import({ text, path, iconPath = 'icon/camera_large' }) {
-    const button = this.createSymbolInstanceByPath(path);
+    const button = this.getInstanceByPath(path);
     this.document.sketchObject.addLayer(button);
 
     button.overridePoints().forEach(overridePoint => {
@@ -36,7 +36,7 @@ class Button extends SketchComponent {
         button.setValue_forOverridePoint_(String(text), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon')) {
-        const icon = this.createSymbolInstanceByPath(iconPath);
+        const icon = this.getInstanceByPath(iconPath);
         button.setValue_forOverridePoint_(icon.symbolID(), overridePoint);
       }
     });

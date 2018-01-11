@@ -23,7 +23,7 @@ class Picker extends SketchComponent {
   }) {
     const path = content ? `picker/${status}` : 'picker/placeholder';
 
-    const pickerInstance = this.createSymbolInstanceByPath(path);
+    const pickerInstance = this.getInstanceByPath(path);
     this.document.sketchObject.addLayer(pickerInstance);
 
     pickerInstance.overridePoints().forEach(overridePoint => {
@@ -34,7 +34,7 @@ class Picker extends SketchComponent {
         pickerInstance.setValue_forOverridePoint_(String(placeholder), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon_arrow')) {
-        const iconInstance = this.createSymbolInstanceByPath(`icon/${icon}`);
+        const iconInstance = this.getInstanceByPath(`icon/${icon}`);
         pickerInstance.setValue_forOverridePoint_(iconInstance.symbolID(), overridePoint);
       }
     });

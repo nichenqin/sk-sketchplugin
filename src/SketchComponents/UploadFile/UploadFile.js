@@ -12,9 +12,9 @@ class UploadFile extends SketchComponent {
 
   import({ canDelete, status, fileName }) {
     const path = generatePath(this.name, canDelete ? 'canDelete' : '', status);
-    const instance = this.createSymbolInstanceByPath(path);
-    const icon = this.createSymbolInstanceByPath('icon/placeholder');
-    const iconDelete = this.createSymbolInstanceByPath('icon/delete');
+    const instance = this.getInstanceByPath(path);
+    const icon = this.getInstanceByPath('icon/placeholder');
+    const iconDelete = this.getInstanceByPath('icon/delete');
     this.document.sketchObject.addLayer(instance);
 
     instance.overridePoints().forEach(overridePoint => {

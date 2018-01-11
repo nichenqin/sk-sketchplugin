@@ -32,9 +32,9 @@ class Dropdown extends SketchComponent {
       name,
       frame: new sketch.Rectangle(0, 0, 0.5, 0.5),
     });
-    const searchInstance = this.createSymbolInstanceByPath('dropdown/search/normal');
-    const optionInstance = this.createSymbolInstanceByPath('dropdown/option/normal');
-    const selectionInstance = this.createSymbolInstanceByPath('icon/none');
+    const searchInstance = this.getInstanceByPath('dropdown/search/normal');
+    const optionInstance = this.getInstanceByPath('dropdown/option/normal');
+    const selectionInstance = this.getInstanceByPath('icon/none');
     const { width } = getRectOfNativeLayer(searchInstance);
     const padding = showPicker ? (getRectOfNativeLayer(pickerInstance).width - width) / 2 : 0;
 

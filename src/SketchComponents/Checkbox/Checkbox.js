@@ -15,9 +15,9 @@ class Checkbox extends SketchComponent {
 
     const checkboxGroup = page.newGroup({ name });
 
-    const checkboxInstance = this.createSymbolInstanceByPath('checkbox/normal');
-    const icon = this.createSymbolInstanceByPath('icon/checkbox');
-    const iconSelected = this.createSymbolInstanceByPath('icon/checkbox_selected');
+    const checkboxInstance = this.getInstanceByPath('checkbox/normal');
+    const icon = this.getInstanceByPath('icon/checkbox');
+    const iconSelected = this.getInstanceByPath('icon/checkbox_selected');
     const { width, height } = getRectOfNativeLayer(checkboxInstance);
 
     const checkboxInstances = options.map(() => checkboxInstance.copy());
@@ -29,9 +29,7 @@ class Checkbox extends SketchComponent {
           item.setValue_forOverridePoint_(String(options[index].value), overridePoint);
         }
         if (isOverridePointName(overridePoint, 'icon_status')) {
-          const symbolID = selectedOptions.includes(options[index].value)
-            ? iconSelected.symbolID()
-            : icon.symbolID();
+          const symbolID = selectedOptions.includes(options[index].value) ? iconSelected.symbolID() : icon.symbolID();
           item.setValue_forOverridePoint_(symbolID, overridePoint);
         }
       });

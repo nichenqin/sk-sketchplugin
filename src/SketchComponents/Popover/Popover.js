@@ -14,13 +14,13 @@ class Popover extends SketchComponent {
     const { sketch, page, name } = this;
 
     const popoverGroup = page.newGroup({ name });
-    const titleInstance = this.createSymbolInstanceByPath('popover/title/center');
+    const titleInstance = this.getInstanceByPath('popover/title/center');
     popoverGroup.sketchObject.addLayer(titleInstance);
 
     titleInstance.frame().setWidth_(width);
     titleInstance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'icon_close')) {
-        const icon = this.createSymbolInstanceByPath('icon/close');
+        const icon = this.getInstanceByPath('icon/close');
         titleInstance.setValue_forOverridePoint_(icon.symbolID(), overridePoint);
       }
     });

@@ -13,7 +13,7 @@ class ShortInput extends SketchComponent {
   import({
     path, unit, content, placeholder, width,
   }) {
-    const instance = this.createSymbolInstanceByPath(path);
+    const instance = this.getInstanceByPath(path);
     this.document.sketchObject.addLayer(instance);
 
     instance.overridePoints().forEach(overridePoint => {

@@ -9,6 +9,7 @@ class ContextManage {
     this.objectID = '';
     this.allSymbols = null;
     this.symbolLibrary = {};
+    this.instanceLibrary = {};
   }
 
   get layer() {
@@ -128,7 +129,7 @@ class ContextManage {
       throw new Error('path required');
     }
 
-    const symbol = symbolLibrary[path] ? symbolLibrary[path].copy() : this.getSymbolByPath(path);
+    const symbol = symbolLibrary[path] || this.getSymbolByPath(path);
     if (!symbol) {
       throw new Error(`symbol not found in path: ${path}`);
     }
@@ -139,7 +140,15 @@ class ContextManage {
     const symbolMaster = foreignSymbol.symbolMaster();
     const instance = symbolMaster.newSymbolInstance();
 
+    if (instance) {
+      this.instanceLibrary[path] = instance;
+    }
+
     return instance;
+  }
+
+  getInstanceByPath(path) {
+    return this.instanceLibrary[path] || this.createSymbolInstanceByPath(path);
   }
 
   /**

@@ -22,23 +22,20 @@ class Menu extends SketchComponent {
   }
 
   generateInstances(options, level = 1) {
-    return options.reduce(
-      (instances, {
-        expand, children, subtitle, icon = '', status = 'normal',
-      }) => {
-        const rows = subtitle ? 'double' : 'single';
-        const iconRows = camelCase(`${icon} ${rows}`);
-        const foldable = children.length ? 'foldable' : '';
-        const path = generatePath('menu', `level_${level}`, iconRows, foldable, status);
-        const instance = this.createSymbolInstanceByPath(path);
-        instances.push(instance.copy());
-        if (expand && children && children.length) {
-          instances.push(...this.generateInstances.call(this, children, level + 1));
-        }
-        return instances;
-      },
-      [],
-    );
+    return options.reduce((instances, {
+      expand, children, subtitle, icon = '', status = 'normal',
+    }) => {
+      const rows = subtitle ? 'double' : 'single';
+      const iconRows = camelCase(`${icon} ${rows}`);
+      const foldable = children.length ? 'foldable' : '';
+      const path = generatePath('menu', `level_${level}`, iconRows, foldable, status);
+      const instance = this.getInstanceByPath(path);
+      instances.push(instance.copy());
+      if (expand && children && children.length) {
+        instances.push(...this.generateInstances.call(this, children, level + 1));
+      }
+      return instances;
+    }, []);
   }
 
   import({ options = [] }) {
@@ -46,10 +43,10 @@ class Menu extends SketchComponent {
 
     const menuGroup = page.newGroup({ name });
 
-    const avatar = this.createSymbolInstanceByPath('avatar');
-    const icon = this.createSymbolInstanceByPath('icon/placeholder');
-    const arrowUp = this.createSymbolInstanceByPath('icon/smallArrow/active');
-    const arrowDown = this.createSymbolInstanceByPath('icon/smallArrow/normal');
+    const avatar = this.getInstanceByPath('avatar');
+    const icon = this.getInstanceByPath('icon/placeholder');
+    const arrowUp = this.getInstanceByPath('icon/smallArrow/active');
+    const arrowDown = this.getInstanceByPath('icon/smallArrow/normal');
 
     const optionInstances = this.generateInstances(options);
     menuGroup.sketchObject.addLayers(optionInstances);

@@ -30,7 +30,7 @@ class Timepicker extends SketchComponent {
     const format = timeType === 12 ? '12h' : '';
     const timepickerPath = generatePath('timepicker', 'body', format, seconds);
 
-    const timepickerInstance = this.createSymbolInstanceByPath(timepickerPath);
+    const timepickerInstance = this.getInstanceByPath(timepickerPath);
     const timepickerGroup = rootGroup.newGroup({ name });
     timepickerGroup.sketchObject.addLayer(timepickerInstance);
 
@@ -45,7 +45,7 @@ class Timepicker extends SketchComponent {
       const now = showNow ? 'now' : '';
       const clear = showClear ? 'clear' : '';
       const footerPath = generatePath('timepicker', 'footer', now, clear);
-      const footerInstance = this.createSymbolInstanceByPath(footerPath);
+      const footerInstance = this.getInstanceByPath(footerPath);
       timepickerGroup.sketchObject.addLayer(footerInstance);
       footerInstance.frame().setY_(timepickerGroup.frame.height);
       footerInstance.frame().setWidth_(timepickerGroup.frame.width);

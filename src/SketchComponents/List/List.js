@@ -21,7 +21,7 @@ class List extends SketchComponent {
 
     // region title
     const titleGroup = listGroup.newGroup({ name: 'title' });
-    const titleInstance = this.createSymbolInstanceByPath('list/header/normal');
+    const titleInstance = this.getInstanceByPath('list/header/normal');
     const { width, height } = getRectOfNativeLayer(titleInstance);
 
     const titleInstances = [...new Array(columns)].map(() => titleInstance.copy());
@@ -48,14 +48,14 @@ class List extends SketchComponent {
       const double = rowItem.subtitle ? 'double' : 'single';
       const iconRows = camelcase(`${iconSize} ${icon} ${isLargeIcon ? '' : double}`);
       const path = generatePath('list', 'body', iconRows);
-      const rowInstance = this.createSymbolInstanceByPath(path);
+      const rowInstance = this.getInstanceByPath(path);
       return rowInstance.copy();
     });
     rowGroup.sketchObject.addLayers(rowInstances);
     setFrame(rowGroup, { y: height });
 
-    const avatar = this.createSymbolInstanceByPath('avatar');
-    const placeholder = this.createSymbolInstanceByPath('icon/placeholder');
+    const avatar = this.getInstanceByPath('avatar');
+    const placeholder = this.getInstanceByPath('icon/placeholder');
 
     rowInstances.forEach((rowItem, index) => {
       rowItem.frame().setX_(width * index);

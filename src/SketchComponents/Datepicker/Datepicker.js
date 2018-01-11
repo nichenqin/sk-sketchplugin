@@ -15,9 +15,9 @@ class Datepicker extends SketchComponent {
     const { selectedDateList = [] } = this.payload;
     if (!time || !selectedDateList.length || !selectedDateList.includes(time)) return null;
 
-    const duringInstance = this.createSymbolInstanceByPath('datepicker/day/during');
-    const startInstance = this.createSymbolInstanceByPath('datepicker/day/start');
-    const endInstance = this.createSymbolInstanceByPath('datepicker/day/end');
+    const duringInstance = this.getInstanceByPath('datepicker/day/during');
+    const startInstance = this.getInstanceByPath('datepicker/day/start');
+    const endInstance = this.getInstanceByPath('datepicker/day/end');
 
     const [firstSelectedTime] = selectedDateList;
     const lastSelectedTime = selectedDateList[selectedDateList.length - 1];
@@ -56,35 +56,33 @@ class Datepicker extends SketchComponent {
     const now = new Date();
     const today = now.getDate();
     const datepickerGroup = rootGroup.newGroup({ name });
-    const headerInstance = this.createSymbolInstanceByPath('datepicker/header/normal');
+    const headerInstance = this.getInstanceByPath('datepicker/header/normal');
     const { width: headerWidth } = getRectOfNativeLayer(headerInstance);
-    const lightInstance = this.createSymbolInstanceByPath('datepicker/day/light');
-    const selectedInstance = this.createSymbolInstanceByPath('datepicker/day/selected');
-    const normalInstance = this.createSymbolInstanceByPath('datepicker/day/normal');
-    const todayInstance = this.createSymbolInstanceByPath('datepicker/day/today');
-    const weekInstance = this.createSymbolInstanceByPath('datepicker/week');
+    const weekInstance = this.getInstanceByPath('datepicker/week');
+    const lightInstance = this.getInstanceByPath('datepicker/day/light');
+    const selectedInstance = this.getInstanceByPath('datepicker/day/selected');
+    const normalInstance = this.getInstanceByPath('datepicker/day/normal');
+    const todayInstance = this.getInstanceByPath('datepicker/day/today');
     const [, , selectedDay] = selectedDate.split('-');
     const { height, width } = getRectOfNativeLayer(normalInstance);
     const padding = (headerWidth - width * 7) / 2;
 
-    // region add header
     datepickerGroup.sketchObject.addLayer(headerInstance);
     headerInstance.frame().setY_(rootGroup.frame.height + 10);
     headerInstance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'date')) {
-        headerInstance.setValue_forOverridePoint(String(now.getFullYear()), overridePoint);
+        headerInstance.setValue_forOverridePoint(String(new Date().getFullYear()), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon_previousMonth')) {
-        const icon = this.createSymbolInstanceByPath('icon/arrowLeft/normal');
+        const icon = this.getInstanceByPath('icon/arrowLeft/normal');
         headerInstance.setValue_forOverridePoint(icon.symbolID(), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon_nextMonth')) {
-        const icon = this.createSymbolInstanceByPath('icon/arrowRight/normal');
+        const icon = this.getInstanceByPath('icon/arrowRight/normal');
         headerInstance.setValue_forOverridePoint(icon.symbolID(), overridePoint);
       }
     });
     datepickerGroup.adjustToFit();
-    // endregion add header
 
     // region add week
     const weekData = ['日', '一', '二', '三', '四', '五', '六'];
@@ -100,7 +98,6 @@ class Datepicker extends SketchComponent {
     });
 
     datepickerGroup.adjustToFit();
-
     this.createDividerAtGroup(datepickerGroup);
     // endregion add week
 
@@ -137,7 +134,7 @@ class Datepicker extends SketchComponent {
       const tomorrowStr = showTomorrow ? 'tomorrow' : '';
       const clearStr = showClear ? 'clear' : '';
       const footerPath = generatePath('datepicker', 'footer', todayStr, tomorrowStr, clearStr);
-      footerInstance = this.createSymbolInstanceByPath(footerPath);
+      footerInstance = this.getInstanceByPath(footerPath);
 
       datepickerGroup.sketchObject.addLayer(footerInstance);
       footerInstance.frame().setY_(datepickerGroup.frame.height);

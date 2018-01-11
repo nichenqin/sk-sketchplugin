@@ -13,7 +13,7 @@ class Switch extends SketchComponent {
     const status = isOn ? 'on' : 'off';
     const path = `switch/${disabled ? 'disable' : status}`;
 
-    const instance = this.createSymbolInstanceByPath(path);
+    const instance = this.getInstanceByPath(path);
     this.document.sketchObject.addLayer(instance);
 
     return instance;

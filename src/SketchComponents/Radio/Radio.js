@@ -14,9 +14,9 @@ class Radio extends SketchComponent {
     const { page, name } = this;
 
     const radioGroup = page.newGroup({ name });
-    const radioInstance = this.createSymbolInstanceByPath('radio/normal');
-    const iconInstance = this.createSymbolInstanceByPath('icon/radio');
-    const iconSelectedInstance = this.createSymbolInstanceByPath('icon/radio_selected');
+    const radioInstance = this.getInstanceByPath('radio/normal');
+    const iconInstance = this.getInstanceByPath('icon/radio');
+    const iconSelectedInstance = this.getInstanceByPath('icon/radio_selected');
     const { width, height } = getRectOfNativeLayer(radioInstance);
 
     const radioInstances = options.map(() => radioInstance.copy());
@@ -28,9 +28,7 @@ class Radio extends SketchComponent {
         }
         if (isOverridePointName(overridePoint, 'icon_status')) {
           const symbolID =
-            options[index].value === optionValue
-              ? iconSelectedInstance.symbolID()
-              : iconInstance.symbolID();
+            options[index].value === optionValue ? iconSelectedInstance.symbolID() : iconInstance.symbolID();
           item.setValue_forOverridePoint_(symbolID, overridePoint);
         }
       });
