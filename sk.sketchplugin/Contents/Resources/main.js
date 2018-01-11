@@ -10130,6 +10130,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -14034,6 +14040,56 @@ var render = function() {
           ])
         })
       ),
+      _vm._v(" "),
+      _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.showPagination,
+              expression: "showPagination"
+            }
+          ],
+          staticClass: "custom-control-input",
+          attrs: { type: "checkbox", id: "paginationShowPagination" },
+          domProps: {
+            checked: Array.isArray(_vm.showPagination)
+              ? _vm._i(_vm.showPagination, null) > -1
+              : _vm.showPagination
+          },
+          on: {
+            change: function($event) {
+              var $$a = _vm.showPagination,
+                $$el = $event.target,
+                $$c = $$el.checked ? true : false
+              if (Array.isArray($$a)) {
+                var $$v = null,
+                  $$i = _vm._i($$a, $$v)
+                if ($$el.checked) {
+                  $$i < 0 && (_vm.showPagination = $$a.concat([$$v]))
+                } else {
+                  $$i > -1 &&
+                    (_vm.showPagination = $$a
+                      .slice(0, $$i)
+                      .concat($$a.slice($$i + 1)))
+                }
+              } else {
+                _vm.showPagination = $$c
+              }
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          {
+            staticClass: "custom-control-label",
+            attrs: { for: "paginationShowPagination" }
+          },
+          [_vm._v("Show Picker")]
+        )
+      ]),
       _vm._v(" "),
       _c(
         "button",
