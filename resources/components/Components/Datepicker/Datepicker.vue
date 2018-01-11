@@ -144,9 +144,8 @@ export default {
         showToday,
         showTomorrow,
         showClear,
-        startTime,
-        stopTime,
         selectedDateList,
+        today,
       } = this;
       const payload = {
         previousMonthDateList,
@@ -158,9 +157,8 @@ export default {
         showToday,
         showTomorrow,
         showClear,
-        startTime: convertToTime(startTime),
-        stopTime: convertToTime(stopTime),
         selectedDateList,
+        today,
       };
       this.$emit('import', payload);
     },

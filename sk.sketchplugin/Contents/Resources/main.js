@@ -10966,9 +10966,8 @@ var TOTAL_LENGTH = 42;
           showToday = this.showToday,
           showTomorrow = this.showTomorrow,
           showClear = this.showClear,
-          startTime = this.startTime,
-          stopTime = this.stopTime,
-          selectedDateList = this.selectedDateList;
+          selectedDateList = this.selectedDateList,
+          today = this.today;
 
       var payload = {
         previousMonthDateList: previousMonthDateList,
@@ -10980,9 +10979,8 @@ var TOTAL_LENGTH = 42;
         showToday: showToday,
         showTomorrow: showTomorrow,
         showClear: showClear,
-        startTime: convertToTime(startTime),
-        stopTime: convertToTime(stopTime),
-        selectedDateList: selectedDateList
+        selectedDateList: selectedDateList,
+        today: today
       };
       this.$emit('import', payload);
     }

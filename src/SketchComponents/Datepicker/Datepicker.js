@@ -31,11 +31,11 @@ class Datepicker extends SketchComponent {
     currentMonthDateList,
     nextMonthDateList,
     dateList,
-    currentDay,
     showPicker,
     showToday,
     showTomorrow,
     showClear,
+    today,
   }) {
     const { context, page, name } = this;
     const rootGroup = page.newGroup({ name });
@@ -44,7 +44,12 @@ class Datepicker extends SketchComponent {
     const now = new Date();
 
     if (showPicker) {
-      const picker = new Picker(context);
+      const picker = new Picker(context, {
+        content: today,
+        icon: 'arrowUp',
+        status: 'active',
+        placeholder: 'choose a date',
+      });
       picker.moveToGroup(rootGroup);
       rootGroup.adjustToFit();
     }
@@ -102,7 +107,8 @@ class Datepicker extends SketchComponent {
     const currentInstances = currentMonthDateList.map(({ day, time }) => {
       const during = this.getDuringInstance(time);
       if (during) return during;
-      return day === currentDay ? selectedInstance.copy() : normalInstance.copy();
+      const [, , currentDay] = today.split('-');
+      return day === Number(currentDay) ? selectedInstance.copy() : normalInstance.copy();
     });
     const nextInstances = nextMonthDateList.map(({ time }) => this.getDuringInstance(time) || lightInstance.copy());
 

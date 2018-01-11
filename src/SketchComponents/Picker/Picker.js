@@ -6,12 +6,20 @@ const option = {
 };
 
 class Picker extends SketchComponent {
-  constructor(context, payload = { content: 'default', icon: 'arrowUp', status: 'active' }) {
+  constructor(
+    context,
+    payload = {
+      content: 'default',
+      icon: 'arrowUp',
+      status: 'active',
+      placeholder: 'placeholder',
+    },
+  ) {
     super(context, payload, option);
   }
 
   import({
-    content, icon = 'arrowDown', status = 'normal', placeholder = 'default placeholder',
+    content, icon = 'arrowDown', status = 'normal', placeholder = 'placeholder',
   }) {
     const path = content ? `picker/${status}` : 'picker/placeholder';
 
