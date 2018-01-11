@@ -66,22 +66,22 @@ import SkPreview from '../../Shared/Preview.vue';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
 import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
 
-const r = 1;
-const c = 3;
-
-const rowItems = [...new Array(c)].map(() => ({
-  title: 'Text',
-  icon: '',
-  isLargeIcon: false,
-  subtitle: '',
-}));
-const titleItems = [...new Array(c)].map(() => ({ title: 'title' }));
-
 export default {
   data() {
+    const rows = 1;
+    const columns = 3;
+
+    const rowItems = [...new Array(columns)].map(() => ({
+      title: 'Text',
+      icon: '',
+      isLargeIcon: false,
+      subtitle: '',
+    }));
+    const titleItems = [...new Array(columns)].map(() => ({ title: 'title' }));
+
     return {
-      rows: r,
-      columns: c,
+      rows,
+      columns,
       rowItems,
       titleItems,
       maxRows: 5,
@@ -134,12 +134,12 @@ export default {
       this.columns -= 1;
     },
     handleImport() {
-      const { rows, columns, showPagination } = this;
+      const { rows, columns, showPagination, titleItems, rowItems } = this;
       const payload = {
         rows,
         columns,
-        titleItems: this.titleItems,
-        rowItems: this.rowItems,
+        titleItems,
+        rowItems,
         showPagination,
       };
       this.$emit('import', payload);

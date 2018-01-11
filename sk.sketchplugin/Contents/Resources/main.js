@@ -10136,26 +10136,26 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
-var r = 1;
-var c = 3;
-
-var rowItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
-  return {
-    title: 'Text',
-    icon: '',
-    isLargeIcon: false,
-    subtitle: ''
-  };
-});
-var titleItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
-  return { title: 'title' };
-});
-
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
+    var rows = 1;
+    var columns = 3;
+
+    var rowItems = [].concat(_toConsumableArray(new Array(columns))).map(function () {
+      return {
+        title: 'Text',
+        icon: '',
+        isLargeIcon: false,
+        subtitle: ''
+      };
+    });
+    var titleItems = [].concat(_toConsumableArray(new Array(columns))).map(function () {
+      return { title: 'title' };
+    });
+
     return {
-      rows: r,
-      columns: c,
+      rows: rows,
+      columns: columns,
       rowItems: rowItems,
       titleItems: titleItems,
       maxRows: 5,
@@ -10220,13 +10220,15 @@ var titleItems = [].concat(_toConsumableArray(new Array(c))).map(function () {
     handleImport: function handleImport() {
       var rows = this.rows,
           columns = this.columns,
-          showPagination = this.showPagination;
+          showPagination = this.showPagination,
+          titleItems = this.titleItems,
+          rowItems = this.rowItems;
 
       var payload = {
         rows: rows,
         columns: columns,
-        titleItems: this.titleItems,
-        rowItems: this.rowItems,
+        titleItems: titleItems,
+        rowItems: rowItems,
         showPagination: showPagination
       };
       this.$emit('import', payload);
