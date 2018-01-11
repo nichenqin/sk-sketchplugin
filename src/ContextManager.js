@@ -122,15 +122,13 @@ class ContextManage {
    * @memberof ContextManage
    */
   createSymbolInstanceByPath(path) {
-    const { context, assetLibrary } = this;
+    const { context, assetLibrary, symbolLibrary } = this;
 
     if (!path) {
       throw new Error('path required');
     }
 
-    const symbol = this.symbolLibrary[path]
-      ? this.symbolLibrary[path].copy()
-      : this.getSymbolByPath(path);
+    const symbol = symbolLibrary[path] ? symbolLibrary[path].copy() : this.getSymbolByPath(path);
     if (!symbol) {
       throw new Error(`symbol not found in path: ${path}`);
     }
