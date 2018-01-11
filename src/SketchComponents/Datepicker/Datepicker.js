@@ -11,6 +11,21 @@ class Datepicker extends SketchComponent {
     super(context, payload, option);
   }
 
+  getDuringInstance(time) {
+    const duringInstance = this.createSymbolInstanceByPath('datepicker/day/during');
+    const startInstance = this.createSymbolInstanceByPath('datepicker/day/start');
+    const endInstance = this.createSymbolInstanceByPath('datepicker/day/end');
+    const { selectedDateList = [] } = this.payload;
+    const [firstSelectedTime] = selectedDateList;
+    const lastSelectedTime = selectedDateList[selectedDateList.length - 1];
+    if (selectedDateList && selectedDateList.length && selectedDateList.includes(time)) {
+      if (firstSelectedTime === time) return startInstance.copy();
+      else if (lastSelectedTime === time) return endInstance.copy();
+      return duringInstance.copy();
+    }
+    return null;
+  }
+
   import({
     previousMonthDateList,
     currentMonthDateList,
@@ -26,7 +41,7 @@ class Datepicker extends SketchComponent {
     const rootGroup = page.newGroup({ name });
 
     let footerInstance;
-    const date = new Date();
+    const now = new Date();
 
     if (showPicker) {
       const picker = new Picker(context);
@@ -49,7 +64,7 @@ class Datepicker extends SketchComponent {
     headerInstance.frame().setY_(rootGroup.frame.height + 10);
     headerInstance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'date')) {
-        headerInstance.setValue_forOverridePoint(String(date.getFullYear()), overridePoint);
+        headerInstance.setValue_forOverridePoint(String(now.getFullYear()), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon_previousMonth')) {
         const icon = this.createSymbolInstanceByPath('icon/arrowLeft/normal');
@@ -82,9 +97,14 @@ class Datepicker extends SketchComponent {
     // endregion add week
 
     // region add days
-    const previousInstances = previousMonthDateList.map(() => lightInstance.copy());
-    const currentInstances = currentMonthDateList.map(({ day }) => (day === currentDay ? selectedInstance.copy() : normalInstance.copy()));
-    const nextInstances = nextMonthDateList.map(() => lightInstance.copy());
+
+    const previousInstances = previousMonthDateList.map(({ time }) => this.getDuringInstance(time) || lightInstance.copy());
+    const currentInstances = currentMonthDateList.map(({ day, time }) => {
+      const during = this.getDuringInstance(time);
+      if (during) return during;
+      return day === currentDay ? selectedInstance.copy() : normalInstance.copy();
+    });
+    const nextInstances = nextMonthDateList.map(({ time }) => this.getDuringInstance(time) || lightInstance.copy());
 
     const dayInstances = [...previousInstances, ...currentInstances, ...nextInstances];
     datepickerGroup.sketchObject.addLayers(dayInstances);

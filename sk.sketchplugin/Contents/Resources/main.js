@@ -10804,6 +10804,8 @@ var optionsData = [].concat(_toConsumableArray(new Array(3))).map(function (val,
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 //
@@ -10839,11 +10841,34 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
+function convertToTime(str) {
+  var _str$split = str.split('-'),
+      _str$split2 = _slicedToArray(_str$split, 3),
+      year = _str$split2[0],
+      month = _str$split2[1],
+      day = _str$split2[2];
+
+  return new Date(year, month - 1, day).getTime();
+}
 var TOTAL_LENGTH = 42;
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -10851,12 +10876,14 @@ var TOTAL_LENGTH = 42;
     return {
       today: '',
       showPicker: true,
-      showToday: false,
-      showTomorrow: false,
-      showClear: false,
+      showToday: true,
+      showTomorrow: true,
+      showClear: true,
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth(),
-      currentDay: new Date().getDate()
+      currentDay: new Date().getDate(),
+      startTime: '',
+      stopTime: ''
     };
   },
 
@@ -10876,7 +10903,8 @@ var TOTAL_LENGTH = 42;
         return {
           year: _this.currentYear,
           month: _this.currentMonth + 1,
-          day: index + 1
+          day: index + 1,
+          time: new Date(_this.currentYear, _this.currentMonth, index + 1).getTime()
         };
       });
     },
@@ -10891,7 +10919,8 @@ var TOTAL_LENGTH = 42;
         return {
           year: year,
           month: month,
-          day: index + 1
+          day: index + 1,
+          time: new Date(year, month - 1, index + 1).getTime()
         };
       }).reverse().slice(0, this.currentMonthStartDay).reverse();
     },
@@ -10903,12 +10932,27 @@ var TOTAL_LENGTH = 42;
         return {
           year: year,
           month: month,
-          day: index + 1
+          day: index + 1,
+          time: new Date(year, month - 1, index + 1).getTime()
         };
       });
     },
     dateList: function dateList() {
       return [].concat(_toConsumableArray(this.previousMonthDateList), _toConsumableArray(this.currentMonthDateList), _toConsumableArray(this.nextMonthDateList));
+    },
+    selectedDateList: function selectedDateList() {
+      var startTime = this.startTime,
+          stopTime = this.stopTime,
+          dateList = this.dateList;
+
+      if (!startTime || !stopTime) return [];
+      return dateList.filter(function (_ref) {
+        var time = _ref.time;
+        return time >= convertToTime(startTime) && time <= convertToTime(stopTime);
+      }).map(function (_ref2) {
+        var time = _ref2.time;
+        return time;
+      });
     }
   },
   methods: {
@@ -10921,7 +10965,10 @@ var TOTAL_LENGTH = 42;
           showPicker = this.showPicker,
           showToday = this.showToday,
           showTomorrow = this.showTomorrow,
-          showClear = this.showClear;
+          showClear = this.showClear,
+          startTime = this.startTime,
+          stopTime = this.stopTime,
+          selectedDateList = this.selectedDateList;
 
       var payload = {
         previousMonthDateList: previousMonthDateList,
@@ -10932,7 +10979,10 @@ var TOTAL_LENGTH = 42;
         showPicker: showPicker,
         showToday: showToday,
         showTomorrow: showTomorrow,
-        showClear: showClear
+        showClear: showClear,
+        startTime: convertToTime(startTime),
+        stopTime: convertToTime(stopTime),
+        selectedDateList: selectedDateList
       };
       this.$emit('import', payload);
     }
@@ -15521,6 +15571,56 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
+                  value: _vm.showPicker,
+                  expression: "showPicker"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "datepickerShowPicker" },
+              domProps: {
+                checked: Array.isArray(_vm.showPicker)
+                  ? _vm._i(_vm.showPicker, null) > -1
+                  : _vm.showPicker
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showPicker,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showPicker = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showPicker = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showPicker = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "datepickerShowPicker" }
+              },
+              [_vm._v("Show Picker")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
                   value: _vm.showToday,
                   expression: "showToday"
                 }
@@ -15666,6 +15766,56 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c(
+            "tb-picker",
+            {
+              model: {
+                value: _vm.startTime,
+                callback: function($$v) {
+                  _vm.startTime = $$v
+                },
+                expression: "startTime"
+              }
+            },
+            [
+              _c("tb-datepicker", {
+                model: {
+                  value: _vm.startTime,
+                  callback: function($$v) {
+                    _vm.startTime = $$v
+                  },
+                  expression: "startTime"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "tb-picker",
+            {
+              model: {
+                value: _vm.stopTime,
+                callback: function($$v) {
+                  _vm.stopTime = $$v
+                },
+                expression: "stopTime"
+              }
+            },
+            [
+              _c("tb-datepicker", {
+                model: {
+                  value: _vm.stopTime,
+                  callback: function($$v) {
+                    _vm.stopTime = $$v
+                  },
+                  expression: "stopTime"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
             "button",
             {
               staticClass: "btn btn-primary btn-lg btn-block",
@@ -15673,7 +15823,8 @@ var render = function() {
             },
             [_vm._v("Import To Sketch")]
           )
-        ]
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
@@ -15692,6 +15843,13 @@ var render = function() {
             },
             [
               _c("tb-datepicker", {
+                attrs: {
+                  "show-today": _vm.showToday,
+                  "show-tomorrow": _vm.showTomorrow,
+                  "show-clear": _vm.showClear,
+                  "start-time": _vm.startTime,
+                  "stop-time": _vm.stopTime
+                },
                 model: {
                   value: _vm.today,
                   callback: function($$v) {

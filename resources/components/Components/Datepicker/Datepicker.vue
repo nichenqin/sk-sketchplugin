@@ -4,6 +4,11 @@
     <form @submit.prevent="handleImport">
 
       <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="datepickerShowPicker" v-model="showPicker">
+        <label for="datepickerShowPicker" class="custom-control-label">Show Picker</label>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3">
         <input type="checkbox" class="custom-control-input" id="datepickerShowToday" v-model="showToday">
         <label for="datepickerShowToday" class="custom-control-label">Show Today</label>
       </div>
@@ -18,13 +23,22 @@
         <label for="datepickerShowClear" class="custom-control-label">Show Clear</label>
       </div>
 
+      <tb-picker v-model="startTime">
+        <tb-datepicker v-model="startTime"></tb-datepicker>
+      </tb-picker>
+
+      <tb-picker v-model="stopTime">
+        <tb-datepicker v-model="stopTime"></tb-datepicker>
+      </tb-picker>
+
       <button class="btn btn-primary btn-lg btn-block" type="submit">Import To Sketch</button>
 
     </form>
 
     <sk-preview>
       <tb-picker v-model="today">
-        <tb-datepicker v-model="today"></tb-datepicker>
+        <tb-datepicker v-model="today" :show-today="showToday" :show-tomorrow="showTomorrow"
+          :show-clear="showClear" :start-time="startTime" :stop-time="stopTime"></tb-datepicker>
       </tb-picker>
     </sk-preview>
 
@@ -36,6 +50,10 @@ import { Picker as TbPicker, Datepicker as TbDatepicker } from '@zhinan/tb-compo
 
 import SkPreview from '../../Shared/Preview.vue';
 
+function convertToTime(str) {
+  const [year, month, day] = str.split('-');
+  return new Date(year, month - 1, day).getTime();
+}
 const TOTAL_LENGTH = 42;
 
 export default {
@@ -43,12 +61,14 @@ export default {
     return {
       today: '',
       showPicker: true,
-      showToday: false,
-      showTomorrow: false,
-      showClear: false,
+      showToday: true,
+      showTomorrow: true,
+      showClear: true,
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth(),
       currentDay: new Date().getDate(),
+      startTime: '',
+      stopTime: '',
     };
   },
   components: {
@@ -65,6 +85,7 @@ export default {
         year: this.currentYear,
         month: this.currentMonth + 1,
         day: index + 1,
+        time: new Date(this.currentYear, this.currentMonth, index + 1).getTime(),
       }));
     },
     currentMonthStartDay() {
@@ -79,6 +100,7 @@ export default {
           year,
           month,
           day: index + 1,
+          time: new Date(year, month - 1, index + 1).getTime(),
         }))
         .reverse()
         .slice(0, this.currentMonthStartDay)
@@ -92,6 +114,7 @@ export default {
         year,
         month,
         day: index + 1,
+        time: new Date(year, month - 1, index + 1).getTime(),
       }));
     },
     dateList() {
@@ -100,6 +123,13 @@ export default {
         ...this.currentMonthDateList,
         ...this.nextMonthDateList,
       ];
+    },
+    selectedDateList() {
+      const { startTime, stopTime, dateList } = this;
+      if (!startTime || !stopTime) return [];
+      return dateList
+        .filter(({ time }) => time >= convertToTime(startTime) && time <= convertToTime(stopTime))
+        .map(({ time }) => time);
     },
   },
   methods: {
@@ -114,6 +144,9 @@ export default {
         showToday,
         showTomorrow,
         showClear,
+        startTime,
+        stopTime,
+        selectedDateList,
       } = this;
       const payload = {
         previousMonthDateList,
@@ -125,6 +158,9 @@ export default {
         showToday,
         showTomorrow,
         showClear,
+        startTime: convertToTime(startTime),
+        stopTime: convertToTime(stopTime),
+        selectedDateList,
       };
       this.$emit('import', payload);
     },
