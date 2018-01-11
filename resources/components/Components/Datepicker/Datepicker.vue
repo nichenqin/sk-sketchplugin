@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       today: '',
+      showPicker: true,
       showToday: false,
       showTomorrow: false,
       showClear: false,

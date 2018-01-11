@@ -10850,6 +10850,7 @@ var TOTAL_LENGTH = 42;
   data: function data() {
     return {
       today: '',
+      showPicker: true,
       showToday: false,
       showTomorrow: false,
       showClear: false,

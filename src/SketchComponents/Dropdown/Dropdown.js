@@ -24,9 +24,7 @@ class Dropdown extends SketchComponent {
     let pickerInstance;
     if (showPicker) {
       const picker = new Picker(context);
-      pickerInstance = picker.layer.sketchObject;
-      rootGroup.sketchObject.addLayer(pickerInstance.copy());
-      page.sketchObject.removeLayer_(pickerInstance);
+      pickerInstance = picker.moveToGroup(rootGroup);
       rootGroup.adjustToFit();
     }
 

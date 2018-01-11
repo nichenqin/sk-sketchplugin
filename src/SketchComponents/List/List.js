@@ -93,11 +93,8 @@ class List extends SketchComponent {
 
     if (showPagination) {
       const pagination = new Pagination(context);
-      const paginationInstance = pagination.layer.sketchObject;
-      const cloneInstane = paginationInstance.copy();
-      listGroup.sketchObject.addLayer(cloneInstane);
-      page.sketchObject.removeLayer(paginationInstance);
-      cloneInstane.frame().setY_(listGroup.frame.height + 10);
+      const paginationInstance = pagination.moveToGroup(listGroup);
+      paginationInstance.frame().setY_(listGroup.frame.height + 10);
       listGroup.adjustToFit();
     }
 

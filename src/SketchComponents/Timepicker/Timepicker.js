@@ -21,9 +21,7 @@ class Timepicker extends SketchComponent {
     let pickerWidth = 0;
     if (showPicker) {
       const picker = new Picker(context);
-      const pickerInstance = picker.layer.sketchObject;
-      rootGroup.sketchObject.addLayer(pickerInstance.copy());
-      page.sketchObject.removeLayer(pickerInstance);
+      const pickerInstance = picker.moveToGroup(rootGroup);
       rootGroup.adjustToFit();
       pickerWidth = getRectOfNativeLayer(pickerInstance).width;
     }

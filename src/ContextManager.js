@@ -216,6 +216,22 @@ class ContextManage {
     shadow.offsetY = 2;
     shadow.blurRadius = 15;
   }
+
+  moveToGroup(group) {
+    if (!group.isGroup) {
+      throw new Error('shape should be added inside a group');
+    }
+
+    const { page, layer } = this;
+
+    const { sketchObject: instance } = layer;
+    const newInstance = instance.copy();
+
+    group.sketchObject.addLayer(newInstance);
+    page.sketchObject.removeLayer(instance);
+
+    return newInstance;
+  }
 }
 
 export default ContextManage;
