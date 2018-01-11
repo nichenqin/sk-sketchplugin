@@ -9,7 +9,7 @@ class Text extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ text, fontSize }) {
+  import({ text, fontSize = 16 }) {
     const { page } = this;
 
     const newText = page.newText({
@@ -18,10 +18,7 @@ class Text extends SketchComponent {
     // set color
     const textStyle = newText.sketchObject.style().textStyle();
     const mutableAttributes = NSMutableDictionary.dictionaryWithDictionary(textStyle.attributes());
-    mutableAttributes.setObject_forKey(
-      NSColor.colorWithRed_green_blue_alpha(0, 0, 0, 1),
-      'NSColor',
-    );
+    mutableAttributes.setObject_forKey(NSColor.colorWithRed_green_blue_alpha(0, 0, 0, 1), 'NSColor');
     textStyle.setValue_forKey_(mutableAttributes, 'attributes');
     // set font size
     newText.sketchObject.setFontSize(fontSize);
