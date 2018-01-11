@@ -18,6 +18,7 @@ import Timepicker from './SketchComponents/Timepicker';
 import Checkbox from './SketchComponents/Checkbox';
 import Popover from './SketchComponents/Popover';
 import Menu from './SketchComponents/Menu';
+import Tips from './SketchComponents/Tips';
 
 import store from './store';
 
@@ -60,6 +61,8 @@ function createComponentInstance(context, name, payload) {
         return new Popover(context, payload);
       case 'menu':
         return new Menu(context, payload);
+      case 'tips':
+        return new Tips(context, payload);
 
       default:
         return null;

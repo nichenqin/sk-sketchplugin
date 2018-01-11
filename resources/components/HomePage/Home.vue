@@ -35,6 +35,7 @@ export default {
         'checkbox',
         'popover',
         'menu',
+        'tips',
       ],
     };
   },
