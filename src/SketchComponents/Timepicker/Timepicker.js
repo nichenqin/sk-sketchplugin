@@ -1,6 +1,6 @@
 import SketchComponent from '../SketchComponent';
 import Picker from '../Picker';
-import { getRectOfNativeLayer, setFrame, generatePath } from '../../utils/index';
+import { getRectOfNativeLayer, setFrame, generatePath, setAlignment } from '../../utils/index';
 
 const option = {
   name: 'timepicker',
@@ -12,18 +12,17 @@ class Timepicker extends SketchComponent {
   }
 
   import({
-    showPicker, showSeconds, timeType, showNow, showClear,
+    showPicker, showSeconds, timeType, showNow, showClear, timepickerAlign,
   }) {
     const { context, page, name } = this;
 
     const rootGroup = page.newGroup({ name });
 
-    let pickerWidth = 0;
+    let pickerInstance;
     if (showPicker) {
       const picker = new Picker(context);
-      const pickerInstance = picker.moveToGroup(rootGroup);
+      pickerInstance = picker.moveToGroup(rootGroup);
       rootGroup.adjustToFit();
-      pickerWidth = getRectOfNativeLayer(pickerInstance).width;
     }
 
     const seconds = showSeconds ? 'second' : '';
@@ -34,12 +33,8 @@ class Timepicker extends SketchComponent {
     const timepickerGroup = rootGroup.newGroup({ name });
     timepickerGroup.sketchObject.addLayer(timepickerInstance);
 
-    const { width: timepickerWidth } = getRectOfNativeLayer(timepickerInstance);
-    const padding = pickerWidth ? (pickerWidth - timepickerWidth) / 2 : 0;
-    timepickerInstance.frame().setX_(padding);
-
     timepickerGroup.adjustToFit();
-    setFrame(timepickerGroup, { y: rootGroup.frame.height });
+    setFrame(timepickerGroup, { y: rootGroup.frame.height + 10 });
 
     if (showNow || showClear) {
       const now = showNow ? 'now' : '';
@@ -52,6 +47,7 @@ class Timepicker extends SketchComponent {
       timepickerGroup.adjustToFit();
     }
 
+    if (showPicker) setAlignment(timepickerGroup, pickerInstance, timepickerAlign);
     this.createBgAtGroup(timepickerGroup);
     this.createShadowAtGroup(timepickerGroup);
 

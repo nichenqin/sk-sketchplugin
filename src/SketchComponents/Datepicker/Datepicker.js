@@ -1,6 +1,6 @@
 import SketchComponent from '../SketchComponent';
 import Picker from '../Picker';
-import { getRectOfNativeLayer, isOverridePointName, generatePath } from '../../utils';
+import { getRectOfNativeLayer, isOverridePointName, generatePath, setAlignment } from '../../utils';
 
 const option = {
   name: 'datepicker',
@@ -37,10 +37,12 @@ class Datepicker extends SketchComponent {
     showTomorrow,
     showClear,
     selectedDate = '',
+    datepickerAlign,
   }) {
     const { context, page, name } = this;
     const rootGroup = page.newGroup({ name });
 
+    let pickerInstance;
     if (showPicker) {
       const picker = new Picker(context, {
         content: selectedDate,
@@ -48,7 +50,7 @@ class Datepicker extends SketchComponent {
         status: 'active',
         placeholder: '不限',
       });
-      picker.moveToGroup(rootGroup);
+      pickerInstance = picker.moveToGroup(rootGroup);
       rootGroup.adjustToFit();
     }
 
@@ -142,6 +144,7 @@ class Datepicker extends SketchComponent {
     }
     // endregion add footer
 
+    if (showPicker) setAlignment(datepickerGroup, pickerInstance, datepickerAlign);
     this.createBgAtGroup(datepickerGroup);
     this.createShadowAtGroup(datepickerGroup);
 

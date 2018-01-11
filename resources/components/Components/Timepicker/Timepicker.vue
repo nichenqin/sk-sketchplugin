@@ -27,6 +27,8 @@
         <sk-radio-button name="timepicker" :value="24" :checked="timeType === 24">24</sk-radio-button>
       </sk-radio-group>
 
+      <sk-alignment :alignment.sync="timepickerAlign"></sk-alignment>
+
       <button type="submit" class="btn btn-lg btn-primary btn-block">Import To Sketch</button>
 
     </form>
@@ -45,16 +47,20 @@ import { Picker as TbPikcer, TimePicker as TbTimePicker } from '@zhinan/tb-compo
 import SkPreview from '../../Shared/Preview.vue';
 import SkRadioGroup from '../../Shared/Radio/RadioGroup.vue';
 import SkRadioButton from '../../Shared/Radio/RadioButton.vue';
+import SkAlignment from '../../Shared/Radio/Alignment.vue';
 
 export default {
   data() {
     return {
       time: '',
       timeType: 12,
+
       showSeconds: true,
       showPicker: true,
       showNow: true,
       showClear: true,
+
+      timepickerAlign: 'center',
     };
   },
   components: {
@@ -63,11 +69,12 @@ export default {
     SkPreview,
     SkRadioGroup,
     SkRadioButton,
+    SkAlignment,
   },
   methods: {
     handleImport() {
-      const { showPicker, showSeconds, timeType, showNow, showClear } = this;
-      const payload = { showPicker, showSeconds, timeType, showNow, showClear };
+      const { showPicker, showSeconds, timeType, showNow, showClear, timepickerAlign } = this;
+      const payload = { showPicker, showSeconds, timeType, showNow, showClear, timepickerAlign };
       this.$emit('import', payload);
     },
   },

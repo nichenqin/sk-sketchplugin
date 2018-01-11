@@ -12,6 +12,8 @@
         <label for="dropdownShowSearch" class="custom-control-label">Show Search</label>
       </div>
 
+      <sk-alignment :alignment.sync="dropdownAlign"></sk-alignment>
+
       <button class="btn btn-lg btn-block btn-primary" type="submit">Import To Sketch</button>
 
     </form>
@@ -28,6 +30,7 @@
 <script>
 import { Dropdown as TbDropdown, Picker as TbPicker } from '@zhinan/tb-components';
 import SkPreview from '../../Shared/Preview.vue';
+import SkAlignment from '../../Shared/Radio/Alignment.vue';
 
 export default {
   data() {
@@ -35,19 +38,23 @@ export default {
       showPicker: true,
       showSearch: true,
       searchWord: 'search word',
+
       option: '',
       options: [...new Array(3)].map((val, index) => ({ title: `option-${index + 1}` })),
+
+      dropdownAlign: 'center',
     };
   },
   components: {
     TbDropdown,
     TbPicker,
     SkPreview,
+    SkAlignment,
   },
   methods: {
     handleImport() {
-      const { showPicker, showSearch, searchWord } = this;
-      const payload = { showPicker, showSearch, searchWord };
+      const { showPicker, showSearch, searchWord, dropdownAlign } = this;
+      const payload = { showPicker, showSearch, searchWord, dropdownAlign };
       this.$emit('import', payload);
     },
   },

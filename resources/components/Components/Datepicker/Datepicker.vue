@@ -31,6 +31,8 @@
         <tb-datepicker v-model="stopTime"></tb-datepicker>
       </tb-picker>
 
+      <sk-alignment :alignment.sync="datepickerAlign"></sk-alignment>
+
       <button class="btn btn-primary btn-lg btn-block" type="submit">Import To Sketch</button>
 
     </form>
@@ -48,6 +50,7 @@
 <script>
 import { Picker as TbPicker, Datepicker as TbDatepicker } from '@zhinan/tb-components';
 
+import SkAlignment from '../../Shared/Radio/Alignment.vue';
 import SkPreview from '../../Shared/Preview.vue';
 
 function convertToTime(str) {
@@ -60,13 +63,17 @@ export default {
   data() {
     return {
       selectedDate: '',
+      datepickerAlign: 'center',
+
       showPicker: true,
       showToday: true,
       showTomorrow: true,
       showClear: true,
+
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth(),
       currentDay: new Date().getDate(),
+
       startTime: '',
       stopTime: '',
     };
@@ -75,6 +82,7 @@ export default {
     SkPreview,
     TbPicker,
     TbDatepicker,
+    SkAlignment,
   },
   computed: {
     currentMonthLength() {
@@ -146,6 +154,7 @@ export default {
         showClear,
         selectedDateList,
         selectedDate,
+        datepickerAlign,
       } = this;
       const payload = {
         previousMonthDateList,
@@ -159,6 +168,7 @@ export default {
         showClear,
         selectedDateList,
         selectedDate,
+        datepickerAlign,
       };
       this.$emit('import', payload);
     },

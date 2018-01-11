@@ -104,7 +104,7 @@ export function generatePath(...args) {
 }
 
 export function setAlignment(layer, target, alignment = 'left') {
-  if (alignment === 'left') return;
+  if (alignment === 'left' || !layer || !target) return;
 
   const targetSketchObject = target.sketchObject || target;
   const layerObject = layer.sketchObject || layer;

@@ -10821,7 +10821,8 @@ var optionsData = [].concat(_toConsumableArray(new Array(3))).map(function (val,
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Radio_Alignment_vue__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Preview_vue__ = __webpack_require__(1);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -10873,6 +10874,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+
 
 
 
@@ -10893,22 +10897,27 @@ var TOTAL_LENGTH = 42;
   data: function data() {
     return {
       selectedDate: '',
+      datepickerAlign: 'center',
+
       showPicker: true,
       showToday: true,
       showTomorrow: true,
       showClear: true,
+
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth(),
       currentDay: new Date().getDate(),
+
       startTime: '',
       stopTime: ''
     };
   },
 
   components: {
-    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_2__Shared_Preview_vue__["a" /* default */],
     TbPicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Picker"],
-    TbDatepicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Datepicker"]
+    TbDatepicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Datepicker"],
+    SkAlignment: __WEBPACK_IMPORTED_MODULE_1__Shared_Radio_Alignment_vue__["a" /* default */]
   },
   computed: {
     currentMonthLength: function currentMonthLength() {
@@ -10985,7 +10994,8 @@ var TOTAL_LENGTH = 42;
           showTomorrow = this.showTomorrow,
           showClear = this.showClear,
           selectedDateList = this.selectedDateList,
-          selectedDate = this.selectedDate;
+          selectedDate = this.selectedDate,
+          datepickerAlign = this.datepickerAlign;
 
       var payload = {
         previousMonthDateList: previousMonthDateList,
@@ -10998,7 +11008,8 @@ var TOTAL_LENGTH = 42;
         showTomorrow: showTomorrow,
         showClear: showClear,
         selectedDateList: selectedDateList,
-        selectedDate: selectedDate
+        selectedDate: selectedDate,
+        datepickerAlign: datepickerAlign
       };
       this.$emit('import', payload);
     }
@@ -11412,6 +11423,7 @@ var TOTAL_LENGTH = 42;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_Alignment_vue__ = __webpack_require__(336);
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 //
@@ -11441,6 +11453,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+
 
 
 
@@ -11451,25 +11466,30 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       showPicker: true,
       showSearch: true,
       searchWord: 'search word',
+
       option: '',
       options: [].concat(_toConsumableArray(new Array(3))).map(function (val, index) {
         return { title: 'option-' + (index + 1) };
-      })
+      }),
+
+      dropdownAlign: 'center'
     };
   },
 
   components: {
     TbDropdown: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Dropdown"],
     TbPicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Picker"],
-    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */]
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
+    SkAlignment: __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_Alignment_vue__["a" /* default */]
   },
   methods: {
     handleImport: function handleImport() {
       var showPicker = this.showPicker,
           showSearch = this.showSearch,
-          searchWord = this.searchWord;
+          searchWord = this.searchWord,
+          dropdownAlign = this.dropdownAlign;
 
-      var payload = { showPicker: showPicker, showSearch: showSearch, searchWord: searchWord };
+      var payload = { showPicker: showPicker, showSearch: showSearch, searchWord: searchWord, dropdownAlign: dropdownAlign };
       this.$emit('import', payload);
     }
   }
@@ -11549,6 +11569,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioGroup_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Radio_RadioButton_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Radio_Alignment_vue__ = __webpack_require__(336);
 //
 //
 //
@@ -11591,6 +11612,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+
 
 
 
@@ -11602,10 +11626,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     return {
       time: '',
       timeType: 12,
+
       showSeconds: true,
       showPicker: true,
       showNow: true,
-      showClear: true
+      showClear: true,
+
+      timepickerAlign: 'center'
     };
   },
 
@@ -11614,7 +11641,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     TbTimePicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TimePicker"],
     SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
     SkRadioGroup: __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioGroup_vue__["a" /* default */],
-    SkRadioButton: __WEBPACK_IMPORTED_MODULE_3__Shared_Radio_RadioButton_vue__["a" /* default */]
+    SkRadioButton: __WEBPACK_IMPORTED_MODULE_3__Shared_Radio_RadioButton_vue__["a" /* default */],
+    SkAlignment: __WEBPACK_IMPORTED_MODULE_4__Shared_Radio_Alignment_vue__["a" /* default */]
   },
   methods: {
     handleImport: function handleImport() {
@@ -11622,9 +11650,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           showSeconds = this.showSeconds,
           timeType = this.timeType,
           showNow = this.showNow,
-          showClear = this.showClear;
+          showClear = this.showClear,
+          timepickerAlign = this.timepickerAlign;
 
-      var payload = { showPicker: showPicker, showSeconds: showSeconds, timeType: timeType, showNow: showNow, showClear: showClear };
+      var payload = { showPicker: showPicker, showSeconds: showSeconds, timeType: timeType, showNow: showNow, showClear: showClear, timepickerAlign: timepickerAlign };
       this.$emit('import', payload);
     }
   }
@@ -15890,6 +15919,15 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _c("sk-alignment", {
+            attrs: { alignment: _vm.datepickerAlign },
+            on: {
+              "update:alignment": function($event) {
+                _vm.datepickerAlign = $event
+              }
+            }
+          }),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -17273,6 +17311,15 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("sk-alignment", {
+            attrs: { alignment: _vm.dropdownAlign },
+            on: {
+              "update:alignment": function($event) {
+                _vm.dropdownAlign = $event
+              }
+            }
+          }),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -17281,7 +17328,8 @@ var render = function() {
             },
             [_vm._v("Import To Sketch")]
           )
-        ]
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
@@ -17849,6 +17897,15 @@ var render = function() {
             ],
             1
           ),
+          _vm._v(" "),
+          _c("sk-alignment", {
+            attrs: { alignment: _vm.timepickerAlign },
+            on: {
+              "update:alignment": function($event) {
+                _vm.timepickerAlign = $event
+              }
+            }
+          }),
           _vm._v(" "),
           _c(
             "button",
