@@ -1,6 +1,6 @@
 import camelcase from 'lodash.camelcase';
 import SketchComponent from '../SketchComponent';
-import { setFrame, getRectOfNativeLayer, isOverridePointName, generatePath } from '../../utils';
+import { setFrame, getRectOfNativeLayer, isOverridePointName, generatePath, setAlignment } from '../../utils';
 import Pagination from '../Pagination';
 
 const option = {
@@ -13,7 +13,7 @@ class List extends SketchComponent {
   }
 
   import({
-    rows, columns, titleItems, rowItems, showPagination,
+    rows, columns, titleItems, rowItems, showPagination, paginationAlign = 'left',
   }) {
     const { context, page, name } = this;
 
@@ -96,6 +96,8 @@ class List extends SketchComponent {
       const paginationInstance = pagination.moveToGroup(listGroup);
       paginationInstance.frame().setY_(listGroup.frame.height + 10);
       listGroup.adjustToFit();
+
+      setAlignment(paginationInstance, listGroup, paginationAlign);
     }
 
     listGroup.adjustToFit();

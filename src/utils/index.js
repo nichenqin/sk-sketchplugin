@@ -68,10 +68,7 @@ export function isOverridePointName(overridePoint, names) {
 export function setFrame(
   layer,
   {
-    x = layer.frame.x,
-    y = layer.frame.y,
-    width = layer.frame.width,
-    height = layer.frame.height,
+    x = layer.frame.x, y = layer.frame.y, width = layer.frame.width, height = layer.frame.height,
   } = {},
 ) {
   /* eslint-disable no-param-reassign */
@@ -104,4 +101,22 @@ export function getRectOfNativeLayer(layer) {
  */
 export function generatePath(...args) {
   return args.filter(p => !!p).join('/');
+}
+
+export function setAlignment(layer, target, alignment = 'left') {
+  if (alignment === 'left') return;
+
+  const targetSketchObject = target.sketchObject || target;
+  const layerObject = layer.sketchObject || layer;
+  const { width: targetWidth } = targetSketchObject.frame().size();
+  const { width: layerWidth } = layerObject.frame().size();
+  if (targetWidth <= layerWidth) return;
+
+  if (alignment === 'center') {
+    const padding = (targetWidth - layerWidth) / 2;
+    layerObject.frame().setX_(padding);
+  } else if (alignment === 'right') {
+    const left = targetWidth - layerWidth;
+    layerObject.frame().setX_(left);
+  }
 }

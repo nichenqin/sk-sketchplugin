@@ -10063,9 +10063,11 @@ var data = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml_vue__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Radio_RadioGroup_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioButton_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Preview_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeHtml_vue__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_Code_CodeJavascript_vue__ = __webpack_require__(6);
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 //
@@ -10136,6 +10138,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
 
 
 
@@ -10164,17 +10177,23 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       columns: columns,
       rowItems: rowItems,
       titleItems: titleItems,
+
       maxRows: 5,
       showPagination: true,
-      icons: ['user', 'icon']
+      icons: ['user', 'icon'],
+
+      paginationAlign: 'left',
+      alignments: ['left', 'center', 'right']
     };
   },
 
   components: {
-    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
-    SkCodeHtml: __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml_vue__["a" /* default */],
-    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__["a" /* default */],
-    TbTable: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TbTable"]
+    SkPreview: __WEBPACK_IMPORTED_MODULE_3__Shared_Preview_vue__["a" /* default */],
+    SkCodeHtml: __WEBPACK_IMPORTED_MODULE_4__Shared_Code_CodeHtml_vue__["a" /* default */],
+    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_5__Shared_Code_CodeJavascript_vue__["a" /* default */],
+    TbTable: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TbTable"],
+    SkRadioGroup: __WEBPACK_IMPORTED_MODULE_1__Shared_Radio_RadioGroup_vue__["a" /* default */],
+    SkRadioButton: __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioButton_vue__["a" /* default */]
   },
   computed: {
     columnsData: function columnsData() {
@@ -10228,14 +10247,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           columns = this.columns,
           showPagination = this.showPagination,
           titleItems = this.titleItems,
-          rowItems = this.rowItems;
+          rowItems = this.rowItems,
+          paginationAlign = this.paginationAlign;
 
       var payload = {
         rows: rows,
         columns: columns,
         titleItems: titleItems,
         rowItems: rowItems,
-        showPagination: showPagination
+        showPagination: showPagination,
+        paginationAlign: paginationAlign
       };
       this.$emit('import', payload);
     }
@@ -14090,6 +14111,33 @@ var render = function() {
           [_vm._v("Show Picker")]
         )
       ]),
+      _vm._v(" "),
+      _c(
+        "sk-radio-group",
+        {
+          model: {
+            value: _vm.paginationAlign,
+            callback: function($$v) {
+              _vm.paginationAlign = $$v
+            },
+            expression: "paginationAlign"
+          }
+        },
+        _vm._l(_vm.alignments, function(align) {
+          return _c(
+            "sk-radio-button",
+            {
+              key: align,
+              attrs: {
+                value: align,
+                name: align,
+                checked: _vm.paginationAlign === align
+              }
+            },
+            [_vm._v("\n      " + _vm._s(align) + "\n    ")]
+          )
+        })
+      ),
       _vm._v(" "),
       _c(
         "button",
