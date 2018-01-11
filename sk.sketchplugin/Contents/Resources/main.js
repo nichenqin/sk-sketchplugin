@@ -37020,6 +37020,8 @@ if (false) {
 //
 //
 //
+//
+//
 
 
 
@@ -37028,6 +37030,8 @@ if (false) {
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
+      content: '提示',
+
       direction: 'up',
       directions: ['up', 'right', 'bottom', 'left']
     };
@@ -37040,9 +37044,10 @@ if (false) {
   },
   methods: {
     handleImport: function handleImport() {
-      var direction = this.direction;
+      var direction = this.direction,
+          content = this.content;
 
-      var payload = { direction: direction };
+      var payload = { direction: direction, content: content };
       this.$emit('import', payload);
     }
   }
@@ -37131,6 +37136,28 @@ var render = function() {
         }
       },
       [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.content,
+              expression: "content"
+            }
+          ],
+          staticClass: "form-control mb-3",
+          attrs: { type: "text" },
+          domProps: { value: _vm.content },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.content = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
         _c(
           "button",
           {
