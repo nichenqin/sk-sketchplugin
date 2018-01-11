@@ -106,7 +106,10 @@ class ContextManage {
         break;
       }
     }
-    this.symbolLibrary[path] = symbol;
+
+    if (symbol) {
+      this.symbolLibrary[path] = symbol;
+    }
     return symbol;
   }
 
