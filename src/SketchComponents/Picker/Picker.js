@@ -23,7 +23,7 @@ class Picker extends SketchComponent {
     content, icon = 'arrowDown', status = 'normal', placeholder = 'placeholder', type = '',
   }) {
     const internalStatus = content ? status : 'placeholder';
-    const path = generatePath('picker', type, internalStatus);
+    const path = generatePath('picker', type, type === 'empty' ? 'hover' : internalStatus);
     const pickerInstance = this.getInstanceByPath(path);
     this.document.sketchObject.addLayer(pickerInstance);
 
@@ -45,6 +45,10 @@ class Picker extends SketchComponent {
         }
         const iconPath = generatePath('icon', iconType, iconStatus);
         const iconInstance = this.getInstanceByPath(iconPath);
+        pickerInstance.setValue_forOverridePoint_(iconInstance.symbolID(), overridePoint);
+      }
+      if (isOverridePointName(overridePoint, 'icon/empty')) {
+        const iconInstance = this.getInstanceByPath('icon/empty');
         pickerInstance.setValue_forOverridePoint_(iconInstance.symbolID(), overridePoint);
       }
     });

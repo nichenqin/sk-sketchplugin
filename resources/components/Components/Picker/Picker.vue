@@ -64,7 +64,7 @@ export default {
       allStatus: ['active', 'hover', 'disable', 'normal'],
 
       type: '',
-      types: ['time', 'date'],
+      types: ['time', 'date', 'empty'],
     };
   },
   components: {

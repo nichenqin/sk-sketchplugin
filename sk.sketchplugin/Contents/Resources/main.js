@@ -11858,7 +11858,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       allStatus: ['active', 'hover', 'disable', 'normal'],
 
       type: '',
-      types: ['time', 'date']
+      types: ['time', 'date', 'empty']
     };
   },
 
