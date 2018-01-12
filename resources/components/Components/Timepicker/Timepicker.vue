@@ -46,7 +46,7 @@
 import { Picker as TbPikcer, TimePicker as TbTimePicker } from '@zhinan/tb-components';
 import SkPreview from '../../shared/preview.vue';
 import SkRadioGroup from '../../shared/radio/radio-group.vue';
-import SkRadioButton from '../../shared/radio/radio-button.vue.vue';
+import SkRadioButton from '../../shared/radio/radio-button.vue';
 import SkAlignment from '../../shared/radio/alignment.vue';
 
 export default {

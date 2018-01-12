@@ -13,7 +13,7 @@
 <script>
 import SkPreview from '../../shared/preview.vue';
 import SkRadioGroup from '../../shared/radio/radio-group.vue';
-import SkRadioButton from '../../shared/radio/radio-button.vue.vue';
+import SkRadioButton from '../../shared/radio/radio-button.vue';
 
 export default {
   data() {

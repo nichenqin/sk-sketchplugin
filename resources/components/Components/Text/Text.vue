@@ -58,7 +58,7 @@ import SkCodeHtml from '../../shared/code/code-html.vue';
 import SkCodeJavasript from '../../shared/code/code-javascript.vue';
 
 import SkRadioGroup from '../../shared/radio/radio-group.vue';
-import SkRadioButton from '../../shared/radio/radio-button.vue.vue';
+import SkRadioButton from '../../shared/radio/radio-button.vue';
 
 import SkShowTips from '../../shared/show-tips.vue';
 
