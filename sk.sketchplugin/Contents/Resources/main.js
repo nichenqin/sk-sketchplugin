@@ -19713,7 +19713,12 @@ var render = function() {
         {
           staticClass: "btn btn-warning",
           attrs: { type: "button" },
-          on: { click: _vm.back }
+          on: {
+            click: function($event) {
+              $event.stopPropagation()
+              _vm.back($event)
+            }
+          }
         },
         [_c("i", { staticClass: "fa fa-arrow-left" }), _vm._v("\n    Back\n  ")]
       ),

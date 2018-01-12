@@ -1,6 +1,6 @@
 <template>
   <div class="detail mb-4">
-    <button type="button" class="btn btn-warning" @click="back">
+    <button type="button" class="btn btn-warning" @click.stop="back">
       <i class="fa fa-arrow-left"></i>
       Back
     </button>
