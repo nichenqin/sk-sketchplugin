@@ -1,5 +1,5 @@
 import SketchComponent from '../SketchComponent';
-import { isOverridePointName } from '../../utils';
+import { isOverridePointName, generatePath } from '../../utils';
 
 const option = {
   name: 'picker',
@@ -13,16 +13,17 @@ class Picker extends SketchComponent {
       icon: 'arrowUp',
       status: 'active',
       placeholder: 'placeholder',
+      type: '',
     },
   ) {
     super(context, payload, option);
   }
 
   import({
-    content, icon = 'arrowDown', status = 'normal', placeholder = 'placeholder',
+    content, icon = 'arrowDown', status = 'normal', placeholder = 'placeholder', type = '',
   }) {
-    const path = content ? `picker/${status}` : 'picker/placeholder';
-
+    const internalStatus = content ? status : 'placeholder';
+    const path = generatePath('picker', type, internalStatus);
     const pickerInstance = this.getInstanceByPath(path);
     this.document.sketchObject.addLayer(pickerInstance);
 

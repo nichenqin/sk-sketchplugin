@@ -20,7 +20,7 @@ class Timepicker extends SketchComponent {
 
     let pickerInstance;
     if (showPicker) {
-      const picker = new Picker(context);
+      const picker = new Picker(context, { type: 'time', status: 'active', icon: 'time/active' });
       pickerInstance = picker.moveToGroup(rootGroup);
       rootGroup.adjustToFit();
     }
