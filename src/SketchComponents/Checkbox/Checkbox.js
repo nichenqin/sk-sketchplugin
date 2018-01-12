@@ -16,7 +16,7 @@ class Checkbox extends SketchComponent {
     const checkboxGroup = page.newGroup({ name });
 
     const checkboxInstance = this.getInstanceByPath('checkbox/normal');
-    const icon = this.getInstanceByPath('icon/checkbox');
+    const icon = this.getInstanceByPath('icon/checkbox_normal');
     const iconSelected = this.getInstanceByPath('icon/checkbox_selected');
     const { width, height } = getRectOfNativeLayer(checkboxInstance);
 
