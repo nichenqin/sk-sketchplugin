@@ -16,6 +16,22 @@
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text">
+            Types
+          </div>
+        </div>
+        <select class="custom-select" v-model="type">
+          <option :value="t" v-for="t of types" :key="t">{{ t }}</option>
+        </select>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3" v-if="type === 'password'">
+        <input type="checkbox" class="custom-control-input" id="shortInputIsVisible" v-model="isVisible">
+        <label class="custom-control-label" for="shortInputIsVisible">Is Visible</label>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
             Max Length
           </div>
         </div>
@@ -101,6 +117,9 @@ export default {
   data() {
     return {
       type: 'text',
+      types: ['text', 'password', 'number'],
+      isVisible: false,
+
       verify: '',
       verifies: ['number', 'phone', 'email'],
       content: '',
@@ -120,7 +139,6 @@ export default {
       },
     };
   },
-  props: ['currentComponent'],
   components: {
     TbShortInput,
     SkPreview,
@@ -128,19 +146,10 @@ export default {
     SkCodeJavascript,
     SkShowTips,
   },
-  computed: {
-    path() {
-      const { currentComponent, unit, status, content } = this;
-      const path = [currentComponent, unit ? 'unit' : '', content ? status : 'placeholder'].filter(
-        p => !!p,
-      );
-      return path.join('/');
-    },
-  },
   methods: {
     handleImport() {
-      const { path, content, unit, placeholder, width, tips } = this;
-      const payload = { path, content, unit, placeholder, width, tips };
+      const { path, content, unit, placeholder, width, tips, type, status, isVisible } = this;
+      const payload = { path, content, unit, placeholder, width, tips, type, status, isVisible };
       this.$emit('import', payload);
     },
   },

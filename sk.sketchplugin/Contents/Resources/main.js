@@ -10925,6 +10925,22 @@ var fontSizeConfig = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -10937,6 +10953,9 @@ var fontSizeConfig = {
   data: function data() {
     return {
       type: 'text',
+      types: ['text', 'password', 'number'],
+      isVisible: false,
+
       verify: '',
       verifies: ['number', 'phone', 'email'],
       content: '',
@@ -10957,26 +10976,12 @@ var fontSizeConfig = {
     };
   },
 
-  props: ['currentComponent'],
   components: {
     TbShortInput: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["ShortInput"],
     SkPreview: __WEBPACK_IMPORTED_MODULE_3__shared_preview_vue__["a" /* default */],
     SkCodeHtml: __WEBPACK_IMPORTED_MODULE_1__shared_code_code_html_vue__["a" /* default */],
     SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_2__shared_code_code_javascript_vue__["a" /* default */],
     SkShowTips: __WEBPACK_IMPORTED_MODULE_4__shared_show_tips_vue__["a" /* default */]
-  },
-  computed: {
-    path: function path() {
-      var currentComponent = this.currentComponent,
-          unit = this.unit,
-          status = this.status,
-          content = this.content;
-
-      var path = [currentComponent, unit ? 'unit' : '', content ? status : 'placeholder'].filter(function (p) {
-        return !!p;
-      });
-      return path.join('/');
-    }
   },
   methods: {
     handleImport: function handleImport() {
@@ -10985,9 +10990,12 @@ var fontSizeConfig = {
           unit = this.unit,
           placeholder = this.placeholder,
           width = this.width,
-          tips = this.tips;
+          tips = this.tips,
+          type = this.type,
+          status = this.status,
+          isVisible = this.isVisible;
 
-      var payload = { path: path, content: content, unit: unit, placeholder: placeholder, width: width, tips: tips };
+      var payload = { path: path, content: content, unit: unit, placeholder: placeholder, width: width, tips: tips, type: type, status: status, isVisible: isVisible };
       this.$emit('import', payload);
     }
   }
@@ -15554,6 +15562,101 @@ var render = function() {
           _c("div", { staticClass: "input-group mb-3" }, [
             _vm._m(1),
             _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.type,
+                    expression: "type"
+                  }
+                ],
+                staticClass: "custom-select",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.type = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              _vm._l(_vm.types, function(t) {
+                return _c("option", { key: t, domProps: { value: t } }, [
+                  _vm._v(_vm._s(t))
+                ])
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _vm.type === "password"
+            ? _c(
+                "div",
+                { staticClass: "custom-control custom-checkbox mb-3" },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.isVisible,
+                        expression: "isVisible"
+                      }
+                    ],
+                    staticClass: "custom-control-input",
+                    attrs: { type: "checkbox", id: "shortInputIsVisible" },
+                    domProps: {
+                      checked: Array.isArray(_vm.isVisible)
+                        ? _vm._i(_vm.isVisible, null) > -1
+                        : _vm.isVisible
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.isVisible,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.isVisible = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.isVisible = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.isVisible = $$c
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "custom-control-label",
+                      attrs: { for: "shortInputIsVisible" }
+                    },
+                    [_vm._v("Is Visible")]
+                  )
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(2),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -15582,7 +15685,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(2),
+            _vm._m(3),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -15612,7 +15715,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(3),
+            _vm._m(4),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -15642,7 +15745,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(4),
+            _vm._m(5),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -15668,7 +15771,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(5),
+            _vm._m(6),
             _vm._v(" "),
             _c(
               "select",
@@ -15712,7 +15815,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(6),
+            _vm._m(7),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -15852,6 +15955,16 @@ var staticRenderFns = [
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("div", { staticClass: "input-group-text" }, [
         _vm._v("\n          Status\n        ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _vm._v("\n          Types\n        ")
       ])
     ])
   },
