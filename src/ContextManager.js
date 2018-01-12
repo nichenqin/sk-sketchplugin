@@ -184,7 +184,7 @@ class ContextManage {
    *
    *
    * @param {object} group
-   * @param {object} [{ color = '#ddd', name = 'divider' }={}]
+   * @param {object} [{ color = '#ddd', name = 'divider', y = group.frame.height }={}]
    * @returns {object}
    * @memberof ContextManage
    */
@@ -236,6 +236,9 @@ class ContextManage {
 
     group.sketchObject.addLayer(newInstance);
     page.sketchObject.removeLayer(instance);
+
+    const id = newInstance.objectID();
+    this.updateObjectID(id);
 
     return newInstance;
   }

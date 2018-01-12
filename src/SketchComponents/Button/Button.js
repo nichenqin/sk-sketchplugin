@@ -1,6 +1,6 @@
 import SketchComponent from '../SketchComponent';
 import Tips from '../Tips';
-import { isOverridePointName, setTipsPosition } from '../../utils';
+import { isOverridePointName } from '../../utils';
 
 const option = {
   name: 'button',
@@ -29,7 +29,7 @@ class Button extends SketchComponent {
   }
 
   import({
-    text, path, iconPath = 'icon/camera_large', showTips = false, tipsDirection,
+    text, path, iconPath = 'icon/camera_large', showTips = false, tipsDirection, tipsContent = '',
   }) {
     const { context, page, name } = this;
 
@@ -51,9 +51,9 @@ class Button extends SketchComponent {
     buttonGroup.adjustToFit();
 
     if (showTips) {
-      const tips = new Tips(context, { direction: tipsDirection });
-      const tipsInstance = tips.moveToGroup(buttonGroup);
-      setTipsPosition(tipsInstance, buttonGroup, tips.payload.direction);
+      const tips = new Tips(context, { content: tipsContent, direction: tipsDirection });
+      tips.moveToGroup(buttonGroup);
+      tips.setPosition(buttonGroup);
     }
 
     return buttonGroup;
