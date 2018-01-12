@@ -31,6 +31,8 @@
         <input type="number" class="form-control" v-model.number="currentFontSize">
       </div>
 
+      <sk-show-tips :content.sync="tips.content" :direction.sync="tips.direction" :show-tips.sync="tips.show"></sk-show-tips>
+
       <button type="submit" class="btn btn-primary btn-lg btn-block">Import To Sketch</button>
 
     </form>
@@ -58,6 +60,8 @@ import SkCodeJavasript from '../../Shared/Code/CodeJavascript.vue';
 import SkRadioGroup from '../../Shared/Radio/RadioGroup.vue';
 import SkRadioButton from '../../Shared/Radio/RadioButton.vue';
 
+import SkShowTips from '../../Shared/ShowTips.vue';
+
 const fontSizeConfig = {
   40: 'h1',
   32: 'h2',
@@ -73,6 +77,12 @@ export default {
       innerText: 'from sketch plugin',
       fontSizeConfig,
       currentFontSize: 40,
+
+      tips: {
+        show: true,
+        direction: 'up',
+        content: '',
+      },
     };
   },
   components: {
@@ -82,6 +92,7 @@ export default {
     SkCodeJavasript,
     SkRadioGroup,
     SkRadioButton,
+    SkShowTips,
   },
   computed: {
     isStatic() {
@@ -100,8 +111,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { innerText, currentFontSize } = this;
-      const payload = { text: innerText, fontSize: currentFontSize };
+      const { innerText, currentFontSize, tips } = this;
+      const payload = { text: innerText, fontSize: currentFontSize, tips };
       this.$emit('import', payload);
     },
   },

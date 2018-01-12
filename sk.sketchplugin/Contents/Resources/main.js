@@ -9955,11 +9955,9 @@ var data = {
       var text = this.text,
           path = this.path,
           type = this.type,
-          showTips = this.showTips,
-          tipsDirection = this.tipsDirection,
-          tipsContent = this.tipsContent;
+          tips = this.tips;
 
-      var payload = { text: text, path: path, showTips: showTips, tipsDirection: tipsDirection, tipsContent: tipsContent };
+      var payload = { text: text, path: path, tips: tips };
       if (type === 'menu') payload.iconPath = 'icon/arrowDown';
       this.$emit('import', payload);
     },
@@ -10398,6 +10396,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Radio_RadioGroup_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Shared_Radio_RadioButton_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Shared_ShowTips_vue__ = __webpack_require__(347);
 //
 //
 //
@@ -10448,6 +10447,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+
+
 
 
 
@@ -10472,7 +10475,13 @@ var fontSizeConfig = {
       textType: 'static',
       innerText: 'from sketch plugin',
       fontSizeConfig: fontSizeConfig,
-      currentFontSize: 40
+      currentFontSize: 40,
+
+      tips: {
+        show: true,
+        direction: 'up',
+        content: ''
+      }
     };
   },
 
@@ -10482,7 +10491,8 @@ var fontSizeConfig = {
     SkCodeHtml: __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeHtml_vue__["a" /* default */],
     SkCodeJavasript: __WEBPACK_IMPORTED_MODULE_3__Shared_Code_CodeJavascript_vue__["a" /* default */],
     SkRadioGroup: __WEBPACK_IMPORTED_MODULE_4__Shared_Radio_RadioGroup_vue__["a" /* default */],
-    SkRadioButton: __WEBPACK_IMPORTED_MODULE_5__Shared_Radio_RadioButton_vue__["a" /* default */]
+    SkRadioButton: __WEBPACK_IMPORTED_MODULE_5__Shared_Radio_RadioButton_vue__["a" /* default */],
+    SkShowTips: __WEBPACK_IMPORTED_MODULE_6__Shared_ShowTips_vue__["a" /* default */]
   },
   computed: {
     isStatic: function isStatic() {
@@ -10505,9 +10515,10 @@ var fontSizeConfig = {
   methods: {
     handleImport: function handleImport() {
       var innerText = this.innerText,
-          currentFontSize = this.currentFontSize;
+          currentFontSize = this.currentFontSize,
+          tips = this.tips;
 
-      var payload = { text: innerText, fontSize: currentFontSize };
+      var payload = { text: innerText, fontSize: currentFontSize, tips: tips };
       this.$emit('import', payload);
     }
   }
@@ -14694,6 +14705,25 @@ var render = function() {
               }
             })
           ]),
+          _vm._v(" "),
+          _c("sk-show-tips", {
+            attrs: {
+              content: _vm.tips.content,
+              direction: _vm.tips.direction,
+              "show-tips": _vm.tips.show
+            },
+            on: {
+              "update:content": function($event) {
+                _vm.$set(_vm.tips, "content", $event)
+              },
+              "update:direction": function($event) {
+                _vm.$set(_vm.tips, "direction", $event)
+              },
+              "update:showTips": function($event) {
+                _vm.$set(_vm.tips, "show", $event)
+              }
+            }
+          }),
           _vm._v(" "),
           _c(
             "button",

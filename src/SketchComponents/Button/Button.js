@@ -29,7 +29,7 @@ class Button extends SketchComponent {
   }
 
   import({
-    text, path, iconPath = 'icon/camera_large', showTips = false, tipsDirection, tipsContent = '',
+    text, path, iconPath = 'icon/camera_large', tips = {},
   }) {
     const { context, page, name } = this;
 
@@ -50,10 +50,10 @@ class Button extends SketchComponent {
 
     buttonGroup.adjustToFit();
 
-    if (showTips) {
-      const tips = new Tips(context, { content: tipsContent, direction: tipsDirection });
-      tips.moveToGroup(buttonGroup);
-      tips.setPosition(buttonGroup);
+    if (tips.show) {
+      const tipsComponent = new Tips(context, { content: tips.content, direction: tips.direction });
+      tipsComponent.moveToGroup(buttonGroup);
+      tipsComponent.setPosition(buttonGroup);
     }
 
     return buttonGroup;

@@ -225,8 +225,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { text, path, type, showTips, tipsDirection, tipsContent } = this;
-      const payload = { text, path, showTips, tipsDirection, tipsContent };
+      const { text, path, type, tips } = this;
+      const payload = { text, path, tips };
       if (type === 'menu') payload.iconPath = 'icon/arrowDown';
       this.$emit('import', payload);
     },

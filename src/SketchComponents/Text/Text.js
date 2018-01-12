@@ -1,4 +1,5 @@
 import SketchComponent from '../SketchComponent';
+import Tips from '../Tips';
 
 const option = {
   name: 'text',
@@ -9,10 +10,12 @@ class Text extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({ text, fontSize = 16 }) {
-    const { page } = this;
+  import({ text, fontSize = 16, tips = {} }) {
+    const { context, page, name } = this;
 
-    const newText = page.newText({
+    const textGroup = page.newGroup({ name });
+
+    const newText = textGroup.newText({
       text,
     });
     // set color
@@ -22,7 +25,14 @@ class Text extends SketchComponent {
     textStyle.setValue_forKey_(mutableAttributes, 'attributes');
     // set font size
     newText.sketchObject.setFontSize(fontSize);
-    return newText;
+
+    if (tips.show) {
+      const tipsComponent = new Tips(context, { content: tips.content, direction: tips.direction });
+      tipsComponent.moveToGroup(textGroup);
+      tipsComponent.setPosition(textGroup);
+    }
+
+    return textGroup;
   }
 }
 
