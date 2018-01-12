@@ -3,7 +3,7 @@
     <div class="card-header">
       Preview
     </div>
-    <div class="card-body">
+    <div class="card-body d-flex justify-content-center">
       <h4 class="card-title">{{ title }}</h4>
       <slot></slot>
     </div>

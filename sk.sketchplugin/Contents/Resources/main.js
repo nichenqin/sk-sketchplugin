@@ -12997,7 +12997,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "card-body" },
+      { staticClass: "card-body d-flex justify-content-center" },
       [
         _c("h4", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.title))]),
         _vm._v(" "),
