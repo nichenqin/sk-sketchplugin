@@ -43,25 +43,25 @@
 import PluginCall from 'sketch-module-web-view/client';
 import bridgeHandler from '../../assets/js/handler';
 
-import SkBread from '../Components/Bread';
-import SkButton from '../Components/Button';
-import SkList from '../Components/List';
-import SkText from '../Components/Text';
-import SkLongInput from '../Components/LongInput';
-import SkShortInput from '../Components/ShortInput';
-import SkRadio from '../Components/Radio';
-import SkDatepicker from '../Components/Datepicker';
-import SkSwitch from '../Components/Switch';
-import SkUploadFile from '../Components/UploadFile';
-import SkPagination from '../Components/Pagination';
-import SkRectangle from '../Components/Rectangle';
-import SkDropdown from '../Components/Dropdown';
-import SkPicker from '../Components/Picker';
-import SkTimepicker from '../Components/Timepicker';
-import SkCheckbox from '../Components/Checkbox';
-import SkPopover from '../Components/Popover';
-import SkMenu from '../Components/Menu';
-import SkTips from '../Components/Tips';
+import SkBread from '../Components/bread';
+import SkButton from '../Components/button';
+import SkList from '../Components/list';
+import SkText from '../Components/text';
+import SkLongInput from '../Components/long-input';
+import SkShortInput from '../Components/short-input';
+import SkRadio from '../Components/radio';
+import SkDatepicker from '../Components/datepicker';
+import SkSwitch from '../Components/switch';
+import SkUploadFile from '../Components/upload-file';
+import SkPagination from '../Components/pagination';
+import SkRectangle from '../Components/rectangle';
+import SkDropdown from '../Components/dropdown';
+import SkPicker from '../Components/picker';
+import SkTimepicker from '../Components/timepicker';
+import SkCheckbox from '../Components/checkbox';
+import SkPopover from '../Components/popover';
+import SkMenu from '../Components/menu';
+import SkTips from '../Components/tips';
 
 export default {
   name: 'app',

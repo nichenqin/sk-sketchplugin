@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import SkPreview from '../../Shared/Preview.vue';
-import SkRadioGroup from '../../Shared/Radio/RadioGroup.vue';
-import SkRadioButton from '../../Shared/Radio/RadioButton.vue';
+import SkPreview from '../../shared/preview.vue';
+import SkRadioGroup from '../../shared/radio/radio-group.vue';
+import SkRadioButton from '../../shared/radio/radio-button.vue.vue';
 
 export default {
   data() {

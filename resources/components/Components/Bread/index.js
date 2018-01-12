@@ -1,3 +1,3 @@
-import Bread from './Bread.vue';
+import Bread from './bread.vue';
 
 export default Bread;

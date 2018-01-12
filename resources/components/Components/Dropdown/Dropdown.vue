@@ -29,8 +29,8 @@
 
 <script>
 import { Dropdown as TbDropdown, Picker as TbPicker } from '@zhinan/tb-components';
-import SkPreview from '../../Shared/Preview.vue';
-import SkAlignment from '../../Shared/Radio/Alignment.vue';
+import SkPreview from '../../shared/preview.vue';
+import SkAlignment from '../../shared/radio/alignment.vue';
 
 export default {
   data() {

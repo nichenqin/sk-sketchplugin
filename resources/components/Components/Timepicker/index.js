@@ -1,3 +1,3 @@
-import Timepicker from './Timepicker.vue';
+import Timepicker from './timepicker.vue';
 
 export default Timepicker;

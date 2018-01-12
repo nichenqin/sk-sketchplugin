@@ -203,7 +203,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/components/Shared/Preview.vue"
+Component.options.__file = "resources/components/shared/preview.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -569,7 +569,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/components/Shared/Code/CodeHtml.vue"
+Component.options.__file = "resources/components/shared/code/code-html.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -621,7 +621,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/components/Shared/Code/CodeJavascript.vue"
+Component.options.__file = "resources/components/shared/code/code-javascript.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -673,7 +673,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/components/Shared/Radio/RadioGroup.vue"
+Component.options.__file = "resources/components/Shared/radio/radio-group.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -729,7 +729,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/components/Shared/Radio/RadioButton.vue"
+Component.options.__file = "resources/components/Shared/radio/radio-button.vue.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -11880,106 +11880,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 });
 
 /***/ }),
-/* 42 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioGroup_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Radio_RadioButton_vue__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Radio_Alignment_vue__ = __webpack_require__(9);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  data: function data() {
-    return {
-      time: '',
-      timeType: 12,
-
-      showSeconds: true,
-      showPicker: true,
-      showNow: true,
-      showClear: true,
-
-      timepickerAlign: 'center'
-    };
-  },
-
-  components: {
-    TbPikcer: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Picker"],
-    TbTimePicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TimePicker"],
-    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
-    SkRadioGroup: __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioGroup_vue__["a" /* default */],
-    SkRadioButton: __WEBPACK_IMPORTED_MODULE_3__Shared_Radio_RadioButton_vue__["a" /* default */],
-    SkAlignment: __WEBPACK_IMPORTED_MODULE_4__Shared_Radio_Alignment_vue__["a" /* default */]
-  },
-  methods: {
-    handleImport: function handleImport() {
-      var showPicker = this.showPicker,
-          showSeconds = this.showSeconds,
-          timeType = this.timeType,
-          showNow = this.showNow,
-          showClear = this.showClear,
-          timepickerAlign = this.timepickerAlign;
-
-      var payload = { showPicker: showPicker, showSeconds: showSeconds, timeType: timeType, showNow: showNow, showClear: showClear, timepickerAlign: timepickerAlign };
-      this.$emit('import', payload);
-    }
-  }
-});
-
-/***/ }),
+/* 42 */,
 /* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12164,167 +12065,8 @@ var sizeConfigs = {
 });
 
 /***/ }),
-/* 45 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MenuItem_vue__ = __webpack_require__(137);
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-var id = 1;
-
-function generateOption(name) {
-  var children = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-
-  id += 1;
-  return {
-    name: name,
-    subtitle: '',
-    // TODO: convert to number
-    id: String(id),
-    expand: true,
-    children: children
-  };
-}
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  data: function data() {
-    return {
-      options: [].concat(_toConsumableArray(new Array(2))).map(function (val, index) {
-        return generateOption('level-1-' + (index + 1), [generateOption('level-2-' + (index + 1), [generateOption('level-3-' + (index + 1))])]);
-      }),
-      selectedMenu: '1',
-      icons: ['user', 'icon']
-    };
-  },
-
-  components: {
-    TbMenu: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["NavMenu"],
-    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
-    SkMenuItem: __WEBPACK_IMPORTED_MODULE_2__MenuItem_vue__["a" /* default */]
-  },
-  methods: {
-    handleImport: function handleImport() {
-      var options = this.options;
-
-      var payload = { options: options };
-      this.$emit('import', payload);
-    },
-
-    generateOption: generateOption,
-    addOption: function addOption() {
-      this.options.push(this.generateOption('level-1-' + (this.options.length + 1), []));
-    },
-    removeOption: function removeOption(index) {
-      this.options.splice(index, 1);
-    }
-  }
-});
-
-/***/ }),
-/* 46 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'sk-menu-item',
-  props: {
-    option: {
-      type: Object,
-      required: true
-    },
-    index: Number,
-    generateOption: Function,
-    level: {
-      type: Number,
-      default: 1
-    },
-    icons: {
-      type: Array,
-      required: true
-    }
-  },
-  computed: {
-    marginLeft: function marginLeft() {
-      return this.level * 10 + 'px';
-    }
-  },
-  methods: {
-    addOption: function addOption() {
-      var children = this.option.children,
-          level = this.level;
-
-      children.push(this.generateOption('level-' + (level + 1) + '-' + (children.length + 1)));
-    },
-    removeOption: function removeOption(index) {
-      this.option.children.splice(index, 1);
-    }
-  }
-});
-
-/***/ }),
+/* 45 */,
+/* 46 */,
 /* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -18343,393 +18085,14 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Timepicker_vue__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__timepicker_vue__ = __webpack_require__(355);
 
 
-/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__Timepicker_vue__["a" /* default */]);
-
-/***/ }),
-/* 127 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Timepicker_vue__ = __webpack_require__(42);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_17b0af72_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Timepicker_vue__ = __webpack_require__(128);
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Timepicker_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_17b0af72_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Timepicker_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/components/Components/Timepicker/Timepicker.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-17b0af72", Component.options)
-  } else {
-    hotAPI.reload("data-v-17b0af72", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
-
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__timepicker_vue__["a" /* default */]);
 
 /***/ }),
-/* 128 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    [
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              _vm.handleImport($event)
-            }
-          }
-        },
-        [
-          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.showPicker,
-                  expression: "showPicker"
-                }
-              ],
-              staticClass: "custom-control-input",
-              attrs: { type: "checkbox", id: "timepickerShowPicker" },
-              domProps: {
-                checked: Array.isArray(_vm.showPicker)
-                  ? _vm._i(_vm.showPicker, null) > -1
-                  : _vm.showPicker
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.showPicker,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.showPicker = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.showPicker = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.showPicker = $$c
-                  }
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "custom-control-label",
-                attrs: { for: "timepickerShowPicker" }
-              },
-              [_vm._v("Show Picker")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.showSeconds,
-                  expression: "showSeconds"
-                }
-              ],
-              staticClass: "custom-control-input",
-              attrs: { type: "checkbox", id: "timepickerShowSeconds" },
-              domProps: {
-                checked: Array.isArray(_vm.showSeconds)
-                  ? _vm._i(_vm.showSeconds, null) > -1
-                  : _vm.showSeconds
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.showSeconds,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.showSeconds = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.showSeconds = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.showSeconds = $$c
-                  }
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "custom-control-label",
-                attrs: { for: "timepickerShowSeconds" }
-              },
-              [_vm._v("Show Seconds")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.showNow,
-                  expression: "showNow"
-                }
-              ],
-              staticClass: "custom-control-input",
-              attrs: { type: "checkbox", id: "timepickerShowNow" },
-              domProps: {
-                checked: Array.isArray(_vm.showNow)
-                  ? _vm._i(_vm.showNow, null) > -1
-                  : _vm.showNow
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.showNow,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.showNow = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.showNow = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.showNow = $$c
-                  }
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "custom-control-label",
-                attrs: { for: "timepickerShowNow" }
-              },
-              [_vm._v("Show Now")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.showClear,
-                  expression: "showClear"
-                }
-              ],
-              staticClass: "custom-control-input",
-              attrs: { type: "checkbox", id: "timepickerShowClear" },
-              domProps: {
-                checked: Array.isArray(_vm.showClear)
-                  ? _vm._i(_vm.showClear, null) > -1
-                  : _vm.showClear
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.showClear,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.showClear = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.showClear = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.showClear = $$c
-                  }
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "custom-control-label",
-                attrs: { for: "timepickerShowClear" }
-              },
-              [_vm._v("Show Clear")]
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "sk-radio-group",
-            {
-              model: {
-                value: _vm.timeType,
-                callback: function($$v) {
-                  _vm.timeType = $$v
-                },
-                expression: "timeType"
-              }
-            },
-            [
-              _c(
-                "sk-radio-button",
-                {
-                  attrs: {
-                    name: "timepicker",
-                    value: 12,
-                    checked: _vm.timeType === 12
-                  }
-                },
-                [_vm._v("12")]
-              ),
-              _vm._v(" "),
-              _c(
-                "sk-radio-button",
-                {
-                  attrs: {
-                    name: "timepicker",
-                    value: 24,
-                    checked: _vm.timeType === 24
-                  }
-                },
-                [_vm._v("24")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("sk-alignment", {
-            attrs: { alignment: _vm.timepickerAlign },
-            on: {
-              "update:alignment": function($event) {
-                _vm.timepickerAlign = $event
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-lg btn-primary btn-block",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("Import To Sketch")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "sk-preview",
-        [
-          _c(
-            "tb-pikcer",
-            {
-              model: {
-                value: _vm.time,
-                callback: function($$v) {
-                  _vm.time = $$v
-                },
-                expression: "time"
-              }
-            },
-            [
-              _c("tb-time-picker", {
-                attrs: { "time-type": _vm.timeType, isSecond: _vm.showSeconds },
-                model: {
-                  value: _vm.time,
-                  callback: function($$v) {
-                    _vm.time = $$v
-                  },
-                  expression: "time"
-                }
-              })
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-17b0af72", esExports)
-  }
-}
-
-/***/ }),
+/* 127 */,
+/* 128 */,
 /* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -19199,375 +18562,18 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Menu_vue__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__menu_vue__ = __webpack_require__(348);
 
 
-/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__Menu_vue__["a" /* default */]);
-
-/***/ }),
-/* 136 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Menu_vue__ = __webpack_require__(45);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e8eb7c72_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Menu_vue__ = __webpack_require__(141);
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Menu_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_e8eb7c72_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Menu_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/components/Components/Menu/Menu.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e8eb7c72", Component.options)
-  } else {
-    hotAPI.reload("data-v-e8eb7c72", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
-
+/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__menu_vue__["a" /* default */]);
 
 /***/ }),
-/* 137 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_MenuItem_vue__ = __webpack_require__(46);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_74b9a00c_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_MenuItem_vue__ = __webpack_require__(140);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(138)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-74b9a00c"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_MenuItem_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_74b9a00c_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_MenuItem_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/components/Components/Menu/MenuItem.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-74b9a00c", Component.options)
-  } else {
-    hotAPI.reload("data-v-74b9a00c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
-
-
-/***/ }),
-/* 138 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(139);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("ca01e628", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-74b9a00c\",\"scoped\":true,\"hasInlineConfig\":false}!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./MenuItem.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-74b9a00c\",\"scoped\":true,\"hasInlineConfig\":false}!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./MenuItem.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 139 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\ni.fa[data-v-74b9a00c] {\n  font-size: 1.8rem;\n  cursor: pointer;\n  transition: color 0.1s;\n}\ni.fa.fa-plus-circle[data-v-74b9a00c] {\n  color: #80e27e;\n}\ni.fa.fa-plus-circle[data-v-74b9a00c]:hover {\n  color: #087f23;\n}\ni.fa.fa-minus-circle[data-v-74b9a00c] {\n  color: #fdd835;\n}\ni.fa.fa-minus-circle[data-v-74b9a00c]:hover {\n  color: #c6a700;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 140 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", { staticClass: "input-group mb-2" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.option.name,
-              expression: "option.name"
-            }
-          ],
-          staticClass: "form-control mb-1 mr-1",
-          attrs: { type: "text" },
-          domProps: { value: _vm.option.name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.option, "name", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.option.subtitle,
-              expression: "option.subtitle"
-            }
-          ],
-          staticClass: "form-control mb-1 mr-1",
-          attrs: { type: "text" },
-          domProps: { value: _vm.option.subtitle },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.option, "subtitle", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _vm.level < 3
-          ? _c("i", {
-              staticClass: "fa fa-plus-circle mr-1",
-              on: { click: _vm.addOption }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _c("i", {
-          staticClass: "fa fa-minus-circle",
-          on: {
-            click: function($event) {
-              _vm.$emit("remove", _vm.index)
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _vm.option.children && _vm.option.children.length
-        ? _vm._l(_vm.option.children, function(child, index) {
-            return _c("sk-menu-item", {
-              key: index,
-              style: { marginLeft: _vm.marginLeft },
-              attrs: {
-                option: child,
-                generateOption: _vm.generateOption,
-                level: _vm.level + 1,
-                index: index,
-                icons: _vm.icons
-              },
-              on: { remove: _vm.removeOption }
-            })
-          })
-        : _vm._e()
-    ],
-    2
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("label", { staticClass: "input-group-text" }, [_vm._v("name")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("label", { staticClass: "input-group-text" }, [_vm._v("sub title")])
-    ])
-  }
-]
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-74b9a00c", esExports)
-  }
-}
-
-/***/ }),
-/* 141 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-lg btn-block btn-primary mb-3",
-          on: { click: _vm.addOption }
-        },
-        [_vm._v("\n    Add Option\n  ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              _vm.handleImport($event)
-            }
-          }
-        },
-        [
-          _vm._l(_vm.options, function(option, index) {
-            return _c("sk-menu-item", {
-              key: index,
-              staticClass: "mb-3",
-              attrs: {
-                generateOption: _vm.generateOption,
-                option: option,
-                index: index,
-                icons: _vm.icons
-              },
-              on: { remove: _vm.removeOption }
-            })
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-lg btn-primary btn-block",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("Import To Sketch")]
-          )
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "sk-preview",
-        [
-          _c("tb-menu", {
-            attrs: { "menu-data": _vm.options, type: "double" },
-            model: {
-              value: _vm.selectedMenu,
-              callback: function($$v) {
-                _vm.selectedMenu = $$v
-              },
-              expression: "selectedMenu"
-            }
-          })
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-e8eb7c72", esExports)
-  }
-}
-
-/***/ }),
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
 /* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -20912,7 +19918,7 @@ module.exports = function(hljs){
 
   // общий паттерн для определения идентификаторов
   var UNDERSCORE_IDENT_RE = '[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+';
-  
+
   // v7 уникальные ключевые слова, отсутствующие в v8 ==> keyword
   var v7_keywords =
   'далее ';
@@ -20924,7 +19930,7 @@ module.exports = function(hljs){
 
   // keyword : ключевые слова
   var KEYWORD = v7_keywords + v8_keywords;
-  
+
   // v7 уникальные директивы, отсутствующие в v8 ==> meta-keyword
   var v7_meta_keywords =
   'загрузитьизфайла ';
@@ -20941,7 +19947,7 @@ module.exports = function(hljs){
   // v7 системные константы ==> built_in
   var v7_system_constants =
   'разделительстраниц разделительстрок символтабуляции ';
-  
+
   // v7 уникальные методы глобального контекста, отсутствующие в v8 ==> built_in
   var v7_global_context_methods =
   'ansitooem oemtoansi ввестивидсубконто ввестиперечисление ввестипериод ввестиплансчетов выбранныйплансчетов ' +
@@ -20955,7 +19961,7 @@ module.exports = function(hljs){
   'префиксавтонумерации пропись пустоезначение разм разобратьпозициюдокумента рассчитатьрегистрына ' +
   'рассчитатьрегистрыпо симв создатьобъект статусвозврата стрколичествострок сформироватьпозициюдокумента ' +
   'счетпокоду текущеевремя типзначения типзначениястр установитьтана установитьтапо фиксшаблон шаблон ';
-  
+
   // v8 методы глобального контекста ==> built_in
   var v8_global_context_methods =
   'acos asin atan base64значение base64строка cos exp log log10 pow sin sqrt tan xmlзначение xmlстрока ' +
@@ -21050,7 +20056,7 @@ module.exports = function(hljs){
   v7_system_constants +
   v7_global_context_methods + v8_global_context_methods +
   v8_global_context_property;
-  
+
   // v8 системные наборы значений ==> class
   var v8_system_sets_of_values =
   'webцвета windowsцвета windowsшрифты библиотекакартинок рамкистиля символы цветастиля шрифтыстиля ';
@@ -21202,7 +20208,7 @@ module.exports = function(hljs){
   'кодировкаименфайловвzipфайле методсжатияzip методшифрованияzip режимвосстановленияпутейфайловzip режимобработкиподкаталоговzip ' +
   'режимсохраненияпутейzip уровеньсжатияzip ';
 
-  // v8 системные перечисления - 
+  // v8 системные перечисления -
   // Блокировка данных, Фоновые задания, Автоматизированное тестирование,
   // Доставляемые уведомления, Встроенные покупки, Интернет, Работа с двоичными данными ==> class
   var v8_system_enums_other =
@@ -21321,7 +20327,7 @@ module.exports = function(hljs){
 
   // literal : примитивные типы
   var LITERAL = 'null истина ложь неопределено';
-  
+
   // number : числа
   var NUMBERS = hljs.inherit(hljs.NUMBER_MODE);
 
@@ -21342,10 +20348,10 @@ module.exports = function(hljs){
       }
     ]
   };
-  
+
   // comment : комментарии
   var COMMENTS = hljs.inherit(hljs.C_LINE_COMMENT_MODE);
-  
+
   // meta : инструкции препроцессора, директивы компиляции
   var META = {
     className: 'meta',
@@ -21356,13 +20362,13 @@ module.exports = function(hljs){
       COMMENTS
     ]
   };
-  
+
   // symbol : метка goto
   var SYMBOL = {
     className: 'symbol',
     begin: '~', end: ';|:', excludeEnd: true
-  };  
-  
+  };
+
   // function : объявление процедур и функций
   var FUNCTION = {
     className: 'function',
@@ -21414,7 +20420,7 @@ module.exports = function(hljs){
       NUMBERS,
       STRINGS,
       DATE
-    ]  
+    ]
   }
 };
 
@@ -22799,7 +21805,7 @@ module.exports = function(hljs) {
         //I don't really know if this is totally relevant
       },
       {
-        className: 'meta', 
+        className: 'meta',
         begin: '^\\s*#\w+', end:'$',
         relevance: 0
       },
@@ -24561,7 +23567,7 @@ module.exports = function(hljs) {
     keywords: {
       keyword: 'base-uri child-src connect-src default-src font-src form-action' +
         ' frame-ancestors frame-src img-src media-src object-src plugin-types' +
-        ' report-uri sandbox script-src style-src', 
+        ' report-uri sandbox script-src style-src',
     },
     contains: [
     {
@@ -26320,7 +25326,7 @@ module.exports = function(hljs) {
     },
     contains: [
       {
-        /* matches a beginning equal sign found in Excel formula examples */ 
+        /* matches a beginning equal sign found in Excel formula examples */
         begin: /^=/,
         end: /[^=]/, returnEnd: true, illegal: /=/, /* only allow single equal sign at front of line */
         relevance: 10
@@ -32638,7 +31644,7 @@ module.exports = function(hljs) {
   var PS_HELPTAGS = {
     className: 'doctag',
     variants: [
-      /* no paramater help tags */ 
+      /* no paramater help tags */
       { begin: /\.(synopsis|description|example|inputs|outputs|notes|link|component|role|functionality)/ },
       /* one parameter help tags */
       { begin: /\.(parameter|forwardhelptargetname|forwardhelpcategory|remotehelprunspace|externalhelp)\s+\S+/ }
@@ -33602,7 +32608,7 @@ function(hljs) {
   // ToDo: var PARAMETERS_PRINT = 'append as-value brief detail count-only file follow follow-only from interval terse value-list without-paging where info';
   // ToDo: var OPERATORS = '&& and ! not || or in ~ ^ & << >> + - * /';
   // ToDo: var TYPES = 'num number bool boolean str string ip ip6-prefix id time array';
-  // ToDo: The following tokens serve as delimiters in the grammar: ()  []  {}  :   ;   $   / 
+  // ToDo: The following tokens serve as delimiters in the grammar: ()  []  {}  :   ;   $   /
 
   var VAR_PREFIX = 'global local set for foreach';
 
@@ -33613,7 +32619,7 @@ function(hljs) {
       {begin: /\$\{(.*?)}/}
     ]
   };
-  
+
   var QUOTE_STRING = {
     className: 'string',
     begin: /"/, end: /"/,
@@ -33627,12 +32633,12 @@ function(hljs) {
       }
     ]
   };
-  
+
   var APOS_STRING = {
     className: 'string',
     begin: /'/, end: /'/
   };
-  
+
   var IPADDR = '((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\b';
   var IPADDR_wBITMASK =  IPADDR+'/(3[0-2]|[1-2][0-9]|\\d)';
   //////////////////////////////////////////////////////////////////////
@@ -33656,7 +32662,7 @@ function(hljs) {
           { begin: /^\[\</, end: /\>\]$/, },        // F# class declaration?
           { begin: /<\//, end: />/, },              // HTML tags
           { begin: /^facet /, end: /\}/, },         // roboconf - лютый костыль )))
-          { begin: '^1\\.\\.(\\d+)$', end: /$/, },  // tap  
+          { begin: '^1\\.\\.(\\d+)$', end: /$/, },  // tap
         ],
         illegal: /./,
       },
@@ -33665,7 +32671,7 @@ function(hljs) {
       APOS_STRING,
       VAR,
       { // attribute=value
-        begin: /[\w-]+\=([^\s\{\}\[\]\(\)]+)/, 
+        begin: /[\w-]+\=([^\s\{\}\[\]\(\)]+)/,
         relevance: 0,
         returnBegin: true,
         contains: [
@@ -33674,7 +32680,7 @@ function(hljs) {
             begin: /[^=]+/
           },
           {
-            begin: /=/, 
+            begin: /=/,
             endsWithParent:  true,
             relevance: 0,
             contains: [
@@ -33701,7 +32707,7 @@ function(hljs) {
               }, //*/
               {
                 // Не форматировать не классифицированные значения. Необходимо для исключения подсветки значений как built_in.
-                // className: 'number',  
+                // className: 'number',
                 begin: /("[^"]*"|[^\s\{\}\[\]]+)/,
               }, //*/
             ]
@@ -33714,7 +32720,7 @@ function(hljs) {
         begin: /\*[0-9a-fA-F]+/,
       }, //*/
 
-      { 
+      {
         begin: '\\b(' + COMMON_COMMANDS.split(' ').join('|') + ')([\\s\[\(]|\])',
         returnBegin: true,
         contains: [
@@ -33722,10 +32728,10 @@ function(hljs) {
             className: 'builtin-name', //'function',
             begin: /\w+/,
           },
-        ],  
+        ],
       },
-      
-      { 
+
+      {
         className: 'built_in',
         variants: [
           {begin: '(\\.\\./|/|\\s)((' + OBJECTS.split(' ').join('|') + ');?\\s)+',relevance: 10,},
@@ -37748,6 +36754,1011 @@ exports.push([module.i, "*,\n*::after,\n*::before {\n  margin: 0;\n  padding: 0;
 
 // exports
 
+
+/***/ }),
+/* 346 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__menu_item_vue__ = __webpack_require__(349);
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+var id = 1;
+
+function generateOption(name) {
+  var children = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+  id += 1;
+  return {
+    name: name,
+    subtitle: '',
+    // TODO: convert to number
+    id: String(id),
+    expand: true,
+    children: children
+  };
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      options: [].concat(_toConsumableArray(new Array(2))).map(function (val, index) {
+        return generateOption('level-1-' + (index + 1), [generateOption('level-2-' + (index + 1), [generateOption('level-3-' + (index + 1))])]);
+      }),
+      selectedMenu: '1',
+      icons: ['user', 'icon']
+    };
+  },
+
+  components: {
+    TbMenu: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["NavMenu"],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
+    SkMenuItem: __WEBPACK_IMPORTED_MODULE_2__menu_item_vue__["a" /* default */]
+  },
+  methods: {
+    handleImport: function handleImport() {
+      var options = this.options;
+
+      var payload = { options: options };
+      this.$emit('import', payload);
+    },
+
+    generateOption: generateOption,
+    addOption: function addOption() {
+      this.options.push(this.generateOption('level-1-' + (this.options.length + 1), []));
+    },
+    removeOption: function removeOption(index) {
+      this.options.splice(index, 1);
+    }
+  }
+});
+
+/***/ }),
+/* 347 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'sk-menu-item',
+  props: {
+    option: {
+      type: Object,
+      required: true
+    },
+    index: Number,
+    generateOption: Function,
+    level: {
+      type: Number,
+      default: 1
+    },
+    icons: {
+      type: Array,
+      required: true
+    }
+  },
+  computed: {
+    marginLeft: function marginLeft() {
+      return this.level * 10 + 'px';
+    }
+  },
+  methods: {
+    addOption: function addOption() {
+      var children = this.option.children,
+          level = this.level;
+
+      children.push(this.generateOption('level-' + (level + 1) + '-' + (children.length + 1)));
+    },
+    removeOption: function removeOption(index) {
+      this.option.children.splice(index, 1);
+    }
+  }
+});
+
+/***/ }),
+/* 348 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_menu_vue__ = __webpack_require__(346);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f0a044b2_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_menu_vue__ = __webpack_require__(353);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_menu_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f0a044b2_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_menu_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Components/Menu/menu.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f0a044b2", Component.options)
+  } else {
+    hotAPI.reload("data-v-f0a044b2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 349 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_menu_item_vue__ = __webpack_require__(347);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_202855a9_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_menu_item_vue__ = __webpack_require__(352);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(350)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-202855a9"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_menu_item_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_202855a9_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_menu_item_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Components/Menu/menu-item.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-202855a9", Component.options)
+  } else {
+    hotAPI.reload("data-v-202855a9", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 350 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(351);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("74a57dcf", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-202855a9\",\"scoped\":true,\"hasInlineConfig\":false}!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./menu-item.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-202855a9\",\"scoped\":true,\"hasInlineConfig\":false}!../../../../node_modules/less-loader/dist/cjs.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./menu-item.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 351 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\ni.fa[data-v-202855a9] {\n  font-size: 1.8rem;\n  cursor: pointer;\n  transition: color 0.1s;\n}\ni.fa.fa-plus-circle[data-v-202855a9] {\n  color: #80e27e;\n}\ni.fa.fa-plus-circle[data-v-202855a9]:hover {\n  color: #087f23;\n}\ni.fa.fa-minus-circle[data-v-202855a9] {\n  color: #fdd835;\n}\ni.fa.fa-minus-circle[data-v-202855a9]:hover {\n  color: #c6a700;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 352 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "input-group mb-2" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.option.name,
+              expression: "option.name"
+            }
+          ],
+          staticClass: "form-control mb-1 mr-1",
+          attrs: { type: "text" },
+          domProps: { value: _vm.option.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.option, "name", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.option.subtitle,
+              expression: "option.subtitle"
+            }
+          ],
+          staticClass: "form-control mb-1 mr-1",
+          attrs: { type: "text" },
+          domProps: { value: _vm.option.subtitle },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.option, "subtitle", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.level < 3
+          ? _c("i", {
+              staticClass: "fa fa-plus-circle mr-1",
+              on: { click: _vm.addOption }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c("i", {
+          staticClass: "fa fa-minus-circle",
+          on: {
+            click: function($event) {
+              _vm.$emit("remove", _vm.index)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm.option.children && _vm.option.children.length
+        ? _vm._l(_vm.option.children, function(child, index) {
+            return _c("sk-menu-item", {
+              key: index,
+              style: { marginLeft: _vm.marginLeft },
+              attrs: {
+                option: child,
+                generateOption: _vm.generateOption,
+                level: _vm.level + 1,
+                index: index,
+                icons: _vm.icons
+              },
+              on: { remove: _vm.removeOption }
+            })
+          })
+        : _vm._e()
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("name")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("sub title")])
+    ])
+  }
+]
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-202855a9", esExports)
+  }
+}
+
+/***/ }),
+/* 353 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-lg btn-block btn-primary mb-3",
+          on: { click: _vm.addOption }
+        },
+        [_vm._v("\n    Add Option\n  ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.handleImport($event)
+            }
+          }
+        },
+        [
+          _vm._l(_vm.options, function(option, index) {
+            return _c("sk-menu-item", {
+              key: index,
+              staticClass: "mb-3",
+              attrs: {
+                generateOption: _vm.generateOption,
+                option: option,
+                index: index,
+                icons: _vm.icons
+              },
+              on: { remove: _vm.removeOption }
+            })
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-lg btn-primary btn-block",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Import To Sketch")]
+          )
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "sk-preview",
+        [
+          _c("tb-menu", {
+            attrs: { "menu-data": _vm.options, type: "double" },
+            model: {
+              value: _vm.selectedMenu,
+              callback: function($$v) {
+                _vm.selectedMenu = $$v
+              },
+              expression: "selectedMenu"
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f0a044b2", esExports)
+  }
+}
+
+/***/ }),
+/* 354 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioGroup_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Radio_RadioButton_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_Radio_Alignment_vue__ = __webpack_require__(9);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      time: '',
+      timeType: 12,
+
+      showSeconds: true,
+      showPicker: true,
+      showNow: true,
+      showClear: true,
+
+      timepickerAlign: 'center'
+    };
+  },
+
+  components: {
+    TbPikcer: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Picker"],
+    TbTimePicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["TimePicker"],
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__Shared_Preview_vue__["a" /* default */],
+    SkRadioGroup: __WEBPACK_IMPORTED_MODULE_2__Shared_Radio_RadioGroup_vue__["a" /* default */],
+    SkRadioButton: __WEBPACK_IMPORTED_MODULE_3__Shared_Radio_RadioButton_vue__["a" /* default */],
+    SkAlignment: __WEBPACK_IMPORTED_MODULE_4__Shared_Radio_Alignment_vue__["a" /* default */]
+  },
+  methods: {
+    handleImport: function handleImport() {
+      var showPicker = this.showPicker,
+          showSeconds = this.showSeconds,
+          timeType = this.timeType,
+          showNow = this.showNow,
+          showClear = this.showClear,
+          timepickerAlign = this.timepickerAlign;
+
+      var payload = { showPicker: showPicker, showSeconds: showSeconds, timeType: timeType, showNow: showNow, showClear: showClear, timepickerAlign: timepickerAlign };
+      this.$emit('import', payload);
+    }
+  }
+});
+
+/***/ }),
+/* 355 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_timepicker_vue__ = __webpack_require__(354);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2fe0dc27_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_timepicker_vue__ = __webpack_require__(356);
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_timepicker_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2fe0dc27_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_timepicker_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/components/Components/Timepicker/timepicker.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2fe0dc27", Component.options)
+  } else {
+    hotAPI.reload("data-v-2fe0dc27", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 356 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.handleImport($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showPicker,
+                  expression: "showPicker"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "timepickerShowPicker" },
+              domProps: {
+                checked: Array.isArray(_vm.showPicker)
+                  ? _vm._i(_vm.showPicker, null) > -1
+                  : _vm.showPicker
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showPicker,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showPicker = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showPicker = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showPicker = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "timepickerShowPicker" }
+              },
+              [_vm._v("Show Picker")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showSeconds,
+                  expression: "showSeconds"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "timepickerShowSeconds" },
+              domProps: {
+                checked: Array.isArray(_vm.showSeconds)
+                  ? _vm._i(_vm.showSeconds, null) > -1
+                  : _vm.showSeconds
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showSeconds,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showSeconds = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showSeconds = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showSeconds = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "timepickerShowSeconds" }
+              },
+              [_vm._v("Show Seconds")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showNow,
+                  expression: "showNow"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "timepickerShowNow" },
+              domProps: {
+                checked: Array.isArray(_vm.showNow)
+                  ? _vm._i(_vm.showNow, null) > -1
+                  : _vm.showNow
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showNow,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showNow = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showNow = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showNow = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "timepickerShowNow" }
+              },
+              [_vm._v("Show Now")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.showClear,
+                  expression: "showClear"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "timepickerShowClear" },
+              domProps: {
+                checked: Array.isArray(_vm.showClear)
+                  ? _vm._i(_vm.showClear, null) > -1
+                  : _vm.showClear
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.showClear,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.showClear = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.showClear = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.showClear = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "timepickerShowClear" }
+              },
+              [_vm._v("Show Clear")]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "sk-radio-group",
+            {
+              model: {
+                value: _vm.timeType,
+                callback: function($$v) {
+                  _vm.timeType = $$v
+                },
+                expression: "timeType"
+              }
+            },
+            [
+              _c(
+                "sk-radio-button",
+                {
+                  attrs: {
+                    name: "timepicker",
+                    value: 12,
+                    checked: _vm.timeType === 12
+                  }
+                },
+                [_vm._v("12")]
+              ),
+              _vm._v(" "),
+              _c(
+                "sk-radio-button",
+                {
+                  attrs: {
+                    name: "timepicker",
+                    value: 24,
+                    checked: _vm.timeType === 24
+                  }
+                },
+                [_vm._v("24")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("sk-alignment", {
+            attrs: { alignment: _vm.timepickerAlign },
+            on: {
+              "update:alignment": function($event) {
+                _vm.timepickerAlign = $event
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-lg btn-primary btn-block",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Import To Sketch")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "sk-preview",
+        [
+          _c(
+            "tb-pikcer",
+            {
+              model: {
+                value: _vm.time,
+                callback: function($$v) {
+                  _vm.time = $$v
+                },
+                expression: "time"
+              }
+            },
+            [
+              _c("tb-time-picker", {
+                attrs: { "time-type": _vm.timeType, isSecond: _vm.showSeconds },
+                model: {
+                  value: _vm.time,
+                  callback: function($$v) {
+                    _vm.time = $$v
+                  },
+                  expression: "time"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2fe0dc27", esExports)
+  }
+}
 
 /***/ })
 /******/ ]);

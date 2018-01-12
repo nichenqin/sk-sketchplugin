@@ -1,3 +1,3 @@
-import Text from './Text.vue';
+import Text from './text.vue';
 
 export default Text;

@@ -52,8 +52,8 @@
 <script>
 import { Picker as TbPicker, Datepicker as TbDatepicker } from '@zhinan/tb-components';
 
-import SkAlignment from '../../Shared/Radio/Alignment.vue';
-import SkPreview from '../../Shared/Preview.vue';
+import SkAlignment from '../../shared/radio/alignment.vue';
+import SkPreview from '../../shared/preview.vue';
 
 function convertToTime(str) {
   const [year, month, day] = str.split('-');

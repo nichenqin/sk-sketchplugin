@@ -1,3 +1,3 @@
-import Picker from './Picker.vue';
+import Picker from './picker.vue';
 
 export default Picker;

@@ -30,7 +30,7 @@
 
 <script>
 import { TbPopover } from '@zhinan/tb-components';
-import SkPreview from '../../Shared/Preview.vue';
+import SkPreview from '../../shared/preview.vue';
 
 const sizeConfigs = {
   large: {

@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import SkPreview from '../../Shared/Preview.vue';
-import SkRectanglePreview from './RectanglePreview.vue';
+import SkPreview from '../../shared/preview.vue';
+import SkRectanglePreview from './rectangle-preview.vue';
 
 export default {
   data() {

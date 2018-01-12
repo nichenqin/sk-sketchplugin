@@ -51,16 +51,16 @@
 </template>
 
 <script>
-import SkTextPreview from './TextPreview.vue';
+import SkTextPreview from './text-preview.vue';
 
-import SkPreview from '../../Shared/Preview.vue';
-import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
-import SkCodeJavasript from '../../Shared/Code/CodeJavascript.vue';
+import SkPreview from '../../shared/preview.vue';
+import SkCodeHtml from '../../shared/code/code-html.vue';
+import SkCodeJavasript from '../../shared/code/code-javascript.vue';
 
-import SkRadioGroup from '../../Shared/Radio/RadioGroup.vue';
-import SkRadioButton from '../../Shared/Radio/RadioButton.vue';
+import SkRadioGroup from '../../shared/radio/radio-group.vue';
+import SkRadioButton from '../../shared/radio/radio-button.vue.vue';
 
-import SkShowTips from '../../Shared/ShowTips.vue';
+import SkShowTips from '../../shared/show-tips.vue';
 
 const fontSizeConfig = {
   40: 'h1',

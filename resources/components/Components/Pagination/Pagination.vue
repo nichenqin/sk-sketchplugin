@@ -46,7 +46,7 @@
 
 <script>
 import { Pagination as TbPagination } from '@zhinan/tb-components';
-import SkPreview from '../../Shared/Preview.vue';
+import SkPreview from '../../shared/preview.vue';
 
 export default {
   data() {

@@ -52,7 +52,7 @@
 
 <script>
 import { Picker as TbPicker } from '@zhinan/tb-components';
-import SkPreview from '../../Shared/Preview.vue';
+import SkPreview from '../../shared/preview.vue';
 
 export default {
   data() {

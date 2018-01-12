@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import SkRadioGroup from './Radio/RadioGroup.vue';
-import SkRadioButton from './Radio/RadioButton.vue';
+import SkRadioGroup from './radio/radio-group.vue';
+import SkRadioButton from './radio/radio-button.vue';
 
 export default {
   data() {

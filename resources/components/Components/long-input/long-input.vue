@@ -58,9 +58,9 @@
 <script>
 import { LongInput as TbLongInput } from '@zhinan/tb-components';
 
-import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
-import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
-import SkPreview from '../../Shared/Preview.vue';
+import SkCodeHtml from '../../shared/code/code-html.vue';
+import SkCodeJavascript from '../../shared/code/code-javascript.vue';
+import SkPreview from '../../shared/preview.vue';
 
 export default {
   data() {

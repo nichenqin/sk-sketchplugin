@@ -23,8 +23,8 @@
 
 <script>
 import { NavMenu as TbMenu } from '@zhinan/tb-components';
-import SkPreview from '../../Shared/Preview.vue';
-import SkMenuItem from './MenuItem.vue';
+import SkPreview from '../../shared/preview.vue';
+import SkMenuItem from './menu-item.vue';
 
 let id = 1;
 

@@ -1,3 +1,3 @@
-import Tips from './Tips.vue';
+import Tips from './tips.vue';
 
 export default Tips;

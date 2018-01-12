@@ -89,13 +89,13 @@ import { TbButton } from '@zhinan/tb-components';
 
 import Events from '../../../minxins/events';
 
-import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
-import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
-import SkPreview from '../../Shared/Preview.vue';
+import SkCodeHtml from '../../shared/code/code-html.vue';
+import SkCodeJavascript from '../../shared/code/code-javascript.vue';
+import SkPreview from '../../shared/preview.vue';
 
-import SkRadioGroup from '../../Shared/Radio/RadioGroup.vue';
-import SkRadioButton from '../../Shared/Radio/RadioButton.vue';
-import SkShowTips from '../../Shared/ShowTips.vue';
+import SkRadioGroup from '../../Shared/radio/radio-group.vue';
+import SkRadioButton from '../../Shared/radio/radio-button.vue.vue';
+import SkShowTips from '../../shared/show-tips.vue';
 
 const data = {
   risk: {

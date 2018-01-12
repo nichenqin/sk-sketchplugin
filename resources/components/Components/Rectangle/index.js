@@ -1,3 +1,3 @@
-import Rectangle from './Rectangle.vue';
+import Rectangle from './rectangle.vue';
 
 export default Rectangle;

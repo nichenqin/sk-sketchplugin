@@ -34,7 +34,7 @@
 
 <script>
 import { CheckboxGroup as TbCheckboxGroup } from '@zhinan/tb-components';
-import SkPreview from '../../Shared/Preview.vue';
+import SkPreview from '../../shared/preview.vue';
 
 const optionsData = [...new Array(3)].map((val, index) => ({
   value: `option-${index + 1}`,

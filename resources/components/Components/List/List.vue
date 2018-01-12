@@ -71,11 +71,11 @@
 <script>
 import { TbTable } from '@zhinan/tb-components';
 
-import SkAlignment from '../../Shared/Radio/Alignment.vue';
+import SkAlignment from '../../shared/radio/alignment.vue';
 
-import SkPreview from '../../Shared/Preview.vue';
-import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
-import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
+import SkPreview from '../../shared/preview.vue';
+import SkCodeHtml from '../../shared/code/code-html.vue';
+import SkCodeJavascript from '../../shared/code/code-javascript.vue';
 
 export default {
   data() {
