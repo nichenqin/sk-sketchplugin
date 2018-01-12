@@ -57,7 +57,7 @@
         </div>
         <select class="custom-select" v-model="verify">
           <option value="">select one</option>
-          <option :value="v" v-for="v of verifies">{{ v }}</option>
+          <option :value="v" v-for="v of verifies" :key="v">{{ v }}</option>
         </select>
       </div>
 
@@ -74,6 +74,8 @@
         <input type="checkbox" class="custom-control-input" id="shortInputAutofocus" v-model="autofocus">
         <label class="custom-control-label" for="shortInputAutofocus">Auto Focus</label>
       </div>
+
+      <sk-show-tips :content.sync="tips.content" :direction.sync="tips.direction" :show-tips="tips.show"></sk-show-tips>
 
       <button class="btn btn-primary btn-block btn-lg" type="submit">Import To Sketch</button>
 
@@ -93,6 +95,7 @@ import { ShortInput as TbShortInput } from '@zhinan/tb-components';
 import SkCodeHtml from '../../Shared/Code/CodeHtml.vue';
 import SkCodeJavascript from '../../Shared/Code/CodeJavascript.vue';
 import SkPreview from '../../Shared/Preview.vue';
+import SkShowTips from '../../Shared/ShowTips.vue';
 
 export default {
   data() {
@@ -109,6 +112,12 @@ export default {
       placeholder: 'default placeholder',
       status: 'normal',
       allStatus: ['normal', 'error', 'active', 'disable'],
+
+      tips: {
+        show: true,
+        content: '',
+        direction: 'left',
+      },
     };
   },
   props: ['currentComponent'],
@@ -117,6 +126,7 @@ export default {
     SkPreview,
     SkCodeHtml,
     SkCodeJavascript,
+    SkShowTips,
   },
   computed: {
     path() {
@@ -129,8 +139,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { path, content, unit, placeholder, width } = this;
-      const payload = { path, content, unit, placeholder, width };
+      const { path, content, unit, placeholder, width, tips } = this;
+      const payload = { path, content, unit, placeholder, width, tips };
       this.$emit('import', payload);
     },
   },

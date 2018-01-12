@@ -10698,6 +10698,7 @@ var fontSizeConfig = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Shared_Code_CodeHtml_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeJavascript_vue__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shared_Preview_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shared_ShowTips_vue__ = __webpack_require__(347);
 //
 //
 //
@@ -10787,6 +10788,9 @@ var fontSizeConfig = {
 //
 //
 //
+//
+//
+
 
 
 
@@ -10808,7 +10812,13 @@ var fontSizeConfig = {
       width: 300,
       placeholder: 'default placeholder',
       status: 'normal',
-      allStatus: ['normal', 'error', 'active', 'disable']
+      allStatus: ['normal', 'error', 'active', 'disable'],
+
+      tips: {
+        show: true,
+        content: '',
+        direction: 'left'
+      }
     };
   },
 
@@ -10817,7 +10827,8 @@ var fontSizeConfig = {
     TbShortInput: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["ShortInput"],
     SkPreview: __WEBPACK_IMPORTED_MODULE_3__Shared_Preview_vue__["a" /* default */],
     SkCodeHtml: __WEBPACK_IMPORTED_MODULE_1__Shared_Code_CodeHtml_vue__["a" /* default */],
-    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeJavascript_vue__["a" /* default */]
+    SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_2__Shared_Code_CodeJavascript_vue__["a" /* default */],
+    SkShowTips: __WEBPACK_IMPORTED_MODULE_4__Shared_ShowTips_vue__["a" /* default */]
   },
   computed: {
     path: function path() {
@@ -10838,9 +10849,10 @@ var fontSizeConfig = {
           content = this.content,
           unit = this.unit,
           placeholder = this.placeholder,
-          width = this.width;
+          width = this.width,
+          tips = this.tips;
 
-      var payload = { path: path, content: content, unit: unit, placeholder: placeholder, width: width };
+      var payload = { path: path, content: content, unit: unit, placeholder: placeholder, width: width, tips: tips };
       this.$emit('import', payload);
     }
   }
@@ -15383,7 +15395,7 @@ var render = function() {
                 _c("option", { attrs: { value: "" } }, [_vm._v("select one")]),
                 _vm._v(" "),
                 _vm._l(_vm.verifies, function(v) {
-                  return _c("option", { domProps: { value: v } }, [
+                  return _c("option", { key: v, domProps: { value: v } }, [
                     _vm._v(_vm._s(v))
                   ])
                 })
@@ -15468,6 +15480,22 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("sk-show-tips", {
+            attrs: {
+              content: _vm.tips.content,
+              direction: _vm.tips.direction,
+              "show-tips": _vm.tips.show
+            },
+            on: {
+              "update:content": function($event) {
+                _vm.$set(_vm.tips, "content", $event)
+              },
+              "update:direction": function($event) {
+                _vm.$set(_vm.tips, "direction", $event)
+              }
+            }
+          }),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -15476,7 +15504,8 @@ var render = function() {
             },
             [_vm._v("Import To Sketch")]
           )
-        ]
+        ],
+        1
       ),
       _vm._v(" "),
       _c(

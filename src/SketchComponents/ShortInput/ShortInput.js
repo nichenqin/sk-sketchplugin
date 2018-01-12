@@ -1,4 +1,5 @@
 import SketchComponent from '../SketchComponent';
+import Tips from '../Tips';
 import { isOverridePointName } from '../../utils';
 
 const option = {
@@ -11,10 +12,14 @@ class ShortInput extends SketchComponent {
   }
 
   import({
-    path, unit, content, placeholder, width,
+    path, unit, content, placeholder, width, tips = {},
   }) {
+    const { context, page, name } = this;
+
+    const inputGroup = page.newGroup({ name });
+
     const instance = this.getInstanceByPath(path);
-    this.document.sketchObject.addLayer(instance);
+    inputGroup.sketchObject.addLayer(instance);
 
     instance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'content')) {
@@ -32,7 +37,15 @@ class ShortInput extends SketchComponent {
       instance.frame().setWidth_(width);
     }
 
-    return instance;
+    inputGroup.adjustToFit();
+
+    if (tips.show) {
+      const tipsComponent = new Tips(context, { content: tips.content, direction: tips.direction });
+      tipsComponent.moveToGroup(inputGroup);
+      tipsComponent.setPosition(inputGroup);
+    }
+
+    return inputGroup;
   }
 }
 
