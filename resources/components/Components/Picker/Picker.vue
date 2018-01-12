@@ -16,10 +16,6 @@
         <input type="text" class="form-control" v-model="placeholder">
       </div>
 
-      <sk-radio-group>
-        <sk-radio-button :checked="type === 'game'"></sk-radio-button>
-      </sk-radio-group>
-
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <div class="input-group-text">

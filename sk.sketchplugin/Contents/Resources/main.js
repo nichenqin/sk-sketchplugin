@@ -11844,10 +11844,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -18178,14 +18174,6 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c(
-            "sk-radio-group",
-            [
-              _c("sk-radio-button", { attrs: { checked: _vm.type === "game" } })
-            ],
-            1
-          ),
-          _vm._v(" "),
           _c("div", { staticClass: "input-group mb-3" }, [
             _vm._m(2),
             _vm._v(" "),
@@ -18279,8 +18267,7 @@ var render = function() {
             },
             [_vm._v("Import To Sketch")]
           )
-        ],
-        1
+        ]
       ),
       _vm._v(" "),
       _c(
