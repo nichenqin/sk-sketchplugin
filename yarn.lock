@@ -109,8 +109,8 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.2.tgz#83b8103fa9a2c2e83d78f701a9aa7c9539739aa5"
 
 "@zhinan/tb-components@^1.4.8":
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/@zhinan/tb-components/-/tb-components-1.5.5.tgz#ca248908cfa2f3a87e27e01c76baa2f4fc9af7e8"
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/@zhinan/tb-components/-/tb-components-1.5.6.tgz#73ae55c7bb958ada8241e34132eba351f1475cc5"
   dependencies:
     normalize.css "^5.0.0"
 

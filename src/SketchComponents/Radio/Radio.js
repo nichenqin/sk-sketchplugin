@@ -15,8 +15,8 @@ class Radio extends SketchComponent {
 
     const radioGroup = page.newGroup({ name });
     const radioInstance = this.getInstanceByPath('radio/normal');
-    const iconInstance = this.getInstanceByPath('icon/radio');
-    const iconSelectedInstance = this.getInstanceByPath('icon/radio_selected');
+    const iconInstance = this.getInstanceByPath('icon/radio/normal');
+    const iconSelectedInstance = this.getInstanceByPath('icon/radio/selected');
     const { width, height } = getRectOfNativeLayer(radioInstance);
 
     const radioInstances = options.map(() => radioInstance.copy());

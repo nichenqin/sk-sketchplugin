@@ -10,6 +10,12 @@
         <label class="input-group-text">option-{{index + 1}}</label>
       </div>
       <input type="text" class="form-control" v-model="option.value">
+
+      <div class="custom-control custom-checkbox ml-2">
+        <input type="checkbox" class="custom-control-input" :id="`radioDisable${index}`"
+          v-model="option.disabled">
+        <label class="custom-control-label" :for="`radioDisable${index}`">Disabled</label>
+      </div>
     </div>
 
     <div class="custom-control custom-checkbox mb-3">
@@ -20,7 +26,8 @@
     <button class="btn btn-primary btn-lg btn-block" @click="handleImport">Import To Sketch</button>
 
     <sk-preview>
-      <tb-radio-group :options="optionValues" :arrange="arrange" v-model="option" width="100"></tb-radio-group>
+      <tb-radio-group :options="optionValues" :arrange="arrange" v-model="option" width="100"
+        :disabled="disabled"></tb-radio-group>
     </sk-preview>
   </section>
 </template>
@@ -32,6 +39,7 @@ import SkPreview from '../../Shared/Preview.vue';
 const optionsData = [...new Array(3)].map((val, index) => ({
   value: `option-${index + 1}`,
   type: 'normal',
+  disabled: false,
 }));
 
 export default {
@@ -53,11 +61,14 @@ export default {
     optionValues() {
       return this.options.map(({ value }) => value);
     },
+    disabled() {
+      return this.options.filter(({ disabled }) => disabled).map(({ value }) => value);
+    },
   },
   methods: {
     addOption() {
       const len = this.options.length;
-      this.options.push({ value: `option-${len + 1}`, type: 'normal' });
+      this.options.push({ value: `option-${len + 1}`, type: 'normal', disabled: false });
     },
     removeOption() {
       this.options.pop();
