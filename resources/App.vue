@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import SkHome from './components/HomePage/Home.vue';
-import SkDetail from './components/DetailPage/Detail.vue';
+import SkHome from './components/home-page/home.vue';
+import SkDetail from './components/detail-page/detail.vue';
 
 export default {
   data() {
