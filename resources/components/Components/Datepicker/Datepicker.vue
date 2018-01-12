@@ -23,11 +23,13 @@
         <label for="datepickerShowClear" class="custom-control-label">Show Clear</label>
       </div>
 
-      <tb-picker v-model="startTime">
+      <label>start time</label>
+      <tb-picker class="mb-3" v-model="startTime">
         <tb-datepicker v-model="startTime"></tb-datepicker>
       </tb-picker>
 
-      <tb-picker v-model="stopTime">
+      <label>stop time</label>
+      <tb-picker class="mb-3" v-model="stopTime">
         <tb-datepicker v-model="stopTime"></tb-datepicker>
       </tb-picker>
 

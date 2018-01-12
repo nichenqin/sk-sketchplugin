@@ -10986,6 +10986,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
 
 
 
@@ -16101,9 +16103,12 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("label", [_vm._v("start time")]),
+          _vm._v(" "),
           _c(
             "tb-picker",
             {
+              staticClass: "mb-3",
               model: {
                 value: _vm.startTime,
                 callback: function($$v) {
@@ -16126,9 +16131,12 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _c("label", [_vm._v("stop time")]),
+          _vm._v(" "),
           _c(
             "tb-picker",
             {
+              staticClass: "mb-3",
               model: {
                 value: _vm.stopTime,
                 callback: function($$v) {
