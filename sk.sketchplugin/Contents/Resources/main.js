@@ -12194,21 +12194,21 @@ function generateOption(name) {
 
 /***/ }),
 /* 47 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "bread.sketch?4714ee7e5a9ffd88808b92bcbb8e3754";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/bread.sketch'");
 
 /***/ }),
 /* 48 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "checkbox.sketch?a78feae26cc5297662ea134f25976efa";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/checkbox.sketch'");
 
 /***/ }),
 /* 49 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "switch.sketch?7121c15a1356eb898108acd8882af71a";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/switch.sketch'");
 
 /***/ }),
 /* 50 */
@@ -37165,81 +37165,81 @@ exports.push([module.i, ".before-query[data-v-15ddbf60]{margin-top:100px;color:#
 
 /***/ }),
 /* 331 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "button.sketch?adf06bc90299c4f06c13cf1004823f96";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/button.sketch'");
 
 /***/ }),
 /* 332 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "datepicker.sketch?ab4ebbb55f716681f04e394b8d98fa36";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/datepicker.sketch'");
 
 /***/ }),
 /* 333 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "list.sketch?7877f47e827d97b5fd3f30b92e40fa9c";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/list.sketch'");
 
 /***/ }),
 /* 334 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "longInput.sketch?75e503ee7a49b664adf84b608f35696c";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/longInput.sketch'");
 
 /***/ }),
 /* 335 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "shortInput.sketch?b5d3dbbc3ed0d94461cdd0f11db6903f";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/shortInput.sketch'");
 
 /***/ }),
 /* 336 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "radio.sketch?0f481352456d70da15f256445f81ef65";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/radio.sketch'");
 
 /***/ }),
 /* 337 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "pagination.sketch?0144c593fcc658b6e34934757de2e171";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/pagination.sketch'");
 
 /***/ }),
 /* 338 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "dropdown.sketch?d528ce2f087e890b2962dd90dd8ca593";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/dropdown.sketch'");
 
 /***/ }),
 /* 339 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "picker.sketch?ae39a4b875be7581005f6829d499b419";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/picker.sketch'");
 
 /***/ }),
 /* 340 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "timepicker.sketch?00b9827ead5266e94c1ce478dc13987b";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/timepicker.sketch'");
 
 /***/ }),
 /* 341 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "popover.sketch?45224400ba5ee9f71d4da481c48dd0a2";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/popover.sketch'");
 
 /***/ }),
 /* 342 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "menu.sketch?359118417ccc8d1ab8a301d051210369";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/menu.sketch'");
 
 /***/ }),
 /* 343 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "tips.sketch?29e8c2bfa577ef0649fff369906025ff";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/nichenqin/Projects/superKit/resources/assets/tips.sketch'");
 
 /***/ }),
 /* 344 */
