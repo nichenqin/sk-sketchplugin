@@ -46,7 +46,7 @@ class Datepicker extends SketchComponent {
     if (showPicker) {
       const picker = new Picker(context, {
         content: selectedDate,
-        icon: 'arrowUp',
+        icon: 'calendar/active',
         status: 'active',
         placeholder: '不限',
       });
