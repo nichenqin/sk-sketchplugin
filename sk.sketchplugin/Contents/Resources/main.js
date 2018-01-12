@@ -11821,6 +11821,33 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -11829,7 +11856,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   data: function data() {
     return {
       content: 'picker content',
-      placeholder: 'default placeholder'
+      placeholder: 'default placeholder',
+
+      status: 'normal',
+      allStatus: ['active', 'hover', 'disable', 'normal'],
+
+      type: '',
+      types: ['time', 'date']
     };
   },
 
@@ -11840,9 +11873,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   methods: {
     handleImport: function handleImport() {
       var content = this.content,
-          placeholder = this.placeholder;
+          placeholder = this.placeholder,
+          type = this.type,
+          status = this.status;
 
-      var payload = { content: content, placeholder: placeholder };
+      var payload = { content: content, placeholder: placeholder, type: type, status: status };
       this.$emit('import', payload);
     }
   }
@@ -18144,6 +18179,99 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c(
+            "sk-radio-group",
+            [
+              _c("sk-radio-button", { attrs: { checked: _vm.type === "game" } })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.status,
+                    expression: "status"
+                  }
+                ],
+                staticClass: "custom-select",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.status = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              _vm._l(_vm.allStatus, function(s) {
+                return _c("option", { key: s, domProps: { value: s } }, [
+                  _vm._v(_vm._s(s))
+                ])
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.type,
+                    expression: "type"
+                  }
+                ],
+                staticClass: "custom-select",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.type = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("Choose a type...")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.types, function(t) {
+                  return _c("option", { key: t, domProps: { value: t } }, [
+                    _vm._v(_vm._s(t))
+                  ])
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c(
             "button",
             {
               staticClass: "btn btn-lg btn-block btn-primary",
@@ -18151,7 +18279,8 @@ var render = function() {
             },
             [_vm._v("Import To Sketch")]
           )
-        ]
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
@@ -18189,6 +18318,26 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "input-group-prepend" }, [
       _c("label", { staticClass: "input-group-text" }, [_vm._v("Placeholder")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _vm._v("\n          Status\n        ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _vm._v("\n          Type\n        ")
+      ])
     ])
   }
 ]

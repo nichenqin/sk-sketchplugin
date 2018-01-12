@@ -35,7 +35,16 @@ class Picker extends SketchComponent {
         pickerInstance.setValue_forOverridePoint_(String(placeholder), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon_arrow')) {
-        const iconInstance = this.getInstanceByPath(`icon/${icon}`);
+        let iconType;
+        let iconStatus;
+        if (type) {
+          iconStatus = status === 'active' ? 'active' : 'normal';
+          iconType = type === 'date' ? 'calendar' : 'time';
+        } else {
+          iconType = icon;
+        }
+        const iconPath = generatePath('icon', iconType, iconStatus);
+        const iconInstance = this.getInstanceByPath(iconPath);
         pickerInstance.setValue_forOverridePoint_(iconInstance.symbolID(), overridePoint);
       }
     });
