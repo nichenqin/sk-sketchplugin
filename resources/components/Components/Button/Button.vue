@@ -64,7 +64,7 @@
         </select>
       </div>
 
-      <sk-show-tips :content.sync="tipsContent" :show-tips.sync="showTips" :direction.sync="tipsDirection"></sk-show-tips>
+      <sk-show-tips :content.sync="tips.content" :show-tips.sync="tips.show" :direction.sync="tips.direction"></sk-show-tips>
 
       <button class="btn btn-primary btn-lg btn-block" type="submit">Import To Sketch</button>
     </form>
@@ -170,9 +170,11 @@ export default {
       status: 'normal',
       allStatus: ['normal', 'active', 'hover', 'disable'],
 
-      showTips: true,
-      tipsContent: 'btn',
-      tipsDirection: 'left',
+      tips: {
+        show: true,
+        content: 'btn',
+        direction: 'left',
+      },
 
       componentEvents: ['btn'],
     };

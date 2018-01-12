@@ -9885,9 +9885,11 @@ var data = {
       status: 'normal',
       allStatus: ['normal', 'active', 'hover', 'disable'],
 
-      showTips: true,
-      tipsContent: 'btn',
-      tipsDirection: 'left',
+      tips: {
+        show: true,
+        content: 'btn',
+        direction: 'left'
+      },
 
       componentEvents: ['btn']
     };
@@ -13771,19 +13773,19 @@ var render = function() {
           _vm._v(" "),
           _c("sk-show-tips", {
             attrs: {
-              content: _vm.tipsContent,
-              "show-tips": _vm.showTips,
-              direction: _vm.tipsDirection
+              content: _vm.tips.content,
+              "show-tips": _vm.tips.show,
+              direction: _vm.tips.direction
             },
             on: {
               "update:content": function($event) {
-                _vm.tipsContent = $event
+                _vm.$set(_vm.tips, "content", $event)
               },
               "update:showTips": function($event) {
-                _vm.showTips = $event
+                _vm.$set(_vm.tips, "show", $event)
               },
               "update:direction": function($event) {
-                _vm.tipsDirection = $event
+                _vm.$set(_vm.tips, "direction", $event)
               }
             }
           }),
