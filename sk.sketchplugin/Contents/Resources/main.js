@@ -10050,6 +10050,12 @@ var data = {
       type: String,
       default: 'div'
     },
+    binds: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
     properties: {
       type: Object,
       default: function _default() {
@@ -10074,6 +10080,11 @@ var data = {
     }
   },
   computed: {
+    bindsCode: function bindsCode() {
+      return this.binds.reduce(function (code, bind) {
+        return code + ' :' + bind + '="' + bind + '"';
+      }, '');
+    },
     propertiesCode: function propertiesCode() {
       return Object.keys(this.properties).reduce(function (str, key) {
         return str + ' :' + key + '="' + key + '"';
@@ -10088,11 +10099,11 @@ var data = {
     },
     htmlCode: function htmlCode() {
       var tag = this.tag,
-          propertiesCode = this.propertiesCode,
+          bindsCode = this.bindsCode,
           innerText = this.innerText,
           eventsCode = this.eventsCode;
 
-      return '<' + tag + propertiesCode + eventsCode + '>\n  ' + innerText + '\n</' + tag + '>';
+      return '<' + tag + bindsCode + eventsCode + '>\n  ' + innerText + '\n</' + tag + '>';
     }
   }
 });
@@ -10772,7 +10783,9 @@ var fontSizeConfig = {
       fixedWidth: false,
       fixed: false,
       placeholder: 'default placeholder',
-      allStatus: ['normal', 'active', 'error', 'disable']
+      allStatus: ['normal', 'active', 'error', 'disable'],
+
+      binds: ['content', 'status', 'height', 'width', 'fixedHeight', 'fixedWidth', 'fixed', 'placeholder']
     };
   },
 
@@ -13524,7 +13537,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15374,9 +15387,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("sk-code-html", {
-        attrs: { tag: "tb-long-input", properties: _vm.properties }
-      }),
+      _c("sk-code-html", { attrs: { tag: "tb-long-input", binds: _vm.binds } }),
       _vm._v(" "),
       _c("sk-code-javascript", { attrs: { properties: _vm.properties } })
     ],

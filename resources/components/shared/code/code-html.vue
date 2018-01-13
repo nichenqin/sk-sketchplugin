@@ -11,6 +11,10 @@ export default {
       type: String,
       default: 'div',
     },
+    binds: {
+      type: Array,
+      default: () => [],
+    },
     properties: {
       type: Object,
       default: () => ({}),
@@ -29,6 +33,9 @@ export default {
     },
   },
   computed: {
+    bindsCode() {
+      return this.binds.reduce((code, bind) => `${code} :${bind}="${bind}"`, '');
+    },
     propertiesCode() {
       return Object.keys(this.properties).reduce((str, key) => `${str} :${key}="${key}"`, '');
     },
@@ -39,8 +46,8 @@ export default {
       );
     },
     htmlCode() {
-      const { tag, propertiesCode, innerText, eventsCode } = this;
-      return `<${tag}${propertiesCode}${eventsCode}>
+      const { tag, bindsCode, innerText, eventsCode } = this;
+      return `<${tag}${bindsCode}${eventsCode}>
   ${innerText}
 </${tag}>`;
     },

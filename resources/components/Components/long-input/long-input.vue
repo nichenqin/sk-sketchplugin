@@ -49,7 +49,7 @@
         :fixedHeight="fixedHeight" :fixedWidth="fixedWidth" :fixed="fixed" :disabled="disabled"></tb-long-input>
     </sk-preview>
 
-    <sk-code-html tag="tb-long-input" :properties="properties"></sk-code-html>
+    <sk-code-html tag="tb-long-input" :binds="binds"></sk-code-html>
 
     <sk-code-javascript :properties="properties"></sk-code-javascript>
   </div>
@@ -74,6 +74,17 @@ export default {
       fixed: false,
       placeholder: 'default placeholder',
       allStatus: ['normal', 'active', 'error', 'disable'],
+
+      binds: [
+        'content',
+        'status',
+        'height',
+        'width',
+        'fixedHeight',
+        'fixedWidth',
+        'fixed',
+        'placeholder',
+      ],
     };
   },
   components: {
