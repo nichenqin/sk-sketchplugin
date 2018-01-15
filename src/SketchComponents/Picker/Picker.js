@@ -21,7 +21,12 @@ class Picker extends SketchComponent {
   }
 
   import({
-    content, icon = 'arrowDown', status = 'normal', placeholder = 'placeholder', type = '', relevant = '',
+    content,
+    icon = 'arrowDown',
+    status = 'normal',
+    placeholder = 'placeholder',
+    type = '',
+    relevant = '',
   }) {
     const { page, name, context } = this;
     const pickerGroup = page.newGroup({ name });

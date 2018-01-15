@@ -11,9 +11,7 @@ class Timepicker extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({
-    showSeconds, timeType, showNow, showClear, timepickerAlign, picker = {},
-  }) {
+  import({ showSeconds, timeType, showNow, showClear, timepickerAlign, picker = {} }) {
     const { context, page, name } = this;
 
     const rootGroup = page.newGroup({ name });

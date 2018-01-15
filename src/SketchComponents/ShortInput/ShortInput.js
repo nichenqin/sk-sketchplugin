@@ -11,9 +11,7 @@ class ShortInput extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({
-    status, type, unit, content, placeholder, width, isVisible, tips = {},
-  }) {
+  import({ status, type, unit, content, placeholder, width, isVisible, tips = {} }) {
     const { context, page, name } = this;
     const inputGroup = page.newGroup({ name });
 

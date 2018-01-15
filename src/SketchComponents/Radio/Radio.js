@@ -27,9 +27,8 @@ class Radio extends SketchComponent {
           item.setValue_forOverridePoint_(String(options[index].value), overridePoint);
         }
         if (isOverridePointName(overridePoint, 'icon_status')) {
-          const symbolID =
-            options[index].value === optionValue ? iconSelectedInstance.symbolID() : iconInstance.symbolID();
-          item.setValue_forOverridePoint_(symbolID, overridePoint);
+          const icon = options[index].value === optionValue ? iconSelectedInstance : iconInstance;
+          item.setValue_forOverridePoint_(icon.symbolID(), overridePoint);
         }
       });
     });

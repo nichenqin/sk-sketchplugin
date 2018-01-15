@@ -10,9 +10,7 @@ class LongInput extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({
-    status = 'normal', content, width, height, placeholder = 'placeholder',
-  }) {
+  import({ status = 'normal', content, width, height, placeholder = 'placeholder' }) {
     const path = content ? `longInput/${status}` : 'longInput/placeholder';
 
     const instance = this.getInstanceByPath(path);

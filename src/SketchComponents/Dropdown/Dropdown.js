@@ -11,12 +11,8 @@ class Dropdown extends SketchComponent {
     super(context, payload, option);
   }
 
-  import({
-    showPicker = false, showSearch = false, searchWord, dropdownAlign,
-  }) {
-    const {
-      page, name, context, sketch,
-    } = this;
+  import({ showPicker = false, showSearch = false, searchWord, dropdownAlign }) {
+    const { page, name, context, sketch } = this;
 
     const rootGroup = page.newGroup({
       name,
