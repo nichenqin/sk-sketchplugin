@@ -7,7 +7,7 @@ const option = {
 };
 
 class Dropdown extends SketchComponent {
-  constructor(context, payload = { showPicker: false, showSearch: true }) {
+  constructor(context, payload = { showPicker: false, showSearch: false }) {
     super(context, payload, option);
   }
 
