@@ -58,7 +58,7 @@ class Button extends SketchComponent {
     buttonGroup.adjustToFit();
 
     if (type === 'menu' && dropdown.show) {
-      const dropdownInstance = new Dropdown(context);
+      const dropdownInstance = new Dropdown(context, { showPicker: false });
       dropdownInstance.moveToGroup(buttonGroup);
       dropdownInstance.sketchObject.frame().setY_(buttonGroup.frame.height + 10);
       buttonGroup.adjustToFit();

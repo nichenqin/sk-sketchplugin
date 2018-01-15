@@ -12,7 +12,7 @@ class Dropdown extends SketchComponent {
   }
 
   import({
-    showPicker = false, showSearch = true, searchWord, dropdownAlign,
+    showPicker = false, showSearch = false, searchWord, dropdownAlign,
   }) {
     const {
       page, name, context, sketch,
