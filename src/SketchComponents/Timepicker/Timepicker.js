@@ -12,16 +12,22 @@ class Timepicker extends SketchComponent {
   }
 
   import({
-    showPicker, showSeconds, timeType, showNow, showClear, timepickerAlign,
+    showSeconds, timeType, showNow, showClear, timepickerAlign, picker = {},
   }) {
     const { context, page, name } = this;
 
     const rootGroup = page.newGroup({ name });
 
     let pickerInstance;
-    if (showPicker) {
-      const picker = new Picker(context, { type: 'time', status: 'active', icon: 'time/active' });
-      pickerInstance = picker.moveToGroup(rootGroup);
+    if (picker.show) {
+      const pickerComponent = new Picker(context, {
+        type: 'time',
+        status: 'active',
+        icon: 'time/active',
+        content: picker.time,
+        placeholder: picker.placeholder,
+      });
+      pickerInstance = pickerComponent.moveToGroup(rootGroup);
       rootGroup.adjustToFit();
     }
 
@@ -47,7 +53,7 @@ class Timepicker extends SketchComponent {
       timepickerGroup.adjustToFit();
     }
 
-    if (showPicker) setAlignment(timepickerGroup, pickerInstance, timepickerAlign);
+    if (picker.show) setAlignment(timepickerGroup, pickerInstance, timepickerAlign);
     this.createBgAtGroup(timepickerGroup);
     this.createShadowAtGroup(timepickerGroup);
 

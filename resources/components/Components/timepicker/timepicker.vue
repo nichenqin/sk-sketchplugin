@@ -3,9 +3,20 @@
     <form @submit.prevent="handleImport">
 
       <div class="custom-control custom-checkbox mb-3">
-        <input type="checkbox" class="custom-control-input" id="timepickerShowPicker" v-model="showPicker">
+        <input type="checkbox" class="custom-control-input" id="timepickerShowPicker" v-model="picker.show">
         <label for="timepickerShowPicker" class="custom-control-label">Show Picker</label>
       </div>
+
+      <template v-if="picker.show">
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text">Placeholder</label>
+          </div>
+          <input type="text" class="form-control" v-model="picker.placeholder">
+        </div>
+
+      </template>
 
       <div class="custom-control custom-checkbox mb-3">
         <input type="checkbox" class="custom-control-input" id="timepickerShowSeconds" v-model="showSeconds">
@@ -34,8 +45,8 @@
     </form>
 
     <sk-preview>
-      <tb-pikcer v-model="time">
-        <tb-time-picker v-model="time" :time-type="timeType" :isSecond="showSeconds"></tb-time-picker>
+      <tb-pikcer v-model="picker.time" :placeholder="picker.placeholder">
+        <tb-time-picker v-model="picker.time" :time-type="timeType" :isSecond="showSeconds"></tb-time-picker>
       </tb-pikcer>
     </sk-preview>
 
@@ -52,13 +63,17 @@ import SkAlignment from '../../shared/radio/alignment.vue';
 export default {
   data() {
     return {
-      time: '',
       timeType: 12,
 
       showSeconds: true,
-      showPicker: true,
       showNow: true,
       showClear: true,
+
+      picker: {
+        show: true,
+        placeholder: '不限',
+        time: '',
+      },
 
       timepickerAlign: 'center',
     };
@@ -73,8 +88,15 @@ export default {
   },
   methods: {
     handleImport() {
-      const { showPicker, showSeconds, timeType, showNow, showClear, timepickerAlign } = this;
-      const payload = { showPicker, showSeconds, timeType, showNow, showClear, timepickerAlign };
+      const { showSeconds, timeType, showNow, showClear, timepickerAlign, picker } = this;
+      const payload = {
+        showSeconds,
+        timeType,
+        showNow,
+        showClear,
+        timepickerAlign,
+        picker,
+      };
       this.$emit('import', payload);
     },
   },

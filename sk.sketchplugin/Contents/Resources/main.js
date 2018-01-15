@@ -11956,6 +11956,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -11966,13 +11977,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      time: '',
       timeType: 12,
 
       showSeconds: true,
-      showPicker: true,
       showNow: true,
       showClear: true,
+
+      picker: {
+        show: true,
+        placeholder: '不限',
+        time: ''
+      },
 
       timepickerAlign: 'center'
     };
@@ -11988,14 +12003,21 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   },
   methods: {
     handleImport: function handleImport() {
-      var showPicker = this.showPicker,
-          showSeconds = this.showSeconds,
+      var showSeconds = this.showSeconds,
           timeType = this.timeType,
           showNow = this.showNow,
           showClear = this.showClear,
-          timepickerAlign = this.timepickerAlign;
+          timepickerAlign = this.timepickerAlign,
+          picker = this.picker;
 
-      var payload = { showPicker: showPicker, showSeconds: showSeconds, timeType: timeType, showNow: showNow, showClear: showClear, timepickerAlign: timepickerAlign };
+      var payload = {
+        showSeconds: showSeconds,
+        timeType: timeType,
+        showNow: showNow,
+        showClear: showClear,
+        timepickerAlign: timepickerAlign,
+        picker: picker
+      };
       this.$emit('import', payload);
     }
   }
@@ -18614,35 +18636,35 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.showPicker,
-                  expression: "showPicker"
+                  value: _vm.picker.show,
+                  expression: "picker.show"
                 }
               ],
               staticClass: "custom-control-input",
               attrs: { type: "checkbox", id: "timepickerShowPicker" },
               domProps: {
-                checked: Array.isArray(_vm.showPicker)
-                  ? _vm._i(_vm.showPicker, null) > -1
-                  : _vm.showPicker
+                checked: Array.isArray(_vm.picker.show)
+                  ? _vm._i(_vm.picker.show, null) > -1
+                  : _vm.picker.show
               },
               on: {
                 change: function($event) {
-                  var $$a = _vm.showPicker,
+                  var $$a = _vm.picker.show,
                     $$el = $event.target,
                     $$c = $$el.checked ? true : false
                   if (Array.isArray($$a)) {
                     var $$v = null,
                       $$i = _vm._i($$a, $$v)
                     if ($$el.checked) {
-                      $$i < 0 && (_vm.showPicker = $$a.concat([$$v]))
+                      $$i < 0 && (_vm.picker.show = $$a.concat([$$v]))
                     } else {
                       $$i > -1 &&
-                        (_vm.showPicker = $$a
+                        (_vm.picker.show = $$a
                           .slice(0, $$i)
                           .concat($$a.slice($$i + 1)))
                     }
                   } else {
-                    _vm.showPicker = $$c
+                    _vm.$set(_vm.picker, "show", $$c)
                   }
                 }
               }
@@ -18657,6 +18679,36 @@ var render = function() {
               [_vm._v("Show Picker")]
             )
           ]),
+          _vm._v(" "),
+          _vm.picker.show
+            ? [
+                _c("div", { staticClass: "input-group mb-3" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.picker.placeholder,
+                        expression: "picker.placeholder"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.picker.placeholder },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.picker, "placeholder", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]
+            : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
             _c("input", {
@@ -18865,7 +18917,7 @@ var render = function() {
             [_vm._v("Import To Sketch")]
           )
         ],
-        1
+        2
       ),
       _vm._v(" "),
       _c(
@@ -18874,23 +18926,24 @@ var render = function() {
           _c(
             "tb-pikcer",
             {
+              attrs: { placeholder: _vm.picker.placeholder },
               model: {
-                value: _vm.time,
+                value: _vm.picker.time,
                 callback: function($$v) {
-                  _vm.time = $$v
+                  _vm.$set(_vm.picker, "time", $$v)
                 },
-                expression: "time"
+                expression: "picker.time"
               }
             },
             [
               _c("tb-time-picker", {
                 attrs: { "time-type": _vm.timeType, isSecond: _vm.showSeconds },
                 model: {
-                  value: _vm.time,
+                  value: _vm.picker.time,
                   callback: function($$v) {
-                    _vm.time = $$v
+                    _vm.$set(_vm.picker, "time", $$v)
                   },
-                  expression: "time"
+                  expression: "picker.time"
                 }
               })
             ],
@@ -18903,7 +18956,16 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("Placeholder")])
+    ])
+  }
+]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
