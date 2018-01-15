@@ -27,10 +27,11 @@
         <label class="custom-control-label" for="paginationShowJump">Show Jump</label>
       </div>
 
-      <div class="custom-control custom-checkbox mb-3">
-        <input type="checkbox" class="custom-control-input" id="paginationIsSmall" v-model="isSmall">
-        <label class="custom-control-label" for="paginationIsSmall">Small Size</label>
-      </div>
+      <sk-radio-group v-model="currentSize">
+        <sk-radio-button v-for="size of sizes" :key="size" :value="size" :checked="size === currentSize">
+          {{ size }}
+        </sk-radio-button>
+      </sk-radio-group>
 
       <button class="btn btn-primary btn-lg btn-block">Import To Sketch</button>
 
@@ -38,7 +39,7 @@
 
     <sk-preview>
       <tb-pagination ref="pagination" :total-page.sync="totalPage" :current.sync="currentPage"
-        :type="type" :is-skip="showJump"></tb-pagination>
+        :type="currentSize" :is-skip="showJump"></tb-pagination>
     </sk-preview>
 
   </section>
@@ -47,6 +48,8 @@
 <script>
 import { Pagination as TbPagination } from '@zhinan/tb-components';
 import SkPreview from '../../shared/preview.vue';
+import SkRadioGroup from '../../shared/radio/radio-group.vue';
+import SkRadioButton from '../../shared/radio/radio-button.vue';
 
 export default {
   data() {
@@ -56,29 +59,28 @@ export default {
       currentPage: 1,
       showJump: false,
       showLimit: false,
-      isSmall: false,
+
+      currentSize: 'default',
+      sizes: ['default', 'small', 'simple'],
     };
   },
   components: {
     TbPagination,
     SkPreview,
-  },
-  computed: {
-    type() {
-      return this.isSmall ? 'small' : '';
-    },
+    SkRadioGroup,
+    SkRadioButton,
   },
   methods: {
     handleImport() {
       const { pageList } = this.$refs.pagination;
-      const { marginRight, totalPage, showLimit, showJump, currentPage, isSmall } = this;
+      const { marginRight, totalPage, showLimit, showJump, currentPage, currentSize } = this;
       const payload = {
         marginRight,
         totalPage,
         showLimit,
         showJump,
         currentPage,
-        isSmall,
+        size: currentSize,
         pageList,
       };
       this.$emit('import', payload);

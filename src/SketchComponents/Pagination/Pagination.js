@@ -14,6 +14,7 @@ class Pagination extends SketchComponent {
       showJump: false,
       currentPage: 1,
       isSmall: false,
+      size: 'normal',
     },
   ) {
     super(context, payload, option);
@@ -29,11 +30,12 @@ class Pagination extends SketchComponent {
     currentPage = 1,
     isSmall = false,
     pageList = [],
+    size = 'normal',
   }) {
     const maxPage = 7;
     const { page, name } = this;
     const group = page.newGroup({ name });
-    const small = isSmall ? '/small' : '';
+    const small = size === 'small' ? '/small' : '';
 
     let jumpInstance;
     let jumpPageInstance;
@@ -55,7 +57,7 @@ class Pagination extends SketchComponent {
       }
       return pageList;
     })();
-    const pages = [1, ...pageData, totalPage];
+    const pages = size === 'simple' ? [currentPage] : [1, ...pageData, totalPage];
 
     const pageInstanes = pages.map(value => (value === currentPage ? pageActiveInstance.copy() : pageItemInstance.copy()));
     const instances = [arrowLeftInstance, ...pageInstanes, arrowRightInstance];
