@@ -1,7 +1,7 @@
 import SketchComponent from '../SketchComponent';
 import Dropdown from '../Dropdown';
 import Tips from '../Tips';
-import { isOverridePointName, generatePath } from '../../utils';
+import { isOverridePointName, generatePath, setAlignment } from '../../utils';
 
 const option = {
   name: 'button',
@@ -61,6 +61,7 @@ class Button extends SketchComponent {
       const dropdownInstance = new Dropdown(context, { showPicker: false });
       dropdownInstance.moveToGroup(buttonGroup);
       dropdownInstance.sketchObject.frame().setY_(buttonGroup.frame.height + 10);
+      setAlignment(dropdownInstance, buttonGroup, dropdown.alignment);
     }
 
     if (tips.show) {

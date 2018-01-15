@@ -9765,6 +9765,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_radio_radio_group_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_radio_radio_button_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_show_tips_vue__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_radio_alignment_vue__ = __webpack_require__(9);
 //
 //
 //
@@ -9849,6 +9850,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -9942,7 +9949,8 @@ var data = {
         direction: 'left'
       },
       dropdown: {
-        show: true
+        show: true,
+        alignment: 'center'
       },
 
       componentEvents: ['btn']
@@ -9957,7 +9965,8 @@ var data = {
     SkCodeJavascript: __WEBPACK_IMPORTED_MODULE_4__shared_code_code_javascript_vue__["a" /* default */],
     SkRadioGroup: __WEBPACK_IMPORTED_MODULE_6__shared_radio_radio_group_vue__["a" /* default */],
     SkRadioButton: __WEBPACK_IMPORTED_MODULE_7__shared_radio_radio_button_vue__["a" /* default */],
-    SkShowTips: __WEBPACK_IMPORTED_MODULE_8__shared_show_tips_vue__["a" /* default */]
+    SkShowTips: __WEBPACK_IMPORTED_MODULE_8__shared_show_tips_vue__["a" /* default */],
+    SkAlignment: __WEBPACK_IMPORTED_MODULE_9__shared_radio_alignment_vue__["a" /* default */]
   },
   mixins: [__WEBPACK_IMPORTED_MODULE_2__minxins_events__["a" /* default */]],
   computed: {
@@ -14096,59 +14105,72 @@ var render = function() {
           ]),
           _vm._v(" "),
           _vm.isMenu
-            ? _c(
-                "div",
-                { staticClass: "custom-control custom-checkbox mb-3" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.dropdown.show,
-                        expression: "dropdown.show"
-                      }
-                    ],
-                    staticClass: "custom-control-input",
-                    attrs: { type: "checkbox", id: "buttonShowDropdown" },
-                    domProps: {
-                      checked: Array.isArray(_vm.dropdown.show)
-                        ? _vm._i(_vm.dropdown.show, null) > -1
-                        : _vm.dropdown.show
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.dropdown.show,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 && (_vm.dropdown.show = $$a.concat([$$v]))
+            ? [
+                _c(
+                  "div",
+                  { staticClass: "custom-control custom-checkbox mb-3" },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.dropdown.show,
+                          expression: "dropdown.show"
+                        }
+                      ],
+                      staticClass: "custom-control-input",
+                      attrs: { type: "checkbox", id: "buttonShowDropdown" },
+                      domProps: {
+                        checked: Array.isArray(_vm.dropdown.show)
+                          ? _vm._i(_vm.dropdown.show, null) > -1
+                          : _vm.dropdown.show
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.dropdown.show,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.dropdown.show = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.dropdown.show = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
                           } else {
-                            $$i > -1 &&
-                              (_vm.dropdown.show = $$a
-                                .slice(0, $$i)
-                                .concat($$a.slice($$i + 1)))
+                            _vm.$set(_vm.dropdown, "show", $$c)
                           }
-                        } else {
-                          _vm.$set(_vm.dropdown, "show", $$c)
                         }
                       }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "custom-control-label",
+                        attrs: { for: "buttonShowDropdown" }
+                      },
+                      [_vm._v("show dropdown")]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("label", [_vm._v("dropdown alignment")]),
+                _vm._v(" "),
+                _c("sk-alignment", {
+                  attrs: { alignment: _vm.dropdown.alignment },
+                  on: {
+                    "update:alignment": function($event) {
+                      _vm.$set(_vm.dropdown, "alignment", $event)
                     }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "custom-control-label",
-                      attrs: { for: "buttonShowDropdown" }
-                    },
-                    [_vm._v("show dropdown")]
-                  )
-                ]
-              )
+                  }
+                })
+              ]
             : _vm._e(),
           _vm._v(" "),
           _c("sk-show-tips", {

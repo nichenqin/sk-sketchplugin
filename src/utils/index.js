@@ -110,7 +110,6 @@ export function setAlignment(layer, target, alignment = 'left') {
   const layerObject = layer.sketchObject || layer;
   const { width: targetWidth } = targetSketchObject.frame().size();
   const { width: layerWidth } = layerObject.frame().size();
-  if (targetWidth <= layerWidth) return;
 
   if (alignment === 'center') {
     const padding = (targetWidth - layerWidth) / 2;

@@ -58,10 +58,15 @@
         </select>
       </div>
 
-      <div class="custom-control custom-checkbox mb-3" v-if="isMenu">
-        <input type="checkbox" class="custom-control-input" id="buttonShowDropdown" v-model="dropdown.show">
-        <label class="custom-control-label" for="buttonShowDropdown">show dropdown</label>
-      </div>
+      <template v-if="isMenu">
+        <div class="custom-control custom-checkbox mb-3">
+          <input type="checkbox" class="custom-control-input" id="buttonShowDropdown" v-model="dropdown.show">
+          <label class="custom-control-label" for="buttonShowDropdown">show dropdown</label>
+        </div>
+
+        <label>dropdown alignment</label>
+        <sk-alignment :alignment.sync="dropdown.alignment"></sk-alignment>
+      </template>
 
       <sk-show-tips :content.sync="tips.content" :show-tips.sync="tips.show" :direction.sync="tips.direction"></sk-show-tips>
 
@@ -95,6 +100,7 @@ import SkPreview from '../../shared/preview.vue';
 import SkRadioGroup from '../../shared/radio/radio-group.vue';
 import SkRadioButton from '../../shared/radio/radio-button.vue';
 import SkShowTips from '../../shared/show-tips.vue';
+import SkAlignment from '../../shared/radio/alignment.vue';
 
 const data = {
   risk: {
@@ -176,6 +182,7 @@ export default {
       },
       dropdown: {
         show: true,
+        alignment: 'center',
       },
 
       componentEvents: ['btn'],
@@ -190,6 +197,7 @@ export default {
     SkRadioGroup,
     SkRadioButton,
     SkShowTips,
+    SkAlignment,
   },
   mixins: [Events],
   computed: {
