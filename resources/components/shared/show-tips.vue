@@ -6,7 +6,7 @@
       <label class="custom-control-label" :for="id">Show Tips</label>
     </div>
 
-    <template v-if="showTips">
+    <template v-if="internalShow">
 
       <input type="text" class="form-control mb-3" v-model="internalContent">
 

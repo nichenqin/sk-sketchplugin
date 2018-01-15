@@ -29,7 +29,7 @@ class Button extends SketchComponent {
   }
 
   import({
-    text, path, iconPath = 'icon/camera_large', tips = {},
+    text, path, icon = 'camera_large', tips = {},
   }) {
     const { context, page, name } = this;
 
@@ -43,8 +43,8 @@ class Button extends SketchComponent {
         button.setValue_forOverridePoint_(String(text), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon')) {
-        const icon = this.getInstanceByPath(iconPath);
-        button.setValue_forOverridePoint_(icon.symbolID(), overridePoint);
+        const iconInstance = this.getInstanceByPath(`icon/${icon}`);
+        button.setValue_forOverridePoint_(iconInstance.symbolID(), overridePoint);
       }
     });
 

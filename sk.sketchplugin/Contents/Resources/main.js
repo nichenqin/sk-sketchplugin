@@ -13767,7 +13767,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm.showTips
+      _vm.internalShow
         ? [
             _c("input", {
               directives: [
