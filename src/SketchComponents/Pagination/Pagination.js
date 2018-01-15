@@ -22,7 +22,13 @@ class Pagination extends SketchComponent {
   }
 
   import({
-    totalPage, marginRight = 10, showLimit = false, showJump = false, currentPage = 1, isSmall = false,
+    totalPage,
+    marginRight = 10,
+    showLimit = false,
+    showJump = false,
+    currentPage = 1,
+    isSmall = false,
+    pageList = [],
   }) {
     const maxPage = 7;
     const { page, name } = this;
@@ -38,50 +44,20 @@ class Pagination extends SketchComponent {
     const pageItemInstance = this.getInstanceByPath(`pagination/page${small}/normal`);
     const { width } = getRectOfNativeLayer(pageItemInstance);
 
-    let count;
-    if (totalPage <= 1) count = 1;
-    else if (totalPage > maxPage) count = maxPage;
-    else count = totalPage;
-
-    const pages = [...new Array(count)].map((val, index) => {
-      if (totalPage <= maxPage) {
-        return {
-          value: index + 1,
-          instance: index + 1 === currentPage ? pageActiveInstance.copy() : pageItemInstance.copy(),
-        };
+    const pageData = (() => {
+      const len = pageList.length;
+      if (totalPage < maxPage) return pageList;
+      if (len === 3) {
+        return ['...', ...pageList, '...'];
+      } else if (len === 4) {
+        if (totalPage - currentPage < 4) return ['...', ...pageList];
+        return [...pageList, '...'];
       }
+      return pageList;
+    })();
+    const pages = [1, ...pageData, totalPage];
 
-      switch (index) {
-        case 0:
-          return {
-            value: 1,
-            instance: currentPage === 1 ? pageActiveInstance.copy() : pageItemInstance.copy(),
-          };
-        case 1:
-          return {
-            value: currentPage > 4 ? '...' : index + 1,
-            instance: currentPage === 2 ? pageActiveInstance.copy() : pageItemInstance.copy(),
-          };
-        case count - 2:
-          return {
-            value: totalPage - currentPage > 4 ? '...' : index + 1,
-            instance: totalPage - currentPage === 2 ? pageActiveInstance.copy() : pageItemInstance.copy(),
-          };
-        case count - 1:
-          return {
-            value: totalPage,
-            instance: currentPage === totalPage ? pageActiveInstance.copy() : pageItemInstance.copy(),
-          };
-
-        default:
-          return {
-            value: currentPage > 4 ? index - 3 + currentPage : index + 1,
-            instance: index === 3 ? pageActiveInstance.copy() : pageItemInstance.copy(),
-          };
-      }
-    });
-
-    const pageInstanes = pages.map(({ instance }) => instance);
+    const pageInstanes = pages.map(value => (value === currentPage ? pageActiveInstance.copy() : pageItemInstance.copy()));
     const instances = [arrowLeftInstance, ...pageInstanes, arrowRightInstance];
     group.sketchObject.addLayers(instances);
 
@@ -90,9 +66,9 @@ class Pagination extends SketchComponent {
       layer.frame().setX_(gap * index);
     });
 
-    pages.forEach(({ value, instance: pageInstane }) => {
+    pageInstanes.forEach((pageInstane, index) => {
       pageInstane.overridePoints().forEach(overridePoint => {
-        pageInstane.setValue_forOverridePoint(String(value), overridePoint);
+        pageInstane.setValue_forOverridePoint(String(pages[index]), overridePoint);
       });
     });
 

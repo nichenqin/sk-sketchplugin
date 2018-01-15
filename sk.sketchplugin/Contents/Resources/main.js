@@ -11553,6 +11553,7 @@ var TOTAL_LENGTH = 42;
   },
   methods: {
     handleImport: function handleImport() {
+      var pageList = this.$refs.pagination.pageList;
       var marginRight = this.marginRight,
           totalPage = this.totalPage,
           showLimit = this.showLimit,
@@ -11560,7 +11561,15 @@ var TOTAL_LENGTH = 42;
           currentPage = this.currentPage,
           isSmall = this.isSmall;
 
-      var payload = { marginRight: marginRight, totalPage: totalPage, showLimit: showLimit, showJump: showJump, currentPage: currentPage, isSmall: isSmall };
+      var payload = {
+        marginRight: marginRight,
+        totalPage: totalPage,
+        showLimit: showLimit,
+        showJump: showJump,
+        currentPage: currentPage,
+        isSmall: isSmall,
+        pageList: pageList
+      };
       this.$emit('import', payload);
     }
   },

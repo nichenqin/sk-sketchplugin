@@ -70,8 +70,17 @@ export default {
   },
   methods: {
     handleImport() {
+      const { pageList } = this.$refs.pagination;
       const { marginRight, totalPage, showLimit, showJump, currentPage, isSmall } = this;
-      const payload = { marginRight, totalPage, showLimit, showJump, currentPage, isSmall };
+      const payload = {
+        marginRight,
+        totalPage,
+        showLimit,
+        showJump,
+        currentPage,
+        isSmall,
+        pageList,
+      };
       this.$emit('import', payload);
     },
   },
