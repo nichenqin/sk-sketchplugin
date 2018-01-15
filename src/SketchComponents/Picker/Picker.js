@@ -14,13 +14,14 @@ class Picker extends SketchComponent {
       status: 'active',
       placeholder: 'placeholder',
       type: '',
+      relevant: '',
     },
   ) {
     super(context, payload, option);
   }
 
   import({
-    content, icon = 'arrowDown', status = 'normal', placeholder = 'placeholder', type = '',
+    content, icon = 'arrowDown', status = 'normal', placeholder = 'placeholder', type = '', relevant = '',
   }) {
     const internalStatus = content ? status : 'placeholder';
     const path = generatePath('picker', type, type === 'empty' ? 'hover' : internalStatus);

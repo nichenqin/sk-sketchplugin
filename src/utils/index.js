@@ -3,6 +3,26 @@
 import WebUI from 'sketch-module-web-view';
 import { isWebviewPresent, sendToWebview } from 'sketch-module-web-view/remote';
 
+import Button from '../SketchComponents/Button';
+import Bread from '../SketchComponents/Bread';
+import List from '../SketchComponents/List';
+import Datepicker from '../SketchComponents/Datepicker';
+import Text from '../SketchComponents/Text';
+import LongInput from '../SketchComponents/LongInput';
+import ShortInput from '../SketchComponents/ShortInput';
+import Radio from '../SketchComponents/Radio';
+import Switch from '../SketchComponents/Switch';
+import UploadFile from '../SketchComponents/UploadFile';
+import Pagination from '../SketchComponents/Pagination';
+import Rectangle from '../SketchComponents/Rectangle';
+import Dropdown from '../SketchComponents/Dropdown';
+import Picker from '../SketchComponents/Picker';
+import Timepicker from '../SketchComponents/Timepicker';
+import Checkbox from '../SketchComponents/Checkbox';
+import Popover from '../SketchComponents/Popover';
+import Menu from '../SketchComponents/Menu';
+import Tips from '../SketchComponents/Tips';
+
 const html = require('../../resources/index.html');
 
 const IDENTIFIER = 'superKit.webView';
@@ -50,6 +70,56 @@ export function parseFilePath(path) {
 
 export function is(layer, className) {
   return String(layer.className()) === className;
+}
+
+export function createComponentInstance(context, name, payload) {
+  const instance = (() => {
+    switch (name) {
+      case 'bread':
+        return new Bread(context, payload);
+      case 'button':
+        return new Button(context, payload);
+      case 'list':
+        return new List(context, payload);
+      case 'datepicker':
+        return new Datepicker(context, payload);
+      case 'text':
+        return new Text(context, payload);
+      case 'longInput':
+        return new LongInput(context, payload);
+      case 'shortInput':
+        return new ShortInput(context, payload);
+      case 'radio':
+        return new Radio(context, payload);
+      case 'switch':
+        return new Switch(context, payload);
+      case 'uploadFile':
+        return new UploadFile(context, payload);
+      case 'pagination':
+        return new Pagination(context, payload);
+      case 'rectangle':
+        return new Rectangle(context, payload);
+      case 'dropdown':
+        return new Dropdown(context, payload);
+      case 'picker':
+        return new Picker(context, payload);
+      case 'timepicker':
+        return new Timepicker(context, payload);
+      case 'checkbox':
+        return new Checkbox(context, payload);
+      case 'popover':
+        return new Popover(context, payload);
+      case 'menu':
+        return new Menu(context, payload);
+      case 'tips':
+        return new Tips(context, payload);
+
+      default:
+        return null;
+    }
+  })();
+
+  return instance;
 }
 
 /**
