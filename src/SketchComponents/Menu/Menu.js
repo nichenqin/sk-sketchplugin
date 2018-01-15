@@ -7,8 +7,10 @@ const option = {
 };
 
 function flatten(options) {
-  return options.reduce((result, { name, expand, children }) => {
-    result.push({ name, expand });
+  return options.reduce((result, {
+    name, expand, subtitle, children,
+  }) => {
+    result.push({ name, expand, subtitle });
     if (expand && children && children.length) {
       result.push(...flatten(children));
     }
@@ -61,6 +63,10 @@ class Menu extends SketchComponent {
       instance.overridePoints().forEach(overridePoint => {
         if (isOverridePointName(overridePoint, ['option', 'username'])) {
           instance.setValue_forOverridePoint_(String(renderedOptions[index].name), overridePoint);
+        }
+        // TODO: sup_info ? sub_info
+        if (isOverridePointName(overridePoint, 'sup_info')) {
+          instance.setValue_forOverridePoint_(String(renderedOptions[index].subtitle), overridePoint);
         }
         if (isOverridePointName(overridePoint, 'avatar')) {
           instance.setValue_forOverridePoint_(avatar.symbolID(), overridePoint);
