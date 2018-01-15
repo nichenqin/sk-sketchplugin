@@ -10162,10 +10162,6 @@ var data = {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
-    name: {
-      type: String,
-      required: true
-    },
     value: {},
     id: {
       type: String,
@@ -13716,7 +13712,7 @@ var render = function() {
     },
     [
       _c("input", {
-        attrs: { type: "radio", id: _vm.id, name: _vm.name },
+        attrs: { type: "radio", id: _vm.id },
         domProps: { value: _vm.value, checked: _vm.checked },
         on: { change: _vm.handleChange }
       }),

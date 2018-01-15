@@ -1,6 +1,6 @@
 <template>
   <label class="btn btn-secondary" :class="{ active: checked }" :for="id">
-    <input type="radio" :id="id" :name="name" :value="value" :checked="checked" @change="handleChange">
+    <input type="radio" :id="id" :value="value" :checked="checked" @change="handleChange">
     <slot></slot>
   </label>
 </template>
@@ -8,10 +8,6 @@
 <script>
 export default {
   props: {
-    name: {
-      type: String,
-      required: true,
-    },
     value: {},
     id: {
       type: String,
