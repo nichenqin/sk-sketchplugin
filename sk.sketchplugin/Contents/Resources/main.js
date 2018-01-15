@@ -37825,7 +37825,7 @@ module.exports = __webpack_require__.p + "popover.sketch?554f31420db13425f938357
 /* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "menu.sketch?9b9ba6374bca666db48818fd368b3949";
+module.exports = __webpack_require__.p + "menu.sketch?79593d0d133115a1329218d726f5cc68";
 
 /***/ }),
 /* 343 */
