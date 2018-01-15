@@ -1,4 +1,5 @@
 import SketchComponent from '../SketchComponent';
+import { generatePath } from '../../utils';
 
 const option = {
   name: 'switch',
@@ -11,7 +12,10 @@ class Switch extends SketchComponent {
 
   import({ isOn, disabled }) {
     const status = isOn ? 'on' : 'off';
-    const path = `switch/${disabled ? 'disable' : status}`;
+    // TODO: rename
+    const defaultDisabled = disabled && isOn ? '*default/disable' : 'disable';
+    const disabledStr = disabled ? defaultDisabled : status;
+    const path = generatePath('switch', disabledStr);
 
     const instance = this.getInstanceByPath(path);
     this.document.sketchObject.addLayer(instance);

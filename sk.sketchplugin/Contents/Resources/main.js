@@ -11397,11 +11397,6 @@ var TOTAL_LENGTH = 42;
       var payload = { isOn: isOn, disabled: disabled };
       this.$emit('import', payload);
     }
-  },
-  watch: {
-    disabled: function disabled(_disabled) {
-      if (_disabled) this.isOn = false;
-    }
   }
 });
 

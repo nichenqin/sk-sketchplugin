@@ -55,10 +55,5 @@ export default {
       this.$emit('import', payload);
     },
   },
-  watch: {
-    disabled(disabled) {
-      if (disabled) this.isOn = false;
-    },
-  },
 };
 </script>
