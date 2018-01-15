@@ -4,7 +4,7 @@
     <form @submit.prevent="handleImport">
 
       <div class="custom-control custom-checkbox mb-3">
-        <input type="checkbox" class="custom-control-input" id="datepickerShowPicker" v-model="showPicker">
+        <input type="checkbox" class="custom-control-input" id="datepickerShowPicker" v-model="picker.show">
         <label for="datepickerShowPicker" class="custom-control-label">Show Picker</label>
       </div>
 
@@ -40,8 +40,8 @@
     </form>
 
     <sk-preview>
-      <tb-picker v-model="selectedDate">
-        <tb-datepicker v-model="selectedDate" :show-today="showToday" :show-tomorrow="showTomorrow"
+      <tb-picker v-model="picker.date">
+        <tb-datepicker v-model="picker.date" :show-today="showToday" :show-tomorrow="showTomorrow"
           :show-clear="showClear" :start-time="startTime" :stop-time="stopTime"></tb-datepicker>
       </tb-picker>
     </sk-preview>
@@ -64,13 +64,17 @@ const TOTAL_LENGTH = 42;
 export default {
   data() {
     return {
-      selectedDate: '',
       datepickerAlign: 'center',
 
-      showPicker: true,
       showToday: true,
       showTomorrow: true,
       showClear: true,
+
+      picker: {
+        show: true,
+        placeholder: '不限',
+        date: '',
+      },
 
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth(),
@@ -150,12 +154,11 @@ export default {
         nextMonthDateList,
         dateList,
         currentDay,
-        showPicker,
+        picker,
         showToday,
         showTomorrow,
         showClear,
         selectedDateList,
-        selectedDate,
         datepickerAlign,
       } = this;
       const payload = {
@@ -164,13 +167,12 @@ export default {
         nextMonthDateList,
         dateList,
         currentDay,
-        showPicker,
         showToday,
         showTomorrow,
         showClear,
         selectedDateList,
-        selectedDate,
         datepickerAlign,
+        picker,
       };
       this.$emit('import', payload);
     },

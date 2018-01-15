@@ -11203,13 +11203,17 @@ var TOTAL_LENGTH = 42;
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      selectedDate: '',
       datepickerAlign: 'center',
 
-      showPicker: true,
       showToday: true,
       showTomorrow: true,
       showClear: true,
+
+      picker: {
+        show: true,
+        placeholder: '不限',
+        date: ''
+      },
 
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth(),
@@ -11296,12 +11300,11 @@ var TOTAL_LENGTH = 42;
           nextMonthDateList = this.nextMonthDateList,
           dateList = this.dateList,
           currentDay = this.currentDay,
-          showPicker = this.showPicker,
+          picker = this.picker,
           showToday = this.showToday,
           showTomorrow = this.showTomorrow,
           showClear = this.showClear,
           selectedDateList = this.selectedDateList,
-          selectedDate = this.selectedDate,
           datepickerAlign = this.datepickerAlign;
 
       var payload = {
@@ -11310,13 +11313,12 @@ var TOTAL_LENGTH = 42;
         nextMonthDateList: nextMonthDateList,
         dateList: dateList,
         currentDay: currentDay,
-        showPicker: showPicker,
         showToday: showToday,
         showTomorrow: showTomorrow,
         showClear: showClear,
         selectedDateList: selectedDateList,
-        selectedDate: selectedDate,
-        datepickerAlign: datepickerAlign
+        datepickerAlign: datepickerAlign,
+        picker: picker
       };
       this.$emit('import', payload);
     }
@@ -16534,35 +16536,35 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.showPicker,
-                  expression: "showPicker"
+                  value: _vm.picker.show,
+                  expression: "picker.show"
                 }
               ],
               staticClass: "custom-control-input",
               attrs: { type: "checkbox", id: "datepickerShowPicker" },
               domProps: {
-                checked: Array.isArray(_vm.showPicker)
-                  ? _vm._i(_vm.showPicker, null) > -1
-                  : _vm.showPicker
+                checked: Array.isArray(_vm.picker.show)
+                  ? _vm._i(_vm.picker.show, null) > -1
+                  : _vm.picker.show
               },
               on: {
                 change: function($event) {
-                  var $$a = _vm.showPicker,
+                  var $$a = _vm.picker.show,
                     $$el = $event.target,
                     $$c = $$el.checked ? true : false
                   if (Array.isArray($$a)) {
                     var $$v = null,
                       $$i = _vm._i($$a, $$v)
                     if ($$el.checked) {
-                      $$i < 0 && (_vm.showPicker = $$a.concat([$$v]))
+                      $$i < 0 && (_vm.picker.show = $$a.concat([$$v]))
                     } else {
                       $$i > -1 &&
-                        (_vm.showPicker = $$a
+                        (_vm.picker.show = $$a
                           .slice(0, $$i)
                           .concat($$a.slice($$i + 1)))
                     }
                   } else {
-                    _vm.showPicker = $$c
+                    _vm.$set(_vm.picker, "show", $$c)
                   }
                 }
               }
@@ -16812,11 +16814,11 @@ var render = function() {
             "tb-picker",
             {
               model: {
-                value: _vm.selectedDate,
+                value: _vm.picker.date,
                 callback: function($$v) {
-                  _vm.selectedDate = $$v
+                  _vm.$set(_vm.picker, "date", $$v)
                 },
-                expression: "selectedDate"
+                expression: "picker.date"
               }
             },
             [
@@ -16829,11 +16831,11 @@ var render = function() {
                   "stop-time": _vm.stopTime
                 },
                 model: {
-                  value: _vm.selectedDate,
+                  value: _vm.picker.date,
                   callback: function($$v) {
-                    _vm.selectedDate = $$v
+                    _vm.$set(_vm.picker, "date", $$v)
                   },
-                  expression: "selectedDate"
+                  expression: "picker.date"
                 }
               })
             ],

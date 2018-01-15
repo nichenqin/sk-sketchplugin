@@ -32,25 +32,24 @@ class Datepicker extends SketchComponent {
     currentMonthDateList,
     nextMonthDateList,
     dateList,
-    showPicker,
     showToday,
     showTomorrow,
     showClear,
-    selectedDate = '',
     datepickerAlign,
+    picker = { show: false, date: '' },
   }) {
     const { context, page, name } = this;
     const rootGroup = page.newGroup({ name });
 
     let pickerInstance;
-    if (showPicker) {
-      const picker = new Picker(context, {
-        content: selectedDate,
+    if (picker.show) {
+      const pickerComponent = new Picker(context, {
+        content: picker.date,
         status: 'active',
-        placeholder: '不限',
+        placeholder: picker.placeholder,
         type: 'date',
       });
-      pickerInstance = picker.moveToGroup(rootGroup);
+      pickerInstance = pickerComponent.moveToGroup(rootGroup);
       rootGroup.adjustToFit();
     }
 
@@ -65,7 +64,7 @@ class Datepicker extends SketchComponent {
     const selectedInstance = this.getInstanceByPath('datepicker/day/selected');
     const normalInstance = this.getInstanceByPath('datepicker/day/normal');
     const todayInstance = this.getInstanceByPath('datepicker/day/today');
-    const [, , selectedDay] = selectedDate.split('-');
+    const [, , selectedDay] = picker.date.split('-');
     const { height, width } = getRectOfNativeLayer(normalInstance);
     const padding = (headerWidth - width * 7) / 2;
 
@@ -144,7 +143,7 @@ class Datepicker extends SketchComponent {
     }
     // endregion add footer
 
-    if (showPicker) setAlignment(datepickerGroup, pickerInstance, datepickerAlign);
+    if (picker.show) setAlignment(datepickerGroup, pickerInstance, datepickerAlign);
     this.createBgAtGroup(datepickerGroup);
     this.createShadowAtGroup(datepickerGroup);
 
