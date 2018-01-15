@@ -9849,7 +9849,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-//
 
 
 
@@ -9942,6 +9941,9 @@ var data = {
         content: 'btn',
         direction: 'left'
       },
+      dropdown: {
+        show: true
+      },
 
       componentEvents: ['btn']
     };
@@ -9959,16 +9961,6 @@ var data = {
   },
   mixins: [__WEBPACK_IMPORTED_MODULE_2__minxins_events__["a" /* default */]],
   computed: {
-    path: function path() {
-      var currentComponent = this.currentComponent,
-          type = this.type,
-          status = this.status;
-
-      var path = [currentComponent, type, status].filter(function (p) {
-        return !!p;
-      });
-      return path.join('/');
-    },
     types: function types() {
       return Object.keys(data);
     },
@@ -9978,6 +9970,9 @@ var data = {
     },
     disabled: function disabled() {
       return this.status === 'disable';
+    },
+    isMenu: function isMenu() {
+      return this.type === 'menu';
     },
     hasIcon: function hasIcon() {
       return (/icon/i.test(this.type)
@@ -10005,29 +10000,22 @@ var data = {
   methods: {
     handleImport: function handleImport() {
       var text = this.text,
-          path = this.path,
           type = this.type,
-          tips = this.tips;
+          tips = this.tips,
+          dropdown = this.dropdown,
+          status = this.status;
 
-      var payload = { text: text, path: path, tips: tips };
-      if (type === 'menu') payload.iconPath = 'icon/arrowDown';
+      var payload = { text: text, tips: tips, dropdown: dropdown, status: status, type: type };
       this.$emit('import', payload);
     },
     updateText: function updateText(text) {
       if (!this.objectID) return;
       __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('button:updateText', this.objectID, text);
-    },
-    updatePath: function updatePath() {
-      if (!this.objectID) return;
-      __WEBPACK_IMPORTED_MODULE_0_sketch_module_web_view_client___default()('button:updatePath', this.objectID, this.path);
     }
   },
   watch: {
     text: function text(_text) {
       this.updateText(_text);
-    },
-    path: function path(_path) {
-      this.updatePath(_path);
     }
   }
 });
@@ -13841,16 +13829,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "form-group mb-3" }, [
-        _c("label", [_vm._v(" Path ")]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "alert alert-success", attrs: { role: "alert" } },
-          [_vm._v("\n      " + _vm._s(_vm.path) + "\n    ")]
-        )
-      ]),
-      _vm._v(" "),
       _c(
         "form",
         {
@@ -14116,6 +14094,62 @@ var render = function() {
               })
             )
           ]),
+          _vm._v(" "),
+          _vm.isMenu
+            ? _c(
+                "div",
+                { staticClass: "custom-control custom-checkbox mb-3" },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dropdown.show,
+                        expression: "dropdown.show"
+                      }
+                    ],
+                    staticClass: "custom-control-input",
+                    attrs: { type: "checkbox", id: "buttonShowDropdown" },
+                    domProps: {
+                      checked: Array.isArray(_vm.dropdown.show)
+                        ? _vm._i(_vm.dropdown.show, null) > -1
+                        : _vm.dropdown.show
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.dropdown.show,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.dropdown.show = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.dropdown.show = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.$set(_vm.dropdown, "show", $$c)
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "custom-control-label",
+                      attrs: { for: "buttonShowDropdown" }
+                    },
+                    [_vm._v("show dropdown")]
+                  )
+                ]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c("sk-show-tips", {
             attrs: {

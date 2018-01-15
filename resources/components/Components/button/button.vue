@@ -1,11 +1,5 @@
 <template>
   <div>
-    <div class="form-group mb-3">
-      <label> Path </label>
-      <div class="alert alert-success" role="alert">
-        {{ path }}
-      </div>
-    </div>
 
     <form class="mb-3" @submit.prevent="handleImport">
 
@@ -62,6 +56,11 @@
         <select class="custom-select" v-model="status">
           <option :value="s" v-for="s of allStatus" :key="s">{{ s }}</option>
         </select>
+      </div>
+
+      <div class="custom-control custom-checkbox mb-3" v-if="isMenu">
+        <input type="checkbox" class="custom-control-input" id="buttonShowDropdown" v-model="dropdown.show">
+        <label class="custom-control-label" for="buttonShowDropdown">show dropdown</label>
       </div>
 
       <sk-show-tips :content.sync="tips.content" :show-tips.sync="tips.show" :direction.sync="tips.direction"></sk-show-tips>
@@ -175,6 +174,9 @@ export default {
         content: 'btn',
         direction: 'left',
       },
+      dropdown: {
+        show: true,
+      },
 
       componentEvents: ['btn'],
     };
@@ -191,11 +193,6 @@ export default {
   },
   mixins: [Events],
   computed: {
-    path() {
-      const { currentComponent, type, status } = this;
-      const path = [currentComponent, type, status].filter(p => !!p);
-      return path.join('/');
-    },
     types() {
       return Object.keys(data);
     },
@@ -205,6 +202,9 @@ export default {
     },
     disabled() {
       return this.status === 'disable';
+    },
+    isMenu() {
+      return this.type === 'menu';
     },
     hasIcon() {
       return /icon/i.test(this.type);
@@ -225,26 +225,18 @@ export default {
   },
   methods: {
     handleImport() {
-      const { text, path, type, tips } = this;
-      const payload = { text, path, tips };
-      if (type === 'menu') payload.iconPath = 'icon/arrowDown';
+      const { text, type, tips, dropdown, status } = this;
+      const payload = { text, tips, dropdown, status, type };
       this.$emit('import', payload);
     },
     updateText(text) {
       if (!this.objectID) return;
       PluginCall('button:updateText', this.objectID, text);
     },
-    updatePath() {
-      if (!this.objectID) return;
-      PluginCall('button:updatePath', this.objectID, this.path);
-    },
   },
   watch: {
     text(text) {
       this.updateText(text);
-    },
-    path(path) {
-      this.updatePath(path);
     },
   },
 };

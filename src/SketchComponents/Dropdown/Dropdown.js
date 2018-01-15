@@ -1,18 +1,18 @@
 import SketchComponent from '../SketchComponent';
 import Picker from '../Picker';
-import { getRectOfNativeLayer, isOverridePointName, setFrame, setAlignment } from '../../utils/index';
+import { isOverridePointName, setFrame, setAlignment } from '../../utils/index';
 
 const option = {
   name: 'dropdown',
 };
 
 class Dropdown extends SketchComponent {
-  constructor(context, payload) {
+  constructor(context, payload = { showPicker: false, showSearch: true }) {
     super(context, payload, option);
   }
 
   import({
-    showPicker, showSearch, searchWord, dropdownAlign,
+    showPicker = false, showSearch = true, searchWord, dropdownAlign,
   }) {
     const {
       page, name, context, sketch,

@@ -1,6 +1,7 @@
 import SketchComponent from '../SketchComponent';
+import Dropdown from '../Dropdown';
 import Tips from '../Tips';
-import { isOverridePointName } from '../../utils';
+import { isOverridePointName, generatePath } from '../../utils';
 
 const option = {
   name: 'button',
@@ -29,31 +30,44 @@ class Button extends SketchComponent {
   }
 
   import({
-    text, path, icon = 'camera_large', tips = {},
+    text, type, status, icon = 'camera_large', tips = {}, dropdown = {},
   }) {
     const { context, page, name } = this;
 
     const buttonGroup = page.newGroup({ name });
 
-    const button = this.getInstanceByPath(path);
-    buttonGroup.sketchObject.addLayer(button);
+    const path = generatePath(name, type, status);
+    const buttonInstance = this.getInstanceByPath(path);
+    buttonGroup.sketchObject.addLayer(buttonInstance);
 
-    button.overridePoints().forEach(overridePoint => {
+    buttonInstance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'text')) {
-        button.setValue_forOverridePoint_(String(text), overridePoint);
+        buttonInstance.setValue_forOverridePoint_(String(text), overridePoint);
       }
       if (isOverridePointName(overridePoint, 'icon')) {
         const iconInstance = this.getInstanceByPath(`icon/${icon}`);
-        button.setValue_forOverridePoint_(iconInstance.symbolID(), overridePoint);
+        buttonInstance.setValue_forOverridePoint_(iconInstance.symbolID(), overridePoint);
+      }
+      if (isOverridePointName(overridePoint, 'icon/arroweDown')) {
+        // TODO: arroweDown
+        const iconInstance = this.getInstanceByPath('icon/arrowDown');
+        buttonInstance.setValue_forOverridePoint_(iconInstance.symbolID(), overridePoint);
       }
     });
 
     buttonGroup.adjustToFit();
 
+    if (type === 'menu' && dropdown.show) {
+      const dropdownInstance = new Dropdown(context);
+      dropdownInstance.moveToGroup(buttonGroup);
+      dropdownInstance.sketchObject.frame().setY_(buttonGroup.frame.height + 10);
+      buttonGroup.adjustToFit();
+    }
+
     if (tips.show) {
       const tipsComponent = new Tips(context, { content: tips.content, direction: tips.direction });
       tipsComponent.moveToGroup(buttonGroup);
-      tipsComponent.setPosition(buttonGroup);
+      tipsComponent.setPosition(buttonInstance);
     }
 
     return buttonGroup;
