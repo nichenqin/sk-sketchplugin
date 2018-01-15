@@ -1,5 +1,5 @@
 import SketchComponent from '../SketchComponent';
-import { getRectOfNativeLayer, is, isOverridePointName } from '../../utils';
+import { getRectOfNativeLayer, isOverridePointName } from '../../utils';
 
 const option = {
   name: 'radio',
