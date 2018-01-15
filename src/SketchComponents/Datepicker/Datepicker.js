@@ -7,7 +7,7 @@ const option = {
 };
 
 class Datepicker extends SketchComponent {
-  constructor(context, payload) {
+  constructor(context, payload = {}) {
     super(context, payload, option);
   }
 

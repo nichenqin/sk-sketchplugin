@@ -1,5 +1,5 @@
 import SketchComponent from '../SketchComponent';
-import { isOverridePointName, generatePath } from '../../utils';
+import { isOverridePointName, generatePath, createComponentInstance } from '../../utils';
 
 const option = {
   name: 'picker',
@@ -23,10 +23,13 @@ class Picker extends SketchComponent {
   import({
     content, icon = 'arrowDown', status = 'normal', placeholder = 'placeholder', type = '', relevant = '',
   }) {
+    const { page, name, context } = this;
+    const pickerGroup = page.newGroup({ name });
+
     const internalStatus = content ? status : 'placeholder';
     const path = generatePath('picker', type, type === 'empty' ? 'hover' : internalStatus);
     const pickerInstance = this.getInstanceByPath(path);
-    this.document.sketchObject.addLayer(pickerInstance);
+    pickerGroup.sketchObject.addLayer(pickerInstance);
 
     pickerInstance.overridePoints().forEach(overridePoint => {
       if (isOverridePointName(overridePoint, 'content') && content) {
@@ -54,7 +57,16 @@ class Picker extends SketchComponent {
       }
     });
 
-    return pickerInstance;
+    pickerGroup.adjustToFit();
+
+    if (relevant) {
+      const relevantComponent = createComponentInstance(context, relevant);
+      const relevantInstance = relevantComponent.moveToGroup(pickerGroup);
+      // FIXME: datepicker datelist property
+      relevantInstance.frame().setY_(pickerGroup.frame.height + 10);
+    }
+
+    return pickerGroup;
   }
 }
 

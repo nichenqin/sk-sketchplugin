@@ -11868,6 +11868,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -11882,7 +11892,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       allStatus: ['active', 'hover', 'disable', 'normal'],
 
       type: '',
-      types: ['time', 'date', 'empty']
+      types: ['time', 'date', 'empty'],
+
+      relevant: '',
+      relevants: ['dropdown', 'datepicker', 'timepicker']
     };
   },
 
@@ -11895,9 +11908,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var content = this.content,
           placeholder = this.placeholder,
           type = this.type,
-          status = this.status;
+          status = this.status,
+          relevant = this.relevant;
 
-      var payload = { content: content, placeholder: placeholder, type: type, status: status };
+      var payload = { content: content, placeholder: placeholder, type: type, status: status, relevant: relevant };
       this.$emit('import', payload);
     }
   }
@@ -18442,6 +18456,52 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "input-group mb-3" }, [
+            _vm._m(4),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.relevant,
+                    expression: "relevant"
+                  }
+                ],
+                staticClass: "custom-select",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.relevant = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v("Choose a relevant...")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.relevants, function(r) {
+                  return _c("option", { key: r, domProps: { value: r } }, [
+                    _vm._v(_vm._s(r))
+                  ])
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -18508,6 +18568,14 @@ var staticRenderFns = [
       _c("div", { staticClass: "input-group-text" }, [
         _vm._v("\n          Type\n        ")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("label", { staticClass: "input-group-text" }, [_vm._v("relevants")])
     ])
   }
 ]

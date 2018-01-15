@@ -39,6 +39,16 @@
         </select>
       </div>
 
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text">relevants</label>
+        </div>
+        <select class="custom-select" v-model="relevant">
+          <option value="">Choose a relevant...</option>
+          <option v-for="r of relevants" :value="r" :key="r">{{ r }}</option>
+        </select>
+      </div>
+
       <button type="submit" class="btn btn-lg btn-block btn-primary">Import To Sketch</button>
 
     </form>
@@ -65,6 +75,9 @@ export default {
 
       type: '',
       types: ['time', 'date', 'empty'],
+
+      relevant: '',
+      relevants: ['dropdown', 'datepicker', 'timepicker'],
     };
   },
   components: {
@@ -73,8 +86,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { content, placeholder, type, status } = this;
-      const payload = { content, placeholder, type, status };
+      const { content, placeholder, type, status, relevant } = this;
+      const payload = { content, placeholder, type, status, relevant };
       this.$emit('import', payload);
     },
   },
