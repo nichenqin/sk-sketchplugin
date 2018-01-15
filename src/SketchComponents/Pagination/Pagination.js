@@ -34,7 +34,7 @@ class Pagination extends SketchComponent {
     let limitInstance;
     const arrowLeftInstance = this.getInstanceByPath(`pagination/arrowLeft${small}/normal`);
     const arrowRightInstance = this.getInstanceByPath(`pagination/arrowRight${small}/normal`);
-    const pageActiceInstance = this.getInstanceByPath(`pagination/page${small}/active`);
+    const pageActiveInstance = this.getInstanceByPath(`pagination/page${small}/active`);
     const pageItemInstance = this.getInstanceByPath(`pagination/page${small}/normal`);
     const { width } = getRectOfNativeLayer(pageItemInstance);
 
@@ -43,7 +43,7 @@ class Pagination extends SketchComponent {
     else if (totalPage > maxPage) count = maxPage;
     else count = totalPage;
 
-    const pages = [...new Array(count)].map((val, index) => (index + 1 === currentPage ? pageActiceInstance.copy() : pageItemInstance.copy()));
+    const pages = [...new Array(count)].map((val, index) => (index + 1 === currentPage ? pageActiveInstance.copy() : pageItemInstance.copy()));
 
     const instances = [arrowLeftInstance, ...pages, arrowRightInstance];
     group.sketchObject.addLayers(instances);
