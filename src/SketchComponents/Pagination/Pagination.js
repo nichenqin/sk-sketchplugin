@@ -6,35 +6,25 @@ const option = {
 };
 
 class Pagination extends SketchComponent {
-  constructor(
-    context,
-    payload = {
-      totalPage: 10,
-      showLimit: false,
-      showJump: false,
-      currentPage: 1,
-      isSmall: false,
-      size: 'normal',
-    },
-  ) {
+  constructor(context, payload = {}) {
     super(context, payload, option);
 
     this.jump = true;
   }
 
   import({
-    totalPage,
+    totalPage = 10,
     marginRight = 10,
     showLimit = false,
     showJump = false,
     currentPage = 1,
-    isSmall = false,
-    pageList = [],
+    pageList = [2, 3, 4, 5],
     size = 'normal',
   }) {
     const maxPage = 7;
     const { page, name } = this;
     const group = page.newGroup({ name });
+    const isSmall = size === 'small';
     const small = size === 'small' ? '/small' : '';
 
     let jumpInstance;
