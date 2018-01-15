@@ -43,9 +43,46 @@ class Pagination extends SketchComponent {
     else if (totalPage > maxPage) count = maxPage;
     else count = totalPage;
 
-    const pages = [...new Array(count)].map((val, index) => (index + 1 === currentPage ? pageActiveInstance.copy() : pageItemInstance.copy()));
+    const pages = [...new Array(count)].map((val, index) => {
+      if (totalPage <= maxPage) {
+        return {
+          value: index + 1,
+          instance: index + 1 === currentPage ? pageActiveInstance.copy() : pageItemInstance.copy(),
+        };
+      }
 
-    const instances = [arrowLeftInstance, ...pages, arrowRightInstance];
+      switch (index) {
+        case 0:
+          return {
+            value: 1,
+            instance: currentPage === 1 ? pageActiveInstance.copy() : pageItemInstance.copy(),
+          };
+        case 1:
+          return {
+            value: currentPage > 4 ? '...' : index + 1,
+            instance: currentPage === 2 ? pageActiveInstance.copy() : pageItemInstance.copy(),
+          };
+        case count - 2:
+          return {
+            value: totalPage - currentPage > 4 ? '...' : index + 1,
+            instance: totalPage - currentPage === 2 ? pageActiveInstance.copy() : pageItemInstance.copy(),
+          };
+        case count - 1:
+          return {
+            value: totalPage,
+            instance: currentPage === totalPage ? pageActiveInstance.copy() : pageItemInstance.copy(),
+          };
+
+        default:
+          return {
+            value: currentPage > 4 ? index - 3 + currentPage : index + 1,
+            instance: index === 3 ? pageActiveInstance.copy() : pageItemInstance.copy(),
+          };
+      }
+    });
+
+    const pageInstanes = pages.map(({ instance }) => instance);
+    const instances = [arrowLeftInstance, ...pageInstanes, arrowRightInstance];
     group.sketchObject.addLayers(instances);
 
     const gap = width + marginRight < width ? width : width + marginRight;
@@ -53,22 +90,9 @@ class Pagination extends SketchComponent {
       layer.frame().setX_(gap * index);
     });
 
-    pages.forEach((p, index) => {
-      const value = (() => {
-        if (totalPage <= maxPage) return String(index + 1);
-
-        switch (index) {
-          case pages.length - 2:
-            return '...';
-          case pages.length - 1:
-            return String(totalPage);
-
-          default:
-            return String(index + 1);
-        }
-      })();
-      p.overridePoints().forEach(overridePoint => {
-        p.setValue_forOverridePoint(value, overridePoint);
+    pages.forEach(({ value, instance: pageInstane }) => {
+      pageInstane.overridePoints().forEach(overridePoint => {
+        pageInstane.setValue_forOverridePoint(String(value), overridePoint);
       });
     });
 

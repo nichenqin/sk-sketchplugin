@@ -17557,6 +17557,7 @@ var render = function() {
         "sk-preview",
         [
           _c("tb-pagination", {
+            ref: "pagination",
             attrs: {
               "total-page": _vm.totalPage,
               current: _vm.currentPage,

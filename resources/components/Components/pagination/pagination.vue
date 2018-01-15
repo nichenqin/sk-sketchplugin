@@ -37,8 +37,8 @@
     </form>
 
     <sk-preview>
-      <tb-pagination :total-page.sync="totalPage" :current.sync="currentPage" :type="type"
-        :is-skip="showJump"></tb-pagination>
+      <tb-pagination ref="pagination" :total-page.sync="totalPage" :current.sync="currentPage"
+        :type="type" :is-skip="showJump"></tb-pagination>
     </sk-preview>
 
   </section>
