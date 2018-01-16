@@ -11828,6 +11828,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_preview_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_radio_alignment_vue__ = __webpack_require__(9);
 //
 //
 //
@@ -11890,6 +11891,18 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -11906,14 +11919,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       type: '',
       types: ['time', 'date', 'empty'],
 
-      relevant: '',
+      relevant: {
+        show: false,
+        name: '',
+        alignment: 'center'
+      },
       relevants: ['dropdown', 'datepicker', 'timepicker']
     };
   },
 
   components: {
     TbPicker: __WEBPACK_IMPORTED_MODULE_0__zhinan_tb_components__["Picker"],
-    SkPreview: __WEBPACK_IMPORTED_MODULE_1__shared_preview_vue__["a" /* default */]
+    SkPreview: __WEBPACK_IMPORTED_MODULE_1__shared_preview_vue__["a" /* default */],
+    SkAlignment: __WEBPACK_IMPORTED_MODULE_2__shared_radio_alignment_vue__["a" /* default */]
   },
   methods: {
     handleImport: function handleImport() {
@@ -18502,51 +18520,120 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "input-group mb-3" }, [
-            _vm._m(4),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.relevant,
-                    expression: "relevant"
-                  }
-                ],
-                staticClass: "custom-select",
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.relevant = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.relevant.show,
+                  expression: "relevant.show"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "pickerShowRelevant" },
+              domProps: {
+                checked: Array.isArray(_vm.relevant.show)
+                  ? _vm._i(_vm.relevant.show, null) > -1
+                  : _vm.relevant.show
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.relevant.show,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.relevant.show = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.relevant.show = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.$set(_vm.relevant, "show", $$c)
                   }
                 }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "pickerShowRelevant" }
               },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v("Choose a relevant...")
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.relevants, function(r) {
-                  return _c("option", { key: r, domProps: { value: r } }, [
-                    _vm._v(_vm._s(r))
-                  ])
-                })
-              ],
-              2
+              [_vm._v("Show Relevant")]
             )
           ]),
+          _vm._v(" "),
+          _vm.relevant.show
+            ? [
+                _c("div", { staticClass: "input-group mb-3" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.relevant.name,
+                          expression: "relevant.name"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.relevant,
+                            "name",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Choose a relevant...")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.relevants, function(r) {
+                        return _c(
+                          "option",
+                          { key: r, domProps: { value: r } },
+                          [_vm._v(_vm._s(r))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("sk-alignment", {
+                  attrs: { alignment: _vm.relevant.alignment },
+                  on: {
+                    "update:alignment": function($event) {
+                      _vm.$set(_vm.relevant, "alignment", $event)
+                    }
+                  }
+                })
+              ]
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "button",
@@ -18556,7 +18643,8 @@ var render = function() {
             },
             [_vm._v("Import To Sketch")]
           )
-        ]
+        ],
+        2
       ),
       _vm._v(" "),
       _c(

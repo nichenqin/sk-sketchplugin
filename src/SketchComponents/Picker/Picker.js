@@ -1,5 +1,10 @@
 import SketchComponent from '../SketchComponent';
-import { isOverridePointName, generatePath, createComponentInstance } from '../../utils';
+import {
+  isOverridePointName,
+  generatePath,
+  createComponentInstance,
+  setAlignment,
+} from '../../utils';
 
 const option = {
   name: 'picker',
@@ -9,30 +14,25 @@ class Picker extends SketchComponent {
   constructor(
     context,
     payload = {
-      content: 'default',
       icon: 'arrowUp',
       status: 'active',
-      placeholder: 'placeholder',
-      type: '',
-      relevant: '',
     },
   ) {
     super(context, payload, option);
   }
 
   import({
-    content,
+    content = '',
     icon = 'arrowDown',
     status = 'normal',
     placeholder = 'placeholder',
-    type = '',
-    relevant = '',
+    relevant = {},
   }) {
     const { page, name, context } = this;
     const pickerGroup = page.newGroup({ name });
 
-    const internalStatus = content ? status : 'placeholder';
-    const path = generatePath('picker', type, type === 'empty' ? 'hover' : internalStatus);
+    const internalStatus = relevant.show && relevant.name ? 'active' : status;
+    const path = generatePath('picker', content ? internalStatus : 'placeholder');
     const pickerInstance = this.getInstanceByPath(path);
     pickerGroup.sketchObject.addLayer(pickerInstance);
 
@@ -46,9 +46,21 @@ class Picker extends SketchComponent {
       if (isOverridePointName(overridePoint, 'icon_arrow')) {
         let iconType;
         let iconStatus;
-        if (type) {
-          iconStatus = status === 'active' ? 'active' : 'normal';
-          iconType = type === 'date' ? 'calendar' : 'time';
+        if (relevant.show && relevant.name) {
+          switch (relevant.name) {
+            case 'datepicker':
+              iconType = 'calendar';
+              iconStatus = relevant.show ? 'active' : 'normal';
+              break;
+            case 'timepicker':
+              iconType = 'time';
+              iconStatus = relevant.show ? 'active' : 'normal';
+              break;
+
+            default:
+              iconType = relevant.show ? 'arrowUp' : 'arrowDown';
+              break;
+          }
         } else {
           iconType = icon;
         }
@@ -64,11 +76,12 @@ class Picker extends SketchComponent {
 
     pickerGroup.adjustToFit();
 
-    if (relevant) {
-      const relevantComponent = createComponentInstance(context, relevant);
+    if (relevant.show) {
+      const relevantComponent = createComponentInstance(context, relevant.name);
       const relevantInstance = relevantComponent.moveToGroup(pickerGroup);
       // FIXME: datepicker datelist property
       relevantInstance.frame().setY_(pickerGroup.frame.height + 10);
+      setAlignment(relevantInstance, pickerInstance, relevant.alignment);
     }
 
     return pickerGroup;

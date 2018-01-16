@@ -39,15 +39,26 @@
         </select>
       </div>
 
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text">relevants</label>
-        </div>
-        <select class="custom-select" v-model="relevant">
-          <option value="">Choose a relevant...</option>
-          <option v-for="r of relevants" :value="r" :key="r">{{ r }}</option>
-        </select>
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="pickerShowRelevant" v-model="relevant.show">
+        <label class="custom-control-label" for="pickerShowRelevant">Show Relevant</label>
       </div>
+
+      <template v-if="relevant.show">
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text">relevants</label>
+          </div>
+          <select class="custom-select" v-model="relevant.name">
+            <option value="">Choose a relevant...</option>
+            <option v-for="r of relevants" :value="r" :key="r">{{ r }}</option>
+          </select>
+        </div>
+
+        <sk-alignment :alignment.sync="relevant.alignment"></sk-alignment>
+
+      </template>
 
       <button type="submit" class="btn btn-lg btn-block btn-primary">Import To Sketch</button>
 
@@ -63,6 +74,7 @@
 <script>
 import { Picker as TbPicker } from '@zhinan/tb-components';
 import SkPreview from '../../shared/preview.vue';
+import SkAlignment from '../../shared/radio/alignment.vue';
 
 export default {
   data() {
@@ -76,13 +88,18 @@ export default {
       type: '',
       types: ['time', 'date', 'empty'],
 
-      relevant: '',
+      relevant: {
+        show: false,
+        name: '',
+        alignment: 'center',
+      },
       relevants: ['dropdown', 'datepicker', 'timepicker'],
     };
   },
   components: {
     TbPicker,
     SkPreview,
+    SkAlignment,
   },
   methods: {
     handleImport() {
