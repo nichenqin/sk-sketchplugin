@@ -5,12 +5,12 @@ const option = {
 };
 
 class UploadFile extends SketchComponent {
-  constructor(context, payload) {
+  constructor(context, payload = {}) {
     super(context, payload, option);
   }
 
-  import() {
-    const instance = this.getInstanceByPath('uploadImage/normal');
+  import({ status = 'normal' }) {
+    const instance = this.getInstanceByPath(`uploadImage/${status}`);
 
     this.document.sketchObject.addLayer(instance);
 
