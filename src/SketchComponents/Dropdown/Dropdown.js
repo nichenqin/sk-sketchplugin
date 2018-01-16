@@ -59,7 +59,11 @@ class Dropdown extends SketchComponent {
         if (isOverridePointName(overridePoint, 'icon_selection')) {
           optionItem.setValue_forOverridePoint_(selectionInstance.symbolID(), overridePoint);
         }
-        if (options[index].title && isOverridePointName(overridePoint, 'option')) {
+        if (
+          options[index] &&
+          options[index].title &&
+          isOverridePointName(overridePoint, 'option')
+        ) {
           optionItem.setValue_forOverridePoint_(String(options[index].title), overridePoint);
         }
       });
