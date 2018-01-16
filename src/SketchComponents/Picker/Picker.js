@@ -47,7 +47,7 @@ class Picker extends SketchComponent {
       if (isOverridePointName(overridePoint, 'icon_arrow')) {
         let iconType;
         let iconStatus;
-        if (relevant.show && relevant.name) {
+        if (relevant.name) {
           switch (relevant.name) {
             case 'datepicker':
               iconType = 'calendar';

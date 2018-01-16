@@ -47,7 +47,7 @@ class Datepicker extends SketchComponent {
         content: picker.date,
         status: 'active',
         placeholder: picker.placeholder,
-        type: 'date',
+        relevant: { show: false, name: 'datepicker' },
       });
       pickerInstance = pickerComponent.moveToGroup(rootGroup);
       rootGroup.adjustToFit();
