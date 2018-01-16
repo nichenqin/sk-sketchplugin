@@ -4,11 +4,6 @@
     <form @submit.prevent="handleImport">
 
       <div class="custom-control custom-checkbox mb-3">
-        <input type="checkbox" class="custom-control-input" id="datepickerShowPicker" v-model="picker.show">
-        <label for="datepickerShowPicker" class="custom-control-label">Show Picker</label>
-      </div>
-
-      <div class="custom-control custom-checkbox mb-3">
         <input type="checkbox" class="custom-control-input" id="datepickerShowToday" v-model="showToday">
         <label for="datepickerShowToday" class="custom-control-label">Show Today</label>
       </div>
@@ -33,7 +28,17 @@
         <tb-datepicker v-model="stopTime"></tb-datepicker>
       </tb-picker>
 
-      <sk-alignment :alignment.sync="datepickerAlign"></sk-alignment>
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="datepickerShowPicker" v-model="picker.show">
+        <label for="datepickerShowPicker" class="custom-control-label">Show Picker</label>
+      </div>
+
+      <template v-if="picker.show">
+
+        <label>Datepicker Alignment</label>
+        <sk-alignment :alignment.sync="datepickerAlign"></sk-alignment>
+
+      </template>
 
       <button class="btn btn-primary btn-lg btn-block" type="submit">Import To Sketch</button>
 

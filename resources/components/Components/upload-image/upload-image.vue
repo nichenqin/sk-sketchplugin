@@ -12,12 +12,17 @@
         </select>
       </div>
 
+      <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="uploadImageDisable" v-model="disabled">
+        <label class="custom-control-label" for="uploadImageDisable">disabeld</label>
+      </div>
+
       <button type="submit" class="btn btn-lg btn-block btn-primary">Import To Sketch</button>
 
     </form>
 
     <sk-preview>
-      <tb-upload-image></tb-upload-image>
+      <tb-upload-image :disabled="disabled"></tb-upload-image>
     </sk-preview>
 
   </section>
@@ -40,6 +45,8 @@ export default {
         'uploaded_selection',
         'uploaded_hover',
       ],
+
+      disabled: false,
     };
   },
   components: {

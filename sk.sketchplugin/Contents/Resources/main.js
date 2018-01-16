@@ -11186,6 +11186,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -11510,6 +11515,11 @@ var TOTAL_LENGTH = 42;
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -11518,7 +11528,9 @@ var TOTAL_LENGTH = 42;
   data: function data() {
     return {
       currentStatus: 'normal',
-      allStatus: ['normal', 'hover', 'drag', 'uploading', 'uploaded', 'uploaded_selection', 'uploaded_hover']
+      allStatus: ['normal', 'hover', 'drag', 'uploading', 'uploaded', 'uploaded_selection', 'uploaded_hover'],
+
+      disabled: false
     };
   },
 
@@ -16649,56 +16661,6 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.picker.show,
-                  expression: "picker.show"
-                }
-              ],
-              staticClass: "custom-control-input",
-              attrs: { type: "checkbox", id: "datepickerShowPicker" },
-              domProps: {
-                checked: Array.isArray(_vm.picker.show)
-                  ? _vm._i(_vm.picker.show, null) > -1
-                  : _vm.picker.show
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.picker.show,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.picker.show = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.picker.show = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.$set(_vm.picker, "show", $$c)
-                  }
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "custom-control-label",
-                attrs: { for: "datepickerShowPicker" }
-              },
-              [_vm._v("Show Picker")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
                   value: _vm.showToday,
                   expression: "showToday"
                 }
@@ -16899,14 +16861,70 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("sk-alignment", {
-            attrs: { alignment: _vm.datepickerAlign },
-            on: {
-              "update:alignment": function($event) {
-                _vm.datepickerAlign = $event
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.picker.show,
+                  expression: "picker.show"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "datepickerShowPicker" },
+              domProps: {
+                checked: Array.isArray(_vm.picker.show)
+                  ? _vm._i(_vm.picker.show, null) > -1
+                  : _vm.picker.show
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.picker.show,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.picker.show = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.picker.show = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.$set(_vm.picker, "show", $$c)
+                  }
+                }
               }
-            }
-          }),
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "datepickerShowPicker" }
+              },
+              [_vm._v("Show Picker")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm.picker.show
+            ? [
+                _c("label", [_vm._v("Datepicker Alignment")]),
+                _vm._v(" "),
+                _c("sk-alignment", {
+                  attrs: { alignment: _vm.datepickerAlign },
+                  on: {
+                    "update:alignment": function($event) {
+                      _vm.datepickerAlign = $event
+                    }
+                  }
+                })
+              ]
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "button",
@@ -16917,7 +16935,7 @@ var render = function() {
             [_vm._v("Import To Sketch")]
           )
         ],
-        1
+        2
       ),
       _vm._v(" "),
       _c(
@@ -17524,6 +17542,56 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.disabled,
+                  expression: "disabled"
+                }
+              ],
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "uploadImageDisable" },
+              domProps: {
+                checked: Array.isArray(_vm.disabled)
+                  ? _vm._i(_vm.disabled, null) > -1
+                  : _vm.disabled
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.disabled,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.disabled = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.disabled = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.disabled = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "uploadImageDisable" }
+              },
+              [_vm._v("disabeld")]
+            )
+          ]),
+          _vm._v(" "),
           _c(
             "button",
             {
@@ -17535,7 +17603,11 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("sk-preview", [_c("tb-upload-image")], 1)
+      _c(
+        "sk-preview",
+        [_c("tb-upload-image", { attrs: { disabled: _vm.disabled } })],
+        1
+      )
     ],
     1
   )
