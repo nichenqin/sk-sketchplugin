@@ -19187,7 +19187,16 @@ var render = function() {
                       }
                     }
                   })
-                ])
+                ]),
+                _vm._v(" "),
+                _c("sk-alignment", {
+                  attrs: { alignment: _vm.timepickerAlign },
+                  on: {
+                    "update:alignment": function($event) {
+                      _vm.timepickerAlign = $event
+                    }
+                  }
+                })
               ]
             : _vm._e(),
           _vm._v(" "),
@@ -19379,15 +19388,6 @@ var render = function() {
             ],
             1
           ),
-          _vm._v(" "),
-          _c("sk-alignment", {
-            attrs: { alignment: _vm.timepickerAlign },
-            on: {
-              "update:alignment": function($event) {
-                _vm.timepickerAlign = $event
-              }
-            }
-          }),
           _vm._v(" "),
           _c(
             "button",

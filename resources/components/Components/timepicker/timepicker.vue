@@ -16,6 +16,8 @@
           <input type="text" class="form-control" v-model="picker.placeholder">
         </div>
 
+        <sk-alignment :alignment.sync="timepickerAlign"></sk-alignment>
+
       </template>
 
       <div class="custom-control custom-checkbox mb-3">
@@ -37,8 +39,6 @@
         <sk-radio-button name="timepicker" :value="12" :checked="timeType === 12">12</sk-radio-button>
         <sk-radio-button name="timepicker" :value="24" :checked="timeType === 24">24</sk-radio-button>
       </sk-radio-group>
-
-      <sk-alignment :alignment.sync="timepickerAlign"></sk-alignment>
 
       <button type="submit" class="btn btn-lg btn-primary btn-block">Import To Sketch</button>
 
