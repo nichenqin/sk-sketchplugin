@@ -2,6 +2,17 @@
   <section>
     <form @submit.prevent="handleImport">
 
+      <template v-for="(option, index) of options">
+
+        <div class="input-group mb-3" :key="index">
+          <div class="input-group-prepend">
+            <div class="input-group-text">option-{{index}}</div>
+          </div>
+          <input type="text" class="form-control" v-model="option.title">
+        </div>
+
+      </template>
+
       <div class="custom-control custom-checkbox mb-3">
         <input type="checkbox" class="custom-control-input" id="dropdownShowPicker" v-model="showPicker">
         <label for="dropdownShowPicker" class="custom-control-label">Show Picker</label>
@@ -53,8 +64,8 @@ export default {
   },
   methods: {
     handleImport() {
-      const { showPicker, showSearch, searchWord, dropdownAlign } = this;
-      const payload = { showPicker, showSearch, searchWord, dropdownAlign };
+      const { showPicker, showSearch, searchWord, dropdownAlign, options } = this;
+      const payload = { showPicker, showSearch, searchWord, dropdownAlign, options };
       this.$emit('import', payload);
     },
   },

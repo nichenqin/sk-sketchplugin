@@ -7,11 +7,17 @@ const option = {
 };
 
 class Dropdown extends SketchComponent {
-  constructor(context, payload = { showPicker: false, showSearch: false }) {
+  constructor(context, payload = {}) {
     super(context, payload, option);
   }
 
-  import({ showPicker = false, showSearch = false, searchWord, dropdownAlign }) {
+  import({
+    showPicker = false,
+    showSearch = false,
+    searchWord,
+    dropdownAlign = 'center',
+    options = [...new Array(3)],
+  }) {
     const { page, name, context, sketch } = this;
 
     const rootGroup = page.newGroup({
@@ -45,13 +51,16 @@ class Dropdown extends SketchComponent {
       dropdownGroup.adjustToFit();
     }
 
-    const optionInstances = [...new Array(3)].map(() => optionInstance.copy());
+    const optionInstances = options.map(() => optionInstance.copy());
     dropdownGroup.sketchObject.addLayers(optionInstances);
-    optionInstances.forEach(optionItem => {
+    optionInstances.forEach((optionItem, index) => {
       optionItem.frame().setY_(dropdownGroup.frame.height);
       optionItem.overridePoints().forEach(overridePoint => {
         if (isOverridePointName(overridePoint, 'icon_selection')) {
           optionItem.setValue_forOverridePoint_(selectionInstance.symbolID(), overridePoint);
+        }
+        if (options[index].title && isOverridePointName(overridePoint, 'option')) {
+          optionItem.setValue_forOverridePoint_(String(options[index].title), overridePoint);
         }
       });
       dropdownGroup.adjustToFit();

@@ -11768,6 +11768,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -11800,9 +11811,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       var showPicker = this.showPicker,
           showSearch = this.showSearch,
           searchWord = this.searchWord,
-          dropdownAlign = this.dropdownAlign;
+          dropdownAlign = this.dropdownAlign,
+          options = this.options;
 
-      var payload = { showPicker: showPicker, showSearch: showSearch, searchWord: searchWord, dropdownAlign: dropdownAlign };
+      var payload = { showPicker: showPicker, showSearch: showSearch, searchWord: searchWord, dropdownAlign: dropdownAlign, options: options };
       this.$emit('import', payload);
     }
   }
@@ -18067,6 +18079,40 @@ var render = function() {
           }
         },
         [
+          _vm._l(_vm.options, function(option, index) {
+            return [
+              _c("div", { key: index, staticClass: "input-group mb-3" }, [
+                _c("div", { staticClass: "input-group-prepend" }, [
+                  _c("div", { staticClass: "input-group-text" }, [
+                    _vm._v("option-" + _vm._s(index))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: option.title,
+                      expression: "option.title"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: option.title },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(option, "title", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]
+          }),
+          _vm._v(" "),
           _c("div", { staticClass: "custom-control custom-checkbox mb-3" }, [
             _c("input", {
               directives: [
@@ -18185,7 +18231,7 @@ var render = function() {
             [_vm._v("Import To Sketch")]
           )
         ],
-        1
+        2
       ),
       _vm._v(" "),
       _c(
