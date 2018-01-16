@@ -31,7 +31,8 @@ class Picker extends SketchComponent {
     const { page, name, context } = this;
     const pickerGroup = page.newGroup({ name });
 
-    const internalStatus = relevant.show && relevant.name ? 'active' : status;
+    const internalStatus =
+      relevant.show && relevant.name && status !== 'disable' ? 'active' : status;
     const path = generatePath('picker', content ? internalStatus : 'placeholder');
     const pickerInstance = this.getInstanceByPath(path);
     pickerGroup.sketchObject.addLayer(pickerInstance);
@@ -50,15 +51,15 @@ class Picker extends SketchComponent {
           switch (relevant.name) {
             case 'datepicker':
               iconType = 'calendar';
-              iconStatus = relevant.show ? 'active' : 'normal';
+              iconStatus = relevant.show && status !== 'disable' ? 'active' : 'normal';
               break;
             case 'timepicker':
               iconType = 'time';
-              iconStatus = relevant.show ? 'active' : 'normal';
+              iconStatus = relevant.show && status !== 'disable' ? 'active' : 'normal';
               break;
 
             default:
-              iconType = relevant.show ? 'arrowUp' : 'arrowDown';
+              iconType = relevant.show && status !== 'disable' ? 'arrowUp' : 'arrowDown';
               break;
           }
         } else {
