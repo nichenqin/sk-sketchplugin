@@ -53,6 +53,7 @@ import SkRadio from '../Components/radio';
 import SkDatepicker from '../Components/datepicker';
 import SkSwitch from '../Components/switch';
 import SkUploadFile from '../Components/upload-file';
+import SkUploadImage from '../Components/upload-image';
 import SkPagination from '../Components/pagination';
 import SkRectangle from '../Components/rectangle';
 import SkDropdown from '../Components/dropdown';
@@ -85,6 +86,7 @@ export default {
     SkPopover,
     SkMenu,
     SkTips,
+    SkUploadImage,
   },
   data() {
     return {

@@ -1,5 +1,3 @@
-/* globals */
-
 import WebUI from 'sketch-module-web-view';
 import { isWebviewPresent, sendToWebview } from 'sketch-module-web-view/remote';
 
@@ -13,6 +11,7 @@ import ShortInput from '../SketchComponents/ShortInput';
 import Radio from '../SketchComponents/Radio';
 import Switch from '../SketchComponents/Switch';
 import UploadFile from '../SketchComponents/UploadFile';
+import UploadImage from '../SketchComponents/UploadImage';
 import Pagination from '../SketchComponents/Pagination';
 import Rectangle from '../SketchComponents/Rectangle';
 import Dropdown from '../SketchComponents/Dropdown';
@@ -113,6 +112,8 @@ export function createComponentInstance(context, name, payload) {
         return new Menu(context, payload);
       case 'tips':
         return new Tips(context, payload);
+      case 'uploadImage':
+        return new UploadImage(context, payload);
 
       default:
         return null;
@@ -138,7 +139,10 @@ export function isOverridePointName(overridePoint, names) {
 export function setFrame(
   layer,
   {
-    x = layer.frame.x, y = layer.frame.y, width = layer.frame.width, height = layer.frame.height,
+    x = layer.frame.x,
+    y = layer.frame.y,
+    width = layer.frame.width,
+    height = layer.frame.height,
   } = {},
 ) {
   /* eslint-disable no-param-reassign */

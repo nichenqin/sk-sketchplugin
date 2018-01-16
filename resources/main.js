@@ -19,7 +19,6 @@ import './assets/longInput.sketch';
 import './assets/shortInput.sketch';
 import './assets/radio.sketch';
 import './assets/switch.sketch';
-import './assets/switch.sketch';
 import './assets/pagination.sketch';
 import './assets/dropdown.sketch';
 import './assets/picker.sketch';
@@ -28,6 +27,8 @@ import './assets/checkbox.sketch';
 import './assets/popover.sketch';
 import './assets/menu.sketch';
 import './assets/tips.sketch';
+import './assets/uploadFile.sketch';
+import './assets/uploadImage.sketch';
 
 // import your style files inside main.js, not html link tag
 import './styles/style.less';
