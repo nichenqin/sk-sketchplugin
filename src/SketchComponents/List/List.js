@@ -14,11 +14,11 @@ const option = {
 };
 
 class List extends SketchComponent {
-  constructor(context, payload) {
+  constructor(context, payload = {}) {
     super(context, payload, option);
   }
 
-  import({ rows, columns, titleItems, rowItems, showPagination, paginationAlign = 'left' }) {
+  import({ rows, columns, titleItems, rowItems, pagination = { show: false, alignment: 'right' } }) {
     const { context, page, name } = this;
 
     const listGroup = page.newGroup({ name });
@@ -95,13 +95,13 @@ class List extends SketchComponent {
     this.createShadowAtGroup(listGroup);
     // endregion duplicate rows
 
-    if (showPagination) {
-      const pagination = new Pagination(context);
-      const paginationInstance = pagination.moveToGroup(listGroup);
+    if (pagination.show) {
+      const paginationComponent = new Pagination(context);
+      const paginationInstance = paginationComponent.moveToGroup(listGroup);
       paginationInstance.frame().setY_(listGroup.frame.height + 10);
       listGroup.adjustToFit();
 
-      setAlignment(paginationInstance, listGroup, paginationAlign);
+      setAlignment(paginationInstance, listGroup, pagination.alignment);
     }
 
     listGroup.adjustToFit();

@@ -10397,6 +10397,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -10430,10 +10434,12 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       titleItems: titleItems,
 
       maxRows: 5,
-      showPagination: true,
       icons: ['user', 'icon'],
 
-      paginationAlign: 'right'
+      pagination: {
+        show: true,
+        alignment: 'right'
+      }
     };
   },
 
@@ -10494,18 +10500,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     handleImport: function handleImport() {
       var rows = this.rows,
           columns = this.columns,
-          showPagination = this.showPagination,
           titleItems = this.titleItems,
           rowItems = this.rowItems,
-          paginationAlign = this.paginationAlign;
+          pagination = this.pagination;
 
       var payload = {
         rows: rows,
         columns: columns,
         titleItems: titleItems,
         rowItems: rowItems,
-        showPagination: showPagination,
-        paginationAlign: paginationAlign
+        pagination: pagination
       };
       this.$emit('import', payload);
     }
@@ -14864,35 +14868,35 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.showPagination,
-              expression: "showPagination"
+              value: _vm.pagination.show,
+              expression: "pagination.show"
             }
           ],
           staticClass: "custom-control-input",
           attrs: { type: "checkbox", id: "paginationShowPagination" },
           domProps: {
-            checked: Array.isArray(_vm.showPagination)
-              ? _vm._i(_vm.showPagination, null) > -1
-              : _vm.showPagination
+            checked: Array.isArray(_vm.pagination.show)
+              ? _vm._i(_vm.pagination.show, null) > -1
+              : _vm.pagination.show
           },
           on: {
             change: function($event) {
-              var $$a = _vm.showPagination,
+              var $$a = _vm.pagination.show,
                 $$el = $event.target,
                 $$c = $$el.checked ? true : false
               if (Array.isArray($$a)) {
                 var $$v = null,
                   $$i = _vm._i($$a, $$v)
                 if ($$el.checked) {
-                  $$i < 0 && (_vm.showPagination = $$a.concat([$$v]))
+                  $$i < 0 && (_vm.pagination.show = $$a.concat([$$v]))
                 } else {
                   $$i > -1 &&
-                    (_vm.showPagination = $$a
+                    (_vm.pagination.show = $$a
                       .slice(0, $$i)
                       .concat($$a.slice($$i + 1)))
                 }
               } else {
-                _vm.showPagination = $$c
+                _vm.$set(_vm.pagination, "show", $$c)
               }
             }
           }
@@ -14904,18 +14908,22 @@ var render = function() {
             staticClass: "custom-control-label",
             attrs: { for: "paginationShowPagination" }
           },
-          [_vm._v("Show Picker")]
+          [_vm._v("Show Pagination")]
         )
       ]),
       _vm._v(" "),
-      _c("sk-alignment", {
-        attrs: { alignment: _vm.paginationAlign },
-        on: {
-          "update:alignment": function($event) {
-            _vm.paginationAlign = $event
-          }
-        }
-      }),
+      _vm.pagination.show
+        ? [
+            _c("sk-alignment", {
+              attrs: { alignment: _vm.pagination.alignment },
+              on: {
+                "update:alignment": function($event) {
+                  _vm.$set(_vm.pagination, "alignment", $event)
+                }
+              }
+            })
+          ]
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "button",
@@ -14947,7 +14955,7 @@ var render = function() {
       _vm._v(" "),
       _c("sk-code-javascript", { attrs: { properties: _vm.properties } })
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []

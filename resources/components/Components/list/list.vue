@@ -50,11 +50,15 @@
 
     <div class="custom-control custom-checkbox mb-3">
       <input type="checkbox" class="custom-control-input" id="paginationShowPagination"
-        v-model="showPagination">
-      <label class="custom-control-label" for="paginationShowPagination">Show Picker</label>
+        v-model="pagination.show">
+      <label class="custom-control-label" for="paginationShowPagination">Show Pagination</label>
     </div>
 
-    <sk-alignment :alignment.sync="paginationAlign"></sk-alignment>
+    <template v-if="pagination.show">
+
+      <sk-alignment :alignment.sync="pagination.alignment"></sk-alignment>
+
+    </template>
 
     <button @click="handleImport" class="btn btn-block btn-primary btn-lg">Import To Sketch</button>
 
@@ -97,10 +101,12 @@ export default {
       titleItems,
 
       maxRows: 5,
-      showPagination: true,
       icons: ['user', 'icon'],
 
-      paginationAlign: 'right',
+      pagination: {
+        show: true,
+        alignment: 'right',
+      },
     };
   },
   components: {
@@ -149,14 +155,13 @@ export default {
       this.columns -= 1;
     },
     handleImport() {
-      const { rows, columns, showPagination, titleItems, rowItems, paginationAlign } = this;
+      const { rows, columns, titleItems, rowItems, pagination } = this;
       const payload = {
         rows,
         columns,
         titleItems,
         rowItems,
-        showPagination,
-        paginationAlign,
+        pagination,
       };
       this.$emit('import', payload);
     },
